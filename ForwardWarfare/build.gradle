@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.6.0'
+}
+
+group = 'com.ldts.forwardwarfare'
+version = '1.0-SNAPSHOT'
+
+application {
+    mainClass.set("Application")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.googlecode.lanterna',
+            name: 'lanterna', version: '3.1.1'
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
+}
