@@ -17,20 +17,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Game {
-
     private Screen screen;
     private LanternaTerminal terminal;
     public Game(LanternaTerminal terminal) throws IOException {
         this.terminal = terminal;
     }
-
     public void run() throws IOException {
         screen = terminal.createScreen();
         screen.clear();
         DrawTiles(screen.newTextGraphics());
         screen.refresh();
     }
-
     private void DrawTiles(TextGraphics graphics) {
         boolean change = true;
         for (int j = 0; j < 160; j += 16) {

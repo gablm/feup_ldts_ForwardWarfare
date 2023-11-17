@@ -3,7 +3,6 @@ package com.ldts.ForwardWarfare;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Element {
-
     protected Position position;
     protected int hp = -1;
     public Element() { }

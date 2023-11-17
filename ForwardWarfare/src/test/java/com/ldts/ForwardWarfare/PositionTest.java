@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 public class PositionTest {
-
     @Test
     public void BasePosition() {
         Position position = new Position();
