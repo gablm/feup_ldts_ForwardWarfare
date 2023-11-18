@@ -19,7 +19,7 @@ public class LanternaTerminal {
         Font font = loadExternalFonts();
         terminal = createTerminal(width, height, font);
     }
-    private Terminal createTerminal(int width, int height, Font font) throws IOException, URISyntaxException, FontFormatException {
+    private Terminal createTerminal(int width, int height, Font font) throws IOException {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
@@ -30,7 +30,7 @@ public class LanternaTerminal {
         return factory.createTerminal();
     }
     private Font loadExternalFonts() throws IOException, FontFormatException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource("square.ttf");
+        URL resource = getClass().getClassLoader().getResource("tanks.ttf");
         assert resource != null;
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
