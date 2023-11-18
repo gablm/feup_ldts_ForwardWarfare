@@ -39,8 +39,8 @@ public class Game {
             }
         }*/
 
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        /*
+        /*graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+
         graphics.putString(new TerminalPosition(0,0), "Tanks $#>+ ");
         graphics.putString(new TerminalPosition(0,1), "Person (_@ ");
         graphics.putString(new TerminalPosition(0,2), "Plane %& ");
@@ -51,9 +51,9 @@ public class Game {
         graphics.putString(new TerminalPosition(0,7), "Borders ^* ");
         graphics.putString(new TerminalPosition(0,8), "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         graphics.putString(new TerminalPosition(0,9), "abcdefghijklmnop");
-        graphics.putString(new TerminalPosition(0,10), ".,!?-:");
-        */
-        /*
+        graphics.putString(new TerminalPosition(0,10), ".,!?-:");*/
+
+
         graphics.setBackgroundColor(TextColor.ANSI.BLUE);
         graphics.putString(new TerminalPosition(0,0), "~~~~~~~~~~~");
         graphics.putString(new TerminalPosition(0,1), "~");
@@ -116,6 +116,6 @@ public class Game {
         graphics.putString(new TerminalPosition(2,9), ";");
         graphics.setForegroundColor(TextColor.ANSI.BLACK);
         graphics.putString(new TerminalPosition(8,9), ";");
-        */
+
     }
 }
