@@ -1,7 +1,7 @@
 package com.ldts.ForwardWarfare.Playable;
 
 import com.ldts.ForwardWarfare.Element;
-import com.ldts.ForwardWarfare.Tile;
+import com.ldts.ForwardWarfare.Position;
 
 public abstract class Playable extends Element {
     private int hp = 0;
@@ -17,5 +17,5 @@ public abstract class Playable extends Element {
     public void setHP(int hp) {
         this.hp = hp;
     }
-    protected abstract boolean canMove(Tile tile);
+    protected abstract boolean canMove(Element element);
 }

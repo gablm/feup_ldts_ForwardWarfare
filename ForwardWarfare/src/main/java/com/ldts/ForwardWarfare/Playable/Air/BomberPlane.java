@@ -1,17 +1,19 @@
 package com.ldts.ForwardWarfare.Playable.Air;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.ldts.ForwardWarfare.Element;
 import com.ldts.ForwardWarfare.Playable.Playable;
-import com.ldts.ForwardWarfare.Tile;
+import com.ldts.ForwardWarfare.Position;
 
 public class BomberPlane extends Playable {
-    public BomberPlane() {
-        super("Air", 4);
+    public BomberPlane(Position pos) {
+        super("Air", 3);
+        position = pos;
     }
     public void draw(TextGraphics graphics) {
 
     }
-    protected boolean canMove(Tile tile) {
+    protected boolean canMove(Element element) {
         return false;
     }
 }
