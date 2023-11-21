@@ -12,7 +12,7 @@ public class Montain_Water extends Element {
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
-        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
+        graphics.setForegroundColor(new TextColor.RGB(160,160,160));
         graphics.putString(position.toTPos(),"]");
     }
 }

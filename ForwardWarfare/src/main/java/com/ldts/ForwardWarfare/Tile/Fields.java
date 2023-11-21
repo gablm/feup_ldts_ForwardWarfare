@@ -11,14 +11,18 @@ public class Fields extends Element {
     public Fields(Position position, Facility facility)
     {
         super.position=position;
-        this.facility=facility;
+        if (facility!=null) {
+            this.facility = facility;
+        }
     }
 
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
-        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
+        graphics.setForegroundColor(new TextColor.RGB(226,214,106));
         graphics.putString(position.toTPos(),"|");
-        facility.draw(graphics,position);
+        if (facility!=null) {
+            facility.draw(graphics, position);
+        }
     }
 }

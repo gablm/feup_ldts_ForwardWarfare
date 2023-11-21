@@ -38,7 +38,7 @@ public class LanternaTerminal {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        return font.deriveFont(Font.PLAIN, 30);
+        return font.deriveFont(Font.PLAIN, 50);
     }
     public Screen createScreen() throws IOException {
         Screen screen = new TerminalScreen(terminal);

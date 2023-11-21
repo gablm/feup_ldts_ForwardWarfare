@@ -13,7 +13,7 @@ public class Florest extends Element {
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
-        graphics.setForegroundColor(new TextColor.RGB(255,255,255));
+        graphics.setForegroundColor(new TextColor.RGB(0,102,51));
         graphics.putString(position.toTPos(),"{");
     }
 }

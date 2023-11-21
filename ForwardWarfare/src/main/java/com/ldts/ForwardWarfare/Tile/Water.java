@@ -10,14 +10,18 @@ public class Water extends Element {
     Facility facility;
     public Water(Position position,Facility facility) {
         super.position=position;
-        this.facility=facility;
+        if (facility!=null) {
+            this.facility = facility;
+        }
     }
 
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
-        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
-        graphics.putString(position.toTPos(),"}");
-        facility.draw(graphics,position);
+        graphics.setForegroundColor(new TextColor.RGB(224,224,224));
+        graphics.putString(position.toTPos(),"~");
+        if (facility!=null) {
+            facility.draw(graphics, position);
+        }
     }
 }

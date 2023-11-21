@@ -9,12 +9,12 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.ldts.ForwardWarfare.Facility.*;
+import com.ldts.ForwardWarfare.Tile.*;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private Screen screen;
@@ -28,7 +28,7 @@ public class Game {
         DrawTiles(screen.newTextGraphics());
         screen.refresh();
     }
-    private void DrawTiles(TextGraphics graphics) {
+    private void DrawTiles(TextGraphics graphics) throws IOException {
         /*boolean change = true;
         for (int j = 0; j < 160; j += 16) {
             change = !change;
@@ -53,7 +53,7 @@ public class Game {
         graphics.putString(new TerminalPosition(0,9), "abcdefghijklmnop");
         graphics.putString(new TerminalPosition(0,10), ".,!?-:");*/
 
-
+        /*
         graphics.setBackgroundColor(TextColor.ANSI.BLUE);
         graphics.putString(new TerminalPosition(0,0), "~~~~~~~~~~~");
         graphics.putString(new TerminalPosition(0,1), "~");
@@ -116,6 +116,26 @@ public class Game {
         graphics.putString(new TerminalPosition(2,9), ";");
         graphics.setForegroundColor(TextColor.ANSI.BLACK);
         graphics.putString(new TerminalPosition(8,9), ";");
+        */
 
+        List<Element> teste = new ArrayList<>();
+        teste.add(new Florest(new Position(0,0)));
+        teste.add(new Montain_land(new Position(0,1)));
+        teste.add(new Montain_Water(new Position(1,1)));
+        teste.add(new Water(new Position(1,0),null));
+        teste.add(new Fields(new Position(0,2),null));
+        teste.add(new Water(new Position(1,2),new Port()));
+        teste.add(new Water(new Position(1,3),new Oil_Pump()));
+        teste.add(new Fields(new Position(0,3),new Base(true)));
+        teste.add(new Fields(new Position(0,4),new Base(false)));
+        teste.add(new Fields(new Position(0,5),new Factory()));
+        teste.add(new Fields(new Position(0,6),new Airport()));
+        teste.add(new Fields(new Position(0,7),new Oil_Pump()));
+
+        for (Element x:teste)
+        {
+            x.draw(graphics);
+        }
+        screen.refresh();
     }
 }
