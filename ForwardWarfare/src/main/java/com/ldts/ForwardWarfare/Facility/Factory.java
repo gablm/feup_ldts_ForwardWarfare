@@ -7,7 +7,7 @@ import com.ldts.ForwardWarfare.Position;
 public class Factory implements Facility{
     public void draw(TextGraphics graphics, Position position) {
         graphics.setForegroundColor(new TextColor.RGB(32,32,32));
-        graphics.putString(position.toTPos(),";");
+        graphics.putString(position.toTPos(),"`");
     }
 
     @Override

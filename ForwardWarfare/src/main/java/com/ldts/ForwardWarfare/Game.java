@@ -38,20 +38,21 @@ public class Game {
                 graphics.drawRectangle(new TerminalPosition(i, j), new TerminalSize(16, 16), ' ');
             }
         }*/
+        /*
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
-        /*graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-
-        graphics.putString(new TerminalPosition(0,0), "Tanks $#>+ ");
+        graphics.putString(new TerminalPosition(0,0), "Tanks $#+ ");
         graphics.putString(new TerminalPosition(0,1), "Person (_@ ");
         graphics.putString(new TerminalPosition(0,2), "Plane %& ");
-        graphics.putString(new TerminalPosition(0,3), "Helly /[ ");
-        graphics.putString(new TerminalPosition(0,4), "Boat <)' ");
+        graphics.putString(new TerminalPosition(0,3), "Helly [ ");
+        graphics.putString(new TerminalPosition(0,4), "Boat <' ");
         graphics.putString(new TerminalPosition(0,5), "Submarine = ");
-        graphics.putString(new TerminalPosition(0,6), "Tiles ~}{`]|;");
+        graphics.putString(new TerminalPosition(0,6), "Tiles~}{]|");
         graphics.putString(new TerminalPosition(0,7), "Borders ^* ");
         graphics.putString(new TerminalPosition(0,8), "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         graphics.putString(new TerminalPosition(0,9), "abcdefghijklmnop");
-        graphics.putString(new TerminalPosition(0,10), ".,!?-:");*/
+        graphics.putString(new TerminalPosition(0,10),"Fac ;>`)/");
+        //graphics.putString(new TerminalPosition(0,10), ".,!?-:");*/
 
         /*
         graphics.setBackgroundColor(TextColor.ANSI.BLUE);
@@ -123,6 +124,7 @@ public class Game {
         teste.add(new Montain_land(new Position(0,1)));
         teste.add(new Montain_Water(new Position(1,1)));
         teste.add(new Water(new Position(1,0),null));
+        teste.add(new Water(new Position(2,0),null));
         teste.add(new Fields(new Position(0,2),null));
         teste.add(new Water(new Position(1,2),new Port()));
         teste.add(new Water(new Position(1,3),new Oil_Pump()));
@@ -137,5 +139,8 @@ public class Game {
             x.draw(graphics);
         }
         screen.refresh();
+
+
+
     }
 }

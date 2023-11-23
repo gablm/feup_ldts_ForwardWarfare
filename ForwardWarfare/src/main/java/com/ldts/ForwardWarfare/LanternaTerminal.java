@@ -30,7 +30,7 @@ public class LanternaTerminal {
         return factory.createTerminal();
     }
     private Font loadExternalFonts() throws IOException, FontFormatException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource("tanks.ttf");
+        URL resource = getClass().getClassLoader().getResource("tanks2_0.ttf");
         assert resource != null;
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
