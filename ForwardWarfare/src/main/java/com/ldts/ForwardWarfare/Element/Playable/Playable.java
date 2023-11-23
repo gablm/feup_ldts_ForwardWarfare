@@ -2,7 +2,7 @@ package com.ldts.ForwardWarfare.Element.Playable;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.ldts.ForwardWarfare.Element;
+import com.ldts.ForwardWarfare.Element.Element;
 
 public abstract class Playable extends Element {
     private int hp = 0;

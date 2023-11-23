@@ -22,7 +22,7 @@ public class Game {
 
     public static void main(String[] args) {
         try {
-            new Game(new LanternaTerminal(new TerminalSize(11,11), "tanks_2.0.ttf", 50)).run();
+            new Game(new LanternaTerminal(new TerminalSize(11,11), "tanks2_0.ttf", 50)).run();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,6 +35,7 @@ public class Game {
         screen.clear();
         DrawTiles(screen.newTextGraphics());
         screen.refresh();
+        screen.close();
     }
     private void DrawTiles(TextGraphics graphics) {
 
