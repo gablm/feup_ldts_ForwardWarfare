@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare;
 
+import com.ldts.ForwardWarfare.Element.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

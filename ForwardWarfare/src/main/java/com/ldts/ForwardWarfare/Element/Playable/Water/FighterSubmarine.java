@@ -1,9 +1,9 @@
-package com.ldts.ForwardWarfare.Playable.Water;
+package com.ldts.ForwardWarfare.Element.Playable.Water;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element;
-import com.ldts.ForwardWarfare.Playable.Playable;
+import com.ldts.ForwardWarfare.Element.Playable.Playable;
 
 public class FighterSubmarine extends Playable {
     public FighterSubmarine() {

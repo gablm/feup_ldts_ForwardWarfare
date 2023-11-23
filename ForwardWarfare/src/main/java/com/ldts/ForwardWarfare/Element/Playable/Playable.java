@@ -1,10 +1,8 @@
-package com.ldts.ForwardWarfare.Playable;
+package com.ldts.ForwardWarfare.Element.Playable;
 
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element;
-import com.ldts.ForwardWarfare.Position;
 
 public abstract class Playable extends Element {
     private int hp = 0;

@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare;
+package com.ldts.ForwardWarfare.Element;
 
 import com.googlecode.lanterna.TerminalPosition;
 
