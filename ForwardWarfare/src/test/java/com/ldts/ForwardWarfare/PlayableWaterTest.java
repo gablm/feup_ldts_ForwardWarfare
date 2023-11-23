@@ -8,6 +8,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Playable.Water.FighterSubmarine;
 import com.ldts.ForwardWarfare.Element.Playable.Water.LightBoat;
+import com.ldts.ForwardWarfare.Element.Playable.Water.MortarBoat;
 import com.ldts.ForwardWarfare.Element.Position;
 import org.junit.jupiter.api.*;
 
@@ -107,6 +108,42 @@ public class PlayableWaterTest {
 
         Assertions.assertNotNull(textCharacter);
         Assertions.assertEquals(textCharacter.getCharacterString(), "<");
+        Assertions.assertEquals(textCharacter.getForegroundColor(), new TextColor.RGB(r, g, b));
+        Assertions.assertTrue(textCharacter.getModifiers().isEmpty());
+    }
+
+    @Test
+    public void MortarBoatDefaultTest() throws IOException {
+        Playable mortarBoat = new MortarBoat(new Position(1,1));
+
+        Assertions.assertEquals(mortarBoat.getPosition(), new Position(1,1));
+
+        TextGraphics graphics = screen.newTextGraphics();
+        mortarBoat.draw(graphics, null);
+        screen.refresh();
+        TextCharacter textCharacter = graphics.getCharacter(1, 1);
+
+        Assertions.assertEquals(textCharacter.getCharacterString(), "'");
+        Assertions.assertEquals(textCharacter.getForegroundColor(), new TextColor.RGB(80, 80, 80));
+        Assertions.assertTrue(textCharacter.getModifiers().isEmpty());
+    }
+
+    @Test
+    public void MortarBoatRandomTest() throws IOException {
+        Random random = new Random();
+        int x = random.nextInt(0, 25), y = random.nextInt(0, 25);
+        Playable mortarBoat = new MortarBoat(new Position(x,y));
+
+        Assertions.assertEquals(mortarBoat.getPosition(), new Position(x,y));
+
+        TextGraphics graphics = screen.newTextGraphics();
+        int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
+        mortarBoat.draw(graphics, new TextColor.RGB(r, g, b));
+        screen.refresh();
+        TextCharacter textCharacter = graphics.getCharacter(x, y);
+
+        Assertions.assertNotNull(textCharacter);
+        Assertions.assertEquals(textCharacter.getCharacterString(), "'");
         Assertions.assertEquals(textCharacter.getForegroundColor(), new TextColor.RGB(r, g, b));
         Assertions.assertTrue(textCharacter.getModifiers().isEmpty());
     }
