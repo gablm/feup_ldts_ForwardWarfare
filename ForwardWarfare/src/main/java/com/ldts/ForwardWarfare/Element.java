@@ -12,6 +12,4 @@ public abstract class Element {
     public void setPosition(Position pos) {
         this.position = pos;
     }
-    abstract public void draw(TextGraphics graphics);
-
 }

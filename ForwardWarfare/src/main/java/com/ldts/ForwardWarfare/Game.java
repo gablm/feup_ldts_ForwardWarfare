@@ -19,6 +19,14 @@ import java.net.URL;
 public class Game {
     private Screen screen;
     private LanternaTerminal terminal;
+
+    public static void main(String[] args) {
+        try {
+            new Game(new LanternaTerminal(11,11)).run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public Game(LanternaTerminal terminal) throws IOException {
         this.terminal = terminal;
     }

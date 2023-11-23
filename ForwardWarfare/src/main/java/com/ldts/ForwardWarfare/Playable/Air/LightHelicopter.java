@@ -7,7 +7,7 @@ import com.ldts.ForwardWarfare.Position;
 
 public class LightHelicopter extends Playable {
     public LightHelicopter(Position pos) {
-        super("Air", 4);
+        super(4);
         position = pos;
     }
     public void draw(TextGraphics graphics) {

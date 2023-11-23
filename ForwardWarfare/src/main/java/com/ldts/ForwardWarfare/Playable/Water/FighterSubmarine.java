@@ -6,7 +6,7 @@ import com.ldts.ForwardWarfare.Playable.Playable;
 
 public class FighterSubmarine extends Playable {
     public FighterSubmarine() {
-        super("Water", 6);
+        super(6);
     }
     public void draw(TextGraphics graphics) {
 

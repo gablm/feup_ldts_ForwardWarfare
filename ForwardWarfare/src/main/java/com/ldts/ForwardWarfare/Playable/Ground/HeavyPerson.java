@@ -7,7 +7,7 @@ import com.ldts.ForwardWarfare.Position;
 
 public class HeavyPerson extends Playable {
     public HeavyPerson(Position pos) {
-        super("Ground", 3);
+        super(3);
         position = pos;
     }
 

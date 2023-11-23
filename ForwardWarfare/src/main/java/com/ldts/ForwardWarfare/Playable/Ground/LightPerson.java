@@ -7,7 +7,7 @@ import com.ldts.ForwardWarfare.Position;
 
 public class LightPerson extends Playable {
     public LightPerson(Position pos) {
-        super("Ground", 5);
+        super(5);
         position = pos;
     }
 

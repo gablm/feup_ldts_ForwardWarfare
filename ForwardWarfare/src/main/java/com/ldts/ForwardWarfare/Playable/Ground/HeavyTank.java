@@ -7,7 +7,8 @@ import com.ldts.ForwardWarfare.Position;
 
 public class HeavyTank extends Playable {
     public HeavyTank(Position pos) {
-        super("Ground", 2);
+        super(2);
+        position = pos;
     }
 
     public void draw(TextGraphics graphics) {

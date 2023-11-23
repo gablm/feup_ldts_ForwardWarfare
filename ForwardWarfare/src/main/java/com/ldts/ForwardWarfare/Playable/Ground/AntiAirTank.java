@@ -7,7 +7,8 @@ import com.ldts.ForwardWarfare.Position;
 
 public class AntiAirTank extends Playable {
     public AntiAirTank(Position pos) {
-        super("Ground", 4);
+        super(4);
+        position = pos;
     }
 
     public void draw(TextGraphics graphics) {

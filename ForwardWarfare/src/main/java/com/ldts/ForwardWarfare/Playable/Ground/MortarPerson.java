@@ -7,7 +7,7 @@ import com.ldts.ForwardWarfare.Position;
 
 public class MortarPerson extends Playable {
     public MortarPerson(Position pos) {
-        super("Ground", 2);
+        super(2);
         position = pos;
     }
 

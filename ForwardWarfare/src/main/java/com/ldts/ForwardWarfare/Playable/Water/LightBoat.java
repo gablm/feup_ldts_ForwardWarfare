@@ -7,7 +7,7 @@ import com.ldts.ForwardWarfare.Position;
 
 public class LightBoat extends Playable {
     public LightBoat(Position pos) {
-        super("Water", 5);
+        super(5);
         position = pos;
     }
     public void draw(TextGraphics graphics) {

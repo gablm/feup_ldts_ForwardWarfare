@@ -7,7 +7,8 @@ import com.ldts.ForwardWarfare.Position;
 
 public class FighterPlane extends Playable {
     public FighterPlane(Position pos) {
-        super("Air", 6, pos);
+        super(6);
+        position = pos;
     }
 
     public void draw(TextGraphics graphics) {
