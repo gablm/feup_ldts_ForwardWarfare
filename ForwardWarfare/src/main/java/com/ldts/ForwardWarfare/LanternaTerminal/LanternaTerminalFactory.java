@@ -1,7 +1,5 @@
 package com.ldts.ForwardWarfare.LanternaTerminal;
 
-import com.googlecode.lanterna.terminal.Terminal;
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;

@@ -1,7 +1,6 @@
 package com.ldts.ForwardWarfare.LanternaTerminal.GameTerminal;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.ldts.ForwardWarfare.LanternaTerminal.GameTerminal.GameTerminal;
 import com.ldts.ForwardWarfare.LanternaTerminal.LanternaTerminal;
 import com.ldts.ForwardWarfare.LanternaTerminal.LanternaTerminalFactory;
 
