@@ -11,13 +11,11 @@ public class LightTank extends Playable {
         super(4);
         position = pos;
     }
-
     @Override
     public void draw(TextGraphics textGraphics, TextColor textColor) {
         textGraphics.setForegroundColor(textColor != null ? textColor : new TextColor.RGB(80, 80, 80));
         textGraphics.putString(position.toTPos(), "");
     }
-
     protected boolean canMove(Element element) {
         return false;
     }

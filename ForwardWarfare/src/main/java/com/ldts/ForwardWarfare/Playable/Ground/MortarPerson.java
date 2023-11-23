@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare.Playable.Ground;
 
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element;
 import com.ldts.ForwardWarfare.Playable.Playable;
@@ -10,11 +11,11 @@ public class MortarPerson extends Playable {
         super(2);
         position = pos;
     }
-
-    public void draw(TextGraphics graphics) {
-
+    @Override
+    public void draw(TextGraphics textGraphics, TextColor textColor) {
+        textGraphics.setForegroundColor(textColor != null ? textColor : new TextColor.RGB(80, 80, 80));
+        textGraphics.putString(position.toTPos(), "");
     }
-
     protected boolean canMove(Element element) {
         return false;
     }
