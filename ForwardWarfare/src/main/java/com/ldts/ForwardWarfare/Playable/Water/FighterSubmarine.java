@@ -12,7 +12,7 @@ public class FighterSubmarine extends Playable {
     @Override
     public void draw(TextGraphics textGraphics, TextColor textColor) {
         textGraphics.setForegroundColor(textColor != null ? textColor : new TextColor.RGB(80, 80, 80));
-        textGraphics.putString(position.toTPos(), "");
+        textGraphics.putString(position.toTPos(), "=");
     }
     public boolean canMove(Element element) {
         return false;
