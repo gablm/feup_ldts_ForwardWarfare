@@ -17,12 +17,13 @@ public class LanternaTerminal {
     private Terminal terminal;
     public LanternaTerminal(TerminalSize size, String fontPath, int fontSize) throws IOException, URISyntaxException, FontFormatException {
         Font font = loadExternalFonts(fontPath, fontSize);
-        terminal = createTerminal(size, font);
+        Font font2 = loadExternalFonts("square.ttf", 10);
+        terminal = createTerminal(size, font, font2);
     }
-    private Terminal createTerminal(TerminalSize size, Font font) throws IOException {
+    private Terminal createTerminal(TerminalSize size, Font font, Font font2) throws IOException {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
+        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font, font2);
         factory.setTerminalEmulatorFontConfiguration(fontConfig);
         factory.setForceAWTOverSwing(true);
         factory.setInitialTerminalSize(size);

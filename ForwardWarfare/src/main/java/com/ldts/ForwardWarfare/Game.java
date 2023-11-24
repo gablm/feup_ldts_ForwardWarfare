@@ -6,19 +6,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.AntiAirTank;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.LightPerson;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
-import com.ldts.ForwardWarfare.Element.Position;
-import com.ldts.ForwardWarfare.Element.Facility.*;
-import com.ldts.ForwardWarfare.Element.Tile.*;
 import com.ldts.ForwardWarfare.Map.Map;
 
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
     private Screen screen;
@@ -51,6 +42,7 @@ public class Game {
                 else
                     element.draw(graphics, null);
             }
+            graphics.putString(1, 12, "ROUND I");
         } catch (Exception e) {
             e.printStackTrace();
             screen.close();
