@@ -43,7 +43,7 @@ public class Game {
 
     private void DrawTiles(TextGraphics graphics) throws IOException {
         try {
-            Map map = new Map("noBuildings.fw");
+            Map map = new Map("1.fw");
 
             for (Element element : map.getElements()) {
                 if (element instanceof Playable)

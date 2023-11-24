@@ -88,7 +88,7 @@ public class Map {
                             map.add(iniField2);
                             break;
                         case 31:
-                            Element base1 = new Fields(pos, new Base(TextColor.ANSI.YELLOW));
+                            Element base1 = new Fields(pos, new Base(TextColor.ANSI.CYAN_BRIGHT));
                             if (player1Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player1Base = base1;
