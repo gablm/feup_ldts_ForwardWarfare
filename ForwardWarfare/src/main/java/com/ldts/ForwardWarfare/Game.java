@@ -149,8 +149,8 @@ public class Game {
         elementList.add(new Fields(new Position(0,2),null));
         elementList.add(new Water(new Position(1,2),new Port()));
         elementList.add(new Water(new Position(1,3),new Oil_Pump()));
-        elementList.add(new Fields(new Position(0,3),new Base(true)));
-        elementList.add(new Fields(new Position(0,4),new Base(false)));
+        // elementList.add(new Fields(new Position(0,3),new Base()));
+        // elementList.add(new Fields(new Position(0,4),new Base()));
         elementList.add(new Fields(new Position(0,5),new Factory()));
         elementList.add(new Fields(new Position(0,6),new Airport()));
         elementList.add(new Fields(new Position(0,7),new Oil_Pump()));

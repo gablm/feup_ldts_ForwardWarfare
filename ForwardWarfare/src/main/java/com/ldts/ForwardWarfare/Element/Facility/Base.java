@@ -5,21 +5,14 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Position;
 
 public class Base implements Facility {
-    private boolean Ally;
-    public Base(boolean Ally)
+    TextColor textColor;
+    public Base(TextColor textColor)
     {
-        this.Ally=Ally;
+        this.textColor=textColor;
     }
     public void draw(TextGraphics graphics, Position position) {
-        if(Ally)
-        {
-            graphics.setForegroundColor(new TextColor.RGB(0,0,255));
+            graphics.setForegroundColor(textColor);
             graphics.putString(position.toTPos(), ";");
-        }
-        else {
-            graphics.setForegroundColor(new TextColor.RGB(204, 0,0));
-            graphics.putString(position.toTPos(), ";");
-        }
     }
 
     @Override
