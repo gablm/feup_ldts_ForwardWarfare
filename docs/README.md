@@ -1,6 +1,6 @@
 # LDTS_l04gr05 - ForwardWarfare
 
-## GAME DESCRIPTION
+### GAME DESCRIPTION
 
 FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo. The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. The objective is to defeat the enemy army, capture bases, and control cities to obtain resources and additional units. 
 
@@ -10,7 +10,7 @@ For LDTS 2023/24, this project was developed by:
 - Renata Simão up202205124@up.pt
 
 
-## IMPLEMENTED FEATURES
+### PLANNED FEATURES
 
 - Color - you can choose the color of your player
 
