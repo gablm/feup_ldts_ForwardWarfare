@@ -13,6 +13,7 @@ import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Tile.*;
+import com.ldts.ForwardWarfare.Map.Map;
 
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class Game {
 
     private void DrawTiles(TextGraphics graphics) throws IOException {
         try {
-            Map map = new Map("0.fw");
+            Map map = new Map("noBuildings.fw");
 
             for (Element element : map.getElements()) {
                 if (element instanceof Playable)
