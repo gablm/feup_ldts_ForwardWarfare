@@ -14,7 +14,11 @@ public class Water extends Element {
             this.facility = facility;
         }
     }
-
+    @Override
+    public Facility getFacility()
+    {
+        return facility;
+    }
     @Override
     public void draw(TextGraphics graphics,TextColor textColor) {
         graphics.setBackgroundColor(new TextColor.RGB(0,124,206));

@@ -5,8 +5,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 
-public class Montain_Water extends Element {
-    public Montain_Water(Position position) {
+public class MountainWater extends Element {
+    public MountainWater(Position position) {
         super.position=position;
     }
     @Override
