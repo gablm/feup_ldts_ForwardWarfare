@@ -11,10 +11,6 @@ import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
 import com.ldts.ForwardWarfare.Element.Playable.Ground.LightPerson;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Tile.*;
 
@@ -143,17 +139,17 @@ public class Game {
 
         elementList.add(new Florest(new Position(0,0)));
         elementList.add(new Montain_land(new Position(0,1)));
-        elementList.add(new Montain_Water(new Position(1,1)));
+        elementList.add(new MountainWater(new Position(1,1)));
         elementList.add(new Water(new Position(1,0),null));
         elementList.add(new Water(new Position(2,0),null));
         elementList.add(new Fields(new Position(0,2),null));
         elementList.add(new Water(new Position(1,2),new Port()));
-        elementList.add(new Water(new Position(1,3),new Oil_Pump()));
+        elementList.add(new Water(new Position(1,3),new OilPump()));
         // elementList.add(new Fields(new Position(0,3),new Base()));
         // elementList.add(new Fields(new Position(0,4),new Base()));
         elementList.add(new Fields(new Position(0,5),new Factory()));
         elementList.add(new Fields(new Position(0,6),new Airport()));
-        elementList.add(new Fields(new Position(0,7),new Oil_Pump()));
+        elementList.add(new Fields(new Position(0,7),new OilPump()));
 
 
 
