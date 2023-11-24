@@ -11,11 +11,11 @@ import java.io.FileNotFoundException;
 public class MapTest {
     @Test
     public void MapDefault() throws FileNotFoundException, MapParseException {
-        Map map = new Map("noBuildings.fw");
+        Map map = new Map("tests/noBuildings.fw");
 
         Assertions.assertEquals(150, map.getElements().size());
-        Assertions.assertTrue(map.getPlayer1().isEmpty());
-        Assertions.assertTrue(map.getPlayer2().isEmpty());
+        Assertions.assertNull(map.getPlayer1());
+        Assertions.assertNull(map.getPlayer2());
 
         int i = 0;
         for (int y = 0; y < 10; y++) {
@@ -36,7 +36,7 @@ public class MapTest {
     @Test
     public void MapEmptyTest() {
         Exception exception = Assertions.assertThrows(MapParseException.class, () -> {
-            new Map("empty.fw");
+            new Map("tests/empty.fw");
         });
         Assertions.assertEquals("The map should be 15 x 10.", exception.getMessage());
     }
@@ -44,7 +44,7 @@ public class MapTest {
     @Test
     public void MapInvalidNumberTest() {
         Exception exception = Assertions.assertThrows(MapParseException.class, () -> {
-            new Map("invalidNumber.fw");
+            new Map("tests/invalidNumber.fw");
         });
         Assertions.assertEquals("There is an invalid number in the map:", exception.getMessage().substring(0, 38));
     }
@@ -52,8 +52,24 @@ public class MapTest {
     @Test
     public void MapInvalidSizeTest() {
         Exception exception = Assertions.assertThrows(MapParseException.class, () -> {
-            new Map("invalidSize.fw");
+            new Map("tests/invalidSize.fw");
         });
         Assertions.assertEquals("Invalid line size:", exception.getMessage().substring(0, 18));
+    }
+
+    @Test
+    public void MapRepeatFactoryTest() {
+        Exception exception = Assertions.assertThrows(MapParseException.class, () -> {
+            new Map("tests/repeatFactory.fw");
+        });
+        Assertions.assertEquals("A player cannot start with more than one factory", exception.getMessage());
+    }
+
+    @Test
+    public void MapRepeatBaseTest() {
+        Exception exception = Assertions.assertThrows(MapParseException.class, () -> {
+            new Map("tests/repeatBase.fw");
+        });
+        Assertions.assertEquals("A player cannot have more than one base", exception.getMessage());
     }
 }

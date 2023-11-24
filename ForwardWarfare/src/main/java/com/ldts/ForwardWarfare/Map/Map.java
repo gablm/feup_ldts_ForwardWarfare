@@ -12,8 +12,10 @@ import java.util.*;
 
 public class Map {
     private List<Element> map = new ArrayList<>();
-    private List<Element> player1 = new ArrayList<>(2);
-    private List<Element> player2 = new ArrayList<>(2);
+    private Element player1Base;
+    private Element player2Base;
+    private Element player1Factory;
+    private Element player2Factory;
     public Map(String filePath) throws FileNotFoundException, MapParseException {
         readMap(filePath);
     }
@@ -21,10 +23,14 @@ public class Map {
         return map;
     }
     public List<Element> getPlayer1() {
-        return player1;
+        if (player1Base == null || player1Factory == null)
+            return null;
+        return Arrays.asList(player1Base, player1Factory);
     }
     public List<Element> getPlayer2() {
-        return player2;
+        if (player2Base == null || player2Factory == null)
+            return null;
+        return Arrays.asList(player2Base, player2Factory);
     }
     private void readMap(String filePath) throws FileNotFoundException, MapParseException {
             Scanner scanner = new Scanner(new File("src/main/resources/maps/" + filePath));
@@ -67,13 +73,13 @@ public class Map {
                         case 29:
                             Element iniField = new Fields(pos, new Factory());
                             if (id == 28)
-                                if (player1.get(1) == null)
-                                    player1.add(1, iniField);
+                                if (player1Factory == null)
+                                    player1Factory = iniField;
                                 else
                                     throw new MapParseException("A player cannot start with more than one factory");
                             if (id == 29)
-                                if (player2.get(1) == null)
-                                    player2.add(1, iniField);
+                                if (player2Factory == null)
+                                    player2Factory = iniField;
                                 else
                                     throw new MapParseException("A player cannot start with more than one factory");
                             map.add(iniField);
@@ -82,15 +88,16 @@ public class Map {
                         case 32:
                             Element base = new Fields(pos, new Base(id == 31 ? TextColor.ANSI.YELLOW : TextColor.ANSI.RED));
                             if (id == 31)
-                                if (player1.get(0) == null)
-                                    player1.add(0, base);
+                                if (player1Base == null)
+                                    player1Base = base;
                                 else
-                                    throw new MapParseException("A player cannot start with more than one factory");
+                                    throw new MapParseException("A player cannot have more than one base");
                             else
-                                if (player2.get(0) == null)
-                                    player2.add(0, base);
+                                if (player2Base == null)
+                                    player2Base = base;
                                 else
-                                    throw new MapParseException("A player cannot start with more than one factory");
+                                    throw new MapParseException("A player cannot have more than one base");
+                            map.add(base);
                             break;
                         default:
                             throw new MapParseException("There is an invalid number in the map: %d".formatted(id));
