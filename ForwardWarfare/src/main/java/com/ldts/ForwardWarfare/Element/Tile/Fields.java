@@ -16,7 +16,7 @@ public class Fields extends Element {
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
+    public void draw(TextGraphics graphics,TextColor textColor) {
         graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
         graphics.setForegroundColor(new TextColor.RGB(226,214,106));
         graphics.putString(position.toTPos(),"|");

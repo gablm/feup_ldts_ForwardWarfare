@@ -10,7 +10,7 @@ public class Montain_Water extends Element {
         super.position=position;
     }
     @Override
-    public void draw(TextGraphics graphics) {
+    public void draw(TextGraphics graphics,TextColor textColor) {
         graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
         graphics.setForegroundColor(new TextColor.RGB(160,160,160));
         graphics.putString(position.toTPos(),"]");

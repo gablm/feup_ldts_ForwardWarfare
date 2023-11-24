@@ -12,7 +12,7 @@ public class Montain_land extends Element {
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
+    public void draw(TextGraphics graphics,TextColor textColor) {
         graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
         graphics.setForegroundColor(new TextColor.RGB(57,45,45));
         graphics.putString(position.toTPos(),"}");
