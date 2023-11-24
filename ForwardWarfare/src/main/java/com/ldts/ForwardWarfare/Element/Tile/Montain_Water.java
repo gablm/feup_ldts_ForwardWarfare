@@ -1,9 +1,9 @@
-package com.ldts.ForwardWarfare.Tile;
+package com.ldts.ForwardWarfare.Element.Tile;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.ldts.ForwardWarfare.Element;
-import com.ldts.ForwardWarfare.Position;
+import com.ldts.ForwardWarfare.Element.Element;
+import com.ldts.ForwardWarfare.Element.Position;
 
 public class Montain_Water extends Element {
     public Montain_Water(Position position) {

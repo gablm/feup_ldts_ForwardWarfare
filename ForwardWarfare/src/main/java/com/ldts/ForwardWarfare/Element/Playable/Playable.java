@@ -18,5 +18,6 @@ public abstract class Playable extends Element {
     }
 
     public abstract void draw(TextGraphics textGraphics, TextColor textColor);
+
     protected abstract boolean canMove(Element element);
 }
