@@ -12,14 +12,14 @@ For LDTS 2023/24, this project was developed by:
 
 ### PLANNED FEATURES
 
-- Color - you can choose the color of your player
+- **Color** - you can choose the color of your player.
 
-- Play  - you can play against AI or other person (like a friend for instance)
+- **Play**  - you can play against AI or other person (like a friend for instance).
 
-- Interact with facilities to collect resources:
+- **Interact with facilities to collect resources:**
 
-  - Collect coins - a facility will give the game character coins in each round of the game.
+  - **Collect coins** - a facility will give the game character coins in each round of the game.
 
-  - Use coins to get more troops 
+  - **Use coins to get more troops**.
 
-- Defeat the base - defeat your opponent's base to win the game
+- **Defeat the base** - defeat your opponent's base to win the game.
