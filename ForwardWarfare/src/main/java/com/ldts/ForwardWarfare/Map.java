@@ -7,17 +7,14 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Map {
     private List<Element> map = new ArrayList<>();
     private Element inicialFactory1;
     private Element inicialFactory2;
-
-    public Map() {
-        readMap(null);
-    }
-    public Map(String filePath) {
+    public Map(String filePath) throws FileNotFoundException {
         readMap(filePath);
     }
     public List<Element> getElements() {
@@ -26,14 +23,8 @@ public class Map {
     public List<Element> getInitialFactories() {
         return Arrays.asList(inicialFactory1, inicialFactory2);
     }
-    private void readMap(String filePath) {
-        try {
-            Random random = new Random();
-            Scanner scanner;
-            if (filePath != null)
-                scanner = new Scanner(new File("src/main/resources/maps/" + filePath));
-            else
-                scanner = new Scanner(new File("src/main/resources/maps/%d.fw".formatted(random.nextInt(3) + 1)));
+    private void readMap(String filePath) throws FileNotFoundException {
+            Scanner scanner = new Scanner(new File("src/main/resources/maps/" + filePath));
             scanner.useDelimiter("\n");
             int x, y = 0;
             while (scanner.hasNext()) {
@@ -100,8 +91,5 @@ public class Map {
             scanner.close();
             if (map.size() != 150)
                 throw new IllegalArgumentException("The map should be 15 x 10.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -40,13 +40,20 @@ public class Game {
         screen.refresh();
     }
 
-    private void DrawTiles(TextGraphics graphics) {
-        Map map = new Map("0.fw");
-        for (Element element : map.getElements()) {
-            if (element instanceof Playable)
-                element.draw(graphics, TextColor.ANSI.BLUE);
-            else
-                element.draw(graphics, null);
+    private void DrawTiles(TextGraphics graphics) throws IOException {
+        try {
+            Map map = new Map("0.fw");
+
+            for (Element element : map.getElements()) {
+                if (element instanceof Playable)
+                    element.draw(graphics, TextColor.ANSI.BLUE);
+                else
+                    element.draw(graphics, null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            screen.close();
+            screen.stopScreen();
         }
     }
 }
