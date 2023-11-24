@@ -59,8 +59,10 @@ public class Map {
                             map.add(new Water(pos, null));
                             break;
                         case 11:
+                            map.add(new Water(pos, new OilPump()));
+                            break;
                         case 12:
-                            map.add(new Water(pos, id == 11 ? new OilPump() : new Port()));
+                            map.add(new Water(pos,new Port()));
                             break;
                         case 21:
                             map.add(new Fields(pos, new Airport()));
@@ -69,35 +71,35 @@ public class Map {
                             map.add(new Fields(pos, new OilPump()));
                             break;
                         case 27:
+                            map.add(new Fields(pos, new Factory()));
+                            break;
                         case 28:
+                            Element iniField1 = new Fields(pos, new Factory());
+                            if (player1Factory != null)
+                                throw new MapParseException("A player cannot start with more than one factory");
+                            player1Factory = iniField1;
+                            map.add(iniField1);
+                            break;
                         case 29:
-                            Element iniField = new Fields(pos, new Factory());
-                            if (id == 28)
-                                if (player1Factory == null)
-                                    player1Factory = iniField;
-                                else
-                                    throw new MapParseException("A player cannot start with more than one factory");
-                            if (id == 29)
-                                if (player2Factory == null)
-                                    player2Factory = iniField;
-                                else
-                                    throw new MapParseException("A player cannot start with more than one factory");
-                            map.add(iniField);
+                            Element iniField2 = new Fields(pos, new Factory());
+                            if (player2Factory != null)
+                                throw new MapParseException("A player cannot start with more than one factory");
+                            player2Factory = iniField2;
+                            map.add(iniField2);
                             break;
                         case 31:
+                            Element base1 = new Fields(pos, new Base(TextColor.ANSI.YELLOW));
+                            if (player1Base != null)
+                                throw new MapParseException("A player cannot have more than one base");
+                            player1Base = base1;
+                            map.add(base1);
+                            break;
                         case 32:
-                            Element base = new Fields(pos, new Base(id == 31 ? TextColor.ANSI.YELLOW : TextColor.ANSI.RED));
-                            if (id == 31)
-                                if (player1Base == null)
-                                    player1Base = base;
-                                else
-                                    throw new MapParseException("A player cannot have more than one base");
-                            else
-                                if (player2Base == null)
-                                    player2Base = base;
-                                else
-                                    throw new MapParseException("A player cannot have more than one base");
-                            map.add(base);
+                            Element base2 = new Fields(pos, new Base(TextColor.ANSI.RED));
+                            if (player2Base != null)
+                                throw new MapParseException("A player cannot have more than one base");
+                            player2Base = base2;
+                            map.add(base2);
                             break;
                         default:
                             throw new MapParseException("There is an invalid number in the map: %d".formatted(id));
