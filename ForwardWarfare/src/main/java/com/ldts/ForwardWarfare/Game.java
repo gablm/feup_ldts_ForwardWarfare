@@ -3,6 +3,7 @@ package com.ldts.ForwardWarfare;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 
 import com.ldts.ForwardWarfare.Element.Element;
@@ -18,6 +19,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Tile.*;
 import com.ldts.ForwardWarfare.UI.MainMenu;
+import com.ldts.ForwardWarfare.UI.StartGameMenu;
 import com.ldts.ForwardWarfare.UI.UI;
 
 
@@ -30,14 +32,16 @@ public class Game {
     private LanternaTerminal terminal;
 
     public static void main(String[] args) {
-       /* try {
+        /*
+        try {
             new Game(new LanternaTerminal(new TerminalSize(15,15), "tanks2_0.ttf", 50)).run();
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
+        */
         try {
-            UI mainmenu = new MainMenu();
-            mainmenu.build();
+            UI startgamemenu = new MainMenu();
+            startgamemenu.build();
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,8 +161,8 @@ public class Game {
         elementList.add(new Fields(new Position(0,2),null));
         elementList.add(new Water(new Position(1,2),new Port()));
         elementList.add(new Water(new Position(1,3),new Oil_Pump()));
-        // elementList.add(new Fields(new Position(0,3),new Base()));
-        // elementList.add(new Fields(new Position(0,4),new Base()));
+        elementList.add(new Fields(new Position(0,3),new Base(TextColor.ANSI.RED)));
+        elementList.add(new Fields(new Position(0,4),new Base(TextColor.ANSI.BLUE)));
         elementList.add(new Fields(new Position(0,5),new Factory()));
         elementList.add(new Fields(new Position(0,6),new Airport()));
         elementList.add(new Fields(new Position(0,7),new Oil_Pump()));
@@ -170,6 +174,8 @@ public class Game {
         for (Element element : elementList) {
             if (element instanceof Playable)
                 ((Playable)element).draw(graphics, TextColor.ANSI.BLUE);
+            else
+                element.draw(graphics,null);
         }
     }
 }

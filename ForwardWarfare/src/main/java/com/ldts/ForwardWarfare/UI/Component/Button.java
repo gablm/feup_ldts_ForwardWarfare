@@ -11,14 +11,20 @@ import java.nio.file.WatchEvent;
 
 public class Button extends Component{
     private String Lable;
-    private int BorderFadeIntencity;
+
+    public String getLable() {
+        return Lable;
+    }
+
+    public void setLable(String lable) {
+        Lable = lable;
+    }
+
     private TextColor BorderColor;
     public Button(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, String Lable,int BorderFadeIntencity)
     {
-        super(backColor,forgColor,position,size);
+        super(backColor,forgColor,position,size,BorderFadeIntencity);
         this.Lable=Lable;
-        this.BorderFadeIntencity=BorderFadeIntencity;
-        setupbord();
     }
     private void setupbord()
     {
@@ -50,6 +56,7 @@ public class Button extends Component{
         graphics.setBackgroundColor(backColor);
         graphics.setForegroundColor(forgColor);
         graphics.enableModifiers(SGR.BOLD);
+        setupbord();
 
         for(int x=1;x<size.getColumns()-1;x++)
         {
@@ -58,19 +65,14 @@ public class Button extends Component{
                 graphics.putString(new TerminalPosition(x+ position.getX(),y+ position.getY())," ");
             }
         }
-        graphics.putString(new TerminalPosition(position.getX()+(size.getColumns()/2)-(Lable.length()/2), position.getY()+(size.getRows()/2)),Lable);
-
+        if(Lable.length()%2==0) {
+            graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (Lable.length() / 2)+1, position.getY() + (size.getRows() / 2)), Lable);
+        }else
+        {
+            graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (Lable.length() / 2), position.getY() + (size.getRows() / 2)), Lable);
+        }
         graphics.setBackgroundColor(BorderColor);
 
-        for (int y=0; y < size.getRows(); y++)
-        {
-            graphics.putString(new TerminalPosition(position.getX(),y+ position.getY())," ");
-            graphics.putString(new TerminalPosition(position.getX()+size.getColumns()-1,y+ position.getY())," ");
-        }
-        for(int x=0;x<size.getColumns();x++)
-        {
-            graphics.putString(new TerminalPosition(x+ position.getX(),position.getY())," ");
-            graphics.putString(new TerminalPosition(x+ position.getX(),position.getY()+size.getRows()-1)," ");
-        }
+        graphics.drawRectangle(position.toTPos(),size,' ');
     }
 }
