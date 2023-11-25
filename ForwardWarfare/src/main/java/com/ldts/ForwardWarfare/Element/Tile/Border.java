@@ -13,7 +13,7 @@ public class Border extends Element {
 
     @Override
     public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+        graphics.setForegroundColor(textColor);
         graphics.putString(position.toTPos(),"*");
     }
 }
