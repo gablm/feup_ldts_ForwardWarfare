@@ -11,4 +11,5 @@ public interface Controller {
     Element getBase();
     List<Element> getTroops();
     List<Facility> getFacilities();
+    int getCoins();
 }

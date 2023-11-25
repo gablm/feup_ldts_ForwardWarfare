@@ -31,10 +31,9 @@ public class Game {
     public Game(LanternaTerminal terminal) {
         this.terminal = terminal;
     }
-    public void run() throws IOException, InvalidControllerException, MapParseException {
+    public void run() throws IOException, MapParseException {
         screen = terminal.createScreen();
         Map map = new Map("1.fw");
-        Controller player = new Player(map.getPlayer1());
 
         while (true) {
             screen.clear();
