@@ -10,18 +10,15 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
+import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
-
-import static com.ldts.ForwardWarfare.LanternaTerminal.createScreen;
 
 public class Game {
-    private LanternaTerminal lanternaTerminal;
-    private Terminal terminal;
-    private Terminal uiTerminal;
+    private LanternaTerminal terminal;
+    private Screen screen;
 
     public static void main(String[] args) {
         try {
@@ -30,32 +27,36 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public Game(LanternaTerminal terminal) throws IOException {
-        this.lanternaTerminal = terminal;
+    public Game(LanternaTerminal terminal) {
+        this.terminal = terminal;
     }
-    public void run() throws IOException, URISyntaxException, FontFormatException {
-        uiTerminal = new LanternaTerminal(new TerminalSize(20, 10), "square.ttf", 20).createTerminal();
-        Screen uiScreen = createScreen(uiTerminal);
+    public void run() throws IOException {
+        screen = terminal.createScreen();
 
-        KeyStroke key = uiScreen.readInput();
-        if (key.getKeyType() == KeyType.EOF)
-            return;
-        terminal = lanternaTerminal.createTerminal();
-        Screen screen = createScreen(terminal);
-        screen.clear();
-        DrawTiles(screen.newTextGraphics());
-        screen.refresh();
+        int x = 10, y = 10;
+        while (true) {
+            KeyStroke key = screen.readInput();
+            if (key.getKeyType() == KeyType.EOF)
+                return;
+
+            screen.clear();
+            DrawTiles(screen.newTextGraphics(), new Border(new Position(x,y)));
+            screen.refresh();
+        }
     }
 
-    private void DrawTiles(TextGraphics graphics) throws IOException {
+    private void DrawTiles(TextGraphics graphics, Border border) throws IOException {
         try {
             Map map = new Map("1.fw");
 
             for (Element element : map.getElements()) {
                 if (element instanceof Playable)
                     element.draw(graphics, TextColor.ANSI.BLUE);
-                else
+                else {
                     element.draw(graphics, null);
+                    if (element.getPosition() == border.getPosition())
+                        border.draw(graphics, null);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
