@@ -14,16 +14,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 public class LanternaTerminal {
-    private Terminal terminal;
+    private Font font;
+    private TerminalSize size;
     public LanternaTerminal(TerminalSize size, String fontPath, int fontSize) throws IOException, URISyntaxException, FontFormatException {
         Font font = loadExternalFonts(fontPath, fontSize);
-        Font font2 = loadExternalFonts("square.ttf", 10);
-        terminal = createTerminal(size, font, font2);
+        this.size = size; this.font = font;
     }
-    private Terminal createTerminal(TerminalSize size, Font font, Font font2) throws IOException {
+    public Terminal createTerminal() throws IOException {
+        return createTerminal(size, font);
+    };
+    private Terminal createTerminal(TerminalSize size, Font font) throws IOException {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font, font2);
+        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(font);
         factory.setTerminalEmulatorFontConfiguration(fontConfig);
         factory.setForceAWTOverSwing(true);
         factory.setInitialTerminalSize(size);
@@ -41,7 +44,7 @@ public class LanternaTerminal {
 
         return font.deriveFont(Font.PLAIN, fontSize);
     }
-    public Screen createScreen() throws IOException {
+    public static Screen createScreen(Terminal terminal) throws IOException {
         Screen screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);
         screen.startScreen();
