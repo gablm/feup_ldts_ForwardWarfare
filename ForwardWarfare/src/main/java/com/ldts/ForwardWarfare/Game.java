@@ -33,15 +33,29 @@ public class Game {
     public void run() throws IOException {
         screen = terminal.createScreen();
 
-        int x = 10, y = 10;
+        int x = 5, y = 5;
         while (true) {
-            KeyStroke key = screen.readInput();
-            if (key.getKeyType() == KeyType.EOF)
-                return;
-
             screen.clear();
             DrawTiles(screen.newTextGraphics(), new Border(new Position(x,y)));
             screen.refresh();
+
+            KeyStroke key = screen.readInput();
+            switch (key.getKeyType())
+            {   case EOF:
+                    return;
+                case ArrowUp:
+                    y--;
+                    break;
+                case ArrowDown:
+                    y++;
+                    break;
+                case ArrowLeft:
+                    x--;
+                    break;
+                case ArrowRight:
+                    x++;
+                    break;
+            }
         }
     }
 
@@ -54,7 +68,7 @@ public class Game {
                     element.draw(graphics, TextColor.ANSI.BLUE);
                 else {
                     element.draw(graphics, null);
-                    if (element.getPosition() == border.getPosition())
+                    if (element.getPosition().equals(border.getPosition()))
                         border.draw(graphics, null);
                 }
             }
