@@ -5,8 +5,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 
-public class Montain_land extends Element {
-    public Montain_land(Position position)
+public class MountainLand extends Element {
+    public MountainLand(Position position)
     {
         super.position=position;
     }
