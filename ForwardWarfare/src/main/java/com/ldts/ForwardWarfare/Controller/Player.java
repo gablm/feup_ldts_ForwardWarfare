@@ -17,12 +17,21 @@ public class Player implements Controller {
     private List<Facility> facilities = new ArrayList<>();
     private Element base;
     private int coins;
-    public Player(List<Element> inicialFacilities) throws InvalidControllerException {
-        if (inicialFacilities == null || inicialFacilities.size() != 2)
+    public Player(List<Element> initialFacilities) throws InvalidControllerException {
+        if (initialFacilities == null || initialFacilities.size() != 2)
             throw new InvalidControllerException("Invalid initial Factory and Base");
-        facilities.add(((Fields)inicialFacilities.get(1)).getFacility());
-        base = inicialFacilities.get(0);
+        facilities.add(((Fields)initialFacilities.get(1)).getFacility());
+        base = initialFacilities.get(0);
         this.coins = 100;
+    }
+    public Element getBase() {
+        return base;
+    }
+    public List<Element> getTroops() {
+        return troops;
+    }
+    public List<Facility> getFacilities() {
+        return facilities;
     }
     public boolean buy(Element troop, int price) {
         if (coins < price)
