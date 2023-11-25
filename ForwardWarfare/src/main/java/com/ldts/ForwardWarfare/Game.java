@@ -17,6 +17,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Tile.*;
+import com.ldts.ForwardWarfare.UI.MainMenu;
+import com.ldts.ForwardWarfare.UI.UI;
 
 
 import java.io.IOException;
@@ -28,9 +30,15 @@ public class Game {
     private LanternaTerminal terminal;
 
     public static void main(String[] args) {
-        try {
+       /* try {
             new Game(new LanternaTerminal(new TerminalSize(15,15), "tanks2_0.ttf", 50)).run();
         } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        try {
+            UI mainmenu = new MainMenu();
+            mainmenu.build();
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
