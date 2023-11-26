@@ -30,6 +30,9 @@ For LDTS 2023/24, this project was developed by:
 
 - **Defeat the base** - defeat your opponent's base to win the game.
 
+## MOCKUPS
+> They are located at the [Main README]("https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/README.md")!
+
 ## DESIGN
 
 ### UML DIAGRAM
