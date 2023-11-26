@@ -57,7 +57,7 @@ For LDTS 2023/24, this project was developed by:
 
 ### A water or field tile might contain a facility
 
-- **Problem in Context:** A tile in our game, if it is a water or field type might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
+- **Problem in Context:** A tile in our game, if of water or field type, might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
 
 - **The Pattern:** For this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
 
@@ -69,6 +69,6 @@ For LDTS 2023/24, this project was developed by:
   [OilPump](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/OilPump.java) |
   [Other facilities](https://github.com/FEUP-LDTS-2023/project-l04gr05/tree/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility)
 
-- **Consequences:**
+- **Consequences:** Those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
 
   
