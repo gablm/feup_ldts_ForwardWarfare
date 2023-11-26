@@ -13,7 +13,8 @@ import java.util.List;
 
 public class ColorGrid extends Component{
     private TextColor BorderColor;
-    private int highlight=75;
+    private int Selected=75;
+    private int highlight=50;
     private int normalborder=10;
     List<Button> ColorList=new ArrayList<>();
     private int c=0;
@@ -90,22 +91,30 @@ public class ColorGrid extends Component{
         }
         BorderColor = new TextColor.RGB(r, g, b);
     }
-    public void processKey( KeyStroke key) {
+    public boolean processKey( KeyStroke key) {
         if (key.getKeyType() == KeyType.ArrowUp)
         {
             jumprow(false);
+            return true;
         } else if (key.getKeyType() == KeyType.ArrowRight)
         {
             Buttonhighligted(true);
+            return true;
         } else if (key.getKeyType() == KeyType.ArrowLeft) {
             Buttonhighligted(false);
+            return true;
         }
         else if (key.getKeyType() == KeyType.ArrowDown)
         {
             jumprow(true);
+            return true;
         }else if(key.getKeyType()== KeyType.Enter)
         {
             SetColor();
+            return false;
+        }else
+        {
+            return true;
         }
     }
     private void SetColor()
@@ -113,12 +122,13 @@ public class ColorGrid extends Component{
         if(c!=s )
         {
             if(s>=0) {
-                ColorList.get(s).setLable("");
+                ColorList.get(s).setFixBorder(false);
+                ColorList.get(s).setBorderFadeIntencity(normalborder);
             }
             s=c;
-            ColorList.get(c).setLable("(X)");
+            ColorList.get(c).setBorderFadeIntencity(Selected);
+            ColorList.get(s).setFixBorder(true);
         }
-
     }
     @Override
     public void draw(TextGraphics graphics) {

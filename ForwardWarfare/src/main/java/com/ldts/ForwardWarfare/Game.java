@@ -40,7 +40,7 @@ public class Game {
         }
         */
         try {
-            UI startgamemenu = new MainMenu();
+            UI startgamemenu = new StartGameMenu();
             startgamemenu.build();
         }catch (Exception e) {
             e.printStackTrace();

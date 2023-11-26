@@ -11,7 +11,6 @@ import java.nio.file.WatchEvent;
 
 public class Button extends Component{
     private String Lable;
-
     public String getLable() {
         return Lable;
     }

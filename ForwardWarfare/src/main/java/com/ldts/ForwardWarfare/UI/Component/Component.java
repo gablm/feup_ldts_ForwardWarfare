@@ -8,6 +8,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public abstract class Component {
      protected Position position;
+     private boolean fixBorder=false;
      protected TextColor backColor;
      protected TextColor forgColor;
      protected TerminalSize size;
@@ -17,17 +18,22 @@ public abstract class Component {
        }
 
     public void setBorderFadeIntencity(int borderFadeIntencity) {
-        BorderFadeIntencity = borderFadeIntencity;
+        if(!fixBorder) {
+            BorderFadeIntencity = borderFadeIntencity;
+        }
      }
 
+    public void setFixBorder(boolean fixBorder) {
+        this.fixBorder = fixBorder;
+    }
 
-     public Component(TextColor backColor,TextColor forgColor,Position position,TerminalSize size,int BorderFadeIntencity)
-     {
+    public Component(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, int BorderFadeIntencity)
+    {
          this.backColor=backColor;
          this.forgColor=forgColor;
          this.position=position;
          this.size=size;
          this.BorderFadeIntencity=BorderFadeIntencity;
-     }
-     public abstract void draw(TextGraphics graphics);
+    }
+    public abstract void draw(TextGraphics graphics);
 }

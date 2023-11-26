@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartGameMenu extends UI {
+    private boolean SelectingColor=false;
+    private int highlight=75;
+    private int normalborder=10;
+    private int bc=0;
     ColorGrid grid=new ColorGrid(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(30,1),25);
     List<Component>ButtonsList=new ArrayList<>();
 
@@ -47,9 +51,9 @@ public class StartGameMenu extends UI {
     @Override
     public void addcomp() {
         listComponents.add(grid);
-        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,1),new TerminalSize(28,5),"START",25));
-        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,8),new TerminalSize(28,5),"COLOR SELECT",25));
-        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,15),new TerminalSize(28,5),"MAP SELECT",25));
+        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,1),new TerminalSize(28,5),"START",highlight));
+        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,8),new TerminalSize(28,5),"COLOR SELECT",normalborder));
+        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,15),new TerminalSize(28,5),"MAP SELECT",normalborder));
 
     }
 
@@ -63,9 +67,64 @@ public class StartGameMenu extends UI {
         }
         screen.close();
     }
+    private void processButton()
+    {
+        switch (bc)
+        {
+            case 0:
 
+                break;
+            case 1:
+                SelectingColor = true;
+                break;
+            case 2:
+
+                break;
+        }
+    }
+    private void Buttonhighligted(boolean next)
+    {
+        if(next) {
+            ButtonsList.get(bc).setBorderFadeIntencity(normalborder);
+            if (bc+1 > ButtonsList.size() - 1) {
+                bc = 0;
+            } else
+                bc++;
+            ButtonsList.get(bc).setBorderFadeIntencity(highlight);
+        }
+        else
+        {
+            ButtonsList.get(bc).setBorderFadeIntencity(normalborder);
+            if (bc-1 < 0) {
+                bc = ButtonsList.size()-1;
+            } else
+                bc--;
+            ButtonsList.get(bc).setBorderFadeIntencity(highlight);
+        }
+    }
+    
     @Override
     public void processKey(KeyStroke key) {
-        grid.processKey(key);
+        if (SelectingColor) {
+            SelectingColor=grid.processKey(key);
+        }else {
+            if (key.getKeyType() == KeyType.ArrowUp)
+            {
+                Buttonhighligted(false);
+            } else if (key.getKeyType() == KeyType.ArrowRight)
+            {
+                Buttonhighligted(true);
+            } else if (key.getKeyType() == KeyType.ArrowLeft) {
+                Buttonhighligted(false);
+            }
+            else if (key.getKeyType() == KeyType.ArrowDown) {
+                Buttonhighligted(true);
+            }else if(key.getKeyType()== KeyType.Enter)
+            {
+                processButton();
+            } else if (key.getKeyType() == KeyType.Escape) {
+                endscreen=true;
+            }
+        }
     }
 }
