@@ -9,7 +9,7 @@ Schematics of the future UI of the Game.
 
 Start screen where you can chose whether to play the game, learn how to play it or close it.
 
-## Main Meno -> Enemy Selection
+## Main Menu -> Enemy Selection
 ![Main Menu GAmer Selection](docs/MainMenu2.png)
 
 In this screen you can chose if you want to play agains the Computer or Another Player.
