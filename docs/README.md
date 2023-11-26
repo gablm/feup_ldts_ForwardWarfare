@@ -9,7 +9,7 @@ For LDTS 2023/24, this project was developed by:
 - Gabriel Lima up202206693@up.pt
 - Renata Simão up202205124@up.pt
 
-## FEATURES
+## IMPLEMENTED FEATURES
 
 - **Map** - Loads a custom map using the format .fw, where a number corresponds to a tile.
   (currently only working by editing the file 1.fw)
