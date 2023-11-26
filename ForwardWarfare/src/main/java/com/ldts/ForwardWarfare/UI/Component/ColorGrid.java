@@ -33,41 +33,41 @@ public class ColorGrid extends Component{
     }
     private void jumprow(boolean up){
         if(up) {
-            ColorList.get(c).setBorderFadeIntencity(normalborder);
+            ColorList.get(c).setBorderFadeIntensity(normalborder);
             if (c+4 > ColorList.size() - 1) {
-                c = 0;
+                c = c+4-ColorList.size();
             } else
                 c+=4;
-            ColorList.get(c).setBorderFadeIntencity(highlight);
+            ColorList.get(c).setBorderFadeIntensity(highlight);
         }
         else
         {
-            ColorList.get(c).setBorderFadeIntencity(normalborder);
+            ColorList.get(c).setBorderFadeIntensity(normalborder);
             if (c-4 < 0) {
-                c = ColorList.size()-1;
+                c = ColorList.size()-(4-c);
             } else
                 c-=4;
-            ColorList.get(c).setBorderFadeIntencity(highlight);
+            ColorList.get(c).setBorderFadeIntensity(highlight);
         }
     }
     private void Buttonhighligted(boolean next)
     {
         if(next) {
-            ColorList.get(c).setBorderFadeIntencity(normalborder);
+            ColorList.get(c).setBorderFadeIntensity(normalborder);
             if (c+1 > ColorList.size() - 1) {
                 c = 0;
             } else
                 c++;
-            ColorList.get(c).setBorderFadeIntencity(highlight);
+            ColorList.get(c).setBorderFadeIntensity(highlight);
         }
         else
         {
-            ColorList.get(c).setBorderFadeIntencity(normalborder);
+            ColorList.get(c).setBorderFadeIntensity(normalborder);
             if (c-1 < 0) {
                 c = ColorList.size()-1;
             } else
                 c--;
-            ColorList.get(c).setBorderFadeIntencity(highlight);
+            ColorList.get(c).setBorderFadeIntensity(highlight);
         }
     }
     private void setupbord() {
@@ -123,10 +123,10 @@ public class ColorGrid extends Component{
         {
             if(s>=0) {
                 ColorList.get(s).setFixBorder(false);
-                ColorList.get(s).setBorderFadeIntencity(normalborder);
+                ColorList.get(s).setBorderFadeIntensity(normalborder);
             }
             s=c;
-            ColorList.get(c).setBorderFadeIntencity(Selected);
+            ColorList.get(c).setBorderFadeIntensity(Selected);
             ColorList.get(s).setFixBorder(true);
         }
     }

@@ -82,24 +82,24 @@ public class StartGameMenu extends UI {
                 break;
         }
     }
-    private void Buttonhighligted(boolean next)
+    private void Buttonhighlighted(boolean next)
     {
         if(next) {
-            ButtonsList.get(bc).setBorderFadeIntencity(normalborder);
+            ButtonsList.get(bc).setBorderFadeIntensity(normalborder);
             if (bc+1 > ButtonsList.size() - 1) {
                 bc = 0;
             } else
                 bc++;
-            ButtonsList.get(bc).setBorderFadeIntencity(highlight);
+            ButtonsList.get(bc).setBorderFadeIntensity(highlight);
         }
         else
         {
-            ButtonsList.get(bc).setBorderFadeIntencity(normalborder);
+            ButtonsList.get(bc).setBorderFadeIntensity(normalborder);
             if (bc-1 < 0) {
                 bc = ButtonsList.size()-1;
             } else
                 bc--;
-            ButtonsList.get(bc).setBorderFadeIntencity(highlight);
+            ButtonsList.get(bc).setBorderFadeIntensity(highlight);
         }
     }
     
@@ -110,15 +110,15 @@ public class StartGameMenu extends UI {
         }else {
             if (key.getKeyType() == KeyType.ArrowUp)
             {
-                Buttonhighligted(false);
+                Buttonhighlighted(false);
             } else if (key.getKeyType() == KeyType.ArrowRight)
             {
-                Buttonhighligted(true);
+                Buttonhighlighted(true);
             } else if (key.getKeyType() == KeyType.ArrowLeft) {
-                Buttonhighligted(false);
+                Buttonhighlighted(false);
             }
             else if (key.getKeyType() == KeyType.ArrowDown) {
-                Buttonhighligted(true);
+                Buttonhighlighted(true);
             }else if(key.getKeyType()== KeyType.Enter)
             {
                 processButton();

@@ -17,7 +17,7 @@ public abstract class Component {
          return BorderFadeIntencity;
        }
 
-    public void setBorderFadeIntencity(int borderFadeIntencity) {
+    public void setBorderFadeIntensity(int borderFadeIntencity) {
         if(!fixBorder) {
             BorderFadeIntencity = borderFadeIntencity;
         }

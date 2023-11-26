@@ -29,16 +29,16 @@ public class MainMenu extends UI {
     public void processKey( KeyStroke key) {
         if (key.getKeyType() == KeyType.ArrowUp)
         {
-            Buttonhighligted(false);
+            Buttonhighlighted(false);
         } else if (key.getKeyType() == KeyType.ArrowRight)
         {
-            Buttonhighligted(true);
+            Buttonhighlighted(true);
         } else if (key.getKeyType() == KeyType.ArrowLeft) {
-            Buttonhighligted(false);
+            Buttonhighlighted(false);
         }
         else if (key.getKeyType() == KeyType.ArrowDown)
         {
-            Buttonhighligted(true);
+            Buttonhighlighted(true);
         }else if(key.getKeyType()== KeyType.Enter)
         {
             processButton();
@@ -58,24 +58,24 @@ public class MainMenu extends UI {
                 break;
         }
     }
-    private void Buttonhighligted(boolean next)
+    private void Buttonhighlighted(boolean next)
     {
         if(next) {
-            listComponents.get(cb).setBorderFadeIntencity(normalborder);
+            listComponents.get(cb).setBorderFadeIntensity(normalborder);
             if (cb+1 > listComponents.size() - 1) {
                 cb = 0;
             } else
                 cb++;
-            listComponents.get(cb).setBorderFadeIntencity(highlight);
+            listComponents.get(cb).setBorderFadeIntensity(highlight);
         }
         else
         {
-            listComponents.get(cb).setBorderFadeIntencity(normalborder);
+            listComponents.get(cb).setBorderFadeIntensity(normalborder);
             if (cb-1 < 0) {
                 cb = listComponents.size()-1;
             } else
                 cb--;
-            listComponents.get(cb).setBorderFadeIntencity(highlight);
+            listComponents.get(cb).setBorderFadeIntensity(highlight);
         }
     }
     @Override
