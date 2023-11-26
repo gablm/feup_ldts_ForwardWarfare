@@ -14,7 +14,12 @@ public class Fields extends Element {
             this.facility = facility;
         }
     }
-
+    public Facility getFacility() {
+        return facility;
+    }
+    public int getCoins() {
+        return 30;
+    }
     @Override
     public void draw(TextGraphics graphics,TextColor textColor) {
         graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
