@@ -42,39 +42,39 @@ For LDTS 2023/24, this project was developed by:
 
 ### There are a lot of playable troop types
 
- - **Problem in Context:** There is a lot of playable types, so it's difficult to see at a glance the available troops. And a factory facility needs to create new troops with ease.
+ - **Problem in Context:** there is a lot of playable types, so it's difficult to see at a glance the available troops. And a factory facility needs to create new troops with ease.
 
- - **The Pattern:** A Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
+ - **The Pattern:** a Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
 
- - **Implementation:** Repesented in Blue in the UML by not yet implemented
+ - **Implementation:** repesented in Blue in the UML by not yet implemented.
 
- - **Consequences:** Easier access to the creation of a new troop instead of going through the entire list of constructors for the element absctract class.
+ - **Consequences:** easier access to the creation of a new troop instead of going through the entire list of constructors for the element absctract class.
 
 ### Tiles and Playable troops are similar in base composition
 
-- **Problem in Context:** Tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
+- **Problem in Context:** tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
   
-- **The Pattern:** The decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
+- **The Pattern:** the decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
 
 - **Implementation:**
 
-  Represented in Yellow in the UML
+  Represented in Yellow in the UML.
 
   [Base abstract class - Element](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Element.java) |
   [Decorator abstract class - Playable](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java) |
   [Class that extends Playable - HeavyTank](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
   
-- **Consequences:** By having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
+- **Consequences:** by having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
 
 ### A water or field tile might contain a facility
 
-- **Problem in Context:** A tile in our game, if of water or field type, might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
+- **Problem in Context:** a tile in our game, if of water or field type, might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
 
-- **The Pattern:** For this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
+- **The Pattern:** for this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
 
 - **Implementation:**
   
-  Represented in Green in the UML
+  Represented in Green in the UML.
 
   [Field](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
   [Water](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/Water.java) |
@@ -83,14 +83,14 @@ For LDTS 2023/24, this project was developed by:
   [OilPump](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/OilPump.java) |
   [Other facilities](https://github.com/FEUP-LDTS-2023/project-l04gr05/tree/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility)
 
-- **Consequences:** Those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
+- **Consequences:** those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
 
  ### The game has a lot of phases
 
-- **Problem in Context:** A game like ours need to be able to have all the information of each player and the map in the same place, in order to be able to handle a player action.
+- **Problem in Context:** a game like ours need to be able to have all the information of each player and the map in the same place, in order to be able to handle a player action.
 
-- **The Pattern:** We decided to use the state pattern and the game loop pattern. This is due to the game having a set number of possible states and the necessity of determining the next state the game is gonna be in after each user input.
+- **The Pattern:** we decided to use the state pattern and the game loop pattern. This is due to the game having a set number of possible states and the necessity of determining the next state the game is gonna be in after each user input.
 
-- **Implementation:** Represented in Red (State) / Purple (Game Loop) in the UML but no code implementation yet
+- **Implementation:** represented in Red (State) / Purple (Game Loop) in the UML but no code implementation yet.
 
-- **Consequences:** These pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
+- **Consequences:** these pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
