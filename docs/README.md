@@ -32,6 +32,11 @@ For LDTS 2023/24, this project was developed by:
 
 ## DESIGN
 
+### UML DIAGRAM
+
+![UML](scheme.png)
+
+
 ### There are a lot of playable troop types
 
  - **Problem in Context:** There is a lot of playable types, so it's difficult to see at a glance the available troops. And a factory facility needs to create new troops with ease.
