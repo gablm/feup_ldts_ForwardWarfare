@@ -9,4 +9,4 @@ project-l04gr05 created by GitHub Classroom
 
 ![Game UI](docs/BattleUI.png)
 
-![First Game Play Test](docs/GamePLayTeste_1.mp4)
+![First Game Play Test](docs/GamePLayTeste_1.gif)
