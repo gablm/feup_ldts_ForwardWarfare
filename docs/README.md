@@ -35,6 +35,9 @@ For LDTS 2023/24, this project was developed by:
 ### Playable elements
 
 **Problem in Context.**
+There is a lot of playable types, so it's difficult to see at a glance the available troops.
+And a factory facility needs to create new troops with ease.
 **The Pattern.**
+Factory pattern. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
 **Implementation.**
-**Consequences.**
+Not yet implemented
