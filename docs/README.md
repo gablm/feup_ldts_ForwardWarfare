@@ -32,7 +32,7 @@ For LDTS 2023/24, this project was developed by:
 
 ## DESIGN
 
-### Playable elements / PlayableFactory
+### There is a lot of playable troop types
 
 **Problem in Context.**
 
@@ -46,3 +46,28 @@ So, a Factory pattern is perfect in this situation. It allows us to have a singl
 **Implementation.**
 
 Not yet implemented
+
+**Consequences**
+
+
+
+### Tiles and Playable troops are similar in base composition
+
+- **Problem in Context.**
+
+  Tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
+  
+- **The Pattern.**
+
+  The decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
+
+- **Implementation.**
+  
+  Base class -> [Element](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Element.java)
+  Decorator base class -> [Playable](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java)
+  Example class inside of the pattern -> [HeavyTank](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
+  Class extended from base not in the pattern -> [MountainWater](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/MountainWater.java)
+  
+- **Consequences.**
+
+  By having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
