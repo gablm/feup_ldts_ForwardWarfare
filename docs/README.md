@@ -34,22 +34,22 @@ For LDTS 2023/24, this project was developed by:
 
 ### There is a lot of playable troop types
 
-**Problem in Context.**
+**Problem in Context:**
 
 There is a lot of playable types, so it's difficult to see at a glance the available troops.
 And a factory facility needs to create new troops with ease.
 
-**The Pattern.**
+**The Pattern:**
 
-So, a Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
+A Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
 
-**Implementation.**
+**Implementation:**
 
 Not yet implemented
 
 **Consequences**
 
-
+ Easier access to the creation of a new troop instead of going through the entire list of constructors for the element absctract class.
 
 ### Tiles and Playable troops are similar in base composition
 
