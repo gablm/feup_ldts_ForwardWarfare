@@ -32,7 +32,7 @@ For LDTS 2023/24, this project was developed by:
 
 ## DESIGN
 
-### There is a lot of playable troop types
+### There are a lot of playable troop types
 
  - **Problem in Context:**
 
