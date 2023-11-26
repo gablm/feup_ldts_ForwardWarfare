@@ -18,6 +18,8 @@ For LDTS 2023/24, this project was developed by:
 
 - **Color** - you can choose the color of your player.
 
+- **Map select** - Select the map you want to use.
+
 - **Play**  - you can play against AI or other person (like a friend for instance).
 
 - **Interact with facilities to collect resources:**
@@ -27,3 +29,12 @@ For LDTS 2023/24, this project was developed by:
   - **Use coins to get more troops**.
 
 - **Defeat the base** - defeat your opponent's base to win the game.
+
+## DESIGN
+
+### Playable elements
+
+**Problem in Context.**
+**The Pattern.**
+**Implementation.**
+**Consequences.**
