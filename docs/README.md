@@ -34,43 +34,41 @@ For LDTS 2023/24, this project was developed by:
 
 ### There are a lot of playable troop types
 
- - **Problem in Context:**
+ - **Problem in Context:** There is a lot of playable types, so it's difficult to see at a glance the available troops. And a factory facility needs to create new troops with ease.
 
-   There is a lot of playable types, so it's difficult to see at a glance the available troops.
-   And a factory facility needs to create new troops with ease.
+ - **The Pattern:** A Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
 
- - **The Pattern:**
+ - **Implementation:** Not yet implemented
 
-   A Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
-
- - **Implementation:**
- 
-   Not yet implemented
-
- - **Consequences:**
-
-   Easier access to the creation of a new troop instead of going through the entire list of constructors for the element absctract class.
+ - **Consequences:** Easier access to the creation of a new troop instead of going through the entire list of constructors for the element absctract class.
 
 ### Tiles and Playable troops are similar in base composition
 
-- **Problem in Context:**
-
-  Tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
+- **Problem in Context:** Tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
   
-- **The Pattern:**
-
-  The decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
+- **The Pattern:** The decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
 
 - **Implementation:**
+  [Base abstract class - Element](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Element.java) |
+  [Decorator abstract class - Playable](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java) |
+  [Class that extends Playable - HeavyTank](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
   
-  Base class -> [Element](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Element.java)
+- **Consequences:** By having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
 
-  Decorator base class -> [Playable](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java)
+### A water or field tile might contain a facility
 
-  Example class inside of the pattern -> [HeavyTank](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
+- **Problem in Context:** A tile in our game, if it is a water or field type might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
 
-  Class extended from base not in the pattern -> [MountainWater](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/MountainWater.java)
-  
+- **The Pattern:** For this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
+
+- **Implementation:**
+  [Field](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
+  [Water](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/Water.java) |
+  [Facility](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/Facility.java) |
+  [Factory](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/Factory.java) |
+  [OilPump](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/OilPump.java) |
+  [Other facilities](https://github.com/FEUP-LDTS-2023/project-l04gr05/tree/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility)
+
 - **Consequences:**
 
-  By having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
+  
