@@ -16,6 +16,7 @@ import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Game {
     private LanternaTerminal terminal;
@@ -31,7 +32,7 @@ public class Game {
     public Game(LanternaTerminal terminal) {
         this.terminal = terminal;
     }
-    public void run() throws IOException, MapParseException {
+    public void run() throws IOException, MapParseException, URISyntaxException {
         screen = terminal.createScreen();
         Map map = new Map("1.fw");
 

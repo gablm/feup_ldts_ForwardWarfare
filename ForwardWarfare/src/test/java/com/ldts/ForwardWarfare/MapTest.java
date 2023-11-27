@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class MapTest {
     @Test
-    public void MapDefault() throws FileNotFoundException, MapParseException {
+    public void MapDefault() throws FileNotFoundException, MapParseException, URISyntaxException {
         Map map = new Map("tests/noBuildings.fw");
 
         Assertions.assertEquals(150, map.getElements().size());

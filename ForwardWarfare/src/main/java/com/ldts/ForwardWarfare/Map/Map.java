@@ -8,6 +8,8 @@ import com.ldts.ForwardWarfare.Element.Tile.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 public class Map {
@@ -16,7 +18,7 @@ public class Map {
     private Element player2Base;
     private Element player1Factory;
     private Element player2Factory;
-    public Map(String filePath) throws FileNotFoundException, MapParseException {
+    public Map(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
         readMap(filePath);
     }
     public List<Element> getElements() {
@@ -32,8 +34,9 @@ public class Map {
             return null;
         return Arrays.asList(player2Base, player2Factory);
     }
-    private void readMap(String filePath) throws FileNotFoundException, MapParseException {
-            Scanner scanner = new Scanner(new File("src/main/resources/maps/" + filePath));
+    private void readMap(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
+            URL mapURL = getClass().getClassLoader().getResource("maps/" + filePath);
+            Scanner scanner = new Scanner(new File(mapURL.toURI()));
             scanner.useDelimiter("\n");
             int y = 0;
             while (scanner.hasNext()) {
