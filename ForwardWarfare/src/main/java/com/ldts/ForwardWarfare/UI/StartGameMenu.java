@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare.UI;
 
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -9,6 +11,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
 import com.ldts.ForwardWarfare.UI.Component.Component;
+import com.ldts.ForwardWarfare.UI.Component.MapBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,11 +22,11 @@ public class StartGameMenu extends UI {
     private int highlight=75;
     private int normalborder=10;
     private int bc=0;
-    ColorGrid grid=new ColorGrid(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(30,1),25);
+    ColorGrid grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25);
     List<Component>ButtonsList=new ArrayList<>();
 
     public StartGameMenu() {
-        super(new TerminalSize(60,40),15);
+        super(new TerminalSize(74,35),15);
     }
 
     @Override
@@ -37,6 +40,9 @@ public class StartGameMenu extends UI {
     public void draw() throws IOException {
         screen.clear();
         TextGraphics graphics = screen.newTextGraphics();
+        graphics.setBackgroundColor(new TextColor.RGB(117,200,4));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(74,35),' ');
         for (Component component:listComponents)
         {
             component.draw(graphics);
@@ -51,10 +57,13 @@ public class StartGameMenu extends UI {
     @Override
     public void addcomp() {
         listComponents.add(grid);
-        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,1),new TerminalSize(28,5),"START",highlight));
-        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,8),new TerminalSize(28,5),"COLOR SELECT",normalborder));
-        ButtonsList.add(new Button(TextColor.ANSI.WHITE,TextColor.ANSI.WHITE,new Position(1,15),new TerminalSize(28,5),"MAP SELECT",normalborder));
-
+        ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,1),new TerminalSize(42,5),"START",highlight));
+        ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,8),new TerminalSize(42,5),"COLOR SELECT",normalborder));
+        ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,15),new TerminalSize(42,5),"MAP SELECT",normalborder));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,23),new TerminalSize(17,10),normalborder));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(19,23),new TerminalSize(17,10),normalborder));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(37,23),new TerminalSize(17,10),normalborder));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(55,23),new TerminalSize(17,10),normalborder));
     }
 
     @Override
@@ -76,6 +85,7 @@ public class StartGameMenu extends UI {
                 break;
             case 1:
                 SelectingColor = true;
+                grid.start();
                 break;
             case 2:
 

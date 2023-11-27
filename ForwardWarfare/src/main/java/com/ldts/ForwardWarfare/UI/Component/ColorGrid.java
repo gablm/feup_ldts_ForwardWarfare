@@ -22,7 +22,7 @@ public class ColorGrid extends Component{
     private List<TextColor> gridcolor=new ArrayList<>();
     public ColorGrid(TextColor backColor, TextColor forgColor, Position position, int BorderFadeIntencity) {
         super(backColor, forgColor, position, new TerminalSize(29,19), BorderFadeIntencity);
-        ColorList.add(new Button(new TextColor.RGB(200, 0, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 5), new TerminalSize(6, 6), " ", highlight));
+        ColorList.add(new Button(new TextColor.RGB(200, 0, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
         ColorList.add(new Button(new TextColor.RGB(0, 200, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 8, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
         ColorList.add(new Button(new TextColor.RGB(200, 255, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 15, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
         ColorList.add(new Button(new TextColor.RGB(255, 200, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 22, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
@@ -133,7 +133,7 @@ public class ColorGrid extends Component{
     @Override
     public void draw(TextGraphics graphics) {
         setupbord();
-        new Button(backColor,forgColor,new Position(position.getX(), position.getY()),new TerminalSize(29,5),"Color Grid",25).draw(graphics);
+        new Button(backColor,forgColor,new Position(position.getX(), position.getY()),new TerminalSize(29,5),"COLOR GRID",25).draw(graphics);
         for(Button b:ColorList)
         {
             b.draw(graphics);
@@ -141,5 +141,9 @@ public class ColorGrid extends Component{
         graphics.enableModifiers(SGR.BOLD);
         graphics.setBackgroundColor(BorderColor);
         graphics.drawRectangle(position.toTPos(),size,' ');
+    }
+    public void start()
+    {
+        ColorList.get(c).setBorderFadeIntensity(highlight);
     }
 }
