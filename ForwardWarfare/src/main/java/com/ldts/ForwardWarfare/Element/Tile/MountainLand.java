@@ -5,14 +5,16 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 
-public class Montain_Water extends Element {
-    public Montain_Water(Position position) {
+public class MountainLand extends Element {
+    public MountainLand(Position position)
+    {
         super.position=position;
     }
+
     @Override
     public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
-        graphics.setForegroundColor(new TextColor.RGB(160,160,160));
-        graphics.putString(position.toTPos(),"]");
+        graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
+        graphics.setForegroundColor(new TextColor.RGB(57,45,45));
+        graphics.putString(position.toTPos(),"}");
     }
 }

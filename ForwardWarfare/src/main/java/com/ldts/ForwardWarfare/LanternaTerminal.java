@@ -17,7 +17,7 @@ public class LanternaTerminal {
     private Terminal terminal;
     public LanternaTerminal(TerminalSize size, String fontPath, int fontSize) throws IOException, URISyntaxException, FontFormatException {
         Font font = loadExternalFonts(fontPath, fontSize);
-        terminal = createTerminal(size, font);
+        terminal = createTerminal(size,font);
     }
     private Terminal createTerminal(TerminalSize size, Font font) throws IOException {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
