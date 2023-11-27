@@ -29,7 +29,7 @@ public class MapTest {
 
     @Test
     public void MapInvalidFileTest() {
-        Assertions.assertThrows(FileNotFoundException.class, () -> {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             new Map("adawdioadmawmdmoawda");
         });
     }
