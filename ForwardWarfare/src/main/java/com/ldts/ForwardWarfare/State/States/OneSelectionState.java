@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare.State.States;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
@@ -12,6 +13,9 @@ import com.ldts.ForwardWarfare.State.State;
 public class OneSelectionState extends BaseState{
     public OneSelectionState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
+        Border border = p1.getSelection2();
+        TextColor color = ((Tile) map.at(border.getPosition())).getColor();
+        border.setBackground(color);
     }
     @Override
     public State play(Action action) {
@@ -36,6 +40,13 @@ public class OneSelectionState extends BaseState{
         }
         return this;
 
+    }
+
+    @Override
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        graphics.putString(1, 11, "Where to go");
     }
 
     private void moveTo(int x, int y) {

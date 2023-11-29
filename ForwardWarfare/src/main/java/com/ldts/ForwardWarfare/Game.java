@@ -12,6 +12,7 @@ import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
+import com.ldts.ForwardWarfare.Element.Playable.PlayableFactory;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
@@ -27,7 +28,7 @@ public class Game {
 
     public static void main(String[] args) {
         try {
-            new Game(new LanternaTerminal(new TerminalSize(15,10), "tanks2_0.ttf", 50)).run();
+            new Game(new LanternaTerminal(new TerminalSize(15,13), "tanks2_0.ttf", 50)).run();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,6 +41,7 @@ public class Game {
         Map map = new Map("1.fw");
         Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.RED_BRIGHT);
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.GREEN_BRIGHT);
+        p1.buy(PlayableFactory.createAATank(2, 6), 0);
 
         State state = new NoSelectionState(p1, p2, map);
         while (true) {
@@ -50,6 +52,7 @@ public class Game {
             p2.draw(graphics);
             p1.drawBorder(graphics);
             p2.drawBorder(graphics);
+            state.draw(graphics);
             screen.refresh();
 
             KeyStroke key = screen.readInput();

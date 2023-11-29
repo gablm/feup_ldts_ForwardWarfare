@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare.State.States;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
@@ -39,12 +40,22 @@ public class NoSelectionState extends BaseState {
                 moveTo(pos.getX() + 1, pos.getY());
                 break;
             case ENTER:
-                p1.setSelection2(new Border(pos));
-                return new OneSelectionState(p1, p2, map);
+                if (p1.getTroops().stream().anyMatch(x -> x.getPosition().equals(pos))) {
+                    p1.setSelection2(new Border(pos));
+                    return new OneSelectionState(p1, p2, map);
+                }
+                return new InvalidSelectState(p1, p2, map, "Invalid play");
             case ESCAPE:
                 System.exit(0);
         }
         return this;
+    }
+
+    @Override
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        graphics.putString(1, 11, "Tile select");
     }
 
     private void moveTo(int x, int y) {
