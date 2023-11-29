@@ -21,5 +21,4 @@ public interface Controller {
     void setSelection2(Border selection2);
     void draw(TextGraphics textGraphics);
     void drawBorder(TextGraphics graphics);
-    void setBorderBackground(TextColor color);
 }

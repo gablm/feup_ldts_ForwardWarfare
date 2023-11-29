@@ -12,9 +12,15 @@ import com.ldts.ForwardWarfare.State.State;
 public class NoSelectionState extends BaseState {
     public NoSelectionState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
-        if (p1.getSelection1() == null)
+        Border border = p1.getSelection1();
+        if (border == null) {
             p1.setSelection1(new Border(new Position(0, 0)));
-        moveTo(5,7);
+            moveTo(5, 7);
+        } else {
+            TextColor color = ((Tile) map.at(border.getPosition())).getColor();
+            border.setBackground(color);
+        }
+
     }
     @Override
     public State play(Action action) {
@@ -33,8 +39,10 @@ public class NoSelectionState extends BaseState {
                 moveTo(pos.getX() + 1, pos.getY());
                 break;
             case ENTER:
-                p1.setSelection2(new Border(p1.getSelection1().getPosition()));
+                p1.setSelection2(new Border(pos));
                 return new OneSelectionState(p1, p2, map);
+            case ESCAPE:
+                System.exit(0);
         }
         return this;
     }
@@ -44,9 +52,8 @@ public class NoSelectionState extends BaseState {
         if (!map.inside(pos))
             return;
         p1.getSelection1().setPosition(pos);
-        TextColor color;
-        color = ((Tile) map.at(pos)).getColor();
+        TextColor color = ((Tile) map.at(pos)).getColor();
         if (color != null)
-            p1.setBorderBackground(color);
+            p1.getSelection1().setBackground(color);
     }
 }

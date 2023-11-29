@@ -74,9 +74,7 @@ public abstract class ControllerBase implements Controller {
     public void setSelection2(Border selection2) {
         this.selection2 = selection2;
     }
-    public void setBorderBackground(TextColor color) {
-        this.borderBackground = color;
-    }
+
     @Override
     public void draw(TextGraphics graphics) {
         base.draw(graphics, controllerColor);
@@ -88,13 +86,9 @@ public abstract class ControllerBase implements Controller {
 
     @Override
     public void drawBorder(TextGraphics graphics) {
-        if (selection2 != null) {
-            graphics.setBackgroundColor(borderBackground);
+        if (selection2 != null)
             selection2.draw(graphics, TextColor.ANSI.RED_BRIGHT);
-        }
-        if (selection1 != null) {
-            graphics.setBackgroundColor(borderBackground);
+        if (selection1 != null)
             selection1.draw(graphics, selection2 == null ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.CYAN_BRIGHT);
-        }
     }
 }
