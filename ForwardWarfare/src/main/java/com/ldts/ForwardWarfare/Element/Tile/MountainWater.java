@@ -20,4 +20,9 @@ public class MountainWater extends Element implements Tile {
     public TextColor getColor() {
         return new TextColor.RGB(0,124,206);
     }
+
+    @Override
+    public boolean noCollision() {
+        return false;
+    }
 }

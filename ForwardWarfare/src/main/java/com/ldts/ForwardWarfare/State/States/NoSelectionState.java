@@ -18,7 +18,7 @@ public class NoSelectionState extends BaseState {
             p1.setSelection1(new Border(new Position(0, 0)));
             moveTo(5, 7);
         } else {
-            TextColor color = ((Tile) map.at(border.getPosition())).getColor();
+            TextColor color = map.at(border.getPosition()).getColor();
             border.setBackground(color);
         }
 
@@ -63,7 +63,7 @@ public class NoSelectionState extends BaseState {
         if (!map.inside(pos))
             return;
         p1.getSelection1().setPosition(pos);
-        TextColor color = ((Tile) map.at(pos)).getColor();
+        TextColor color = map.at(pos).getColor();
         if (color != null)
             p1.getSelection1().setBackground(color);
     }

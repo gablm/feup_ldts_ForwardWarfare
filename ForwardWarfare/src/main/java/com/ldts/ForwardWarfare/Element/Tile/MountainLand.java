@@ -22,4 +22,9 @@ public class MountainLand extends Element implements Tile {
     public TextColor getColor() {
         return new TextColor.RGB(113,199,0);
     }
+
+    @Override
+    public boolean noCollision() {
+        return false;
+    }
 }

@@ -9,8 +9,8 @@ import com.ldts.ForwardWarfare.Element.Position;
 public class Water extends Element implements Tile {
     Facility facility;
     public Water(Position position,Facility facility) {
-        super.position=position;
-        if (facility!=null) {
+        super.position = position;
+        if (facility != null) {
             this.facility = facility;
         }
     }
@@ -20,7 +20,7 @@ public class Water extends Element implements Tile {
         graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
         graphics.setForegroundColor(new TextColor.RGB(224,224,224));
         graphics.putString(position.toTPos(),"~");
-        if (facility!=null) {
+        if (facility != null) {
             facility.draw(graphics, position);
         }
     }
@@ -28,5 +28,10 @@ public class Water extends Element implements Tile {
     @Override
     public TextColor getColor() {
         return new TextColor.RGB(0,124,206);
+    }
+
+    @Override
+    public boolean noCollision() {
+        return facility == null;
     }
 }

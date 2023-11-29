@@ -5,4 +5,5 @@ import com.ldts.ForwardWarfare.Element.Element;
 
 public interface Tile {
     TextColor getColor();
+    boolean noCollision();
 }

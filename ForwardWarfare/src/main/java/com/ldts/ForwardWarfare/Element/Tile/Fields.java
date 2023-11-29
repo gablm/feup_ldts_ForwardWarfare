@@ -9,8 +9,8 @@ public class Fields extends Element implements Tile {
     private Facility facility;
     public Fields(Position position, Facility facility)
     {
-        super.position=position;
-        if (facility!=null) {
+        super.position = position;
+        if (facility != null) {
             this.facility = facility;
         }
     }
@@ -25,11 +25,16 @@ public class Fields extends Element implements Tile {
         graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
         graphics.setForegroundColor(new TextColor.RGB(226,214,106));
         graphics.putString(position.toTPos(),"|");
-        if (facility!=null) {
+        if (facility != null) {
             facility.draw(graphics, position);
         }
     }
     public TextColor getColor() {
         return new TextColor.RGB(113,199,0);
+    }
+
+    @Override
+    public boolean noCollision() {
+        return facility == null;
     }
 }

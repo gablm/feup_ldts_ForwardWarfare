@@ -126,8 +126,8 @@ public class Map extends Element {
         }
     }
 
-    public Element at(Position position) {
-        return map.get(position.getY() * 15 + position.getX());
+    public Tile at(Position position) {
+        return (Tile) map.get(position.getY() * 15 + position.getX());
     }
 
     public boolean inside(Position pos) {

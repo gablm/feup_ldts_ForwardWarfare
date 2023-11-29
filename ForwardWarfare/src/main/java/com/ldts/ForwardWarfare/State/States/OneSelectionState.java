@@ -3,9 +3,9 @@ package com.ldts.ForwardWarfare.State.States;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
-import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
@@ -14,7 +14,7 @@ public class OneSelectionState extends BaseState{
     public OneSelectionState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
         Border border = p1.getSelection2();
-        TextColor color = ((Tile) map.at(border.getPosition())).getColor();
+        TextColor color = map.at(border.getPosition()).getColor();
         border.setBackground(color);
     }
     @Override
@@ -37,6 +37,17 @@ public class OneSelectionState extends BaseState{
                 p1.setSelection1(new Border(p1.getSelection2().getPosition()));
                 p1.setSelection2(null);
                 return new NoSelectionState(p1, p2, map);
+            case ENTER:
+                for (Element i : p1.getTroops()) {
+                    if (i.getPosition().equals(p1.getSelection1().getPosition())) {
+                        if (map.at(pos).noCollision())
+                            i.setPosition(pos);
+                        break;
+                    }
+                }
+                p1.setSelection1(p1.getSelection2());
+                p1.setSelection2(null);
+                return new NoSelectionState(p1, p2, map);
         }
         return this;
 
@@ -55,7 +66,7 @@ public class OneSelectionState extends BaseState{
             return;
         p1.getSelection2().setPosition(pos);
         TextColor color;
-        color = ((Tile) map.at(pos)).getColor();
+        color = map.at(pos).getColor();
         if (color != null)
             p1.getSelection2().setBackground(color);
     }
