@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare.Controller;
 
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
@@ -20,4 +21,5 @@ public interface Controller {
     void setSelection2(Border selection2);
     void draw(TextGraphics textGraphics);
     void drawBorder(TextGraphics graphics);
+    void setBorderBackground(TextColor color);
 }

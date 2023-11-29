@@ -6,7 +6,7 @@ import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 
-public class Water extends Element {
+public class Water extends Element implements Tile {
     Facility facility;
     public Water(Position position,Facility facility) {
         super.position=position;
@@ -23,5 +23,10 @@ public class Water extends Element {
         if (facility!=null) {
             facility.draw(graphics, position);
         }
+    }
+
+    @Override
+    public TextColor getColor() {
+        return new TextColor.RGB(0,124,206);
     }
 }

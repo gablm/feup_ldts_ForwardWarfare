@@ -45,9 +45,11 @@ public class Game {
         while (true) {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
-            map.draw(graphics, null);
             p1.draw(graphics);
             p2.draw(graphics);
+            map.draw(graphics, null);
+            p1.drawBorder(graphics);
+            p2.drawBorder(graphics);
             screen.refresh();
 
             KeyStroke key = screen.readInput();

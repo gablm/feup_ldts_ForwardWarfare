@@ -5,7 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
-public class Fields extends Element {
+public class Fields extends Element implements Tile {
     private Facility facility;
     public Fields(Position position, Facility facility)
     {
@@ -28,5 +28,8 @@ public class Fields extends Element {
         if (facility!=null) {
             facility.draw(graphics, position);
         }
+    }
+    public TextColor getColor() {
+        return new TextColor.RGB(113,199,0);
     }
 }

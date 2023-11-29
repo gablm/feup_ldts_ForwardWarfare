@@ -123,7 +123,7 @@ public class Map extends Element {
     }
 
     public Element at(Position position) {
-        int res = position.getY() * 15 + position.getX();
+        int res = position.getY() * 10 + position.getX();
         return map.get(res);
     }
 }
