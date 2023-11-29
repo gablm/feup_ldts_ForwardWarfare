@@ -82,24 +82,28 @@ public class Map extends Element {
                             if (player1Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
                             player1Factory = iniField1;
+                            map.add(new Fields(pos, null));
                             break;
                         case 29:
                             Element iniField2 = new Fields(pos, new Factory());
                             if (player2Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
                             player2Factory = iniField2;
+                            map.add(new Fields(pos, null));
                             break;
                         case 31:
                             Element base1 = new Fields(pos, new Base(TextColor.ANSI.CYAN_BRIGHT));
                             if (player1Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player1Base = base1;
+                            map.add(new Fields(pos, null));
                             break;
                         case 32:
                             Element base2 = new Fields(pos, new Base(TextColor.ANSI.RED));
                             if (player2Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player2Base = base2;
+                            map.add(new Fields(pos, null));
                             break;
                         default:
                             throw new MapParseException("There is an invalid number in the map: %d".formatted(id));
@@ -111,7 +115,7 @@ public class Map extends Element {
                 y++;
             }
             scanner.close();
-            if (map.size() != 146)
+            if (map.size() != 150)
                 throw new MapParseException("The map should be 15 x 10.");
     }
 
@@ -123,7 +127,11 @@ public class Map extends Element {
     }
 
     public Element at(Position position) {
-        int res = position.getY() * 10 + position.getX();
-        return map.get(res);
+        return map.get(position.getY() * 15 + position.getX());
+    }
+
+    public boolean inside(Position pos) {
+        return pos.getY() >= 0 && pos.getY() < 10
+                && pos.getX() >= 0 && pos.getX() < 15;
     }
 }

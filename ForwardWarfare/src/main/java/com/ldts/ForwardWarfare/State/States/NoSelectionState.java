@@ -41,6 +41,8 @@ public class NoSelectionState extends BaseState {
 
     private void moveTo(int x, int y) {
         Position pos = new Position(x, y);
+        if (!map.inside(pos))
+            return;
         p1.getSelection1().setPosition(pos);
         TextColor color;
         color = ((Tile) map.at(pos)).getColor();

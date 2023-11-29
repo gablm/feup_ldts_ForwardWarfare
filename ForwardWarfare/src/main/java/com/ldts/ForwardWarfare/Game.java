@@ -45,9 +45,9 @@ public class Game {
         while (true) {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
+            map.draw(graphics, null);
             p1.draw(graphics);
             p2.draw(graphics);
-            map.draw(graphics, null);
             p1.drawBorder(graphics);
             p2.drawBorder(graphics);
             screen.refresh();
@@ -60,18 +60,13 @@ public class Game {
     }
 
     private Action keyToAction(KeyStroke keyStroke) {
-        switch (keyStroke.getKeyType()) {
-            case Enter:
-                return Action.ENTER;
-            case ArrowUp:
-                return Action.UP;
-            case ArrowDown:
-                return Action.DOWN;
-            case ArrowLeft:
-                return Action.LEFT;
-            case ArrowRight:
-                return Action.RIGHT;
-        }
-        return Action.ESCAPE;
+        return switch (keyStroke.getKeyType()) {
+            case Enter -> Action.ENTER;
+            case ArrowUp -> Action.UP;
+            case ArrowDown -> Action.DOWN;
+            case ArrowLeft -> Action.LEFT;
+            case ArrowRight -> Action.RIGHT;
+            default -> Action.ESCAPE;
+        };
     }
 }
