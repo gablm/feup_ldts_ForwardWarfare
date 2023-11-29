@@ -81,6 +81,10 @@ public abstract class ControllerBase implements Controller {
             i.draw(graphics, controllerColor);
         for (Element i : facilities)
             i.draw(graphics, controllerColor);
+    }
+
+    @Override
+    public void drawBorder(TextGraphics graphics) {
         if (selection2 != null)
             selection2.draw(graphics, TextColor.ANSI.RED_BRIGHT);
         if (selection1 != null)

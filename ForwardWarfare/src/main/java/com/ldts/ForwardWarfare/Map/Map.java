@@ -121,4 +121,9 @@ public class Map extends Element {
             elem.draw(graphics, null);
         }
     }
+
+    public Element at(Position position) {
+        int res = position.getY() * 15 + position.getX();
+        return map.get(res);
+    }
 }

@@ -41,7 +41,7 @@ public class Game {
         Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.RED_BRIGHT);
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.GREEN_BRIGHT);
 
-        State state = new NoSelectionState(p1, p2, map, true);
+        State state = new NoSelectionState(p1, p2, map);
         while (true) {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
@@ -53,7 +53,23 @@ public class Game {
             KeyStroke key = screen.readInput();
             if (key.getKeyType() == KeyType.EOF)
                 return;
-            state = state.play(Action.UP);
+            state = state.play(keyToAction(key));
         }
+    }
+
+    private Action keyToAction(KeyStroke keyStroke) {
+        switch (keyStroke.getKeyType()) {
+            case Enter:
+                return Action.ENTER;
+            case ArrowUp:
+                return Action.UP;
+            case ArrowDown:
+                return Action.DOWN;
+            case ArrowLeft:
+                return Action.LEFT;
+            case ArrowRight:
+                return Action.RIGHT;
+        }
+        return Action.ESCAPE;
     }
 }

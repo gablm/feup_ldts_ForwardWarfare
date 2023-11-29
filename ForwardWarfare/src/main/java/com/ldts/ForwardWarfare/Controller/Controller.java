@@ -19,4 +19,5 @@ public interface Controller {
     void setSelection1(Border selection1);
     void setSelection2(Border selection2);
     void draw(TextGraphics textGraphics);
+    void drawBorder(TextGraphics graphics);
 }
