@@ -14,6 +14,9 @@ import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
+import com.ldts.ForwardWarfare.State.Action;
+import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.NoSelectionState;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,32 +35,25 @@ public class Game {
     public Game(LanternaTerminal terminal) {
         this.terminal = terminal;
     }
-    public void run() throws IOException, MapParseException, URISyntaxException {
+    public void run() throws IOException, MapParseException, URISyntaxException, InvalidControllerException {
         screen = terminal.createScreen();
         Map map = new Map("1.fw");
+        Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.RED_BRIGHT);
+        Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.GREEN_BRIGHT);
 
+        State state = new NoSelectionState(p1, p2, map, true);
         while (true) {
             screen.clear();
-            DrawTiles(map, screen.newTextGraphics());
+            TextGraphics graphics = screen.newTextGraphics();
+            map.draw(graphics, null);
+            p1.draw(graphics);
+            p2.draw(graphics);
             screen.refresh();
 
             KeyStroke key = screen.readInput();
             if (key.getKeyType() == KeyType.EOF)
                 return;
-        }
-    }
-
-    private void DrawTiles(Map map, TextGraphics graphics) {
-        try {
-            for (Element element : map.getElements()) {
-                if (element instanceof Playable)
-                    element.draw(graphics, TextColor.ANSI.BLUE);
-                else {
-                    element.draw(graphics, null);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            state = state.play(Action.UP);
         }
     }
 }

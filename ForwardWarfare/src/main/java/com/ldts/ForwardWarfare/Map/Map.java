@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare.Map;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Position;
@@ -12,7 +13,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
-public class Map {
+public class Map extends Element {
     private List<Element> map = new ArrayList<>();
     private Element player1Base;
     private Element player2Base;
@@ -81,28 +82,24 @@ public class Map {
                             if (player1Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
                             player1Factory = iniField1;
-                            map.add(iniField1);
                             break;
                         case 29:
                             Element iniField2 = new Fields(pos, new Factory());
                             if (player2Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
                             player2Factory = iniField2;
-                            map.add(iniField2);
                             break;
                         case 31:
                             Element base1 = new Fields(pos, new Base(TextColor.ANSI.CYAN_BRIGHT));
                             if (player1Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player1Base = base1;
-                            map.add(base1);
                             break;
                         case 32:
                             Element base2 = new Fields(pos, new Base(TextColor.ANSI.RED));
                             if (player2Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player2Base = base2;
-                            map.add(base2);
                             break;
                         default:
                             throw new MapParseException("There is an invalid number in the map: %d".formatted(id));
@@ -114,7 +111,14 @@ public class Map {
                 y++;
             }
             scanner.close();
-            if (map.size() != 150)
+            if (map.size() != 146)
                 throw new MapParseException("The map should be 15 x 10.");
+    }
+
+    @Override
+    public void draw(TextGraphics graphics, TextColor textColor) {
+        for (Element elem : map) {
+            elem.draw(graphics, null);
+        }
     }
 }

@@ -1,7 +1,9 @@
 package com.ldts.ForwardWarfare.Controller;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
+import com.ldts.ForwardWarfare.Element.Tile.Border;
 
 import java.util.List;
 
@@ -10,6 +12,11 @@ public interface Controller {
     void endRound();
     Element getBase();
     List<Element> getTroops();
-    List<Facility> getFacilities();
+    List<Element> getFacilities();
     int getCoins();
+    Border getSelection1();
+    public Border getSelection2();
+    void setSelection1(Border selection1);
+    void setSelection2(Border selection2);
+    void draw(TextGraphics textGraphics);
 }
