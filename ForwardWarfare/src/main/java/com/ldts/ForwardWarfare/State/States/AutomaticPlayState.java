@@ -23,4 +23,9 @@ public class AutomaticPlayState extends BaseState {
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(1, 11, "Automatic");
     }
+
+    @Override
+    public boolean requiresInput() {
+        return false;
+    }
 }

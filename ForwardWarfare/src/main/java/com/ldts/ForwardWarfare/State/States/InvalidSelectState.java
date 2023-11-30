@@ -25,4 +25,9 @@ public class InvalidSelectState extends BaseState {
         graphics.putString(1, 11, message);
     }
 
+    @Override
+    public boolean requiresInput() {
+        return true;
+    }
+
 }
