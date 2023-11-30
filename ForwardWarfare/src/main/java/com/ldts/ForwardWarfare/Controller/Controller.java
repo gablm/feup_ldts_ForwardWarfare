@@ -1,10 +1,10 @@
 package com.ldts.ForwardWarfare.Controller;
 
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
+import com.ldts.ForwardWarfare.Map.Map;
+import com.ldts.ForwardWarfare.State.State;
 
 import java.util.List;
 
@@ -21,4 +21,6 @@ public interface Controller {
     void setSelection2(Border selection2);
     void draw(TextGraphics textGraphics);
     void drawBorder(TextGraphics graphics);
+
+    State getInitialState(Controller p2, Map map);
 }
