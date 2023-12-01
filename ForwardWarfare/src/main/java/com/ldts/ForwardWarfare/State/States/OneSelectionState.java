@@ -60,6 +60,11 @@ public class OneSelectionState extends BaseState{
         graphics.putString(1, 11, "Where to go");
     }
 
+    @Override
+    public boolean requiresInput() {
+        return true;
+    }
+
     private void moveTo(int x, int y) {
         Position pos = new Position(x, y);
         if (!map.inside(pos))

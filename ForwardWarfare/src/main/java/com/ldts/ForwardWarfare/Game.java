@@ -43,7 +43,7 @@ public class Game {
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.GREEN_BRIGHT);
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
 
-        State state = new NoSelectionState(p1, p2, map);
+        State state = p1.getInitialState(p2, map);
         while (true) {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
@@ -55,10 +55,15 @@ public class Game {
             state.draw(graphics);
             screen.refresh();
 
-            KeyStroke key = screen.readInput();
-            if (key.getKeyType() == KeyType.EOF)
+            if (state.requiresInput()) {
+                KeyStroke key = screen.readInput();
+                if (key.getKeyType() == KeyType.EOF)
+                    return;
+                state = state.play(keyToAction(key));
+            } else
+                state = state.play(null);
+            if (state == null)
                 return;
-            state = state.play(keyToAction(key));
         }
     }
 

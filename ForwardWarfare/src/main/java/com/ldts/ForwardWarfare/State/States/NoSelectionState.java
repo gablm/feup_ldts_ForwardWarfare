@@ -5,7 +5,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
-import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
@@ -46,7 +45,7 @@ public class NoSelectionState extends BaseState {
                 }
                 return new InvalidSelectState(p1, p2, map, "Invalid play");
             case ESCAPE:
-                System.exit(0);
+                return null;
         }
         return this;
     }
@@ -56,6 +55,11 @@ public class NoSelectionState extends BaseState {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(1, 11, "Tile select");
+    }
+
+    @Override
+    public boolean requiresInput() {
+        return true;
     }
 
     private void moveTo(int x, int y) {

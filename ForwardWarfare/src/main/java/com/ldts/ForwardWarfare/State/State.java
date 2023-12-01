@@ -9,6 +9,6 @@ public interface State {
     Controller getP1();
     Controller getP2();
     Map getMap();
-
     void draw(TextGraphics graphics);
+    boolean requiresInput();
 }
