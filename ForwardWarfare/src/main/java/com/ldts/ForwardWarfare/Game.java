@@ -39,8 +39,8 @@ public class Game {
     public void run() throws IOException, MapParseException, URISyntaxException, InvalidControllerException {
         screen = terminal.createScreen();
         Map map = new Map("1.fw");
-        Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.RED_BRIGHT);
-        Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.GREEN_BRIGHT);
+        Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.MAGENTA_BRIGHT);
+        Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.WHITE_BRIGHT);
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
 
         State state = p1.getInitialState(p2, map);

@@ -31,6 +31,13 @@ public class Fields extends Element implements Tile {
             facility.draw(graphics, position);
         }
     }
+
+    @Override
+    public void setForegroundColor(TextColor foregroundColor) {
+        if (facility != null)
+            facility.setTextColor(foregroundColor);
+    }
+
     public TextColor getColor() {
         return backgroundColor;
     }

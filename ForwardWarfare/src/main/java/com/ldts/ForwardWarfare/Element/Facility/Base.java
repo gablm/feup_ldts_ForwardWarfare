@@ -5,14 +5,15 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Position;
 
 public class Base implements Facility {
-    TextColor textColor;
-    public Base(TextColor textColor)
-    {
-        this.textColor=textColor;
-    }
+    private TextColor textColor;
     public void draw(TextGraphics graphics, Position position) {
             graphics.setForegroundColor(textColor);
             graphics.putString(position.toTPos(), ";");
+    }
+
+    @Override
+    public void setTextColor(TextColor color) {
+        this.textColor = color;
     }
 
     @Override

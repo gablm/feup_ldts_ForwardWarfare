@@ -26,8 +26,12 @@ public abstract class ControllerBase implements Controller {
     public ControllerBase(List<Element> initialFacilities, TextColor controllerColor) throws InvalidControllerException {
         if (initialFacilities == null || initialFacilities.size() != 2)
             throw new InvalidControllerException("Invalid initial Factory and Base");
-        facilities.add(initialFacilities.get(1));
+        Element factory = initialFacilities.get(1);
+        factory.setForegroundColor(controllerColor);
+        facilities.add(factory);
         base = initialFacilities.get(0);
+        base.setForegroundColor(controllerColor);
+        this.controllerColor = controllerColor;
         this.coins = 100;
     }
 

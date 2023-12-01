@@ -92,14 +92,14 @@ public class Map extends Element {
                             map.add(new Fields(pos, null));
                             break;
                         case 31:
-                            Element base1 = new Fields(pos, new Base(TextColor.ANSI.CYAN_BRIGHT));
+                            Element base1 = new Fields(pos, new Base());
                             if (player1Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player1Base = base1;
                             map.add(new Fields(pos, null));
                             break;
                         case 32:
-                            Element base2 = new Fields(pos, new Base(TextColor.ANSI.RED));
+                            Element base2 = new Fields(pos, new Base());
                             if (player2Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
                             player2Base = base2;

@@ -27,6 +27,12 @@ public class Water extends Element implements Tile {
     }
 
     @Override
+    public void setForegroundColor(TextColor foregroundColor) {
+        if (facility != null)
+            facility.setTextColor(foregroundColor);
+    }
+
+    @Override
     public TextColor getColor() {
         return backgroundColor;
     }
