@@ -9,18 +9,20 @@ public class MountainLand extends Element implements Tile {
     public MountainLand(Position position)
     {
         super.position=position;
+        super.backgroundColor = new TextColor.RGB(113,199,0);
+        super.foregroundColor = new TextColor.RGB(57,45,45);
     }
 
     @Override
-    public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
-        graphics.setForegroundColor(new TextColor.RGB(57,45,45));
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(backgroundColor);
+        graphics.setForegroundColor(foregroundColor);
         graphics.putString(position.toTPos(),"}");
     }
 
     @Override
     public TextColor getColor() {
-        return new TextColor.RGB(113,199,0);
+        return backgroundColor;
     }
 
     @Override

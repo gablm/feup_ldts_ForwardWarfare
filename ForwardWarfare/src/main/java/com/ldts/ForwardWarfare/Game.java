@@ -47,7 +47,7 @@ public class Game {
         while (true) {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
-            map.draw(graphics, null);
+            map.draw(graphics);
             p1.draw(graphics);
             p2.draw(graphics);
             p1.drawBorder(graphics);

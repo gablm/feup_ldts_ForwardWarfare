@@ -19,7 +19,7 @@ public class NoSelectionState extends BaseState {
             moveTo(5, 7);
         } else {
             TextColor color = map.at(border.getPosition()).getColor();
-            border.setBackground(color);
+            border.setBackgroundColor(color);
         }
 
     }
@@ -65,6 +65,6 @@ public class NoSelectionState extends BaseState {
         p1.getSelection1().setPosition(pos);
         TextColor color = map.at(pos).getColor();
         if (color != null)
-            p1.getSelection1().setBackground(color);
+            p1.getSelection1().setBackgroundColor(color);
     }
 }

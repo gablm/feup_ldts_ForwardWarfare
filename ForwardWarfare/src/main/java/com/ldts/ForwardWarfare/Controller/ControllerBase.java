@@ -51,6 +51,7 @@ public abstract class ControllerBase implements Controller {
         if (coins < price)
             return false;
         troops.add(troop);
+        troop.setForegroundColor(controllerColor);
         coins -= price;
         return true;
     }
@@ -70,25 +71,29 @@ public abstract class ControllerBase implements Controller {
     }
     public void setSelection1(Border selection1) {
         this.selection1 = selection1;
+        if (selection1 != null)
+            this.selection1.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
     }
     public void setSelection2(Border selection2) {
         this.selection2 = selection2;
+        if (selection2 != null)
+            this.selection2.setForegroundColor(TextColor.ANSI.CYAN_BRIGHT);
     }
 
     @Override
     public void draw(TextGraphics graphics) {
-        base.draw(graphics, controllerColor);
+        base.draw(graphics);
         for (Element i : troops)
-            i.draw(graphics, controllerColor);
+            i.draw(graphics);
         for (Element i : facilities)
-            i.draw(graphics, controllerColor);
+            i.draw(graphics);
     }
 
     @Override
     public void drawBorder(TextGraphics graphics) {
         if (selection1 != null)
-            selection1.draw(graphics, TextColor.ANSI.RED_BRIGHT);
+            selection1.draw(graphics);
         if (selection2 != null)
-            selection2.draw(graphics, TextColor.ANSI.CYAN_BRIGHT);
+            selection2.draw(graphics);
     }
 }

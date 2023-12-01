@@ -120,9 +120,9 @@ public class Map extends Element {
     }
 
     @Override
-    public void draw(TextGraphics graphics, TextColor textColor) {
+    public void draw(TextGraphics graphics) {
         for (Element elem : map) {
-            elem.draw(graphics, null);
+            elem.draw(graphics);
         }
     }
 

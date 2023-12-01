@@ -8,17 +8,18 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public class Water extends Element implements Tile {
     Facility facility;
-    public Water(Position position,Facility facility) {
+    public Water(Position position, Facility facility) {
         super.position = position;
-        if (facility != null) {
+        super.backgroundColor = new TextColor.RGB(0,124,206);
+        super.foregroundColor = new TextColor.RGB(224,224,224);
+        if (facility != null)
             this.facility = facility;
-        }
     }
 
     @Override
-    public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
-        graphics.setForegroundColor(new TextColor.RGB(224,224,224));
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(backgroundColor);
+        graphics.setForegroundColor(foregroundColor);
         graphics.putString(position.toTPos(),"~");
         if (facility != null) {
             facility.draw(graphics, position);
@@ -27,7 +28,7 @@ public class Water extends Element implements Tile {
 
     @Override
     public TextColor getColor() {
-        return new TextColor.RGB(0,124,206);
+        return backgroundColor;
     }
 
     @Override

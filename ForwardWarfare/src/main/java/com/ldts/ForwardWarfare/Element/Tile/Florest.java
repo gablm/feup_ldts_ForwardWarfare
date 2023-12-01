@@ -7,19 +7,21 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public class Florest extends Element implements Tile {
     public Florest(Position position) {
-        super.position=position;
+        super.position = position;
+        super.backgroundColor = new TextColor.RGB(113,199,0);
+        super.foregroundColor = new TextColor.RGB(0,102,51);
     }
 
     @Override
-    public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setBackgroundColor(new TextColor.RGB(113,199,0));
-        graphics.setForegroundColor(new TextColor.RGB(0,102,51));
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(backgroundColor);
+        graphics.setForegroundColor(foregroundColor);
         graphics.putString(position.toTPos(),"{");
     }
 
     @Override
     public TextColor getColor() {
-        return new TextColor.RGB(113,199,0);
+        return backgroundColor;
     }
 
     @Override

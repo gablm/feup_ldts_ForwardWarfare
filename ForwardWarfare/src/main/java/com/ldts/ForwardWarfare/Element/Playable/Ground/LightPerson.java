@@ -9,14 +9,15 @@ import com.ldts.ForwardWarfare.Element.Position;
 public class LightPerson extends Playable {
     public LightPerson(Position pos) {
         super(5);
+        this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }
     @Override
-    public void draw(TextGraphics textGraphics, TextColor textColor) {
-        textGraphics.setForegroundColor(textColor != null ? textColor : new TextColor.RGB(80, 80, 80));
+    public void draw(TextGraphics textGraphics) {
+        textGraphics.setForegroundColor(foregroundColor);
         textGraphics.putString(position.toTPos(), "(");
     }
-    protected boolean canMove(Element element) {
+    public boolean canMove(Element element) {
         return false;
     }
 }

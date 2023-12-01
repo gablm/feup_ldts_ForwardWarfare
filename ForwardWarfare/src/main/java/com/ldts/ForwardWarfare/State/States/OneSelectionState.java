@@ -15,7 +15,7 @@ public class OneSelectionState extends BaseState{
         super(p1, p2, map);
         Border border = p1.getSelection2();
         TextColor color = map.at(border.getPosition()).getColor();
-        border.setBackground(color);
+        border.setBackgroundColor(color);
     }
     @Override
     public State play(Action action) {
@@ -68,6 +68,6 @@ public class OneSelectionState extends BaseState{
         TextColor color;
         color = map.at(pos).getColor();
         if (color != null)
-            p1.getSelection2().setBackground(color);
+            p1.getSelection2().setBackgroundColor(color);
     }
 }

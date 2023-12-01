@@ -8,17 +8,19 @@ import com.ldts.ForwardWarfare.Element.Position;
 public class MountainWater extends Element implements Tile {
     public MountainWater(Position position) {
         super.position=position;
+        super.backgroundColor = new TextColor.RGB(0,124,206);
+        super.foregroundColor = new TextColor.RGB(160,160,160);
     }
     @Override
-    public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setBackgroundColor(new TextColor.RGB(0,124,206));
-        graphics.setForegroundColor(new TextColor.RGB(160,160,160));
+    public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(backgroundColor);
+        graphics.setForegroundColor(foregroundColor);
         graphics.putString(position.toTPos(),"]");
     }
 
     @Override
     public TextColor getColor() {
-        return new TextColor.RGB(0,124,206);
+        return backgroundColor;
     }
 
     @Override

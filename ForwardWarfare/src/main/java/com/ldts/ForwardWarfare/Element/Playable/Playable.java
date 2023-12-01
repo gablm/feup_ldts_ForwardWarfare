@@ -6,7 +6,7 @@ import com.ldts.ForwardWarfare.Element.Element;
 
 public abstract class Playable extends Element {
     private int hp = 0;
-    private final int maxMoves;
+    private int maxMoves;
     public Playable(int maxMoves) {
         this.maxMoves = maxMoves;
     }
@@ -17,5 +17,5 @@ public abstract class Playable extends Element {
         this.hp = hp;
     }
 
-    protected abstract boolean canMove(Element element);
+    public abstract boolean canMove(Element element);
 }
