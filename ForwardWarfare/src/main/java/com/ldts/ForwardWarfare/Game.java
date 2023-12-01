@@ -62,8 +62,10 @@ public class Game {
                 state = state.play(keyToAction(key));
             } else
                 state = state.play(null);
-            if (state == null)
+            if (state == null) {
+                screen.close();
                 return;
+            }
         }
     }
 

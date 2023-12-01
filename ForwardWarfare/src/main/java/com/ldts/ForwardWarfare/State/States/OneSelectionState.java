@@ -42,6 +42,10 @@ public class OneSelectionState extends BaseState{
                     if (i.getPosition().equals(p1.getSelection1().getPosition())) {
                         if (map.at(pos).noCollision())
                             i.setPosition(pos);
+                        else {
+                            p1.setSelection2(null);
+                            return new InvalidSelectState(p1, p2, map, "Not allowed");
+                        }
                         break;
                     }
                 }

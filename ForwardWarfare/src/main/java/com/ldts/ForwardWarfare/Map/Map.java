@@ -78,32 +78,28 @@ public class Map extends Element {
                             map.add(new Fields(pos, new Factory()));
                             break;
                         case 28:
-                            Element iniField1 = new Fields(pos, new Factory());
                             if (player1Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
-                            player1Factory = iniField1;
-                            map.add(new Fields(pos, null));
+                            player1Factory = new Fields(pos, new Factory());
+                            map.add(player1Factory);
                             break;
                         case 29:
-                            Element iniField2 = new Fields(pos, new Factory());
                             if (player2Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
-                            player2Factory = iniField2;
-                            map.add(new Fields(pos, null));
+                            player2Factory = new Fields(pos, new Factory());
+                            map.add(player2Factory);
                             break;
                         case 31:
-                            Element base1 = new Fields(pos, new Base());
                             if (player1Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
-                            player1Base = base1;
-                            map.add(new Fields(pos, null));
+                            player1Base = new Fields(pos, new Base());
+                            map.add(player1Base);
                             break;
                         case 32:
-                            Element base2 = new Fields(pos, new Base());
                             if (player2Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
-                            player2Base = base2;
-                            map.add(new Fields(pos, null));
+                            player2Base = new Fields(pos, new Base());
+                            map.add(player2Base);
                             break;
                         default:
                             throw new MapParseException("There is an invalid number in the map: %d".formatted(id));
