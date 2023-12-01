@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare;
 
+import com.googlecode.lanterna.TextColor;
 import com.ldts.ForwardWarfare.Controller.Bot;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
@@ -23,10 +24,10 @@ public class ControllerTest {
     @Test
     public void ControllerInvalidTest() {
         Exception playerEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Player(null);
+            new Player(null, TextColor.ANSI.MAGENTA_BRIGHT);
         });
         Exception botEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Bot(null);
+            new Bot(null, TextColor.ANSI.GREEN_BRIGHT);
         });
 
         Assertions.assertEquals("Invalid initial Factory and Base", playerEx.getMessage());
@@ -35,12 +36,12 @@ public class ControllerTest {
 
     @Test
     public void ControllerWrongSizeTest() {
-        List<Element> elements = List.of(new Fields(new Position(0, 0), new Base(null)));
+        List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()));
         Exception playerEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Player(elements);
+            new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
         });
         Exception botEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Bot(elements);
+            new Bot(elements, TextColor.ANSI.GREEN_BRIGHT);
         });
 
         Assertions.assertEquals("Invalid initial Factory and Base", playerEx.getMessage());
@@ -49,26 +50,26 @@ public class ControllerTest {
 
     @Test
     public void ControllerDefaultTest() throws InvalidControllerException {
-        Element base = new Fields(new Position(0, 0), new Base(null));
+        Element base = new Fields(new Position(0, 0), new Base());
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
 
         Assertions.assertEquals(100, player.getCoins());
         Assertions.assertSame(player.getBase(), base);
         Assertions.assertEquals(1, player.getFacilities().size());
-        Assertions.assertSame(factory.getFacility(), player.getFacilities().get(0));
+        Assertions.assertSame(factory, player.getFacilities().get(0));
         Assertions.assertTrue(player.getTroops().isEmpty());
     }
 
     @Test
     public void ControllerBuyAllTest() throws InvalidControllerException {
-        Element base = new Fields(new Position(0, 0), new Base(null));
+        Element base = new Fields(new Position(0, 0), new Base());
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
 
         Assertions.assertEquals(100, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
@@ -81,11 +82,11 @@ public class ControllerTest {
 
     @Test
     public void ControllerBuyLessTest() throws InvalidControllerException {
-        Element base = new Fields(new Position(0, 0), new Base(null));
+        Element base = new Fields(new Position(0, 0), new Base());
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
 
         Assertions.assertEquals(100, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
@@ -98,11 +99,11 @@ public class ControllerTest {
 
     @Test
     public void ControllerBuyMoreTest() throws InvalidControllerException {
-        Element base = new Fields(new Position(0, 0), new Base(null));
+        Element base = new Fields(new Position(0, 0), new Base());
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
 
         Assertions.assertEquals(100, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));

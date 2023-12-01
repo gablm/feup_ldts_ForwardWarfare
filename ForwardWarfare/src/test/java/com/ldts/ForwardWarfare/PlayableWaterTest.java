@@ -47,7 +47,7 @@ public class PlayableWaterTest {
         Assertions.assertEquals(fighterSubmarine.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        fighterSubmarine.draw(graphics, null);
+        fighterSubmarine.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -66,7 +66,8 @@ public class PlayableWaterTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        fighterSubmarine.draw(graphics, new TextColor.RGB(r, g, b));
+        fighterSubmarine.setForegroundColor(new TextColor.RGB(r, g, b));
+        fighterSubmarine.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -83,7 +84,7 @@ public class PlayableWaterTest {
         Assertions.assertEquals(lightBoat.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        lightBoat.draw(graphics, null);
+        lightBoat.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -102,7 +103,8 @@ public class PlayableWaterTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        lightBoat.draw(graphics, new TextColor.RGB(r, g, b));
+        lightBoat.setForegroundColor(new TextColor.RGB(r, g, b));
+        lightBoat.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -119,7 +121,7 @@ public class PlayableWaterTest {
         Assertions.assertEquals(mortarBoat.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        mortarBoat.draw(graphics, null);
+        mortarBoat.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -138,7 +140,8 @@ public class PlayableWaterTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        mortarBoat.draw(graphics, new TextColor.RGB(r, g, b));
+        mortarBoat.setForegroundColor(new TextColor.RGB(r, g, b));
+        mortarBoat.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 

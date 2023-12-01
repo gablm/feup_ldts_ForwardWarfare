@@ -46,7 +46,7 @@ public class PlayableAirTest {
         Assertions.assertEquals(bomberPlane.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        bomberPlane.draw(graphics, null);
+        bomberPlane.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -65,7 +65,8 @@ public class PlayableAirTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        bomberPlane.draw(graphics, new TextColor.RGB(r, g, b));
+        bomberPlane.setForegroundColor(new TextColor.RGB(r, g, b));
+        bomberPlane.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -82,7 +83,7 @@ public class PlayableAirTest {
         Assertions.assertEquals(fighterPlane.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        fighterPlane.draw(graphics, null);
+        fighterPlane.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -101,7 +102,8 @@ public class PlayableAirTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        fighterPlane.draw(graphics, new TextColor.RGB(r, g, b));
+        fighterPlane.setForegroundColor(new TextColor.RGB(r, g, b));
+        fighterPlane.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -118,7 +120,7 @@ public class PlayableAirTest {
         Assertions.assertEquals(lightHelicopter.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        lightHelicopter.draw(graphics, null);
+        lightHelicopter.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -137,7 +139,8 @@ public class PlayableAirTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        lightHelicopter.draw(graphics, new TextColor.RGB(r, g, b));
+        lightHelicopter.setForegroundColor(new TextColor.RGB(r, g, b));
+        lightHelicopter.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 

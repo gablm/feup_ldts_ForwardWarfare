@@ -45,7 +45,7 @@ public class PlayableGroundTest {
         Assertions.assertEquals(antiAirTank.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        antiAirTank.draw(graphics, null);
+        antiAirTank.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -64,7 +64,8 @@ public class PlayableGroundTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        antiAirTank.draw(graphics, new TextColor.RGB(r, g, b));
+        antiAirTank.setForegroundColor(new TextColor.RGB(r, g, b));
+        antiAirTank.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -81,7 +82,7 @@ public class PlayableGroundTest {
         Assertions.assertEquals(bomberPlane.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        bomberPlane.draw(graphics, null);
+        bomberPlane.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -100,7 +101,8 @@ public class PlayableGroundTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        heavyPerson.draw(graphics, new TextColor.RGB(r, g, b));
+        heavyPerson.setForegroundColor(new TextColor.RGB(r, g, b));
+        heavyPerson.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -117,7 +119,7 @@ public class PlayableGroundTest {
         Assertions.assertEquals(heavyTank.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        heavyTank.draw(graphics, null);
+        heavyTank.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -136,7 +138,8 @@ public class PlayableGroundTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        heavyTank.draw(graphics, new TextColor.RGB(r, g, b));
+        heavyTank.setForegroundColor(new TextColor.RGB(r, g, b));
+        heavyTank.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -153,7 +156,7 @@ public class PlayableGroundTest {
         Assertions.assertEquals(lightPerson.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        lightPerson.draw(graphics, null);
+        lightPerson.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -172,7 +175,8 @@ public class PlayableGroundTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        lightPerson.draw(graphics, new TextColor.RGB(r, g, b));
+        lightPerson.setForegroundColor(new TextColor.RGB(r, g, b));
+        lightPerson.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -189,7 +193,7 @@ public class PlayableGroundTest {
         Assertions.assertEquals(lightTank.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        lightTank.draw(graphics, null);
+        lightTank.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -208,7 +212,8 @@ public class PlayableGroundTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        lightTank.draw(graphics, new TextColor.RGB(r, g, b));
+        lightTank.setForegroundColor(new TextColor.RGB(r, g, b));
+        lightTank.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
@@ -225,7 +230,7 @@ public class PlayableGroundTest {
         Assertions.assertEquals(mortarPerson.getPosition(), new Position(1,1));
 
         TextGraphics graphics = screen.newTextGraphics();
-        mortarPerson.draw(graphics, null);
+        mortarPerson.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
@@ -244,7 +249,8 @@ public class PlayableGroundTest {
 
         TextGraphics graphics = screen.newTextGraphics();
         int r = random.nextInt(0, 256), g = random.nextInt(0, 256), b = random.nextInt(0, 256);
-        mortarPerson.draw(graphics, new TextColor.RGB(r, g, b));
+        mortarPerson.setForegroundColor(new TextColor.RGB(r, g, b));
+        mortarPerson.draw(graphics);
         screen.refresh();
         TextCharacter textCharacter = graphics.getCharacter(x, y);
 
