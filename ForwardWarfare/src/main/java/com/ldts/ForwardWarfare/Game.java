@@ -28,7 +28,7 @@ public class Game {
 
     public static void main(String[] args) {
         try {
-            new Game(new LanternaTerminal(new TerminalSize(15,13), "tanks2_0.ttf", 50)).run();
+            new Game(new LanternaTerminal(new TerminalSize(15,13), "tanks2_0.ttf", 40)).run();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,7 +76,13 @@ public class Game {
             case ArrowDown -> Action.DOWN;
             case ArrowLeft -> Action.LEFT;
             case ArrowRight -> Action.RIGHT;
-            default -> Action.ESCAPE;
+            case Escape -> Action.ESCAPE;
+            case Character -> {
+                if (keyStroke.getCharacter() == 'q')
+                    yield Action.QUIT;
+                yield Action.NONE;
+            }
+            default -> Action.NONE;
         };
     }
 }

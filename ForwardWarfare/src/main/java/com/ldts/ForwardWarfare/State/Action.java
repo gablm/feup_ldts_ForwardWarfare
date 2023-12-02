@@ -6,5 +6,7 @@ public enum Action {
     LEFT,
     RIGHT,
     ESCAPE,
-    ENTER
+    ENTER,
+    QUIT,
+    NONE
 }

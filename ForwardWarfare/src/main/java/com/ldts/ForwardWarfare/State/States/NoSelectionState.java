@@ -45,7 +45,8 @@ public class NoSelectionState extends BaseState {
                 }
                 return new InvalidSelectState(p1, p2, map, "Invalid play");
             case ESCAPE:
-                return null;
+            case QUIT:
+                return new QuitState(p1, p2, map, this);
         }
         return this;
     }
