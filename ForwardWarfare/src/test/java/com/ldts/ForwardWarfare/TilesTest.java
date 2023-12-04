@@ -7,7 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
-import com.ldts.ForwardWarfare.Element.Facility.Factory;
+import com.ldts.ForwardWarfare.Element.Facility.Oil_Pump;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.*;
 import org.junit.jupiter.api.*;
@@ -59,10 +59,10 @@ public class TilesTest {
 
     @Test
     public void WaterTileTest_WithFacility() throws IOException {
-        Element Tile= new Water(new Position(1, 1), new Factory() );
+        Element Tile= new Water(new Position(1, 1), new Oil_Pump() );
 
         Assertions.assertEquals(Tile.getPosition(),new Position(1,1));
-        Assertions.assertEquals(Tile.getFacility().getClass(), Factory.class);
+        Assertions.assertEquals(Tile.getFacility().getClass(), Oil_Pump.class);
 
         TextGraphics graphics = screen.newTextGraphics();
         Tile.draw(graphics, null);
@@ -70,8 +70,8 @@ public class TilesTest {
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
         Assertions.assertEquals(textCharacter.getBackgroundColor(),new TextColor.RGB(0,124,206));
-        Assertions.assertEquals(textCharacter.getForegroundColor(),new TextColor.RGB(32, 32, 32));
-        Assertions.assertEquals(textCharacter.getCharacterString(),"`");
+        Assertions.assertEquals(textCharacter.getForegroundColor(),new TextColor.RGB(255,255,0));
+        Assertions.assertEquals(textCharacter.getCharacterString(),"/");
         Assertions.assertTrue(textCharacter.getModifiers().isEmpty());
     }
 
@@ -95,10 +95,10 @@ public class TilesTest {
 
     @Test
     public void FieldsTileTest_WithFacility() throws IOException {
-        Element Tile= new Fields(new Position(1,1),new Factory());
+        Element Tile= new Fields(new Position(1,1),new Oil_Pump());
 
         Assertions.assertEquals(Tile.getPosition(),new Position(1,1));
-        Assertions.assertEquals(Tile.getFacility().getClass(), Factory.class);
+        Assertions.assertEquals(Tile.getFacility().getClass(), Oil_Pump.class);
 
         TextGraphics graphics = screen.newTextGraphics();
         Tile.draw(graphics, null);
@@ -106,8 +106,8 @@ public class TilesTest {
         TextCharacter textCharacter = graphics.getCharacter(1, 1);
 
         Assertions.assertEquals(textCharacter.getBackgroundColor(),new TextColor.RGB(113,199,0));
-        Assertions.assertEquals(textCharacter.getForegroundColor(),new TextColor.RGB(32, 32, 32));
-        Assertions.assertEquals(textCharacter.getCharacterString(),"`");
+        Assertions.assertEquals(textCharacter.getForegroundColor(),new TextColor.RGB(255,255,0));
+        Assertions.assertEquals(textCharacter.getCharacterString(),"/");
         Assertions.assertTrue(textCharacter.getModifiers().isEmpty());
     }
 
@@ -208,7 +208,7 @@ public class TilesTest {
     }
     @Test
     public void FieldsTileTest_WithFacility_ChangePosition()   {
-        Element Tile= new Fields(new Position(1,1),new Factory());
+        Element Tile= new Fields(new Position(1,1),new Oil_Pump());
         Assertions.assertEquals(Tile.getPosition(),new Position(1,1));
 
         Tile.setPosition(new Position(2,2));
@@ -216,7 +216,7 @@ public class TilesTest {
     }
     @Test
     public void WaterTileTest_WithFacility_ChangePosition()   {
-        Element Tile= new Water(new Position(1,1),new Factory());
+        Element Tile= new Water(new Position(1,1),new Oil_Pump());
         Assertions.assertEquals(Tile.getPosition(),new Position(1,1));
 
         Tile.setPosition(new Position(2,2));
