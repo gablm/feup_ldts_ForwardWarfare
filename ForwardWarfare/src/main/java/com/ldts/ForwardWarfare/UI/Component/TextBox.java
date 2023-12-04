@@ -42,7 +42,7 @@ public class TextBox extends Component{
                 {
                     graphics.putString(new TerminalPosition(x,y),line.toString());
                     y++;
-                    
+
                 }
             }
             textsize++;

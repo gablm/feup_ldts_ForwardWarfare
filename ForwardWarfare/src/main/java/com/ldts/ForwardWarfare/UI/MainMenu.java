@@ -10,7 +10,6 @@ import com.googlecode.lanterna.input.KeyType;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.Component;
-import com.ldts.ForwardWarfare.UI.Component.MapBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,17 +21,19 @@ public class MainMenu extends UI {
         super(new TerminalSize(41,23),25);
     }
     private boolean fsb=true;
+    private boolean startgame=false;
     private List<Component> fs=new ArrayList<>();
     private List<Component> ss=new ArrayList<>();
     private int cb=0;
-    private int highlight=75;
-    private int normalborder=20;
+    private int highlight=30;
+    private int normalborder=10;
+    private Button Chosegamemode=new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(10,2),new TerminalSize(21,5),"CHOSE GAMEMODE",normalborder);
     @Override
-    public void build() throws IOException {
+    public boolean build() throws IOException {
         screen = UITerminal.createScreen();
         addcomp();
         setScreen();
-        run();
+        return run();
     }
     @Override
     public void processKey( KeyStroke key) {
@@ -79,10 +80,12 @@ public class MainMenu extends UI {
         {
             switch (cb) {
                 case 0:
+                    endscreen = true;
+                    startgame = true;
                     break;
                 case 1:
-                    break;
-                case 2:
+                    endscreen = true;
+                    startgame = true;
                     break;
             }
         }
@@ -129,12 +132,12 @@ public class MainMenu extends UI {
         fs.add(StartButton);
         fs.add(HowToPlayButton);
         fs.add(ExitButton);
-        ss.add(StartButton);
-        ss.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(10,9),new TerminalSize(21,5),"PLAY VS PLAYER",normalborder));
+        ss.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(10,9),new TerminalSize(21,5),"PLAY VS PLAYER",highlight));
         ss.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(10,16),new TerminalSize(21,5),"PLAY VS AI",normalborder));
     }
+
     @Override
-    public void run() throws IOException{
+    public boolean run() throws IOException{
         while (!endscreen)
         {
             draw();
@@ -142,7 +145,9 @@ public class MainMenu extends UI {
             processKey(key);
         }
         screen.close();
+        return startgame;
     }
+
     @Override
     public void draw() throws IOException {
         screen.clear();
@@ -153,6 +158,9 @@ public class MainMenu extends UI {
         for (Component component:listComponents)
         {
             component.draw(graphics);
+        }
+        if(!fsb) {
+            Chosegamemode.draw(graphics);
         }
         graphics.clearModifiers();
         screen.refresh();

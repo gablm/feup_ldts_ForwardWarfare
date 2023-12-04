@@ -19,64 +19,49 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Tile.*;
-import com.ldts.ForwardWarfare.UI.MainMenu;
-import com.ldts.ForwardWarfare.UI.StartGameMenu;
-import com.ldts.ForwardWarfare.UI.UI;
+import com.ldts.ForwardWarfare.UI.*;
 
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.sql.Struct;
 
 public class Game {
+    private boolean running=true;
     private LanternaTerminal terminal;
     private Screen screen;
+    private boolean state=false;
 
-    public static void main(String[] args) {
-        /*
-        try {
-            new Game(new LanternaTerminal(new TerminalSize(15,10), "tanks2_0.ttf", 50)).run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
-        try {
-            UI startgamemenu = new StartGameMenu();
-            startgamemenu.build();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws IOException, MapParseException, URISyntaxException {
+       Game game=new Game();
+       game.run();
     }
-    public Game(LanternaTerminal terminal) {
-        this.terminal = terminal;
+    public Game() {
+
     }
     public void run() throws IOException, MapParseException, URISyntaxException {
-        screen = terminal.createScreen();
-        Map map = new Map("1.fw");
-
-        while (true) {
-            screen.clear();
-            DrawTiles(map, screen.newTextGraphics());
-            screen.refresh();
-
-            KeyStroke key = screen.readInput();
-            if (key.getKeyType() == KeyType.EOF)
-                return;
-        }
-    }
-
-    private void DrawTiles(Map map, TextGraphics graphics) {
-        try {
-            for (Element element : map.getElements()) {
-                if (element instanceof Playable)
-                    element.draw(graphics, TextColor.ANSI.BLUE);
-                else {
-                    element.draw(graphics, null);
+        while (running) {
+            running=false;
+            UI UI = new MainMenu();
+            state = UI.build();
+            System.out.println(state);
+            if (state) {
+                UI = new StartGameMenu();
+                state=UI.build();
+                if (state) {
+                    UI= new BattleUI();
+                    state= UI.build();
+                } else {
+                    running=true;
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            else
+            {
+                UI = new HowToPlayMenu();
+                state=UI.build();
+            }
         }
     }
+
 }

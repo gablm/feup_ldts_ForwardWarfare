@@ -8,32 +8,41 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Map.Map;
+import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.Component.MapBox;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StartGameMenu extends UI {
     private boolean SelectingColor=false;
-    private int highlight=75;
+    private boolean SelectingMap=false;
+    private boolean startgame=false;
+    private int highlight=30;
     private int normalborder=10;
+    private int Selected = 40;
     private int bc=0;
+    private int ms=1;
+    private int selected=-1;
     ColorGrid grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25);
     List<Component>ButtonsList=new ArrayList<>();
 
     public StartGameMenu() {
-        super(new TerminalSize(74,35),15);
+        super(new TerminalSize(74,36),15);
     }
 
     @Override
-    public void build() throws IOException {
+    public boolean build() throws IOException, MapParseException, URISyntaxException {
         screen = UITerminal.createScreen();
         addcomp();
-        run();
+       return run();
     }
 
     @Override
@@ -42,9 +51,10 @@ public class StartGameMenu extends UI {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(new TextColor.RGB(117,200,4));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(74,35),' ');
+        graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(74,36),' ');
         for (Component component:listComponents)
         {
+            System.out.println("desenha mapa");
             component.draw(graphics);
         }
         for (Component butao:ButtonsList)
@@ -55,19 +65,19 @@ public class StartGameMenu extends UI {
     }
 
     @Override
-    public void addcomp() {
+    public void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException {
         listComponents.add(grid);
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,1),new TerminalSize(42,5),"START",highlight));
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,8),new TerminalSize(42,5),"COLOR SELECT",normalborder));
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,15),new TerminalSize(42,5),"MAP SELECT",normalborder));
-        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,23),new TerminalSize(17,10),normalborder));
-        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(19,23),new TerminalSize(17,10),normalborder));
-        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(37,23),new TerminalSize(17,10),normalborder));
-        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(55,23),new TerminalSize(17,10),normalborder));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(19,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(37,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
+        listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(55,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
     }
 
     @Override
-    public void run() throws IOException {
+    public boolean run() throws IOException {
         while (!endscreen)
         {
             draw();
@@ -75,20 +85,25 @@ public class StartGameMenu extends UI {
             processKey(key);
         }
         screen.close();
+        return startgame;
     }
     private void processButton()
     {
         switch (bc)
         {
             case 0:
-
+                endscreen=false;
+                startgame=true;
                 break;
             case 1:
                 SelectingColor = true;
                 grid.start();
                 break;
             case 2:
-
+                SelectingMap = true;
+                if(ms==1) {
+                    listComponents.get(1).setBorderFadeIntensity(highlight);
+                }
                 break;
         }
     }
@@ -112,12 +127,62 @@ public class StartGameMenu extends UI {
             ButtonsList.get(bc).setBorderFadeIntensity(highlight);
         }
     }
+    private void SetMap()
+    {
+        if(ms!=selected ) {
+            if (selected >= 0) {
+                listComponents.get(selected).setFixBorder(false);
+                listComponents.get(selected).setBorderFadeIntensity(normalborder);
+            }
+            selected = ms;
+            listComponents.get(ms).setBorderFadeIntensity(Selected);
+            listComponents.get(selected).setFixBorder(true);
+        }
+    }
+    private void mapselected(boolean next)
+    {
+        if(next) {
+            listComponents.get(ms).setBorderFadeIntensity(normalborder);
+            if (ms+1 > listComponents.size() - 1) {
+                ms = 1;
+            } else
+                ms++;
+            listComponents.get(ms).setBorderFadeIntensity(highlight);
+        }
+        else
+        {
+            listComponents.get(ms).setBorderFadeIntensity(normalborder);
+            if (ms-1 < 1) {
+                ms = listComponents.size()-1;
+            } else
+                ms--;
+            listComponents.get(ms).setBorderFadeIntensity(highlight);
+        }
+    }
     
     @Override
     public void processKey(KeyStroke key) {
         if (SelectingColor) {
             SelectingColor=grid.processKey(key);
-        }else {
+        }else if(SelectingMap) {
+            if (key.getKeyType() == KeyType.ArrowUp)
+            {
+                mapselected(false);
+            } else if (key.getKeyType() == KeyType.ArrowRight)
+            {
+                mapselected(true);
+            } else if (key.getKeyType() == KeyType.ArrowLeft) {
+                mapselected(false);
+            }
+            else if (key.getKeyType() == KeyType.ArrowDown) {
+                mapselected(true);
+            }else if(key.getKeyType()== KeyType.Enter)
+            {
+                SetMap();
+                SelectingMap=false;
+            }
+        }
+        else{
             if (key.getKeyType() == KeyType.ArrowUp)
             {
                 Buttonhighlighted(false);
@@ -134,6 +199,7 @@ public class StartGameMenu extends UI {
                 processButton();
             } else if (key.getKeyType() == KeyType.Escape) {
                 endscreen=true;
+                startgame=false;
             }
         }
     }

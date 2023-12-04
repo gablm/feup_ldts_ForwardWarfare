@@ -4,8 +4,12 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.LanternaTerminal;
+import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Component;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +33,12 @@ public abstract class UI {
         }
     }
 
-    public abstract void build() throws IOException;
+    public abstract boolean build() throws IOException, MapParseException, URISyntaxException;
 
     public abstract void draw() throws IOException;
 
-    public abstract void addcomp();
+    public abstract void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException;
 
-    public abstract void run() throws IOException;
+    public abstract boolean run() throws IOException;
     public abstract  void processKey( KeyStroke key);
 }
