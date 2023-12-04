@@ -19,8 +19,8 @@ public abstract class ControllerBase implements Controller {
     protected Element base;
     protected Border selection1;
     protected Border selection2;
-    protected TextColor borderBackground;
     protected TextColor controllerColor;
+    protected boolean canPlay = true;
     protected int coins;
 
     public ControllerBase(List<Element> initialFacilities, TextColor controllerColor) throws InvalidControllerException {
@@ -61,10 +61,7 @@ public abstract class ControllerBase implements Controller {
     }
 
     public void endRound() {
-        coins += 100;
-        for (Element i : facilities) {
-                coins += 30;
-        }
+        canPlay = false;
     }
 
     public Border getSelection1() {
@@ -99,5 +96,19 @@ public abstract class ControllerBase implements Controller {
             selection1.draw(graphics);
         if (selection2 != null)
             selection2.draw(graphics);
+    }
+
+    @Override
+    public void resetRound() {
+        canPlay = true;
+        coins += 100;
+        for (Element i : facilities) {
+            coins += 30;
+        }
+    }
+
+    @Override
+    public boolean canPlay() {
+        return canPlay;
     }
 }

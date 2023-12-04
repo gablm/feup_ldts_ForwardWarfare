@@ -18,7 +18,9 @@ import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.NoSelectionState;
+import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -28,7 +30,7 @@ public class Game {
 
     public static void main(String[] args) {
         try {
-            new Game(new LanternaTerminal(new TerminalSize(15,13), "tanks2_0.ttf", 40)).run();
+            new Game(new LanternaTerminal(new TerminalSize(15,15), "tanks2_0.ttf", 40)).run();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,14 +38,14 @@ public class Game {
     public Game(LanternaTerminal terminal) {
         this.terminal = terminal;
     }
-    public void run() throws IOException, MapParseException, URISyntaxException, InvalidControllerException {
+    public void run() throws IOException, MapParseException, URISyntaxException, InvalidControllerException, FontFormatException {
         screen = terminal.createScreen();
         Map map = new Map("1.fw");
         Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.MAGENTA_BRIGHT);
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.WHITE_BRIGHT);
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
 
-        State state = p1.getInitialState(p2, map);
+        State state = new StartRoundState(p1, p2, map);
         while (true) {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
@@ -62,11 +64,21 @@ public class Game {
                 state = state.play(keyToAction(key));
             } else
                 state = state.play(null);
+
             if (state == null) {
                 screen.close();
                 return;
             }
         }
+    }
+
+    private void ScreenWarning(TextGraphics graphics) {
+        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+        graphics.putString(1, 11, "WARNING:");
+        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        graphics.putString(1, 12, "Use the other ");
+        graphics.putString(1, 13, "window to move!");
     }
 
     private Action keyToAction(KeyStroke keyStroke) {

@@ -51,7 +51,7 @@ public class OneSelectionState extends BaseState{
                 }
                 p1.setSelection1(p1.getSelection2());
                 p1.setSelection2(null);
-                return new NoSelectionState(p1, p2, map);
+                return new MoveEndState(p1, p2, map);
         }
         return this;
 

@@ -11,16 +11,17 @@ import java.util.List;
 public interface Controller {
     boolean buy(Element troops, int price);
     void endRound();
+    void resetRound();
+    boolean canPlay();
     Element getBase();
     List<Element> getTroops();
     List<Element> getFacilities();
     int getCoins();
     Border getSelection1();
-    public Border getSelection2();
+    Border getSelection2();
     void setSelection1(Border selection1);
     void setSelection2(Border selection2);
     void draw(TextGraphics textGraphics);
     void drawBorder(TextGraphics graphics);
-
     State getInitialState(Controller p2, Map map);
 }
