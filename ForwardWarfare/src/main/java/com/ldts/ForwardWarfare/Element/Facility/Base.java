@@ -6,6 +6,11 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public class Base implements Facility {
     TextColor textColor;
+
+    public TextColor getTextColor() {
+        return textColor;
+    }
+
     public Base(TextColor textColor)
     {
         this.textColor=textColor;
@@ -15,8 +20,5 @@ public class Base implements Facility {
             graphics.putString(position.toTPos(), ";");
     }
 
-    @Override
-    public void execute() {
 
-    }
 }

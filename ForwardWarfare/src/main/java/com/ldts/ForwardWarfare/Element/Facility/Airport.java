@@ -10,8 +10,5 @@ public class Airport implements Facility {
         graphics.putString(position.toTPos(),">");
     }
 
-    @Override
-    public void execute() {
 
-    }
 }

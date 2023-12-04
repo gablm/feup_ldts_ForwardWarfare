@@ -10,8 +10,4 @@ public class Oil_Pump implements Facility{
         graphics.putString(position.toTPos(),"/");
     }
 
-    @Override
-    public void execute() {
-
-    }
 }

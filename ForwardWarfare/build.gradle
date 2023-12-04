@@ -8,7 +8,7 @@ group = 'com.ldts.forwardwarfare'
 version = '1.0-SNAPSHOT'
 
 application {
-    mainClass.set("Game")
+    mainClass.set("com.ldts.ForwardWarfare.Game")
 }
 
 repositories {
@@ -19,8 +19,7 @@ dependencies {
     implementation group: 'com.googlecode.lanterna',
             name: 'lanterna', version: '3.1.1'
     testImplementation 'org.mockito:mockito-core:3.7.7'
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
 }
 
 test {
@@ -28,5 +27,6 @@ test {
 }
 
 pitest {
+    targetClasses = ['com.ldts.ForwardWarfare.*']
     junit5PluginVersion = '0.12'
 }

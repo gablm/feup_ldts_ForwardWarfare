@@ -10,8 +10,4 @@ public class Port implements Facility{
         graphics.putString(position.toTPos(),")");
     }
 
-    @Override
-    public void execute() {
-
-    }
 }
