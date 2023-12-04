@@ -35,7 +35,7 @@ public class Map extends Element {
             return null;
         return Arrays.asList(player2Base, player2Factory);
     }
-    private void readMap(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
+    public void readMap(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
             URL mapURL = getClass().getClassLoader().getResource("maps/" + filePath);
             Scanner scanner = new Scanner(new File(mapURL.toURI()));
             scanner.useDelimiter("\n");

@@ -86,7 +86,7 @@ public class MapTest {
         Mockito.verify(mapReaderMock, Mockito.times(1)).readMap("valid_map.txt");
     }
     @Test
-    public void testReadMap_invalidMapFile() throws FileNotFoundException, URISyntaxException {
+    public void testReadMap_invalidMapFile() throws FileNotFoundException, URISyntaxException, MapParseException {
         Map mapReaderMock = Mockito.mock(Map.class);
         Mockito.doThrow(MapParseException.class).when(mapReaderMock).readMap(anyString());
 
