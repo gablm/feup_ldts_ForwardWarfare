@@ -47,7 +47,9 @@ public class MapBox extends Component {
         graphics.drawRectangle(position.toTPos(),size,' ');
         for (Element e:mapa.getElements())
         {
-            e.draw(graphics, TextColor.ANSI.BLACK);
+            if(e.getPosition().getX()<position.getX()+size.getColumns()-1 && e.getPosition().getY()<position.getY()+size.getRows()-1) {
+                e.draw(graphics, TextColor.ANSI.BLACK);
+            }
         }
     }
 }

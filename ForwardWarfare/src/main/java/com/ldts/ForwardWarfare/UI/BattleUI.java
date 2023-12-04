@@ -15,9 +15,9 @@ public class BattleUI extends UI {
     }
 
     @Override
-    public boolean build() throws IOException, MapParseException, URISyntaxException {
+    public UiStates build() throws IOException, MapParseException, URISyntaxException {
 
-        return false;
+        return null;
     }
 
     @Override
@@ -31,9 +31,9 @@ public class BattleUI extends UI {
     }
 
     @Override
-    public boolean run() throws IOException {
+    public UiStates run() throws IOException {
 
-        return false;
+        return null;
     }
 
     @Override

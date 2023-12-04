@@ -29,37 +29,36 @@ import java.sql.Struct;
 
 public class Game {
     private boolean running=true;
-    private LanternaTerminal terminal;
-    private Screen screen;
-    private boolean state=false;
+    private UiStates state=UiStates.MainMenu;
 
     public static void main(String[] args) throws IOException, MapParseException, URISyntaxException {
        Game game=new Game();
        game.run();
     }
     public Game() {
-
     }
     public void run() throws IOException, MapParseException, URISyntaxException {
         while (running) {
-            running=false;
-            UI UI = new MainMenu();
-            state = UI.build();
-            System.out.println(state);
-            if (state) {
-                UI = new StartGameMenu();
-                state=UI.build();
-                if (state) {
-                    UI= new BattleUI();
-                    state= UI.build();
-                } else {
-                    running=true;
-                }
-            }
-            else
-            {
-                UI = new HowToPlayMenu();
-                state=UI.build();
+            switch (state) {
+                case MainMenu:
+                    UI mainmenu=new MainMenu();
+                    state=mainmenu.build();
+                    break;
+                case StartGameMenu:
+                    UI startgamemenu=new StartGameMenu();
+                    state=startgamemenu.build();
+                    break;
+                case HowToPlay:
+                    UI howtoplay=new HowToPlayMenu();
+                    state=howtoplay.build();
+                    break;
+                case Exit:
+                    running=false;
+                    break;
+                case BatleUI:
+                    UI batleUI=new BattleUI();
+                    state=batleUI.build();
+                    break;
             }
         }
     }

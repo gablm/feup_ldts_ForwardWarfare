@@ -33,12 +33,12 @@ public abstract class UI {
         }
     }
 
-    public abstract boolean build() throws IOException, MapParseException, URISyntaxException;
+    public abstract UiStates build() throws IOException, MapParseException, URISyntaxException;
 
     public abstract void draw() throws IOException;
 
     public abstract void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException;
 
-    public abstract boolean run() throws IOException;
+    public abstract UiStates run() throws IOException;
     public abstract  void processKey( KeyStroke key);
 }

@@ -8,6 +8,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Game;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 
@@ -21,7 +22,9 @@ public class MainMenu extends UI {
         super(new TerminalSize(41,23),25);
     }
     private boolean fsb=true;
-    private boolean startgame=false;
+    private boolean GAMEMODE;
+    private UiStates startgame;
+
     private List<Component> fs=new ArrayList<>();
     private List<Component> ss=new ArrayList<>();
     private int cb=0;
@@ -29,7 +32,7 @@ public class MainMenu extends UI {
     private int normalborder=10;
     private Button Chosegamemode=new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(10,2),new TerminalSize(21,5),"CHOSE GAMEMODE",normalborder);
     @Override
-    public boolean build() throws IOException {
+    public UiStates build() throws IOException {
         screen = UITerminal.createScreen();
         addcomp();
         setScreen();
@@ -58,6 +61,11 @@ public class MainMenu extends UI {
                 fsb=true;
                 setScreen();
             }
+            else
+            {
+                endscreen=true;
+                startgame=UiStates.Exit;
+            }
         }
     }
 
@@ -70,9 +78,12 @@ public class MainMenu extends UI {
                     setScreen();
                     break;
                 case 1:
+                    endscreen = true;
+                    startgame=UiStates.HowToPlay;
                     break;
                 case 2:
                     endscreen = true;
+                    startgame=UiStates.Exit;
                     break;
             }
         }
@@ -81,11 +92,13 @@ public class MainMenu extends UI {
             switch (cb) {
                 case 0:
                     endscreen = true;
-                    startgame = true;
+                    GAMEMODE=true; //vs Player
+                    startgame = UiStates.StartGameMenu;
                     break;
                 case 1:
                     endscreen = true;
-                    startgame = true;
+                    GAMEMODE=false; //vs AI
+                    startgame = UiStates.StartGameMenu;
                     break;
             }
         }
@@ -137,7 +150,7 @@ public class MainMenu extends UI {
     }
 
     @Override
-    public boolean run() throws IOException{
+    public UiStates run() throws IOException{
         while (!endscreen)
         {
             draw();
@@ -165,5 +178,10 @@ public class MainMenu extends UI {
         graphics.clearModifiers();
         screen.refresh();
     }
+
+    public boolean getGAMEMODE() {
+        return GAMEMODE;
+    }
+
 
 }

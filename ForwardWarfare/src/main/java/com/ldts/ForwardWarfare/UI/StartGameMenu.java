@@ -24,7 +24,7 @@ import java.util.List;
 public class StartGameMenu extends UI {
     private boolean SelectingColor=false;
     private boolean SelectingMap=false;
-    private boolean startgame=false;
+    private UiStates startgame;
     private int highlight=30;
     private int normalborder=10;
     private int Selected = 40;
@@ -39,10 +39,10 @@ public class StartGameMenu extends UI {
     }
 
     @Override
-    public boolean build() throws IOException, MapParseException, URISyntaxException {
+    public UiStates build() throws IOException, MapParseException, URISyntaxException {
         screen = UITerminal.createScreen();
         addcomp();
-       return run();
+        return run();
     }
 
     @Override
@@ -54,7 +54,6 @@ public class StartGameMenu extends UI {
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(74,36),' ');
         for (Component component:listComponents)
         {
-            System.out.println("desenha mapa");
             component.draw(graphics);
         }
         for (Component butao:ButtonsList)
@@ -77,7 +76,7 @@ public class StartGameMenu extends UI {
     }
 
     @Override
-    public boolean run() throws IOException {
+    public UiStates run() throws IOException {
         while (!endscreen)
         {
             draw();
@@ -92,8 +91,8 @@ public class StartGameMenu extends UI {
         switch (bc)
         {
             case 0:
-                endscreen=false;
-                startgame=true;
+                endscreen=true;
+                startgame=UiStates.BatleUI;
                 break;
             case 1:
                 SelectingColor = true;
@@ -199,7 +198,7 @@ public class StartGameMenu extends UI {
                 processButton();
             } else if (key.getKeyType() == KeyType.Escape) {
                 endscreen=true;
-                startgame=false;
+                startgame=UiStates.MainMenu;
             }
         }
     }
