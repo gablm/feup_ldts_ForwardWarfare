@@ -62,6 +62,8 @@ public abstract class ControllerBase implements Controller {
 
     public void endRound() {
         canPlay = false;
+        selection1 = null;
+        selection2 = null;
     }
 
     public Border getSelection1() {
