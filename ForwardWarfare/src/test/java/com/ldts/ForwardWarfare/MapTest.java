@@ -94,4 +94,3 @@ public class MapTest {
         Mockito.verify(mapReaderMock, Mockito.times(1)).readMap("invalid_map.txt");
     }
 }
-
