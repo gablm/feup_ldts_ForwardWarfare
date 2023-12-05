@@ -2,6 +2,7 @@ package com.ldts.ForwardWarfare.Controller;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
+import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.State;
@@ -24,4 +25,8 @@ public interface Controller {
     void draw(TextGraphics textGraphics);
     void drawBorder(TextGraphics graphics);
     State getInitialState(Controller p2, Map map);
+
+    void addFacility(Facility facilityMock);
+
+    void removeFacility(Facility facilityMock);
 }

@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.*;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Base;
@@ -119,7 +120,6 @@ public class ControllerTest {
     public void testEndRound() {
         Controller yourInstance;
         yourInstance.endRound();
-
         assertFalse(yourInstance.canPlay());
         assertNull(yourInstance.getSelection1());
         assertNull(yourInstance.getSelection2());
@@ -131,7 +131,6 @@ public class ControllerTest {
         Border borderMock = Mockito.mock(Border.class);
         Controller yourInstance;
         yourInstance.setSelection1(borderMock);
-
         assertEquals(borderMock, yourInstance.getSelection1());
     }
 
@@ -140,7 +139,6 @@ public class ControllerTest {
         Border borderMock = Mockito.mock(Border.class);
         Controller yourInstance;
         yourInstance.setSelection2(borderMock);
-
         assertEquals(borderMock, yourInstance.getSelection2());
     }
 
@@ -149,39 +147,34 @@ public class ControllerTest {
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
         ControllerBase yourInstance;
         yourInstance.draw(graphicsMock);
-
-        // Verify if draw method is invoked for each element in troops and facilities
         Mockito.verify(graphicsMock, Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size())).draw(Mockito.any(Element.class));
     }
 
     @Test
     public void testDrawBorder() {
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
-
         Border selection1Mock = Mockito.mock(Border.class);
         Border selection2Mock = Mockito.mock(Border.class);
-
+        Controller yourInstance;
         yourInstance.setSelection1(selection1Mock);
         yourInstance.setSelection2(selection2Mock);
-
         yourInstance.drawBorder(graphicsMock);
-
         Mockito.verify(selection1Mock, Mockito.times(1)).draw(graphicsMock);
         Mockito.verify(selection2Mock, Mockito.times(1)).draw(graphicsMock);
     }
 
     @Test
     public void testResetRound() {
+        Controller yourInstance;
         int initialCoins = yourInstance.getCoins();
-
         yourInstance.resetRound();
-
         assertTrue(yourInstance.canPlay());
         assertEquals(initialCoins + 100 + 30 * yourInstance.getFacilities().size(), yourInstance.getCoins());
     }
 
     @Test
     public void testCanPlay() {
+        ControllerBase yourInstance;
         assertTrue(yourInstance.canPlay()); // Assuming initially canPlay is true
     }
 }
