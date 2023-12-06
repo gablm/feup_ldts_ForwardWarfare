@@ -13,6 +13,7 @@ public class Bot extends ControllerBase {
         super(initialFacilities, color);
     }
 
+
     @Override
     public State getInitialState(Controller p2, Map map) {
         return new AutomaticPlayState(this, p2, map);

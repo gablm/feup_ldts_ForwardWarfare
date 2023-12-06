@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.*;
@@ -127,7 +128,6 @@ public class ControllerTest {
 
     @Test
     public void testGetSetSelection1() throws InvalidControllerException {
-        Mockito Mockito;
         Border borderMock = Mockito.mock(Border.class);
         Controller yourInstance = new Bot(null, TextColor.ANSI.WHITE_BRIGHT);
         yourInstance.setSelection1(borderMock);
@@ -144,10 +144,11 @@ public class ControllerTest {
 
     @Test
     public void testDraw() throws InvalidControllerException {
+        List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
-        ControllerBase yourInstance = new Player(null, TextColor.ANSI.BLUE);
+        ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE);
         yourInstance.draw(graphicsMock);
-        Mockito.verify(graphicsMock, Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size())).drawLine(Mockito.any(Element.class));
+        Mockito.verify(graphicsMock, Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size())).putString(Mockito.any(TerminalPosition.class),Mockito.any(String.class));
     }
 
     @Test
