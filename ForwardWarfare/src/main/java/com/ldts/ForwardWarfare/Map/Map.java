@@ -22,6 +22,14 @@ public class Map extends Element {
     public Map(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
         readMap(filePath);
     }
+
+    public Map(Map map) {
+        this.map = new ArrayList<>(map.map);
+        this.player1Base = map.player1Base;
+        this.player2Base = map.player2Base;
+        this.player1Factory = map.player1Factory;
+        this.player2Factory = map.player2Factory;
+    }
     public List<Element> getElements() {
         return map;
     }
@@ -123,7 +131,14 @@ public class Map extends Element {
     }
 
     public Tile at(Position position) {
+        if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
+            return null;
         return (Tile) map.get(position.getY() * 15 + position.getX());
+    }
+    public void set(Position position, Element element) {
+        if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
+            return;
+        map.set(position.getY() * 15 + position.getX(), element);
     }
 
     public boolean inside(Position pos) {

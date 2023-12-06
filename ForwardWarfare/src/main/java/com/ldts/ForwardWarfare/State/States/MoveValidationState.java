@@ -36,8 +36,11 @@ public class MoveValidationState extends BaseState {
     }
 
     private boolean canMove() {
-        List<Boolean> mapBool = new ArrayList<>(150);
-        map.getElements().forEach(x -> mapBool.add(((Tile)x).noCollision()));
+        Map copy = new Map(map);
+        for (Element i : p1.getTroops())
+            copy.set(i.getPosition(), i);
+        for (Element i : p2.getTroops())
+            copy.set(i.getPosition(), i);
         return false;
     }
 
