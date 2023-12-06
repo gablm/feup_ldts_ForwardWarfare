@@ -26,7 +26,5 @@ public interface Controller {
     void drawBorder(TextGraphics graphics);
     State getInitialState(Controller p2, Map map);
 
-    void addFacility(Facility facilityMock);
 
-    void removeFacility(Facility facilityMock);
 }

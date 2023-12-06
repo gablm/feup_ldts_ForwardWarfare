@@ -117,8 +117,8 @@ public class ControllerTest {
     }
 
     @Test
-    public void testEndRound() {
-        Controller yourInstance;
+    public void testEndRound() throws InvalidControllerException {
+        Controller yourInstance = new Bot(null,TextColor.ANSI.BLUE_BRIGHT);
         yourInstance.endRound();
         assertFalse(yourInstance.canPlay());
         assertNull(yourInstance.getSelection1());
@@ -126,36 +126,36 @@ public class ControllerTest {
     }
 
     @Test
-    public void testGetSetSelection1() {
+    public void testGetSetSelection1() throws InvalidControllerException {
         Mockito Mockito;
         Border borderMock = Mockito.mock(Border.class);
-        Controller yourInstance;
+        Controller yourInstance = new Bot(null, TextColor.ANSI.WHITE_BRIGHT);
         yourInstance.setSelection1(borderMock);
         assertEquals(borderMock, yourInstance.getSelection1());
     }
 
     @Test
-    public void testGetSetSelection2() {
+    public void testGetSetSelection2() throws InvalidControllerException {
         Border borderMock = Mockito.mock(Border.class);
-        Controller yourInstance;
+        Controller yourInstance = new Player(null, TextColor.ANSI.RED_BRIGHT);
         yourInstance.setSelection2(borderMock);
         assertEquals(borderMock, yourInstance.getSelection2());
     }
 
     @Test
-    public void testDraw() {
+    public void testDraw() throws InvalidControllerException {
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
-        ControllerBase yourInstance;
+        ControllerBase yourInstance = new Player(null, TextColor.ANSI.BLUE);
         yourInstance.draw(graphicsMock);
-        Mockito.verify(graphicsMock, Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size())).draw(Mockito.any(Element.class));
+        Mockito.verify(graphicsMock, Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size())).drawLine(Mockito.any(Element.class));
     }
 
     @Test
-    public void testDrawBorder() {
+    public void testDrawBorder() throws InvalidControllerException {
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
         Border selection1Mock = Mockito.mock(Border.class);
         Border selection2Mock = Mockito.mock(Border.class);
-        Controller yourInstance;
+        Controller yourInstance = new Bot(null, new TextColor.RGB(255, 255, 255));
         yourInstance.setSelection1(selection1Mock);
         yourInstance.setSelection2(selection2Mock);
         yourInstance.drawBorder(graphicsMock);
@@ -164,8 +164,8 @@ public class ControllerTest {
     }
 
     @Test
-    public void testResetRound() {
-        Controller yourInstance;
+    public void testResetRound() throws InvalidControllerException {
+        Controller yourInstance = new Player(null, new TextColor.RGB(255, 0, 255));
         int initialCoins = yourInstance.getCoins();
         yourInstance.resetRound();
         assertTrue(yourInstance.canPlay());
@@ -174,7 +174,7 @@ public class ControllerTest {
 
     @Test
     public void testCanPlay() {
-        ControllerBase yourInstance;
+        ControllerBase yourInstance = ;
         assertTrue(yourInstance.canPlay()); // Assuming initially canPlay is true
     }
 }
