@@ -62,6 +62,18 @@ public abstract class UI {
         return fontsize;
     }
 
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    public void setUITerminal(LanternaTerminal UITerminal) {
+        this.UITerminal = UITerminal;
+    }
+
+    public void setEndscreen(boolean endscreen) {
+        this.endscreen = endscreen;
+    }
+
     public boolean isEndscreen() {
         return endscreen;
     }

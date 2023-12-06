@@ -179,9 +179,32 @@ public class MainMenu extends UI {
         screen.refresh();
     }
 
+    public UiStates getStartgame() {
+        return startgame;
+    }
+
+    public int getCb() {
+        return cb;
+    }
+
+    public void setFsb(boolean fsb) {
+        this.fsb = fsb;
+    }
+
+    public List<Component> getFs() {
+        return fs;
+    }
+
+    public List<Component> getSs() {
+        return ss;
+    }
+
     public boolean getGAMEMODE() {
         return GAMEMODE;
     }
 
+    public void setCb(int cb) {
+        this.cb = cb;
+    }
 
 }

@@ -158,7 +158,6 @@ public class StartGameMenu extends UI {
             listComponents.get(ms).setBorderFadeIntensity(highlight);
         }
     }
-    
     @Override
     public void processKey(KeyStroke key) {
         if (SelectingColor) {
@@ -201,5 +200,44 @@ public class StartGameMenu extends UI {
                 startgame=UiStates.MainMenu;
             }
         }
+    }
+    public UiStates getStartgame() {
+        return startgame;
+    }
+
+    public List<Component> getButtonsList() {
+        return ButtonsList;
+    }
+
+    public void setSelectingColor(boolean selectingColor) {
+        SelectingColor = selectingColor;
+    }
+
+    public void setSelectingMap(boolean selectingMap) {
+        SelectingMap = selectingMap;
+    }
+
+    public void setGrid(ColorGrid grid) {
+        this.grid = grid;
+    }
+
+    public boolean getSelectingColor() {
+        return SelectingColor;
+    }
+
+    public ColorGrid getGrid() {
+        return grid;
+    }
+
+    public boolean getSelectingMap() {
+        return SelectingMap;
+    }
+
+    public void setBc(int bc) {
+        this.bc = bc;
+    }
+
+    public void setMs(int ms) {
+        this.ms = ms;
     }
 }

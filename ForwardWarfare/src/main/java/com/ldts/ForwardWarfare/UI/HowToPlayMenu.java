@@ -66,4 +66,8 @@ public class HowToPlayMenu extends UI{
            startgame=UiStates.MainMenu;
         }
     }
+
+    public UiStates getStartgame() {
+        return startgame;
+    }
 }
