@@ -38,20 +38,7 @@ public class OneSelectionState extends BaseState{
                 p1.setSelection2(null);
                 return new NoSelectionState(p1, p2, map);
             case ENTER:
-                for (Element i : p1.getTroops()) {
-                    if (i.getPosition().equals(p1.getSelection1().getPosition())) {
-                        if (map.at(pos).noCollision())
-                            i.setPosition(pos);
-                        else {
-                            p1.setSelection2(null);
-                            return new InvalidSelectState(p1, p2, map, "Not allowed");
-                        }
-                        break;
-                    }
-                }
-                p1.setSelection1(p1.getSelection2());
-                p1.setSelection2(null);
-                return new MoveEndState(p1, p2, map);
+                return new MoveValidationState(p1, p2, map);
         }
         return this;
 
