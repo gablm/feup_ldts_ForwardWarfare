@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare;
+package com.ldts.ForwardWarfare.UITest;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
@@ -9,6 +9,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.LanternaTerminal;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.HowToPlayMenu;

@@ -20,8 +20,7 @@ public abstract class UI {
     private TerminalSize terminalSize;
     private int fontsize;
     protected boolean endscreen=false;
-
-    UI(TerminalSize terminalSize,int fontsize)
+    public UI(TerminalSize terminalSize,int fontsize)
     {
         this.fontsize=fontsize;
         this.terminalSize=terminalSize;
@@ -46,14 +45,6 @@ public abstract class UI {
         return listComponents;
     }
 
-    public LanternaTerminal getUITerminal() {
-        return UITerminal;
-    }
-
-    public Screen getScreen() {
-        return screen;
-    }
-
     public TerminalSize getTerminalSize() {
         return terminalSize;
     }
@@ -68,10 +59,6 @@ public abstract class UI {
 
     public void setUITerminal(LanternaTerminal UITerminal) {
         this.UITerminal = UITerminal;
-    }
-
-    public void setEndscreen(boolean endscreen) {
-        this.endscreen = endscreen;
     }
 
     public boolean isEndscreen() {

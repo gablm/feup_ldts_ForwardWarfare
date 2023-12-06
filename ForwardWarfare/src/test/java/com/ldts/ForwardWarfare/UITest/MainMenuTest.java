@@ -1,10 +1,11 @@
-package com.ldts.ForwardWarfare;
+package com.ldts.ForwardWarfare.UITest;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.ldts.ForwardWarfare.LanternaTerminal;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.MainMenu;

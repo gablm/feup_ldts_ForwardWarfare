@@ -56,8 +56,7 @@ public class Game {
                     running=false;
                     break;
                 case BatleUI:
-                    UI batleUI=new BattleUI();
-                    state=batleUI.build();
+                    BattleUI batleUI=new BattleUI();
                     break;
             }
         }
