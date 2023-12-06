@@ -173,8 +173,8 @@ public class ControllerTest {
     }
 
     @Test
-    public void testCanPlay() {
-        ControllerBase yourInstance = ;
+    public void testCanPlay() throws InvalidControllerException {
+        ControllerBase yourInstance = new Bot(null, TextColor.ANSI.CYAN);
         assertTrue(yourInstance.canPlay()); // Assuming initially canPlay is true
     }
 }
