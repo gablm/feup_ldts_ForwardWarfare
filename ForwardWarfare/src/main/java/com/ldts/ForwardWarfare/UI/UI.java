@@ -41,4 +41,28 @@ public abstract class UI {
 
     public abstract UiStates run() throws IOException;
     public abstract  void processKey( KeyStroke key);
+
+    public List<Component> getListComponents() {
+        return listComponents;
+    }
+
+    public LanternaTerminal getUITerminal() {
+        return UITerminal;
+    }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public TerminalSize getTerminalSize() {
+        return terminalSize;
+    }
+
+    public int getFontsize() {
+        return fontsize;
+    }
+
+    public boolean isEndscreen() {
+        return endscreen;
+    }
 }
