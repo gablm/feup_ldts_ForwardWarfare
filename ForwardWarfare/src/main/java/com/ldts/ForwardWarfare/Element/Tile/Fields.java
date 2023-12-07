@@ -16,6 +16,7 @@ public class Fields extends Element implements Tile {
             this.facility = facility;
         }
     }
+    @Override
     public Facility getFacility() {
         return facility;
     }

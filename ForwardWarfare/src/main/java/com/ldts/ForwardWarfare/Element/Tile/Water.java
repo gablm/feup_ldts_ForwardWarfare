@@ -41,4 +41,9 @@ public class Water extends Element implements Tile {
     public boolean noCollision() {
         return facility == null;
     }
+
+    @Override
+    public Facility getFacility() {
+        return facility;
+    }
 }

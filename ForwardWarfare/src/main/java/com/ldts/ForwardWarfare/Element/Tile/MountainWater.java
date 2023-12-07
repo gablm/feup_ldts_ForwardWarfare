@@ -3,6 +3,7 @@ package com.ldts.ForwardWarfare.Element.Tile;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
+import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Position;
 
 public class MountainWater extends Element implements Tile {
@@ -26,5 +27,10 @@ public class MountainWater extends Element implements Tile {
     @Override
     public boolean noCollision() {
         return false;
+    }
+
+    @Override
+    public Facility getFacility() {
+        return null;
     }
 }
