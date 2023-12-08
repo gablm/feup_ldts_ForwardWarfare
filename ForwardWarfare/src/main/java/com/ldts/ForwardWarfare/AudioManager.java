@@ -3,10 +3,12 @@ package com.ldts.ForwardWarfare;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AudioManager {
     private static AudioManager audioManager;
-    private static Clip currentClip;
+    private static Map<String, Clip> currentClip = new HashMap<>();
 
     public static AudioManager get() {
         if (audioManager == null)
@@ -16,26 +18,29 @@ public class AudioManager {
 
     public void play(String url) {
         try {
-            currentClip = AudioSystem.getClip();
+            if (currentClip.containsKey(url)) {
+                currentClip.get(url).start();
+            }
+            currentClip.put(url, AudioSystem.getClip());
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(
                     this.getClass().getResourceAsStream("/sounds/" + url));
-            currentClip.open(inputStream);
-            currentClip.start();
+            currentClip.get(url).open(inputStream);
+            currentClip.get(url).start();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
 
-    public void pause() {
-        currentClip.stop();
+    public static void pause(String url) {
+        currentClip.get(url).stop();
     }
 
-    public void unpause() {
-        currentClip.start();
+    public static void unpause(String url) {
+        currentClip.get(url).start();
     }
 
-    public void stop() {
-        currentClip.stop();
-        currentClip.close();
+    public static void stop(String url) {
+        currentClip.get(url).stop();
+        currentClip.get(url).close();
     }
 }

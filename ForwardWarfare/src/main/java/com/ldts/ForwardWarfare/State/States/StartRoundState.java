@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare.State.States;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.ldts.ForwardWarfare.AudioManager;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;

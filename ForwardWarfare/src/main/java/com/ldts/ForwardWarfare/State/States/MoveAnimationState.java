@@ -2,6 +2,7 @@ package com.ldts.ForwardWarfare.State.States;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.ldts.ForwardWarfare.AudioManager;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
@@ -22,8 +23,11 @@ public class MoveAnimationState extends BaseState {
 
     @Override
     public State play(Action action) {
-        if (moves.isEmpty())
+        AudioManager.pause("termini.wav");
+        if (moves.isEmpty()) {
+            AudioManager.unpause("termini.wav");
             return new MoveEndState(p1, p2, map);
+        }
         element.setPosition(moves.get(moves.size() - 1));
         moves.remove(moves.size() - 1);
         try
