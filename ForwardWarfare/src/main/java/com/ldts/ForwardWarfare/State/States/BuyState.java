@@ -22,30 +22,26 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
-import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 import java.util.Vector;
 
-import static com.ldts.ForwardWarfare.State.Action.DOWN;
-import static com.ldts.ForwardWarfare.State.Action.UP;
-
 public class BuyState extends BaseState {
-    private boolean nocash=false;
+    private boolean noCash = false;
     private Facility facilitySelected;
     private int Facility;
     private Position pos;
-    private int Highlighted=0;
-    private List<List<Integer>> values=List.of(List.of(2,5,10,7,15,10),List.of(7,20,10),List.of(10,25,15));
-    private List<List<Element>> troup=List.of(
+    private int Highlighted = 0;
+    private List<List<Integer>> values =List.of(List.of(2,5,10,7,15,10),List.of(7,20,10),List.of(10,25,15));
+    private List<List<Element>> troop = List.of(
             List.of(new LightPerson(new Position(0,0)),new HeavyPerson(new Position(0,0)),new MortarPerson(new Position(0,0)),new LightTank(new Position(0,0)),new HeavyTank(new Position(0,0)),new AntiAirTank(new Position(0,0)))
             ,List.of(new LightBoat(new Position(0,0)),new MortarBoat(new Position(0,0)),new FighterSubmarine(new Position(0,0)))
             ,List.of(new FighterPlane(new Position(0,0)),new BomberPlane(new Position(0,0)),new LightHelicopter(new Position(0,0))));
 
-    private Vector<Integer> indexf= new Vector<>(List.of(1,0,0,0,0,0)) ;
-    private Vector<Integer> indexa= new Vector<>(List.of(1,0,0)) ;
-    private Vector<Integer> indexp= new Vector<>(List.of(1,0,0)) ;
-    private List<TextColor> cores= List.of(TextColor.ANSI.WHITE, TextColor.ANSI.GREEN);
+    private Vector<Integer> indexf = new Vector<>(List.of(1,0,0,0,0,0)) ;
+    private Vector<Integer> indexa = new Vector<>(List.of(1,0,0)) ;
+    private Vector<Integer> indexp = new Vector<>(List.of(1,0,0)) ;
+    private List<TextColor> colors = List.of(TextColor.ANSI.WHITE, TextColor.ANSI.GREEN);
 
     public BuyState(Controller p1, Controller p2, Map map, Facility facility,Position pos) {
         super(p1, p2, map);
@@ -62,17 +58,15 @@ public class BuyState extends BaseState {
 
     @Override
     public State play(Action action) {
-        if (nocash)
-        {
-            nocash=false;
-        }
+        if (noCash)
+            noCash = false;
         else {
             switch (action) {
                 case ENTER:
                     if (p1.getCoins() - values.get(Facility).get(Highlighted) >= 0) {
-                        return new SpawnTroupState(p1, p2, map, pos, values.get(Facility).get(Highlighted),troup.get(Facility).get(Highlighted));
+                        return new SpawnTroopState(p1, p2, map, pos, values.get(Facility).get(Highlighted), troop.get(Facility).get(Highlighted));
                     } else
-                        nocash = true;
+                        noCash = true;
                     break;
                 case UP:
                     switch (Facility) {
@@ -191,7 +185,7 @@ public class BuyState extends BaseState {
             drawPortShop(graphics);
         else
             System.out.println("Invalid facility");
-        if (nocash)
+        if (noCash)
         {
             try {
                 draw_nocahs(graphics);
@@ -211,17 +205,17 @@ public class BuyState extends BaseState {
         graphics.setBackgroundColor(new TextColor.RGB(80,80,80));
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
         String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
-        graphics.setForegroundColor(cores.get(indexf.get(0)));
+        graphics.setForegroundColor(colors.get(indexf.get(0)));
         graphics.putString(2, 13, "(  2");
-        graphics.setForegroundColor(cores.get(indexf.get(1)));
+        graphics.setForegroundColor(colors.get(indexf.get(1)));
         graphics.putString(2, 14, "_  5");
-        graphics.setForegroundColor(cores.get(indexf.get(2)));
+        graphics.setForegroundColor(colors.get(indexf.get(2)));
         graphics.putString(2, 15, "@ 10");
-        graphics.setForegroundColor(cores.get(indexf.get(3)));
+        graphics.setForegroundColor(colors.get(indexf.get(3)));
         graphics.putString(9, 13, "#  7");
-        graphics.setForegroundColor(cores.get(indexf.get(4)));
+        graphics.setForegroundColor(colors.get(indexf.get(4)));
         graphics.putString(9, 14, "$ 15");
-        graphics.setForegroundColor(cores.get(indexf.get(5)));
+        graphics.setForegroundColor(colors.get(indexf.get(5)));
         graphics.putString(9, 15, "+ 10");
         graphics.enableModifiers(SGR.BOLD);
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
@@ -243,11 +237,11 @@ public class BuyState extends BaseState {
         graphics.setBackgroundColor(new  TextColor.RGB(0,124,206));
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
         String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
-        graphics.setForegroundColor(cores.get(indexp.get(0)));
+        graphics.setForegroundColor(colors.get(indexp.get(0)));
         graphics.putString(2, 13, "<  7");
-        graphics.setForegroundColor(cores.get(indexp.get(1)));
+        graphics.setForegroundColor(colors.get(indexp.get(1)));
         graphics.putString(2, 14, "' 20");
-        graphics.setForegroundColor(cores.get(indexp.get(2)));
+        graphics.setForegroundColor(colors.get(indexp.get(2)));
         graphics.putString(9, 13, "= 10");
         graphics.enableModifiers(SGR.BOLD);
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
@@ -266,11 +260,11 @@ public class BuyState extends BaseState {
         graphics.setBackgroundColor(new TextColor.RGB(153,76,0));
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
         String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
-        graphics.setForegroundColor(cores.get(indexa.get(0)));
+        graphics.setForegroundColor(colors.get(indexa.get(0)));
         graphics.putString(2, 13, "% 10");
-        graphics.setForegroundColor(cores.get(indexa.get(1)));
+        graphics.setForegroundColor(colors.get(indexa.get(1)));
         graphics.putString(2, 14, "& 25");
-        graphics.setForegroundColor(cores.get(indexa.get(2)));
+        graphics.setForegroundColor(colors.get(indexa.get(2)));
         graphics.putString(9, 13, "[ 15");
         graphics.enableModifiers(SGR.BOLD);
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
