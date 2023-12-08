@@ -195,7 +195,7 @@ public class BuyState extends BaseState {
         graphics.putString(13, 15, "!");
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
     }
-    
+
     private void drawPortShop(TextGraphics graphics)
     {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));

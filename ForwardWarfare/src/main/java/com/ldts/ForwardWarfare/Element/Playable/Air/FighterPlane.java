@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
+import com.ldts.ForwardWarfare.Element.Playable.Water.FighterSubmarine;
 import com.ldts.ForwardWarfare.Element.Position;
 
 public class FighterPlane extends Playable {
@@ -19,5 +20,15 @@ public class FighterPlane extends Playable {
     }
     public boolean canMove(Element element) {
         return true;
+    }
+
+    @Override
+    public String getType() {
+        return "Air";
+    }
+
+    @Override
+    public boolean canAttack(Playable playable) {
+        return !(playable instanceof FighterSubmarine);
     }
 }
