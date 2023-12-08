@@ -113,6 +113,8 @@ public abstract class ControllerBase implements Controller {
             Facility facility = ((Tile)i).getFacility();
             if (facility instanceof OilPump)
                 coins += 10;
+            if(facility.getUsed())
+                facility.execute();
         }
         for (Element i : troops) {
             ((Playable) i).setHasMoved(false);
