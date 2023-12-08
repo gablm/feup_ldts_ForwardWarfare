@@ -23,58 +23,52 @@ import static com.ldts.ForwardWarfare.State.Action.UP;
 public class BuyState extends BaseState {
     private Facility facilitySelected;
     private int Facility;
-    private int Highlighted=0;
-    private Vector<Integer> indexf= new Vector<>(List.of(1,0,0,0,0,0)) ;
-    private Vector<Integer> indexa= new Vector<>(List.of(1,0,0)) ;
-    private Vector<Integer> indexp= new Vector<>(List.of(1,0,0)) ;
-    private List<TextColor> cores= List.of(TextColor.ANSI.WHITE, TextColor.ANSI.GREEN);
+    private int Highlighted = 0;
+    private Vector<Integer> indexf = new Vector<>(List.of(1, 0, 0, 0, 0, 0)) ;
+    private Vector<Integer> indexa = new Vector<>(List.of(1,0,0)) ;
+    private Vector<Integer> indexp = new Vector<>(List.of(1,0,0)) ;
+    private List<TextColor> cores = List.of(TextColor.ANSI.WHITE, TextColor.ANSI.GREEN);
 
     public BuyState(Controller p1, Controller p2, Map map, Facility facility) {
         super(p1, p2, map);
         facilitySelected = facility;
-        if (facilitySelected.getClass() == Factory.class){
+        if (facilitySelected.getClass() == Factory.class)
             Facility = 0;
-        }
-        else if (facilitySelected.getClass() == Airport.class) {
+        else if (facilitySelected.getClass() == Airport.class)
             Facility = 2;
-        }
-        else if (facilitySelected.getClass() == Port.class) {
+        else if (facilitySelected.getClass() == Port.class)
             Facility = 1;
-        }
+
     }
 
     @Override
     public State play(Action action) {
         switch (action) {
             case ENTER:
-
                 break;
             case UP:
                 switch (Facility)
                 {
                     case 0:
-                        indexf.set(Highlighted,0);
-                        if(Highlighted-1<0)
-                        {
-                            Highlighted=5;
-                        }else Highlighted--;
+                        indexf.set(Highlighted, 0);
+                        Highlighted--;
+                        if(Highlighted < 0)
+                            Highlighted = 5;
                         indexf.set(Highlighted,1);
                         break;
                     case 1:
-                        indexp.set(Highlighted,0);
-                        if(Highlighted-1<0)
-                        {
-                            Highlighted=2;
-                        }else Highlighted--;
-                        indexp.set(Highlighted,1);
+                        indexp.set(Highlighted, 0);
+                        Highlighted--;
+                        if(Highlighted < 0)
+                            Highlighted = 2;
+                        indexp.set(Highlighted, 1);
                         break;
                     case 2:
-                        indexa.set(Highlighted,0);
-                        if(Highlighted-1<0)
-                        {
-                            Highlighted=2;
-                        }else Highlighted--;
-                        indexa.set(Highlighted,1);
+                        indexa.set(Highlighted, 0);
+                        Highlighted--;
+                        if (Highlighted < 0)
+                            Highlighted = 2;
+                        indexa.set(Highlighted, 1);
                         break;
                 }
                 break;
@@ -82,28 +76,25 @@ public class BuyState extends BaseState {
                 switch (Facility)
                 {
                     case 0:
-                        indexf.set(Highlighted,0);
-                        if(Highlighted+1>5)
-                        {
-                            Highlighted=0;
-                        }else Highlighted++;
-                        indexf.set(Highlighted,1);
+                        indexf.set(Highlighted, 0);
+                        Highlighted++;
+                        if (Highlighted > 5)
+                            Highlighted = 0;
+                        indexf.set(Highlighted, 1);
                         break;
                     case 1:
-                        indexp.set(Highlighted,0);
-                        if(Highlighted+1>2)
-                        {
-                            Highlighted=0;
-                        }else Highlighted++;
-                        indexp.set(Highlighted,1);
+                        indexp.set(Highlighted, 0);
+                        Highlighted++;
+                        if(Highlighted + 1 > 2)
+                            Highlighted = 0;
+                        indexp.set(Highlighted, 1);
                         break;
                     case 2:
-                        indexa.set(Highlighted,0);
-                        if(Highlighted+1>2)
-                        {
-                            Highlighted=0;
-                        }else Highlighted++;
-                        indexa.set(Highlighted,1);
+                        indexa.set(Highlighted, 0);
+                        Highlighted++;
+                        if(Highlighted > 2)
+                            Highlighted = 0;
+                        indexa.set(Highlighted, 1);
                         break;
                 }
                 break;
@@ -111,28 +102,21 @@ public class BuyState extends BaseState {
                 switch (Facility)
                 {
                     case 0:
-                        indexf.set(Highlighted,0);
-                        if(Highlighted-3<0)
-                        {
-                            Highlighted=5-(2-Highlighted);
-                        }else Highlighted-=3;
-                        indexf.set(Highlighted,1);
+                        indexf.set(Highlighted, 0);
+                        Highlighted -= 3;
+                        if(Highlighted < 0)
+                            Highlighted = 5 - (-1 - Highlighted);
+                        indexf.set(Highlighted, 1);
                         break;
                     case 1:
-                        indexp.set(Highlighted,0);
-                        if(Highlighted==2)
-                        {
-                            Highlighted=1;
-                        }else Highlighted=2;
-                        indexp.set(Highlighted,1);
+                        indexp.set(Highlighted, 0);
+                        Highlighted = Highlighted == 2 ? 1 : 2;
+                        indexp.set(Highlighted, 1);
                         break;
                     case 2:
-                        indexa.set(Highlighted,0);
-                        if(Highlighted==2)
-                        {
-                            Highlighted=1;
-                        }else Highlighted=2;
-                        indexa.set(Highlighted,1);
+                        indexa.set(Highlighted, 0);
+                        Highlighted = Highlighted == 2 ? 1 : 2;
+                        indexa.set(Highlighted, 1);
                         break;
                 }
                 break;
@@ -140,28 +124,21 @@ public class BuyState extends BaseState {
                 switch (Facility)
                 {
                     case 0:
-                        indexf.set(Highlighted,0);
-                        if(Highlighted+3>5)
-                        {
-                            Highlighted=Highlighted+3-6;
-                        }else Highlighted+=3;
-                        indexf.set(Highlighted,1);
+                        indexf.set(Highlighted, 0);
+                        Highlighted += 3;
+                        if(Highlighted > 5)
+                            Highlighted = Highlighted - 6;
+                        indexf.set(Highlighted, 1);
                         break;
                     case 1:
-                        indexp.set(Highlighted,0);
-                        if(Highlighted==2) {
-                            Highlighted = 0;
-                        }
-                        else Highlighted=2;
-                        indexp.set(Highlighted,1);
+                        indexp.set(Highlighted, 0);
+                        Highlighted = Highlighted == 2 ? 0 : 2;
+                        indexp.set(Highlighted, 1);
                         break;
                     case 2:
-                        indexa.set(Highlighted,0);
-                        if(Highlighted==2) {
-                            Highlighted = 0;
-                        }
-                        else Highlighted=2;
-                        indexa.set(Highlighted,1);
+                        indexa.set(Highlighted, 0);
+                        Highlighted = Highlighted == 2 ? 0 : 2;
+                        indexa.set(Highlighted, 1);
                     break;
                 }
                 break;
@@ -173,15 +150,12 @@ public class BuyState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        if (facilitySelected.getClass() == Factory.class){
+        if (facilitySelected.getClass() == Factory.class)
             drawFactoryShop(graphics);
-        }
-        else if (facilitySelected.getClass() == Airport.class) {
+        else if (facilitySelected.getClass() == Airport.class)
             drawAirportShop(graphics);
-        }
-        else if (facilitySelected.getClass() == Port.class) {
+        else if (facilitySelected.getClass() == Port.class)
             drawPortShop(graphics);
-        }
         else
             System.out.println("Invalid facility");
     }
@@ -221,6 +195,7 @@ public class BuyState extends BaseState {
         graphics.putString(13, 15, "!");
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
     }
+    
     private void drawPortShop(TextGraphics graphics)
     {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
@@ -243,7 +218,6 @@ public class BuyState extends BaseState {
         graphics.putString(13, 13, "!");
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
     }
-
 
     private void drawAirportShop(TextGraphics graphics)
     {
