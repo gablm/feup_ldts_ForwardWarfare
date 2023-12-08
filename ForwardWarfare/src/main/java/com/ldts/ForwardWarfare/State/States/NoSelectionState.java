@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Facility.Airport;
+import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.Factory;
 import com.ldts.ForwardWarfare.Element.Facility.Port;
 import com.ldts.ForwardWarfare.Element.Position;
@@ -45,16 +46,15 @@ public class NoSelectionState extends BaseState {
                 if (p1.getTroops().stream().anyMatch(x -> x.getPosition().equals(pos))) {
                     p1.setSelection2(new Border(pos));
                     return new OneSelectionState(p1, p2, map);
-                }else if(map.getElements().stream().anyMatch(x-> x.getPosition().equals(pos)))
+                }
+                if (map.getElements().stream().anyMatch(x-> x.getPosition().equals(pos)))
                 {
-                    if(map.at(pos).getFacility().getClass() == Factory.class || map.at(pos).getFacility().getClass() == Airport.class || map.at(pos).getFacility().getClass() == Port.class)
-                    {
+                    Facility facility = map.at(pos).getFacility();
+                    if (facility != null && (facility.getClass() == Factory.class
+                            || facility.getClass() == Airport.class
+                            || facility.getClass() == Port.class))
                        return new BuyState(p1, p2, map, map.at(pos).getFacility());
-                    }
-                    else
-                    {
-                        return new InvalidSelectState(p1, p2, map, "Invalid play");
-                    }
+                    return new InvalidSelectState(p1, p2, map, "Invalid play");
                 }
                 return new InvalidSelectState(p1, p2, map, "Invalid play");
             case ESCAPE:

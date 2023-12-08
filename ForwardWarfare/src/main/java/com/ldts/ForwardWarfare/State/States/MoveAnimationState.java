@@ -28,7 +28,7 @@ public class MoveAnimationState extends BaseState {
         moves.remove(moves.size() - 1);
         try
         {
-            Thread.sleep(200);
+            Thread.sleep(150);
         }
         catch(InterruptedException ex)
         {

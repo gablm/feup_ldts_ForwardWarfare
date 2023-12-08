@@ -18,33 +18,26 @@ public class BuyState extends BaseState{
     private Facility facilitySelected;
     public BuyState(Controller p1, Controller p2, Map map, Facility facility) {
         super(p1, p2, map);
-        facilitySelected= facility;
+        facilitySelected = facility;
     }
 
     @Override
     public State play(Action action) {
-
-        return null;
+        if (action == Action.ESCAPE)
+            return new MoveEndState(p1, p2, map);
+        return this;
     }
 
     @Override
     public void draw(TextGraphics graphics) {
-        if(facilitySelected.getClass()== Factory.class)
-        {
+        if (facilitySelected.getClass() == Factory.class)
             drawFactoryShop(graphics);
-        }
-        else if(facilitySelected.getClass()== Airport.class)
-        {
+        else if (facilitySelected.getClass() == Airport.class)
             drawAirportShop(graphics);
-        }
-        else if(facilitySelected.getClass()== Port.class)
-        {
+        else if (facilitySelected.getClass() == Port.class)
             drawPortShop(graphics);
-        }
         else
-        {
             System.out.println("Invalid facility");
-        }
     }
 
     @Override

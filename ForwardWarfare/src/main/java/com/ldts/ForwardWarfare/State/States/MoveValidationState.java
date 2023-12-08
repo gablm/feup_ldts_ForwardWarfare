@@ -34,10 +34,10 @@ public class MoveValidationState extends BaseState {
                 List<Position> res = canMove(p1.getSelection1().getPosition(),
                                                 p1.getSelection2().getPosition(),
                                                 (Playable) i);
+                p1.setSelection2(null);
+                p1.setSelection1(res == null ? null : p1.getSelection2());
                 if (res == null)
                     return new InvalidSelectState(p1, p2, map, "Invalid move");
-                p1.setSelection1(null);
-                p1.setSelection2(null);
                 return new MoveAnimationState(p1, p2, map, res, i);
             }
         }
