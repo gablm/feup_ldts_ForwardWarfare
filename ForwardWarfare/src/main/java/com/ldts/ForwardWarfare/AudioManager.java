@@ -17,15 +17,20 @@ public class AudioManager {
     }
 
     public void play(String url) {
+        play(url, -1);
+    }
+    public void play(String url, int loopCount) {
         try {
             if (currentClip.containsKey(url)) {
                 currentClip.get(url).start();
             }
             currentClip.put(url, AudioSystem.getClip());
+            Clip newClip = currentClip.get(url);
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(
                     this.getClass().getResourceAsStream("/sounds/" + url));
-            currentClip.get(url).open(inputStream);
-            currentClip.get(url).start();
+            newClip.open(inputStream);
+            newClip.loop(loopCount);
+            newClip.start();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
