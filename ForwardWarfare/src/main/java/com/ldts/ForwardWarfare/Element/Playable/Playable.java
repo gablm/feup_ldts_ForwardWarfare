@@ -32,4 +32,8 @@ public abstract class Playable extends Element {
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
+
+    public int getMaxMoves() {
+        return maxMoves;
+    }
 }
