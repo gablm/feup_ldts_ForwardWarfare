@@ -18,6 +18,6 @@ public class BomberPlane extends Playable {
         textGraphics.putString(position.toTPos(), "&");
     }
     public boolean canMove(Element element) {
-        return false;
+        return true;
     }
 }

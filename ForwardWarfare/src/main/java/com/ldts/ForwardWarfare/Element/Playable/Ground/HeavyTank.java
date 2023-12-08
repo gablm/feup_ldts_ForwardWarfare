@@ -5,6 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Element.Tile.Fields;
 
 public class HeavyTank extends Playable {
     public HeavyTank(Position pos) {
@@ -18,6 +19,6 @@ public class HeavyTank extends Playable {
         textGraphics.putString(position.toTPos(), "#");
     }
     public boolean canMove(Element element) {
-        return false;
+        return element instanceof Fields;
     }
 }
