@@ -5,6 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.OilPump;
+import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
 import org.w3c.dom.Text;
@@ -106,6 +107,9 @@ public abstract class ControllerBase implements Controller {
         coins += 100;
         for (Element i : facilities) {
             coins += 30;
+        }
+        for (Element i : troops) {
+            ((Playable) i).setHasMoved(false);
         }
     }
 

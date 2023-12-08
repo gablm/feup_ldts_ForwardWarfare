@@ -25,11 +25,11 @@ public abstract class Playable extends Element {
         return 0;
     }
 
-    public void reverseMoved() {
-        hasMoved = !hasMoved;
-    }
-
     public boolean hasMoved() {
         return hasMoved;
+    }
+
+    public void setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
     }
 }

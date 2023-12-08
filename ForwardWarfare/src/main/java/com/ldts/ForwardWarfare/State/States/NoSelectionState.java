@@ -3,15 +3,19 @@ package com.ldts.ForwardWarfare.State.States;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Airport;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.Factory;
 import com.ldts.ForwardWarfare.Element.Facility.Port;
+import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+
+import java.util.Optional;
 
 public class NoSelectionState extends BaseState {
     public NoSelectionState(Controller p1, Controller p2, Map map) {
@@ -43,7 +47,10 @@ public class NoSelectionState extends BaseState {
                 moveTo(pos.getX() + 1, pos.getY());
                 break;
             case ENTER:
-                if (p1.getTroops().stream().anyMatch(x -> x.getPosition().equals(pos))) {
+                Optional<Element> findTroop = p1.getTroops().stream().filter(x -> x.getPosition().equals(pos)).findFirst();
+                if (findTroop.isPresent()) {
+                    if (((Playable) findTroop.get()).hasMoved())
+                        return new InvalidSelectState(p1, p2, map, "Already moved");
                     p1.setSelection2(new Border(pos));
                     return new OneSelectionState(p1, p2, map);
                 }
