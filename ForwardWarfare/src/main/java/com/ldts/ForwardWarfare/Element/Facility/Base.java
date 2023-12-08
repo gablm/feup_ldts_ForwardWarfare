@@ -18,6 +18,12 @@ public class Base implements Facility {
 
     @Override
     public void execute() {
-
     }
+
+    @Override
+    public Boolean getUsed() {
+        return null;
+    }
+
+
 }

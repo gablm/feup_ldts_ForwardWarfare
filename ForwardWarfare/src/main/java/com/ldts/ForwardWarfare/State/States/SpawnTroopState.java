@@ -77,10 +77,12 @@ public class SpawnTroopState extends BaseState {
                 if((troop.getType().equals("Ground") || troop.getType().equals("Air"))
                         && Objects.equals(map.at(temp).getColor(), new TextColor.RGB(113, 199, 0))) {
                     troopType.setPosition(temp);
+                    map.at(facilityPos).getFacility().execute();
                     p1.buy(troopType, price);
                     validSpace = true;
                 } else if (troop.getType().equals("Water") && Objects.equals(map.at(temp).getColor(), new TextColor.RGB(0,124,206))) {
                     troopType.setPosition(temp);
+                    map.at(facilityPos).getFacility().execute();
                     p1.buy(troopType, price);
                     validSpace = true;
                 }

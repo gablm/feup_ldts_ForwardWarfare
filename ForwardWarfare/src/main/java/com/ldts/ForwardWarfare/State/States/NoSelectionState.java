@@ -54,14 +54,13 @@ public class NoSelectionState extends BaseState {
                     p1.setSelection2(new Border(pos));
                     return new OneSelectionState(p1, p2, map);
                 }
-                if (map.getElements().stream().anyMatch(x-> x.getPosition().equals(pos)))
-                {
-                    Facility facility = map.at(pos).getFacility();
-                    if (facility != null && (facility.getClass() == Factory.class
-                            || facility.getClass() == Airport.class
-                            || facility.getClass() == Port.class))
-                       return new BuyState(p1, p2, map, map.at(pos).getFacility(),pos);
-                    return new InvalidSelectState(p1, p2, map, "Invalid play");
+                Facility facility = map.at(pos).getFacility();
+                if (facility != null && (facility.getClass() == Factory.class
+                        || facility.getClass() == Airport.class
+                        || facility.getClass() == Port.class)) {
+                    if(facility.getUsed())
+                        return new InvalidSelectState(p1, p2, map, "Already used");
+                    return new BuyState(p1, p2, map, map.at(pos).getFacility(), pos);
                 }
                 return new InvalidSelectState(p1, p2, map, "Invalid play");
             case ESCAPE:
