@@ -8,6 +8,7 @@ import com.ldts.ForwardWarfare.Element.Facility.OilPump;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
+import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import org.w3c.dom.Text;
 
@@ -109,7 +110,9 @@ public abstract class ControllerBase implements Controller {
         canPlay = true;
         coins += 100;
         for (Element i : facilities) {
-            coins += 30;
+            Facility facility = ((Tile)i).getFacility();
+            if (facility instanceof OilPump)
+                coins += 30;
         }
         for (Element i : troops) {
             ((Playable) i).setHasMoved(false);
