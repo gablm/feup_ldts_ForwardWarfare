@@ -58,9 +58,15 @@ public class NoSelectionState extends BaseState {
                 if (facility != null && (facility.getClass() == Factory.class
                         || facility.getClass() == Airport.class
                         || facility.getClass() == Port.class)) {
-                    if(facility.getUsed())
-                        return new InvalidSelectState(p1, p2, map, "Already used");
-                    return new BuyState(p1, p2, map, map.at(pos).getFacility(), pos);
+                    if (!p1.getFacilities().stream().anyMatch(x -> x.getPosition().equals(pos)))
+                    {
+                        return new InvalidSelectState(p1, p2, map, "Not Owned");
+                    }
+                    else {
+                        if (facility.getUsed())
+                            return new InvalidSelectState(p1, p2, map, "Already used");
+                        return new BuyState(p1, p2, map, map.at(pos).getFacility(), pos);
+                    }
                 }
                 return new InvalidSelectState(p1, p2, map, "Invalid play");
             case ESCAPE:
