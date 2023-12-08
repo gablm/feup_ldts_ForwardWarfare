@@ -108,11 +108,11 @@ public abstract class ControllerBase implements Controller {
     @Override
     public void resetRound() {
         canPlay = true;
-        coins += 100;
+        coins += 10;
         for (Element i : facilities) {
             Facility facility = ((Tile)i).getFacility();
             if (facility instanceof OilPump)
-                coins += 30;
+                coins += 10;
         }
         for (Element i : troops) {
             ((Playable) i).setHasMoved(false);
