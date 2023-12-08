@@ -22,7 +22,7 @@ public interface Controller {
     Border getSelection2();
     void setSelection1(Border selection1);
     void setSelection2(Border selection2);
-    void draw(TextGraphics textGraphics);
+    void draw(TextGraphics textGraphics, Map map);
     void drawBorder(TextGraphics graphics);
     State getInitialState(Controller p2, Map map);
 

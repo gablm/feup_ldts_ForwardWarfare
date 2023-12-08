@@ -8,6 +8,7 @@ import com.ldts.ForwardWarfare.Element.Facility.OilPump;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
+import com.ldts.ForwardWarfare.Map.Map;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -85,10 +86,12 @@ public abstract class ControllerBase implements Controller {
     }
 
     @Override
-    public void draw(TextGraphics graphics) {
+    public void draw(TextGraphics graphics, Map map) {
         base.draw(graphics);
-        for (Element i : troops)
+        for (Element i : troops) {
+            graphics.setBackgroundColor(map.at(i.getPosition()).getColor());
             i.draw(graphics);
+        }
         for (Element i : facilities)
             i.draw(graphics);
     }

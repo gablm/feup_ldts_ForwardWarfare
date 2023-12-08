@@ -50,8 +50,8 @@ public class Game {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
             map.draw(graphics);
-            p1.draw(graphics);
-            p2.draw(graphics);
+            p1.draw(graphics, map);
+            p2.draw(graphics, map);
             p1.drawBorder(graphics);
             p2.drawBorder(graphics);
             state.draw(graphics);
