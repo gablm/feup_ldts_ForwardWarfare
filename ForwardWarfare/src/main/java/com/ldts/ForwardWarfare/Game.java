@@ -45,6 +45,9 @@ public class Game {
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.RED);
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
 
+        AudioManager audioManager = AudioManager.get();
+        audioManager.play("termini.wav");
+
         State state = new StartRoundState(p1, p2, map);
         while (true) {
             screen.clear();
