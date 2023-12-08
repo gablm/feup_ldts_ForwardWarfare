@@ -14,7 +14,18 @@ public class MoveEndState extends BaseState {
     public MoveEndState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
         this.oldBorder = p1.getSelection1();
+        if (!canAttack())
+            option++;
         p1.setSelection1(null);
+    }
+
+    private boolean canAttack() {
+        try {
+            throw new Exception("Not implemented");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
@@ -22,10 +33,10 @@ public class MoveEndState extends BaseState {
         switch (action) {
             case ENTER:
                 switch (option) {
-                    case 0:
+                    case 1:
                         p1.setSelection1(oldBorder);
                         return p1.getInitialState(p2, map);
-                    case 1:
+                    case 2:
                         p1.endRound();
                         return new StartRoundState(p1, p2, map);
                     default:
@@ -35,7 +46,7 @@ public class MoveEndState extends BaseState {
                 option--;
                 if (option < 0)
                     option = 0;
-                if (option < 1 && false)
+                if (option < 1 && !canAttack())
                     option = 1;
                 break;
             case DOWN:
@@ -49,9 +60,10 @@ public class MoveEndState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        graphics.setForegroundColor(canAttack() ? TextColor.ANSI.WHITE_BRIGHT : new TextColor.RGB(80,80,80));
         graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
-        graphics.putString(1, 11, " Attack ");
+        graphics.putString(1, 11, canAttack() ? " Attack " : " No action ");
+        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 12, " Continue ");
         graphics.setBackgroundColor(option == 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);

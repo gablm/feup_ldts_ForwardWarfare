@@ -14,7 +14,7 @@ import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 
-public class BuyState extends BaseState{
+public class BuyState extends BaseState {
     private Facility facilitySelected;
     public BuyState(Controller p1, Controller p2, Map map, Facility facility) {
         super(p1, p2, map);

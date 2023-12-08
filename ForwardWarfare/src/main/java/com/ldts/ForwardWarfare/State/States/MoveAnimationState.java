@@ -41,7 +41,7 @@ public class MoveAnimationState extends BaseState {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "We movin!!!");
+        graphics.putString(1, 11, "We movin");
     }
 
     @Override
