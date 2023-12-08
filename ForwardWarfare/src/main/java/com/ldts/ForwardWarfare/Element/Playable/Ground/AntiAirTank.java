@@ -21,4 +21,14 @@ public class AntiAirTank extends Playable {
     public boolean canMove(Element element) {
         return element instanceof Fields;
     }
+
+    @Override
+    public String getType() {
+        return "Air";
+    }
+
+    @Override
+    public boolean canAttack(Playable playable) {
+        return true;
+    }
 }

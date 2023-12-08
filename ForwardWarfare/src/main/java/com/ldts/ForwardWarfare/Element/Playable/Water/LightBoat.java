@@ -21,4 +21,14 @@ public class LightBoat extends Playable {
     public boolean canMove(Element element) {
         return element instanceof Water;
     }
+
+    @Override
+    public String getType() {
+        return "Water";
+    }
+
+    @Override
+    public boolean canAttack(Playable playable) {
+        return playable.getType().equals("Water") || playable.getType().equals("Ground");
+    }
 }

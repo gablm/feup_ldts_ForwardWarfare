@@ -7,6 +7,7 @@ import com.ldts.ForwardWarfare.Element.Element;
 public abstract class Playable extends Element {
     private int hp = 0;
     private int maxMoves;
+    private boolean hasMoved = false;
     public Playable(int maxMoves) {
         this.maxMoves = maxMoves;
     }
@@ -18,4 +19,17 @@ public abstract class Playable extends Element {
     }
 
     public abstract boolean canMove(Element element);
+    public abstract String getType();
+    public abstract boolean canAttack(Playable playable);
+    public int getAttackRadius() {
+        return 0;
+    }
+
+    public void reverseMoved() {
+        hasMoved = !hasMoved;
+    }
+
+    public boolean hasMoved() {
+        return hasMoved;
+    }
 }
