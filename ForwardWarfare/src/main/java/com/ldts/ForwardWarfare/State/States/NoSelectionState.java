@@ -53,7 +53,7 @@ public class NoSelectionState extends BaseState {
                     if (facility != null && (facility.getClass() == Factory.class
                             || facility.getClass() == Airport.class
                             || facility.getClass() == Port.class))
-                       return new BuyState(p1, p2, map, map.at(pos).getFacility());
+                       return new BuyState(p1, p2, map, map.at(pos).getFacility(),pos);
                     return new InvalidSelectState(p1, p2, map, "Invalid play");
                 }
                 return new InvalidSelectState(p1, p2, map, "Invalid play");
