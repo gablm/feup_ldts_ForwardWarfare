@@ -103,6 +103,6 @@ public class SpawnTroopState extends BaseState {
 
     @Override
     public boolean requiresInput() {
-        return true;
+        return false;
     }
 }

@@ -9,8 +9,9 @@ import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 import java.util.List;
 
 public class Player extends ControllerBase {
-    public Player(List<Element> initialFacilities, TextColor color) throws InvalidControllerException {
-        super(initialFacilities, color);
+
+    public Player(List<Element> initialFacilities, TextColor color, String name) throws InvalidControllerException {
+        super(initialFacilities, color, name);
     }
 
     @Override

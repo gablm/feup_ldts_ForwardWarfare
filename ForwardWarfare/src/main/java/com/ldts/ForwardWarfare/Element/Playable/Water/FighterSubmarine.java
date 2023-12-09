@@ -9,7 +9,7 @@ import com.ldts.ForwardWarfare.Element.Tile.Water;
 
 public class FighterSubmarine extends Playable {
     public FighterSubmarine(Position pos) {
-        super(6);
+        super(6, 150, 75);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }

@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare.State.States.Player.Move;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -25,7 +27,7 @@ public class MoveAnimationState extends BaseState {
     @Override
     public State play(Action action) {
         if (moves.isEmpty())
-            return new MoveEndState(p1, p2, map);
+            return new MoveEndState(p1, p2, map, element);
         element.setPosition(moves.get(moves.size() - 1));
         moves.remove(moves.size() - 1);
         try
@@ -41,9 +43,10 @@ public class MoveAnimationState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(p1.getControllerColor());
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "We movin");
+        graphics.putString(1, 15, "Moving...");
     }
 
     @Override

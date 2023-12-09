@@ -3,6 +3,7 @@ package com.ldts.ForwardWarfare.Controller;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
+import com.ldts.ForwardWarfare.Element.Facility.Base;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.OilPump;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
@@ -26,7 +27,9 @@ public abstract class ControllerBase implements Controller {
     protected boolean canPlay = true;
     protected int coins;
 
-    public ControllerBase(List<Element> initialFacilities, TextColor controllerColor) throws InvalidControllerException {
+    private String name;
+
+    public ControllerBase(List<Element> initialFacilities, TextColor controllerColor, String name) throws InvalidControllerException {
         if (initialFacilities == null || initialFacilities.size() != 2)
             throw new InvalidControllerException("Invalid initial Factory and Base");
         Element factory = initialFacilities.get(1);
@@ -35,11 +38,16 @@ public abstract class ControllerBase implements Controller {
         base = initialFacilities.get(0);
         base.setForegroundColor(controllerColor);
         this.controllerColor = controllerColor;
-        this.coins = 100;
+        this.coins = 50;
+        this.name = name;
     }
 
     public Element getBase() {
         return base;
+    }
+
+    public int getBaseLives() {
+        return ((Base) ((Tile) base).getFacility()).getLives();
     }
 
     public List<Element> getTroops() {
@@ -62,7 +70,13 @@ public abstract class ControllerBase implements Controller {
         coins -= price;
         return true;
     }
-
+    public void setBase(Element newbase) {
+        base = newbase;
+    }
+    public void addFacility(Element facility) {
+        facilities.add(facility);
+        facility.setForegroundColor(controllerColor);
+    }
     public void endRound() {
         canPlay = false;
         selection1 = null;
@@ -124,5 +138,13 @@ public abstract class ControllerBase implements Controller {
     @Override
     public boolean canPlay() {
         return canPlay;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public TextColor getControllerColor() {
+        return controllerColor;
     }
 }

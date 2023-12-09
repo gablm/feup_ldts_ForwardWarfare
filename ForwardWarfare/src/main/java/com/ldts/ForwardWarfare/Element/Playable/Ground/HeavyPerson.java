@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class HeavyPerson extends Playable {
     public HeavyPerson(Position pos) {
-        super(3);
+        super(3, 100, 75);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }

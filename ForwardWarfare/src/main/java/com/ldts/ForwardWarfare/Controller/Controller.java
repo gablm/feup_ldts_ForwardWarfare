@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare.Controller;
 
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
@@ -11,6 +12,8 @@ import java.util.List;
 
 public interface Controller {
     boolean buy(Element troops, int price);
+    void addFacility(Element facility);
+    void setBase(Element newbase);
     void endRound();
     void resetRound();
     boolean canPlay();
@@ -25,6 +28,8 @@ public interface Controller {
     void draw(TextGraphics textGraphics, Map map);
     void drawBorder(TextGraphics graphics);
     State getInitialState(Controller p2, Map map);
-
+    String getName();
+    TextColor getControllerColor();
+    int getBaseLives();
 
 }

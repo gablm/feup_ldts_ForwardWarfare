@@ -38,14 +38,14 @@ public class MoveValidationState extends BaseState {
                 p1.setSelection1(p1.getSelection2());
                 p1.setSelection2(null);
                 if (res == null || res.size() >= troop.getMaxMoves() + 2)
-                    return new InvalidSelectState(p1, p2, map, "Invalid move");
+                    return new InvalidSelectState(p1, p2, map, String.format("Invalid path \nor the path\nsize exceeds\n%d tiles.", troop.getMaxMoves()));
                 troop.setHasMoved(true);
                 return new MoveAnimationState(p1, p2, map, res, i);
             }
         }
         p1.setSelection1(p1.getSelection2());
         p1.setSelection2(null);
-        return new MoveEndState(p1, p2, map);
+        return new MoveEndState(p1, p2, map, null);
     }
 
     public List<Position> canMove(Position pos, Position end, Playable playable){

@@ -9,7 +9,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public class BomberPlane extends Playable {
     public BomberPlane(Position pos) {
-        super(3);
+        super(3, 125, 200);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }

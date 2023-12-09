@@ -10,7 +10,7 @@ import com.ldts.ForwardWarfare.Element.Tile.Fields;
 
 public class LightPerson extends Playable {
     public LightPerson(Position pos) {
-        super(5);
+        super(5, 50, 50);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }
