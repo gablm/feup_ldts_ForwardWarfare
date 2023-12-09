@@ -18,8 +18,9 @@ import com.ldts.ForwardWarfare.State.States.QuitState;
 import java.util.List;
 
 public class AttackNoSelectionState extends BaseState {
-    public List<Element> selectables;
-    public AttackNoSelectionState(Controller p1, Controller p2, Map map) {
+    private List<Element> selectables;
+    private Element element;
+    public AttackNoSelectionState(Controller p1, Controller p2, Map map, Element element) {
         super(p1, p2, map);
         Border border = p1.getSelection1();
         if (border == null) {

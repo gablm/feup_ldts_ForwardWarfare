@@ -36,7 +36,7 @@ public class MoveEndState extends BaseState {
                 switch (option) {
                     case -2:
                         p1.setSelection1(oldBorder);
-                        return new AttackNoSelectionState(p1, p2, map);
+                        return new AttackNoSelectionState(p1, p2, map, element);
                     case -1: // Capture
                         p1.setSelection1(oldBorder);
                         return new CaptureNoSelectionState(p1, p2, map);
