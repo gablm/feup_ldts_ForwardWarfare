@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare.State.States.Player.Selection;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -22,14 +24,21 @@ public class InvalidSelectState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(new TextColor.RGB(80,80,80));
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
+
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         int i = 0;
         for (String str : message.split("\n")) {
+            if (i == 6) {
+                graphics.putString(1, 11 + i, "...");
+                break;
+            }
             graphics.putString(1, 11 + i, str);
             i++;
         }
-
+        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(1, 17, "ENTER");
     }
 
     @Override

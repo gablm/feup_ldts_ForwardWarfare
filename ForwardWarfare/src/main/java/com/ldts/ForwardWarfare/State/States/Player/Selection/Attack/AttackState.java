@@ -22,6 +22,10 @@ public class AttackState extends BaseState {
 
     @Override
     public State play(Action action) {
+        int finalHp = vitim.getHp() - attacker.getDamage();
+        vitim.setHP(finalHp);
+        if (finalHp <= 0)
+            p2.getTroops().remove(vitim);
         return new MoveEndState(p1, p2, map, null);
     }
 

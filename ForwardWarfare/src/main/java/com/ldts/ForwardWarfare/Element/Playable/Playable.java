@@ -14,30 +14,28 @@ public abstract class Playable extends Element {
         this.hp = hp;
         this.damage = damage;
     }
-    public void takeHP(int damage) {
-        hp -= damage;
-    }
-    public void setHP(int hp) {
-        this.hp = hp;
-    }
 
     public abstract boolean canMove(Element element);
-    public abstract String getType();
     public abstract boolean canAttack(Playable playable);
-    public int getAttackRadius() {
-        return 1;
-    }
 
     public boolean hasMoved() {
         return hasMoved;
     }
-
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
 
+    public int getAttackRadius() {
+        return 1;
+    }
+    public abstract String getType();
     public int getMaxMoves() {
         return maxMoves;
     }
     public int getDamage() {return damage;};
+
+    public int getHp() { return hp; }
+    public void setHP(int hp) {
+        this.hp = hp;
+    }
 }
