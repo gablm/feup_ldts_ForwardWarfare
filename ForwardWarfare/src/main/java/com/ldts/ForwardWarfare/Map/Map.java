@@ -135,6 +135,7 @@ public class Map extends Element {
             return null;
         return (Tile) map.get(position.getY() * 15 + position.getX());
     }
+
     public void set(Position position, Element element) {
         if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
             return;

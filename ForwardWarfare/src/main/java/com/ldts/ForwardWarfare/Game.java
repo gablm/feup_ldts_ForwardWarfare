@@ -44,6 +44,10 @@ public class Game {
         Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.BLUE, "P1");
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.RED, "P2");
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
+        p2.buy(PlayableFactory.createAATank(3, 6), 0);
+        p2.buy(PlayableFactory.createAATank(3, 7), 0);
+        p2.buy(PlayableFactory.createAATank(3, 8), 0);
+        p2.buy(PlayableFactory.createHeavyPerson(4, 8), 0);
 
         State state = new StartRoundState(p1, p2, map);
         while (true) {

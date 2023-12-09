@@ -22,7 +22,7 @@ public abstract class Playable extends Element {
     public abstract String getType();
     public abstract boolean canAttack(Playable playable);
     public int getAttackRadius() {
-        return 0;
+        return 1;
     }
 
     public boolean hasMoved() {

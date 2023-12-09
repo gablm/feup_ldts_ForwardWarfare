@@ -24,7 +24,12 @@ public class InvalidSelectState extends BaseState {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, message);
+        int i = 0;
+        for (String str : message.split("\n")) {
+            graphics.putString(1, 11 + i, str);
+            i++;
+        }
+
     }
 
     @Override

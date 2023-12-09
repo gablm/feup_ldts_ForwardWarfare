@@ -9,9 +9,8 @@ import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.BaseState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.AttackNoSelectionState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.Attack.AttackNoSelectionState;
 import com.ldts.ForwardWarfare.State.States.Player.Selection.CaptureNoSelectionState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
@@ -37,7 +36,7 @@ public class MoveEndState extends BaseState {
                     case -2:
                         p1.setSelection1(oldBorder);
                         return new AttackNoSelectionState(p1, p2, map, element);
-                    case -1: // Capture
+                    case -1:
                         p1.setSelection1(oldBorder);
                         return new CaptureNoSelectionState(p1, p2, map);
                     case 0:
@@ -97,19 +96,9 @@ public class MoveEndState extends BaseState {
         return true;
     }
     private boolean canCapture() {
-        try {
-            throw new Exception("Not implemented");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return element != null;
     }
     private boolean canAttack() {
-        /*try {
-            throw new Exception("Not implemented");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        return true;
+        return element != null;
     }
 }
