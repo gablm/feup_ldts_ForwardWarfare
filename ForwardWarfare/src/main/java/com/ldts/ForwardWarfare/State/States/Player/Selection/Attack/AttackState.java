@@ -1,5 +1,8 @@
 package com.ldts.ForwardWarfare.State.States.Player.Selection.Attack;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Element;
@@ -22,20 +25,33 @@ public class AttackState extends BaseState {
 
     @Override
     public State play(Action action) {
-        int finalHp = vitim.getHp() - attacker.getDamage();
-        vitim.setHP(finalHp);
-        if (finalHp <= 0)
-            p2.getTroops().remove(vitim);
+
         return new MoveEndState(p1, p2, map, null);
     }
 
     @Override
     public void draw(TextGraphics graphics) {
+        graphics.setBackgroundColor(p1.getControllerColor());
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
 
+        int finalHp = vitim.getHp() - attacker.getDamage();
+        vitim.setHP(finalHp);
+        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(1, 12, "SUCCESS");
+        if (finalHp <= 0) {
+            graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+            graphics.putString(1, 14, "TARGET DEAD");
+            p2.getTroops().remove(vitim);
+        } else {
+            graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+            graphics.putString(1, 14, String.format("%d HP LEFT", finalHp));
+        }
+        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(1, 17, "ENTER");
     }
 
     @Override
     public boolean requiresInput() {
-        return false;
+        return true;
     }
 }

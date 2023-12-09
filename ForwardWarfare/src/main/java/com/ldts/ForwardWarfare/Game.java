@@ -32,7 +32,6 @@ public class Game {
         try {
             new Game(new LanternaTerminal(new TerminalSize(25,19), "tanks2_1.ttf", 40)).run();
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }

@@ -28,7 +28,7 @@ public class CaptureNoSelectionState extends BaseState {
             TextColor color = map.at(border.getPosition()).getColor();
             border.setBackgroundColor(color);
         }
-        UnitPos= p1.getSelection1().getPosition();
+        UnitPos = p1.getSelection1().getPosition();
     }
 
     @Override

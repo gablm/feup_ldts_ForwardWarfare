@@ -25,8 +25,6 @@ public class MoveEndState extends BaseState {
     public MoveEndState(Controller p1, Controller p2, Map map, Element element) {
         super(p1, p2, map);
         this.oldBorder = p1.getSelection1();
-        if (!canAttack())
-            option++;
         p1.setSelection1(null);
         this.element = element;
     }
@@ -106,35 +104,20 @@ public class MoveEndState extends BaseState {
         if (element == null)
             return false;
         boolean canCapture = false;
-        int v=0;
+        int v = 0;
+        int x = element.getPosition().getX(), y = element.getPosition().getY();
         while (!canCapture) {
-            switch (v)
-            {
-                case 0:
-                    canCapture = map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY())).getFacility()!=null;
-                    break;
-                case 1:
-                    canCapture = map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY()+1)).getFacility()!=null;
-                    break;
-                case 2:
-                    canCapture = map.at( new Position(element.getPosition().getX(),element.getPosition().getY()+1)).getFacility()!=null;
-                    break;
-                case 3:
-                    canCapture = map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY()+1)).getFacility()!=null;
-                    break;
-                case 4:
-                    canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY())).getFacility()!=null;
-                    break;
-                case 5:
-                    canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY()-1)).getFacility()!=null;
-                    break;
-                case 6:
-                    canCapture= map.at( new Position(element.getPosition().getX(),element.getPosition().getY()-1)).getFacility()!=null;
-                    break;
-                case 7:
-                    canCapture= map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY()-1)).getFacility()!=null;
-                    break;
-            }
+            canCapture = switch (v) {
+                case 0 -> map.at(new Position(x + 1, y)).getFacility() != null;
+                case 1 -> map.at(new Position(x + 1, y + 1)).getFacility() != null;
+                case 2 -> map.at(new Position(x, y + 1)).getFacility() != null;
+                case 3 -> map.at(new Position(x - 1, y + 1)).getFacility() != null;
+                case 4 -> map.at(new Position(x - 1, y)).getFacility() != null;
+                case 5 -> map.at(new Position(x - 1, y - 1)).getFacility() != null;
+                case 6 -> map.at(new Position(x, y - 1)).getFacility() != null;
+                case 7 -> map.at(new Position(x + 1, y - 1)).getFacility() != null;
+                default -> false;
+            };
             v++;
             if (v == 8 && !canCapture)
                 break;
