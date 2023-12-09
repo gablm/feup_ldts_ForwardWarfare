@@ -94,7 +94,8 @@ public class AttackNoSelectionState extends BaseState {
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(1, 11, selectables.isEmpty() ? "Nothing" : "Select troop");
         TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
-        graphics.setCharacter(1, 12, character);
+        graphics.setCharacter(1, 13, character);
+        graphics.putString(3, 13, String.format("HP %d", selectables.get(index).getHp()));
     }
 
     @Override
