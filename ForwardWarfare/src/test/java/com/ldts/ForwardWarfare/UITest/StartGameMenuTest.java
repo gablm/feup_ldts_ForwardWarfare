@@ -44,7 +44,7 @@ public class StartGameMenuTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        startGameMenu = Mockito.spy(new StartGameMenu());
+        startGameMenu = Mockito.spy(new StartGameMenu(false));
         startGameMenu.setUITerminal(uiTerminalMock);
         startGameMenu.setScreen(screenMock);
         startGameMenu.getListComponents().add(componentMock);

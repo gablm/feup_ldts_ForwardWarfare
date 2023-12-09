@@ -31,11 +31,13 @@ public class StartGameMenu extends UI {
     private int bc=0;
     private int ms=1;
     private int selected=-1;
+    private boolean Gamemode;
     ColorGrid grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25);
     List<Component>ButtonsList=new ArrayList<>();
 
-    public StartGameMenu() {
+    public StartGameMenu(boolean gamemode) {
         super(new TerminalSize(74,36),15);
+        Gamemode=gamemode;
     }
 
     @Override

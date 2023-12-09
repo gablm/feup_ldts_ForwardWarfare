@@ -20,6 +20,8 @@ public abstract class UI {
     private TerminalSize terminalSize;
     private int fontsize;
     protected boolean endscreen=false;
+    protected boolean gameMode;
+
     public UI(TerminalSize terminalSize,int fontsize)
     {
         this.fontsize=fontsize;
@@ -63,5 +65,9 @@ public abstract class UI {
 
     public boolean isEndscreen() {
         return endscreen;
+    }
+
+    public boolean getGameMode() {
+        return gameMode;
     }
 }

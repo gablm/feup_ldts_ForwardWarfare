@@ -30,6 +30,7 @@ import java.sql.Struct;
 public class Game {
     private boolean running=true;
     private UiStates state=UiStates.MainMenu;
+    private boolean GameMode;
 
     public static void main(String[] args) throws IOException, MapParseException, URISyntaxException {
        Game game=new Game();
@@ -43,9 +44,10 @@ public class Game {
                 case MainMenu:
                     UI mainmenu=new MainMenu();
                     state=mainmenu.build();
+                    GameMode=mainmenu.getGameMode();
                     break;
                 case StartGameMenu:
-                    UI startgamemenu=new StartGameMenu();
+                    UI startgamemenu=new StartGameMenu(GameMode);
                     state=startgamemenu.build();
                     break;
                 case HowToPlay:

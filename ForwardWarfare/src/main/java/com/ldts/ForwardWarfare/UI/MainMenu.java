@@ -22,7 +22,6 @@ public class MainMenu extends UI {
         super(new TerminalSize(41,23),25);
     }
     private boolean fsb=true;
-    private boolean GAMEMODE;
     private UiStates startgame;
 
     private List<Component> fs=new ArrayList<>();
@@ -92,12 +91,12 @@ public class MainMenu extends UI {
             switch (cb) {
                 case 0:
                     endscreen = true;
-                    GAMEMODE=true; //vs Player
+                    gameMode=true; //vs Player
                     startgame = UiStates.StartGameMenu;
                     break;
                 case 1:
                     endscreen = true;
-                    GAMEMODE=false; //vs AI
+                    gameMode=false; //vs AI
                     startgame = UiStates.StartGameMenu;
                     break;
             }
@@ -158,6 +157,7 @@ public class MainMenu extends UI {
             processKey(key);
         }
         screen.close();
+
         return startgame;
     }
 
@@ -197,10 +197,6 @@ public class MainMenu extends UI {
 
     public List<Component> getSs() {
         return ss;
-    }
-
-    public boolean getGAMEMODE() {
-        return GAMEMODE;
     }
 
     public void setCb(int cb) {
