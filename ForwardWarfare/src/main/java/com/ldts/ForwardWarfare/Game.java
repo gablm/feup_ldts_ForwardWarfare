@@ -48,6 +48,7 @@ public class Game {
         p2.buy(PlayableFactory.createAATank(3, 7), 0);
         p2.buy(PlayableFactory.createAATank(3, 8), 0);
         p2.buy(PlayableFactory.createHeavyPerson(4, 8), 0);
+        p1.buy(PlayableFactory.createFighterPlane(5, 6), 0);
 
         State state = new StartRoundState(p1, p2, map);
         while (true) {

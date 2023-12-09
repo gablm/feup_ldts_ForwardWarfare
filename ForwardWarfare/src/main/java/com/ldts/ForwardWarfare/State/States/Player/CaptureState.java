@@ -36,25 +36,14 @@ public class CaptureState extends BaseState {
     private void capture(Position pos){
         if(map.at(pos).getFacility().getClass()== Base.class)
         {
-            System.out.println("Base");
-            if (p1.getBase().equals(pos)) {
+            if (p2.getBase().getPosition().equals(pos)) {
+                System.out.println("Base");
                 Base basep1 = (Base) map.at(pos).getFacility();
                 basep1.takeDamage();
                 map.set(pos, new Fields(pos,basep1));
-                p1.setBase((Element) map.at(pos));
+                p2.setBase((Element) map.at(pos));
                 System.out.println(basep1.getLives());
                 if (basep1.getLives() <= 0)
-                {
-                    endgame = true;
-                }
-            } else
-            {
-                Base basep2 = (Base) map.at(pos).getFacility();
-                basep2.takeDamage();
-                map.set(pos, new Fields(pos,basep2));
-                p2.setBase((Element) map.at(pos));
-                System.out.println(basep2.getLives());
-                if (basep2.getLives() <= 0)
                 {
                     endgame = true;
                 }
