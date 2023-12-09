@@ -25,7 +25,7 @@ public class MoveAnimationState extends BaseState {
     @Override
     public State play(Action action) {
         if (moves.isEmpty())
-            return new MoveEndState(p1, p2, map);
+            return new MoveEndState(p1, p2, map, element);
         element.setPosition(moves.get(moves.size() - 1));
         moves.remove(moves.size() - 1);
         try

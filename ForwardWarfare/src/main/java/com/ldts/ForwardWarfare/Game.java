@@ -53,9 +53,9 @@ public class Game {
             map.draw(graphics);
             p1.draw(graphics, map);
             p2.draw(graphics, map);
+            state.draw(graphics);
             p1.drawBorder(graphics);
             p2.drawBorder(graphics);
-            state.draw(graphics);
             drawSide(graphics, p1, p2);
             screen.refresh();
 

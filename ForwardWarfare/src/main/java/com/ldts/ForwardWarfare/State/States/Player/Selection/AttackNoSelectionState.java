@@ -1,24 +1,26 @@
 package com.ldts.ForwardWarfare.State.States.Player.Selection;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.BaseState;
-import com.ldts.ForwardWarfare.State.States.Player.CaptureState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 
-import java.util.Optional;
+import java.util.List;
 
-public class CaptureNoSelectionState extends BaseState {
-    private Position UnitPos;
-
-    public CaptureNoSelectionState(Controller p1, Controller p2, Map map) {
+public class AttackNoSelectionState extends BaseState {
+    private List<Element> selectables;
+    private Element element;
+    public AttackNoSelectionState(Controller p1, Controller p2, Map map, Element element) {
         super(p1, p2, map);
         Border border = p1.getSelection1();
         if (border == null) {
@@ -28,7 +30,6 @@ public class CaptureNoSelectionState extends BaseState {
             TextColor color = map.at(border.getPosition()).getColor();
             border.setBackgroundColor(color);
         }
-        UnitPos= p1.getSelection1().getPosition();
     }
 
     @Override
@@ -48,10 +49,7 @@ public class CaptureNoSelectionState extends BaseState {
                 moveTo(pos.getX() + 1, pos.getY());
                 break;
             case ENTER:
-                if (isnewfacility(pos))
-                    return new CaptureState(p1, p2, map);
-                else
-                    return new CaptureInvalidState(p1, p2, map,"Invalid Facility");
+                break;
             case ESCAPE:
                 return new MoveEndState(p1, p2, map, null);
             case QUIT:
@@ -64,7 +62,9 @@ public class CaptureNoSelectionState extends BaseState {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "Select facility");
+        graphics.putString(1, 11, "Select troop");
+        TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
+        graphics.setCharacter(1, 12, character);
     }
 
     @Override
@@ -74,21 +74,11 @@ public class CaptureNoSelectionState extends BaseState {
 
     private void moveTo(int x, int y) {
         Position pos = new Position(x, y);
-        if(pos.getX()<=UnitPos.getX()+1 && pos.getX()>=UnitPos.getX()-1 && pos.getY()<=UnitPos.getY()+1 && pos.getY()>=UnitPos.getY()-1) {
-            if (!map.inside(pos))
-                return;
-            p1.getSelection1().setPosition(pos);
-            TextColor color = map.at(pos).getColor();
-            if (color != null)
-                p1.getSelection1().setBackgroundColor(color);
-        }
-    }
-    private boolean isnewfacility(Position pos){
-        if (p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)))
-        {
-            return false;
-        }
-        else
-            return map.at(pos).getFacility()!=null;
+        if (!map.inside(pos))
+            return;
+        p1.getSelection1().setPosition(pos);
+        TextColor color = map.at(pos).getColor();
+        if (color != null)
+            p1.getSelection1().setBackgroundColor(color);
     }
 }
