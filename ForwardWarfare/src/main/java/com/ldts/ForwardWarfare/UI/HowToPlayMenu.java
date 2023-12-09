@@ -9,6 +9,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.MapParseException;
+import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 
 import java.io.FileNotFoundException;
@@ -17,10 +18,8 @@ import java.net.URISyntaxException;
 
 public class HowToPlayMenu extends UI{
     private UiStates startgame;
-    private Position position;
-
     public HowToPlayMenu() {
-        super(new TerminalSize(75,50),15);
+        super(new TerminalSize(67,40),20);
     }
 
     @Override
@@ -40,19 +39,39 @@ public class HowToPlayMenu extends UI{
         for (Component comp : listComponents) {
             comp.draw(graphics);
         }
+        graphics.setBackgroundColor(new TextColor.RGB(247,193,64));
+        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(3, 3),"                         HOW TO PLAY" );
+        graphics.disableModifiers(SGR.BOLD);
+        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
+        graphics.putString(new TerminalPosition(3, 5), "        Forward Warfare is a Turn-based Strategy Game.");
+        graphics.putString(new TerminalPosition(3, 7), " The objective is to Defeat the Enemy Army, Capture Bases and" );
+        graphics.putString(new TerminalPosition(3, 8), "    Control Facilities to Obtain Coins and Additional Units." );
+        graphics.putString(new TerminalPosition(3, 10)," After Moving a Unit Depending of Your Surroundings You Can:" );
+        graphics.putString(new TerminalPosition(3, 12),"             -Capture Nearby Facilities - >;`/)." );
+        graphics.putString(new TerminalPosition(3, 13),"             -Attack Nearby Enemy Units - <%($[." );
+        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(3, 16),"                         FACILITIES" );
+        graphics.disableModifiers(SGR.BOLD);
+        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
+        graphics.putString(new TerminalPosition(3, 18),"   ; Bases- Capture Enemy Base to Win the Game Takes 2 Turns." );
+        graphics.putString(new TerminalPosition(3, 19),"   ` Factories- You can Buy One Ground Unit Per Round." );
+        graphics.putString(new TerminalPosition(3, 20),"   > Airports- You can Buy One Air Unit Per Round." );
+        graphics.putString(new TerminalPosition(3, 21),"   ) Ports- You can Buy One Sea Unit Per Round." );
+        graphics.putString(new TerminalPosition(3, 22),"   / OilPumps- Gives You Plus 10 Income Per Round." );
+        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(3, 25),"                          MOVEMENT" );
+        graphics.disableModifiers(SGR.BOLD);
+        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
         screen.refresh();
-        int x;
-        int y;
-        TextGraphics textGraphics = graphics.putString(new TerminalPosition(position.getX(), position.getY()), "\"FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo." +
-                " The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. " +
-                "The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units. This said, it also allows us to build troops in different places, like airports, factories, ports for example. " +
-                "At the start of the round we have a cash base income, and then we get more money per round the more oil we own." +
-                " On other side, if our opponent capture our base we lose the game.\"));\n");
-
     }
 
     @Override
     public void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException {
+        listComponents.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,1),new TerminalSize(65,38),"",10));
     }
 
     @Override
