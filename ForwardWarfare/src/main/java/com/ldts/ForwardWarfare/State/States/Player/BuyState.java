@@ -213,9 +213,9 @@ public class BuyState extends BaseState {
         graphics.setForegroundColor(colors.get(indexf.get(2)));
         graphics.putString(2, 15, "@ 10");
         graphics.setForegroundColor(colors.get(indexf.get(3)));
-        graphics.putString(9, 13, "#  7");
+        graphics.putString(9, 13, "$  7");
         graphics.setForegroundColor(colors.get(indexf.get(4)));
-        graphics.putString(9, 14, "$ 15");
+        graphics.putString(9, 14, "# 15");
         graphics.setForegroundColor(colors.get(indexf.get(5)));
         graphics.putString(9, 15, "+ 10");
         graphics.enableModifiers(SGR.BOLD);
