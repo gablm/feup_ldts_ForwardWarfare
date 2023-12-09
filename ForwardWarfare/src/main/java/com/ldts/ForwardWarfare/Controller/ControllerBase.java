@@ -26,7 +26,9 @@ public abstract class ControllerBase implements Controller {
     protected boolean canPlay = true;
     protected int coins;
 
-    public ControllerBase(List<Element> initialFacilities, TextColor controllerColor) throws InvalidControllerException {
+    private String name;
+
+    public ControllerBase(List<Element> initialFacilities, TextColor controllerColor, String name) throws InvalidControllerException {
         if (initialFacilities == null || initialFacilities.size() != 2)
             throw new InvalidControllerException("Invalid initial Factory and Base");
         Element factory = initialFacilities.get(1);
@@ -35,7 +37,8 @@ public abstract class ControllerBase implements Controller {
         base = initialFacilities.get(0);
         base.setForegroundColor(controllerColor);
         this.controllerColor = controllerColor;
-        this.coins = 100;
+        this.coins = 50;
+        this.name = name;
     }
 
     public Element getBase() {
@@ -124,5 +127,9 @@ public abstract class ControllerBase implements Controller {
     @Override
     public boolean canPlay() {
         return canPlay;
+    }
+
+    public String getName() {
+        return name;
     }
 }

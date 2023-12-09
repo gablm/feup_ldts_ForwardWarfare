@@ -75,7 +75,7 @@ public class MoveEndState extends BaseState {
         graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 12, " Continue ");
         graphics.setBackgroundColor(option == 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
-        graphics.putString(1, 13, " End Round ");
+        graphics.putString(1, 13, " End Turn ");
         graphics.setBackgroundColor(option == 3 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 14, canAttack() ? " Capture  " : " No action ");
         graphics.setBackgroundColor(option == 4 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);

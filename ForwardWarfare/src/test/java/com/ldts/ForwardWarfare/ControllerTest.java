@@ -6,7 +6,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.*;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Base;
-import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.Factory;
 import com.ldts.ForwardWarfare.Element.Playable.Ground.LightTank;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
@@ -14,7 +13,6 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -28,7 +26,7 @@ public class ControllerTest {
     @Test
     public void ControllerInvalidTest() {
         Exception playerEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Player(null, TextColor.ANSI.MAGENTA_BRIGHT);
+            new Player(null, TextColor.ANSI.MAGENTA_BRIGHT, name);
         });
         Exception botEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
             new Bot(null, TextColor.ANSI.GREEN_BRIGHT);
@@ -42,7 +40,7 @@ public class ControllerTest {
     public void ControllerWrongSizeTest() {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()));
         Exception playerEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+            new Player(elements, TextColor.ANSI.GREEN_BRIGHT, name);
         });
         Exception botEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
             new Bot(elements, TextColor.ANSI.GREEN_BRIGHT);
@@ -58,7 +56,7 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, name);
 
         assertEquals(100, player.getCoins());
         Assertions.assertSame(player.getBase(), base);
@@ -73,7 +71,7 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, name);
 
         assertEquals(100, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
@@ -90,7 +88,7 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, name);
 
         assertEquals(100, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
@@ -107,7 +105,7 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, name);
 
         assertEquals(100, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
@@ -140,7 +138,7 @@ public class ControllerTest {
     public void GetSetSelection2Test() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         Border borderMock = Mockito.mock(Border.class);
-        Controller yourInstance = new Player(elements, TextColor.ANSI.RED_BRIGHT);
+        Controller yourInstance = new Player(elements, TextColor.ANSI.RED_BRIGHT, name);
         yourInstance.setSelection2(borderMock);
         assertEquals(borderMock, yourInstance.getSelection2());
     }
@@ -149,7 +147,7 @@ public class ControllerTest {
     public void DrawTest() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
-        ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE);
+        ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE, name);
         yourInstance.draw(graphicsMock);
         Mockito.verify(graphicsMock,
                 Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size() * 2 + 2))
@@ -173,7 +171,7 @@ public class ControllerTest {
     @Test
     public void ResetRoundTest() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
-        Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255));
+        Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255), name);
         int initialCoins = yourInstance.getCoins();
         yourInstance.resetRound();
         assertTrue(yourInstance.canPlay());

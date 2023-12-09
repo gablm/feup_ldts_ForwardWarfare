@@ -9,8 +9,8 @@ import com.ldts.ForwardWarfare.State.States.Automatic.AutomaticPlayState;
 import java.util.List;
 
 public class Bot extends ControllerBase {
-    public Bot(List<Element> initialFacilities, TextColor color) throws InvalidControllerException {
-        super(initialFacilities, color);
+    public Bot(List<Element> initialFacilities, TextColor color, String name) throws InvalidControllerException {
+        super(initialFacilities, color, name);
     }
 
     @Override

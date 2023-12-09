@@ -25,6 +25,6 @@ public interface Controller {
     void draw(TextGraphics textGraphics, Map map);
     void drawBorder(TextGraphics graphics);
     State getInitialState(Controller p2, Map map);
-
+    String getName();
 
 }
