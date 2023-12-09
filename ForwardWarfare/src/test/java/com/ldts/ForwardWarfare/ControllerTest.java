@@ -8,11 +8,14 @@ import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Base;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.Factory;
+import com.ldts.ForwardWarfare.Element.Facility.OilPump;
 import com.ldts.ForwardWarfare.Element.Playable.Ground.LightTank;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
+import com.ldts.ForwardWarfare.Element.Tile.Tile;
+import com.ldts.ForwardWarfare.Map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -150,7 +153,9 @@ public class ControllerTest {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
         ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE);
-        yourInstance.draw(graphicsMock);
+        Map map = Mockito.mock(Map.class);
+        Mockito.when(map.at(Mockito.any())).thenReturn(new Fields(new Position(0, 0), null));
+        yourInstance.draw(graphicsMock, map);
         Mockito.verify(graphicsMock,
                 Mockito.times(yourInstance.getTroops().size() + yourInstance.getFacilities().size() * 2 + 2))
                 .putString(Mockito.any(TerminalPosition.class),Mockito.any(String.class));
@@ -177,7 +182,8 @@ public class ControllerTest {
         int initialCoins = yourInstance.getCoins();
         yourInstance.resetRound();
         assertTrue(yourInstance.canPlay());
-        assertEquals(initialCoins + 100 + 30 * yourInstance.getFacilities().size(), yourInstance.getCoins());
+        long coinsFromOilPump = yourInstance.getFacilities().stream().filter(x -> ((Tile)x).getFacility() instanceof OilPump).count();
+        assertEquals(initialCoins + 10 + 10 * coinsFromOilPump, yourInstance.getCoins());
     }
 
     @Test
