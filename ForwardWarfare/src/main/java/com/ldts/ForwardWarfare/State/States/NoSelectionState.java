@@ -28,7 +28,6 @@ public class NoSelectionState extends BaseState {
             TextColor color = map.at(border.getPosition()).getColor();
             border.setBackgroundColor(color);
         }
-
     }
     @Override
     public State play(Action action) {
@@ -52,7 +51,7 @@ public class NoSelectionState extends BaseState {
                     if (((Playable) findTroop.get()).hasMoved())
                         return new InvalidSelectState(p1, p2, map, "Already moved");
                     p1.setSelection2(new Border(pos));
-                    return new OneSelectionState(p1, p2, map);
+                    return new OneSelectionState(p1, p2, map, false);
                 }
                 Facility facility = map.at(pos).getFacility();
                 if (facility != null && (facility.getClass() == Factory.class

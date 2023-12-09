@@ -3,6 +3,7 @@ package com.ldts.ForwardWarfare.State.States;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
@@ -13,18 +14,18 @@ public class MoveEndState extends BaseState {
     private Border oldBorder;
     public MoveEndState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
-        this.oldBorder = p1.getSelection1();
+        /*this.oldBorder = p1.getSelection1();
         if (!canAttack())
             option++;
-        p1.setSelection1(null);
+        p1.setSelection1(null);*/
     }
 
     private boolean canAttack() {
-        try {
+        /*try {
             throw new Exception("Not implemented");
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return true;
     }
 
@@ -39,8 +40,10 @@ public class MoveEndState extends BaseState {
                     case 2:
                         p1.endRound();
                         return new StartRoundState(p1, p2, map);
-                    case 3:
-                        return new CaptureState(p1, p2, map);
+                    case 3: // Capture
+                        p1.setSelection1(new Border()));
+                        p2.setSelection2(new Border(p1.getSelection1().getPosition()));
+                        return new OneSelectionState(p1, p2, map, true);
                     default:
                         return new QuitState(p1, p2, map, this);
                 }
@@ -65,13 +68,12 @@ public class MoveEndState extends BaseState {
         graphics.setForegroundColor(canAttack() ? TextColor.ANSI.WHITE_BRIGHT : new TextColor.RGB(80,80,80));
         graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 11, canAttack() ? " Attack " : " No action ");
-        graphics.setBackgroundColor(option == 3 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
-        graphics.putString(1, 14, canAttack() ? " Capture  " : " No action ");
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 12, " Continue ");
         graphics.setBackgroundColor(option == 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 13, " End Round ");
+        graphics.setBackgroundColor(option == 3 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
+        graphics.putString(1, 14, canAttack() ? " Capture  " : " No action ");
         graphics.setBackgroundColor(option == 4 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
         graphics.putString(1, 15, " Exit ");
     }

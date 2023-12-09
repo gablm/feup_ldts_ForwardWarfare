@@ -2,11 +2,13 @@ package com.ldts.ForwardWarfare.State.States;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 
 public class CaptureState extends BaseState {
+    private Position pos;
     public CaptureState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
     }

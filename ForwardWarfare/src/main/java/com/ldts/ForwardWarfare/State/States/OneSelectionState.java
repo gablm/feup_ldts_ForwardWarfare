@@ -11,11 +11,13 @@ import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 
 public class OneSelectionState extends BaseState{
-    public OneSelectionState(Controller p1, Controller p2, Map map) {
+    private boolean facilityselect;
+    public OneSelectionState(Controller p1, Controller p2, Map map, boolean facilityselect) {
         super(p1, p2, map);
         Border border = p1.getSelection2();
         TextColor color = map.at(border.getPosition()).getColor();
         border.setBackgroundColor(color);
+        this.facilityselect = facilityselect;
     }
     @Override
     public State play(Action action) {
@@ -48,7 +50,10 @@ public class OneSelectionState extends BaseState{
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "Where to go");
+        if(facilityselect)
+            graphics.putString(1, 11, "Capture Witch");
+        else
+            graphics.putString(1, 11, "Where to go");
     }
 
     @Override
