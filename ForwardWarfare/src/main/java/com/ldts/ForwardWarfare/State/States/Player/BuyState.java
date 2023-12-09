@@ -206,7 +206,6 @@ public class BuyState extends BaseState {
     {
         graphics.setBackgroundColor(new TextColor.RGB(80,80,80));
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
-        String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
         graphics.setForegroundColor(colors.get(indexf.get(0)));
         graphics.putString(2, 13, "(  2");
         graphics.setForegroundColor(colors.get(indexf.get(1)));
@@ -223,7 +222,6 @@ public class BuyState extends BaseState {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
         graphics.putString(1, 11, " Factory Shop");
         graphics.setForegroundColor(new TextColor.RGB(255,223,0));
-        graphics.putString(6, 17, coins);
         graphics.putString(6, 13, "!");
         graphics.putString(6, 14, "!");
         graphics.putString(6, 15, "!");
@@ -238,7 +236,6 @@ public class BuyState extends BaseState {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
         graphics.setBackgroundColor(new  TextColor.RGB(0,124,206));
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
-        String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
         graphics.setForegroundColor(colors.get(indexp.get(0)));
         graphics.putString(2, 13, "<  7");
         graphics.setForegroundColor(colors.get(indexp.get(1)));
@@ -249,7 +246,6 @@ public class BuyState extends BaseState {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
         graphics.putString(3, 11, "Port Shop");
         graphics.setForegroundColor(new TextColor.RGB(255,223,0));
-        graphics.putString(6, 17, coins);
         graphics.putString(6, 13, "!");
         graphics.putString(6, 14, "!");
         graphics.putString(13, 13, "!");
@@ -261,7 +257,6 @@ public class BuyState extends BaseState {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
         graphics.setBackgroundColor(new TextColor.RGB(153,76,0));
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
-        String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
         graphics.setForegroundColor(colors.get(indexa.get(0)));
         graphics.putString(2, 13, "% 10");
         graphics.setForegroundColor(colors.get(indexa.get(1)));
@@ -272,7 +267,6 @@ public class BuyState extends BaseState {
         graphics.setForegroundColor(new TextColor.RGB(255,255,255));
         graphics.putString(3, 11, "Port Shop");
         graphics.setForegroundColor(new TextColor.RGB(255,223,0));
-        graphics.putString(6, 17, coins);
         graphics.putString(6, 13, "!");
         graphics.putString(6, 14, "!");
         graphics.putString(13, 13, "!");

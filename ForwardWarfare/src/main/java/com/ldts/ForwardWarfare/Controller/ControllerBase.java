@@ -65,7 +65,10 @@ public abstract class ControllerBase implements Controller {
         coins -= price;
         return true;
     }
-
+    public void addFacility(Element facility) {
+        facilities.add(facility);
+        facility.setForegroundColor(controllerColor);
+    }
     public void endRound() {
         canPlay = false;
         selection1 = null;
