@@ -43,17 +43,11 @@ public class Game {
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
 
         State state = new StartRoundState(p1, p2, map);
+        Drawer drawer = new Drawer(p1, p2, map);
         while (true) {
             screen.clear();
-            TextGraphics graphics = screen.newTextGraphics();
-            map.draw(graphics);
-            p1.draw(graphics, map);
-            p2.draw(graphics, map);
-            p1.drawBorder(graphics);
-            p2.drawBorder(graphics);
-            state.draw(graphics);
+            drawer.draw(screen.newTextGraphics(), state);
             screen.refresh();
-
             if (state.requiresInput()) {
                 KeyStroke key = screen.readInput();
                 if (key.getKeyType() == KeyType.EOF)
