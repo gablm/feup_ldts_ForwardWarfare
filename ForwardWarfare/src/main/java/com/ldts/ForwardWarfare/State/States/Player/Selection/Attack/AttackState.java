@@ -25,7 +25,6 @@ public class AttackState extends BaseState {
 
     @Override
     public State play(Action action) {
-
         return new MoveEndState(p1, p2, map, null);
     }
 
