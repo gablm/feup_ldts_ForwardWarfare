@@ -9,12 +9,14 @@ import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.Player.CaptureState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 
 import java.util.Optional;
 
 public class CaptureNoSelectionState extends BaseState {
+    private Position UnitPos;
 
     public CaptureNoSelectionState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
@@ -26,6 +28,7 @@ public class CaptureNoSelectionState extends BaseState {
             TextColor color = map.at(border.getPosition()).getColor();
             border.setBackgroundColor(color);
         }
+        UnitPos= p1.getSelection1().getPosition();
     }
 
     @Override
@@ -45,7 +48,10 @@ public class CaptureNoSelectionState extends BaseState {
                 moveTo(pos.getX() + 1, pos.getY());
                 break;
             case ENTER:
-                break;
+                if (isnewfacility(pos))
+                    return new CaptureState(p1, p2, map);
+                else
+                    return new CaptureInvalidState(p1, p2, map,"Invalid Facility");
             case ESCAPE:
                 return new MoveEndState(p1, p2, map);
             case QUIT:
@@ -68,11 +74,21 @@ public class CaptureNoSelectionState extends BaseState {
 
     private void moveTo(int x, int y) {
         Position pos = new Position(x, y);
-        if (!map.inside(pos))
-            return;
-        p1.getSelection1().setPosition(pos);
-        TextColor color = map.at(pos).getColor();
-        if (color != null)
-            p1.getSelection1().setBackgroundColor(color);
+        if(pos.getX()<=UnitPos.getX()+1 && pos.getX()>=UnitPos.getX()-1 && pos.getY()<=UnitPos.getY()+1 && pos.getY()>=UnitPos.getY()-1) {
+            if (!map.inside(pos))
+                return;
+            p1.getSelection1().setPosition(pos);
+            TextColor color = map.at(pos).getColor();
+            if (color != null)
+                p1.getSelection1().setBackgroundColor(color);
+        }
+    }
+    private boolean isnewfacility(Position pos){
+        if (p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)))
+        {
+            return false;
+        }
+        else
+            return map.at(pos).getFacility()!=null;
     }
 }
