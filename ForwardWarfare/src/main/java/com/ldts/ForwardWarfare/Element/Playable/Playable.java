@@ -5,11 +5,14 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 
 public abstract class Playable extends Element {
-    private int hp = 0;
+    private int hp = 100;
     private int maxMoves;
+    private int damage;
     private boolean hasMoved = false;
-    public Playable(int maxMoves) {
+    public Playable(int maxMoves, int hp, int damage) {
         this.maxMoves = maxMoves;
+        this.hp = hp;
+        this.damage = damage;
     }
     public void takeHP(int damage) {
         hp -= damage;
@@ -36,4 +39,5 @@ public abstract class Playable extends Element {
     public int getMaxMoves() {
         return maxMoves;
     }
+    public int getDamage() {return damage;};
 }

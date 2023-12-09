@@ -9,7 +9,7 @@ import com.ldts.ForwardWarfare.Element.Tile.Water;
 
 public class MortarBoat extends Playable {
     public MortarBoat(Position pos) {
-        super(3);
+        super(3, 150, 100);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }

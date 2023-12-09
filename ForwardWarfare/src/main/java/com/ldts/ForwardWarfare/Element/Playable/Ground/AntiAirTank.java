@@ -9,7 +9,7 @@ import com.ldts.ForwardWarfare.Element.Tile.Fields;
 
 public class AntiAirTank extends Playable {
     public AntiAirTank(Position pos) {
-        super(4);
+        super(4, 140, 100);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }

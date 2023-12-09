@@ -10,7 +10,7 @@ import com.ldts.ForwardWarfare.Element.Tile.Fields;
 
 public class LightTank extends Playable {
     public LightTank(Position pos) {
-        super(4);
+        super(4, 100, 50);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }

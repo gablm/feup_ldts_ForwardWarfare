@@ -10,7 +10,7 @@ import com.ldts.ForwardWarfare.Element.Tile.Fields;
 
 public class MortarPerson extends Playable {
     public MortarPerson(Position pos) {
-        super(2);
+        super(2, 75, 75);
         this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }
