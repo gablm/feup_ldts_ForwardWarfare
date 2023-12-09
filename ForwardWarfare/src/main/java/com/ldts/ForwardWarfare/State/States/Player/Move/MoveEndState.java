@@ -1,23 +1,28 @@
-package com.ldts.ForwardWarfare.State.States;
+package com.ldts.ForwardWarfare.State.States.Player.Move;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
-import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.CaptureNoSelectionState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
+import com.ldts.ForwardWarfare.State.States.QuitState;
+import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
 public class MoveEndState extends BaseState {
     private int option = 0;
     private Border oldBorder;
+
     public MoveEndState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
-        /*this.oldBorder = p1.getSelection1();
+        this.oldBorder = p1.getSelection1();
         if (!canAttack())
             option++;
-        p1.setSelection1(null);*/
+        p1.setSelection1(null);
     }
 
     private boolean canAttack() {
@@ -41,9 +46,8 @@ public class MoveEndState extends BaseState {
                         p1.endRound();
                         return new StartRoundState(p1, p2, map);
                     case 3: // Capture
-                        p1.setSelection1(new Border()));
-                        p2.setSelection2(new Border(p1.getSelection1().getPosition()));
-                        return new OneSelectionState(p1, p2, map, true);
+                        p1.setSelection1(oldBorder);
+                        return new CaptureNoSelectionState(p1, p2, map);
                     default:
                         return new QuitState(p1, p2, map, this);
                 }

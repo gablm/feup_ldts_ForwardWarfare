@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare.State.States;
+package com.ldts.ForwardWarfare.State.States.Player;
 
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
@@ -22,6 +22,8 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 
 import java.util.List;
 import java.util.Vector;

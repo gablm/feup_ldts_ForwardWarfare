@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.State;
-import com.ldts.ForwardWarfare.State.States.AutomaticPlayState;
+import com.ldts.ForwardWarfare.State.States.Automatic.AutomaticPlayState;
 
 import java.util.List;
 

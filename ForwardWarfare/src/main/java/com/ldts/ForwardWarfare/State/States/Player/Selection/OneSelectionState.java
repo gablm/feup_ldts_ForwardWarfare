@@ -1,23 +1,22 @@
-package com.ldts.ForwardWarfare.State.States;
+package com.ldts.ForwardWarfare.State.States.Player.Selection;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
-import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.Player.Move.MoveValidationState;
 
-public class OneSelectionState extends BaseState{
-    private boolean facilityselect;
-    public OneSelectionState(Controller p1, Controller p2, Map map, boolean facilityselect) {
+public class OneSelectionState extends BaseState {
+    public OneSelectionState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
         Border border = p1.getSelection2();
         TextColor color = map.at(border.getPosition()).getColor();
         border.setBackgroundColor(color);
-        this.facilityselect = facilityselect;
     }
     @Override
     public State play(Action action) {
@@ -50,10 +49,7 @@ public class OneSelectionState extends BaseState{
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        if(facilityselect)
-            graphics.putString(1, 11, "Capture Witch");
-        else
-            graphics.putString(1, 11, "Where to go");
+        graphics.putString(1, 11, "Where to go");
     }
 
     @Override

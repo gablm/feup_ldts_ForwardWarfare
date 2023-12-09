@@ -1,19 +1,18 @@
-package com.ldts.ForwardWarfare.State.States;
+package com.ldts.ForwardWarfare.State.States.Player.Move;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
-import com.ldts.ForwardWarfare.Controller.Player;
 import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Facility.Factory;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
-import com.ldts.ForwardWarfare.Element.Tile.Fields;
 import com.ldts.ForwardWarfare.Element.Tile.MountainLand;
 import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.InvalidSelectState;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare.State.States;
+package com.ldts.ForwardWarfare.State.States.Player.Selection;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -14,11 +14,15 @@ import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
+import com.ldts.ForwardWarfare.State.States.QuitState;
 
 import java.util.Optional;
 
-public class NoSelectionState extends BaseState {
-    public NoSelectionState(Controller p1, Controller p2, Map map) {
+public class CaptureNoSelectionState extends BaseState {
+
+    public CaptureNoSelectionState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
         Border border = p1.getSelection1();
         if (border == null) {
@@ -29,6 +33,7 @@ public class NoSelectionState extends BaseState {
             border.setBackgroundColor(color);
         }
     }
+
     @Override
     public State play(Action action) {
         Position pos = p1.getSelection1().getPosition();
@@ -46,28 +51,7 @@ public class NoSelectionState extends BaseState {
                 moveTo(pos.getX() + 1, pos.getY());
                 break;
             case ENTER:
-                Optional<Element> findTroop = p1.getTroops().stream().filter(x -> x.getPosition().equals(pos)).findFirst();
-                if (findTroop.isPresent()) {
-                    if (((Playable) findTroop.get()).hasMoved())
-                        return new InvalidSelectState(p1, p2, map, "Already moved");
-                    p1.setSelection2(new Border(pos));
-                    return new OneSelectionState(p1, p2, map, false);
-                }
-                Facility facility = map.at(pos).getFacility();
-                if (facility != null && (facility.getClass() == Factory.class
-                        || facility.getClass() == Airport.class
-                        || facility.getClass() == Port.class)) {
-                    if (!p1.getFacilities().stream().anyMatch(x -> x.getPosition().equals(pos)))
-                    {
-                        return new InvalidSelectState(p1, p2, map, "Not Owned");
-                    }
-                    else {
-                        if (facility.getUsed())
-                            return new InvalidSelectState(p1, p2, map, "Already used");
-                        return new BuyState(p1, p2, map, map.at(pos).getFacility(), pos);
-                    }
-                }
-                return new InvalidSelectState(p1, p2, map, "Invalid play");
+                break;
             case ESCAPE:
                 return new MoveEndState(p1, p2, map);
             case QUIT:
@@ -80,7 +64,7 @@ public class NoSelectionState extends BaseState {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "Tile select");
+        graphics.putString(1, 11, "Select facility");
     }
 
     @Override

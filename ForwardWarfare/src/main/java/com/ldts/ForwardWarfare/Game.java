@@ -10,14 +10,11 @@ import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
-import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Playable.PlayableFactory;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
-import com.ldts.ForwardWarfare.State.States.NoSelectionState;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
 import java.awt.*;
