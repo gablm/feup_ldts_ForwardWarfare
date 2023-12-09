@@ -84,7 +84,7 @@ public class CaptureNoSelectionState extends BaseState {
         }
     }
     private boolean isnewfacility(Position pos){
-        if (p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)))
+        if (p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)) || p1.getBase().getPosition().equals(pos))
         {
             return false;
         }
