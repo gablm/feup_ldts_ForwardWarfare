@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Element;
+import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
@@ -96,7 +97,41 @@ public class MoveEndState extends BaseState {
         return true;
     }
     private boolean canCapture() {
-        return element != null;
+        boolean canCapture = false;
+        int v=0;
+        while (!canCapture) {
+            switch (v)
+            {
+                case 0:
+                    canCapture= map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY())).getFacility()!=null;
+                    break;
+                case 1:
+                    canCapture= map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY()+1)).getFacility()!=null;
+                    break;
+                case 2:
+                    canCapture= map.at( new Position(element.getPosition().getX(),element.getPosition().getY()+1)).getFacility()!=null;
+                    break;
+                case 3:
+                    canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY()+1)).getFacility()!=null;
+                    break;
+                case 4:
+                    canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY())).getFacility()!=null;
+                    break;
+                case 5:
+                    canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY()-1)).getFacility()!=null;
+                    break;
+                case 6:
+                    canCapture= map.at( new Position(element.getPosition().getX(),element.getPosition().getY()-1)).getFacility()!=null;
+                    break;
+                case 7:
+                    canCapture= map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY()-1)).getFacility()!=null;
+                    break;
+            }
+            v++;
+            if (v==8 && !canCapture)
+                break;
+        }
+        return canCapture;
     }
     private boolean canAttack() {
         return element != null;
