@@ -103,22 +103,24 @@ public class MoveEndState extends BaseState {
         return true;
     }
     private boolean canCapture() {
+        if (element == null)
+            return false;
         boolean canCapture = false;
         int v=0;
         while (!canCapture) {
             switch (v)
             {
                 case 0:
-                    canCapture= map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY())).getFacility()!=null;
+                    canCapture = map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY())).getFacility()!=null;
                     break;
                 case 1:
-                    canCapture= map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY()+1)).getFacility()!=null;
+                    canCapture = map.at( new Position(element.getPosition().getX()+1,element.getPosition().getY()+1)).getFacility()!=null;
                     break;
                 case 2:
-                    canCapture= map.at( new Position(element.getPosition().getX(),element.getPosition().getY()+1)).getFacility()!=null;
+                    canCapture = map.at( new Position(element.getPosition().getX(),element.getPosition().getY()+1)).getFacility()!=null;
                     break;
                 case 3:
-                    canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY()+1)).getFacility()!=null;
+                    canCapture = map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY()+1)).getFacility()!=null;
                     break;
                 case 4:
                     canCapture= map.at( new Position(element.getPosition().getX()-1,element.getPosition().getY())).getFacility()!=null;
@@ -134,7 +136,7 @@ public class MoveEndState extends BaseState {
                     break;
             }
             v++;
-            if (v==8 && !canCapture)
+            if (v == 8 && !canCapture)
                 break;
         }
         return canCapture;
