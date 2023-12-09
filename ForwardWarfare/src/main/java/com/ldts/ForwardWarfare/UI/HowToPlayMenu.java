@@ -45,7 +45,9 @@ public class HowToPlayMenu extends UI{
         int y;
         TextGraphics textGraphics = graphics.putString(new TerminalPosition(position.getX(), position.getY()), "\"FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo." +
                 " The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. " +
-                "The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units. This said, it also allows us to build troops in different places, like airports, factories, ports for example. At the start of the round we have a cash base income, and then we get more money per round the more oil we own. On other side, if our opponent capture our base we lose the game.\"));\n");
+                "The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units. This said, it also allows us to build troops in different places, like airports, factories, ports for example. " +
+                "At the start of the round we have a cash base income, and then we get more money per round the more oil we own." +
+                " On other side, if our opponent capture our base we lose the game.\"));\n");
 
     }
 
