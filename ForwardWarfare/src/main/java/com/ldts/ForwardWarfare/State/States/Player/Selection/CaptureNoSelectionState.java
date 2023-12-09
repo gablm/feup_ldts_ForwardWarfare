@@ -47,7 +47,7 @@ public class CaptureNoSelectionState extends BaseState {
             case ENTER:
                 break;
             case ESCAPE:
-                return new MoveEndState(p1, p2, map);
+                return new MoveEndState(p1, p2, map, null);
             case QUIT:
                 return new QuitState(p1, p2, map, this);
         }
