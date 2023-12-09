@@ -12,6 +12,7 @@ import java.util.List;
 public interface Controller {
     boolean buy(Element troops, int price);
     void addFacility(Element facility);
+    void setBase(Element newbase);
     void endRound();
     void resetRound();
     boolean canPlay();

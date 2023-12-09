@@ -6,6 +6,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public class Base implements Facility {
     private TextColor textColor;
+    private int lives=2;
     public void draw(TextGraphics graphics, Position position) {
             graphics.setForegroundColor(textColor);
             graphics.putString(position.toTPos(), ";");
@@ -25,5 +26,10 @@ public class Base implements Facility {
         return null;
     }
 
-
+    public void takeDamage() {
+        lives--;
+    }
+    public int getLives() {
+        return lives;
+    }
 }
