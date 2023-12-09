@@ -30,5 +30,6 @@ public interface Controller {
     State getInitialState(Controller p2, Map map);
     String getName();
     TextColor getControllerColor();
+    int getBaseLives();
 
 }

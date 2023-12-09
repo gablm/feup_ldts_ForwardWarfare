@@ -11,7 +11,9 @@ import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
+import com.ldts.ForwardWarfare.Element.Facility.Base;
 import com.ldts.ForwardWarfare.Element.Playable.PlayableFactory;
+import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
@@ -125,7 +127,10 @@ public class Game {
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(16 + 2, 10, "BASE");
         graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
-        graphics.putString(16 + 2, 11, "SAFE");
+
+        int p1Lives = p1.getBaseLives();
+        graphics.setForegroundColor(p1Lives != 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(16 + 1, 11, String.format("%d " + (p1Lives == 1 ? "Life" : "Lives"), p1Lives));
 
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(16, 13, "P2");
@@ -134,7 +139,9 @@ public class Game {
         graphics.putString(16 + 8 - coins.length(), 13, coins);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(16 + 2, 15, "BASE");
-        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
-        graphics.putString(16, 16, "IN ATTACK");
+
+        int p2Lives = p2.getBaseLives();
+        graphics.setForegroundColor(p2Lives != 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(16 + 1, 16, String.format("%d " + (p2Lives == 1 ? "Life" : "Lives"), p2Lives));
     }
 }

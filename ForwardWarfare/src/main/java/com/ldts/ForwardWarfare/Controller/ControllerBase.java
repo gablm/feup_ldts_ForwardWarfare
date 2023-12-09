@@ -3,6 +3,7 @@ package com.ldts.ForwardWarfare.Controller;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
+import com.ldts.ForwardWarfare.Element.Facility.Base;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Facility.OilPump;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
@@ -43,6 +44,10 @@ public abstract class ControllerBase implements Controller {
 
     public Element getBase() {
         return base;
+    }
+
+    public int getBaseLives() {
+        return ((Base) ((Tile) base).getFacility()).getLives();
     }
 
     public List<Element> getTroops() {
