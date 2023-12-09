@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare.State.States.Player.Move;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -71,24 +73,28 @@ public class MoveEndState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
+        TextColor color = new TextColor.RGB(80, 80, 80);
+        graphics.setBackgroundColor(color);
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
+
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
 
         if (canCapture()) {
-            graphics.setBackgroundColor(option == -1 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
+            graphics.setBackgroundColor(option == -1 ? TextColor.ANSI.RED_BRIGHT : color);
             graphics.putString(1, 12, " Capture ");
         }
 
         if (canAttack()) {
-            graphics.setBackgroundColor(option == -2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
+            graphics.setBackgroundColor(option == -2 ? TextColor.ANSI.RED_BRIGHT : color);
             graphics.putString(1, canCapture() ? 11 : 12, " Attack ");
         }
 
         int i = canAttack() || canCapture() ? 1 : 0;
-        graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : color);
         graphics.putString(1, 13 + i, " Continue ");
-        graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : color);
         graphics.putString(1, 14 + i, " End Turn ");
-        graphics.setBackgroundColor(option == 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(option == 2 ? TextColor.ANSI.RED_BRIGHT : color);
         graphics.putString(1, 15 + i, " Exit ");
     }
 

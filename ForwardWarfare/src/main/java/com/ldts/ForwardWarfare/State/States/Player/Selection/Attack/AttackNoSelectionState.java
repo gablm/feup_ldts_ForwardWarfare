@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare.State.States.Player.Selection.Attack;
 
 import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -90,12 +91,25 @@ public class AttackNoSelectionState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(p1.getControllerColor());
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
+
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, selectables.isEmpty() ? "Nothing" : "Select troop");
-        TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
-        graphics.setCharacter(1, 13, character);
-        graphics.putString(3, 13, String.format("HP %d", selectables.get(index).getHp()));
+
+        if (!selectables.isEmpty()) {
+            graphics.putString(1, 11, "Select troop");
+            TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
+            graphics.setCharacter(1, 13, character);
+            graphics.putString(3, 13, String.format("HP %d", selectables.get(index).getHp()));
+            graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
+            graphics.putString(1, 15, "LEFT");
+            graphics.putString(1, 15, "RIGHT");
+        } else {
+            graphics.putString(1, 11, "Nothing to");
+            graphics.putString(1, 12, "attack");
+        }
+        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(1, 17, "ENTER");
     }
 
     @Override

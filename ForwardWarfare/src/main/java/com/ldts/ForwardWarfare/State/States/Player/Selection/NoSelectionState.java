@@ -2,6 +2,7 @@ package com.ldts.ForwardWarfare.State.States.Player.Selection;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -82,10 +83,18 @@ public class NoSelectionState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(new TextColor.RGB(80,80,80));
+        graphics.setBackgroundColor(p1.getControllerColor());
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
+
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(1, 11, "Select a tile");
+
+        graphics.putString(1, 14, "Current: ");
+        TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
+        graphics.setCharacter(1 + 10, 14, character);
+
+        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(1, 17, "ENTER");
     }
 
     @Override

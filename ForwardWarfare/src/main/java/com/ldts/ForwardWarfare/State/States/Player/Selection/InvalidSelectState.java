@@ -24,7 +24,7 @@ public class InvalidSelectState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(new TextColor.RGB(80,80,80));
+        graphics.setBackgroundColor(p1.getControllerColor());
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
 
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);

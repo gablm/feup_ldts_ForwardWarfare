@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare.State.States.Player.Selection;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -47,9 +49,15 @@ public class OneSelectionState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        graphics.setBackgroundColor(p1.getControllerColor());
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
+
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "Where to go");
+        graphics.putString(1, 12, "Select where");
+        graphics.putString(1, 13, "to go");
+
+        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        graphics.putString(1, 17, "ENTER");
     }
 
     @Override

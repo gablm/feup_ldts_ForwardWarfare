@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare.Controller;
 
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Facility;
@@ -28,5 +29,6 @@ public interface Controller {
     void drawBorder(TextGraphics graphics);
     State getInitialState(Controller p2, Map map);
     String getName();
+    TextColor getControllerColor();
 
 }

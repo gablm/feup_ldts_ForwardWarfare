@@ -138,4 +138,8 @@ public abstract class ControllerBase implements Controller {
     public String getName() {
         return name;
     }
+
+    public TextColor getControllerColor() {
+        return controllerColor;
+    }
 }
