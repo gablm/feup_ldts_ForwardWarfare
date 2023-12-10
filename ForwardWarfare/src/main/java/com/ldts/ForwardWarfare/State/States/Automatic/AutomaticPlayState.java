@@ -211,22 +211,16 @@ public class AutomaticPlayState extends BaseState {
         if (!found)
             return;
 
-        try {
-            Thread.sleep(250);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
-
         boolean notBought = true;
         int tries = 0;
         while (notBought && tries < 5) {
             int random = new Random().nextInt(0, values.get(type).size());
             if (values.get(type).get(random) < p1.getCoins()) {
                 Playable res = (Playable) troops.get(type).get(random);
-                if (!res.canMove((Element) map.at(temp)))
+                if (!res.canMove((Element) map.at(temp))) {
+                    tries++;
                     continue;
+                }
                 res.setPosition(temp);
                 res.setHasMoved(true);
                 p1.buy(res, values.get(type).get(random));
