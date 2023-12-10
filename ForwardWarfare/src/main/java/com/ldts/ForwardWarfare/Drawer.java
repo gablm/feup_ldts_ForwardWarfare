@@ -25,10 +25,10 @@ public class Drawer {
         map.draw(graphics);
         p1.draw(graphics, map);
         p2.draw(graphics, map);
+        drawSide(graphics, p1, p2);
         state.draw(graphics);
         p1.drawBorder(graphics);
         p2.drawBorder(graphics);
-        drawSide(graphics, p1, p2);
     }
 
     public void increaseTurnCount() {
