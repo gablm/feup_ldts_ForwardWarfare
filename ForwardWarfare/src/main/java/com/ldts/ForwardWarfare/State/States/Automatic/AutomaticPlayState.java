@@ -54,7 +54,7 @@ public class AutomaticPlayState extends BaseState {
 
     private void automatedLogic() {
 
-        for (int troopBuys = 0; troopBuys < 4 && !p1.getFacilities().isEmpty(); troopBuys++) {
+        for (int troopBuys = 0; troopBuys < 2 && !p1.getFacilities().isEmpty(); troopBuys++) {
             int random = new Random().nextInt(0, p1.getFacilities().size());
             Element i = p1.getFacilities().get(random);
             Tile tile = (Tile) i;
@@ -69,6 +69,7 @@ public class AutomaticPlayState extends BaseState {
             if (tile.getFacility() instanceof Factory)
                 buyHighest(0, i.getPosition());
             tile.getFacility().execute();
+            troopBuys++;
         }
 
         List<Integer> x = Arrays.asList(0, 0, 1, -1);
@@ -80,10 +81,15 @@ public class AutomaticPlayState extends BaseState {
 
         int troopMoves = 0;
         for (Element i : p1.getTroops()) {
-            if (troopMoves > 3)
+            if (troopMoves == 3)
                 break;
 
             Playable troop = (Playable) i;
+            if (troop.hasMoved()) {
+                troopMoves++;
+                continue;
+            }
+
             small = new ArrayList<>();
             for (Element vitim : p2.getTroops()) {
                 if (!troop.canAttack((Playable) vitim))
@@ -146,7 +152,7 @@ public class AutomaticPlayState extends BaseState {
                 vitimRes = null;
             }
 
-            if (!small.isEmpty() && small.size() < troop.getMaxMoves() + 3) {
+            if (!small.isEmpty() && small.size() < troop.getMaxMoves() + 2) {
                 if (vitimRes != null) {
                     int finalHp = vitimRes.getHp() - troop.getDamage();
                     if (finalHp > 0)
@@ -160,11 +166,10 @@ public class AutomaticPlayState extends BaseState {
                         capture(p2.getBase().getPosition());
                 }
                 troop.setPosition(small.get(0));
-                troopMoves++;
             } else if (small.size() > troop.getMaxMoves()) {
                 troop.setPosition(small.get(small.size() - troop.getMaxMoves() - 1));
-                troopMoves++;
             }
+            troopMoves++;
         }
     }
 
