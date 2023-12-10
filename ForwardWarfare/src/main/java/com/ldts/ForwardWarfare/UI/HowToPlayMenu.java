@@ -64,9 +64,11 @@ public class HowToPlayMenu extends UI{
         graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(3, 25),"                          MOVEMENT" );
-        graphics.putString(new TerminalPosition(3, 26),"    ESC - Open the menu or goes back to the default section." );
-        graphics.putString(new TerminalPosition(3, 27),"    ENTER - Confirms the action." );
-        graphics.putString(new TerminalPosition(3, 28),"    ARROWS - Movement keys." );
+        graphics.disableModifiers(SGR.BOLD);
+        graphics.setForegroundColor(new TextColor.RGB(0,0,0));
+        graphics.putString(new TerminalPosition(3, 27),"    ESC - Open the menu or goes back to the default section." );
+        graphics.putString(new TerminalPosition(3, 28),"    ENTER - Confirms the action." );
+        graphics.putString(new TerminalPosition(3, 29),"    ARROWS - Movement keys." );
         graphics.disableModifiers(SGR.BOLD);
         graphics.setForegroundColor(new TextColor.RGB(0,0,0));
         screen.refresh();

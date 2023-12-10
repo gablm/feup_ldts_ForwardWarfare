@@ -52,4 +52,8 @@ public class MapBox extends Component {
             }
         }
     }
+
+    public Map getMapa() {
+        return mapa;
+    }
 }

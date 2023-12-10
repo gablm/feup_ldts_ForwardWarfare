@@ -32,6 +32,7 @@ public class StartGameMenu extends UI {
     private int ms=1;
     private int selected=-1;
     private boolean Gamemode;
+    private Map mapaselecionado;
     private ColorGrid grid;
     private List<Component>ButtonsList=new ArrayList<>();
 
@@ -74,7 +75,7 @@ public class StartGameMenu extends UI {
     @Override
     public void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException {
         listComponents.add(grid);
-        ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,1),new TerminalSize(42,5),"START",highlight));
+        ButtonsList.add(new Button(TextColor.ANSI.BLUE_BRIGHT,new TextColor.RGB(255,255,255),new Position(1,1),new TerminalSize(42,5),"START",highlight));
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,8),new TerminalSize(42,5),"COLOR SELECT ",normalborder));
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,15),new TerminalSize(42,5),"MAP SELECT",normalborder));
         listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
@@ -99,6 +100,7 @@ public class StartGameMenu extends UI {
         switch (bc)
         {
             case 0:
+                if(grid.getPlayer1Color()!=null && grid.getPlayer2Color()!=null && mapaselecionado!=null)
                 endscreen=true;
                 startgame=UiStates.BatleUI;
                 break;
@@ -145,6 +147,8 @@ public class StartGameMenu extends UI {
             selected = ms;
             listComponents.get(ms).setBorderFadeIntensity(Selected);
             listComponents.get(selected).setFixBorder(true);
+            MapBox mapBox = (MapBox) listComponents.get(ms);
+            mapaselecionado = mapBox.getMapa();
         }
     }
     private void mapselected(boolean next)

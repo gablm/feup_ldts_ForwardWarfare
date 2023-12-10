@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenu extends UI {
-    public MainMenu()
-    {
-        super(new TerminalSize(41,23),25);
-    }
     private boolean fsb=true;
     private UiStates startgame;
 
@@ -29,7 +25,12 @@ public class MainMenu extends UI {
     private int cb=0;
     private int highlight=30;
     private int normalborder=10;
-    private Button Chosegamemode=new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(10,2),new TerminalSize(21,5),"CHOSE GAMEMODE",normalborder);
+    private Button Chosegamemode;
+    public MainMenu()
+    {
+        super(new TerminalSize(41,23),25);
+        Chosegamemode=new Button(new TextColor.RGB(237,173,24),new TextColor.RGB(255,255,255),new Position(10,2),new TerminalSize(21,5),"CHOSE GAMEMODE",normalborder);
+    }
     @Override
     public UiStates build() throws IOException {
         screen = UITerminal.createScreen();
