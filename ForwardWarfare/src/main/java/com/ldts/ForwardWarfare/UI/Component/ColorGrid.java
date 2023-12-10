@@ -13,61 +13,62 @@ import java.util.List;
 
 public class ColorGrid extends Component{
     private TextColor BorderColor;
-    private int Selected=75;
-    private int highlight=50;
+    private int Selected=50;
+    private int highlight=25;
     private int normalborder=10;
-    List<Button> ColorList=new ArrayList<>();
+    private List<Button> ColorList=new ArrayList<>();
+    private TextColor player1Color;
+    private TextColor player2Color;
     private int c=0;
     private int s=-1;
     private List<TextColor> gridcolor=new ArrayList<>();
-    public ColorGrid(TextColor backColor, TextColor forgColor, Position position, int BorderFadeIntencity) {
+    private List<Button> butonused=new ArrayList<>();
+    private boolean Gamemode;
+    public ColorGrid(TextColor backColor, TextColor forgColor, Position position, int BorderFadeIntencity,boolean Gamemode) {
         super(backColor, forgColor, position, new TerminalSize(29,19), BorderFadeIntencity);
-        ColorList.add(new Button(new TextColor.RGB(200, 0, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(0, 200, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 8, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(200, 255, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 15, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(255, 200, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 22, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(0, 255, 255), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(0, 255, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 8, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(0, 0, 255), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 15, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
-        ColorList.add(new Button(new TextColor.RGB(255, 255, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 22, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
-    }
-    private void jumprow(boolean up){
-        if(up) {
-            ColorList.get(c).setBorderFadeIntensity(normalborder);
-            if (c+4 > ColorList.size() - 1) {
-                c = c+4-ColorList.size();
-            } else
-                c+=4;
-            ColorList.get(c).setBorderFadeIntensity(highlight);
-        }
-        else
+        this.Gamemode=Gamemode;
+        ColorList.add(new Button(TextColor.ANSI.RED, new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(TextColor.ANSI.BLUE, new TextColor.RGB(0, 0, 0), new Position(position.getX() + 8, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(new TextColor.RGB(204, 0, 204), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 15, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(new TextColor.RGB(255, 128, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 22, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(new TextColor.RGB(127, 0, 255), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(new TextColor.RGB(0, 153, 153), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 8, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(new TextColor.RGB(0, 51, 0), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 15, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
+        ColorList.add(new Button(new TextColor.RGB(101, 73, 73), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 22, position.getY() + 12), new TerminalSize(6, 6), " ", normalborder));
+        if (!Gamemode)
         {
-            ColorList.get(c).setBorderFadeIntensity(normalborder);
-            if (c-4 < 0) {
-                c = ColorList.size()-(4-c);
-            } else
-                c-=4;
-            ColorList.get(c).setBorderFadeIntensity(highlight);
+            ColorList.get(0).setBorderFadeIntensity(Selected);
+            ColorList.get(0).setFixBorder(true);
+            butonused.add(ColorList.get(0));
+            player2Color=butonused.get(0).getBackColor();
+            c=1;
         }
     }
     private void Buttonhighligted(boolean next)
     {
-        if(next) {
-            ColorList.get(c).setBorderFadeIntensity(normalborder);
-            if (c+1 > ColorList.size() - 1) {
-                c = 0;
-            } else
-                c++;
-            ColorList.get(c).setBorderFadeIntensity(highlight);
-        }
-        else
-        {
-            ColorList.get(c).setBorderFadeIntensity(normalborder);
-            if (c-1 < 0) {
-                c = ColorList.size()-1;
-            } else
-                c--;
-            ColorList.get(c).setBorderFadeIntensity(highlight);
+        boolean notfound=true;
+        while (notfound) {
+            if (next) {
+                ColorList.get(c).setBorderFadeIntensity(normalborder);
+                if (c + 1 > ColorList.size() - 1) {
+                    c = 0;
+                } else
+                    c++;
+                if (!butonused.contains(ColorList.get(c))) {
+                    ColorList.get(c).setBorderFadeIntensity(highlight);
+                    notfound = false;
+                }
+            } else {
+                ColorList.get(c).setBorderFadeIntensity(normalborder);
+                if (c - 1 < 0) {
+                    c = ColorList.size() - 1;
+                } else
+                    c--;
+                if (!butonused.contains(ColorList.get(c))) {
+                    ColorList.get(c).setBorderFadeIntensity(highlight);
+                    notfound = false;
+                }
+            }
         }
     }
     private void setupbord() {
@@ -92,11 +93,7 @@ public class ColorGrid extends Component{
         BorderColor = new TextColor.RGB(r, g, b);
     }
     public boolean processKey( KeyStroke key) {
-        if (key.getKeyType() == KeyType.ArrowUp)
-        {
-            jumprow(false);
-            return true;
-        } else if (key.getKeyType() == KeyType.ArrowRight)
+        if (key.getKeyType() == KeyType.ArrowRight)
         {
             Buttonhighligted(true);
             return true;
@@ -104,14 +101,10 @@ public class ColorGrid extends Component{
             Buttonhighligted(false);
             return true;
         }
-        else if (key.getKeyType() == KeyType.ArrowDown)
-        {
-            jumprow(true);
-            return true;
-        }else if(key.getKeyType()== KeyType.Enter)
+        else if(key.getKeyType()== KeyType.Enter)
         {
             SetColor();
-            return false;
+            return !(player1Color!=null && player2Color!=null);
         }else
         {
             return true;
@@ -121,13 +114,23 @@ public class ColorGrid extends Component{
     {
         if(c!=s )
         {
-            if(s>=0) {
+            if(s>=0 && !butonused.contains(ColorList.get(s))) {
                 ColorList.get(s).setFixBorder(false);
                 ColorList.get(s).setBorderFadeIntensity(normalborder);
             }
             s=c;
             ColorList.get(c).setBorderFadeIntensity(Selected);
             ColorList.get(s).setFixBorder(true);
+        }
+        if(player1Color==null)
+        {
+            player1Color=ColorList.get(s).getBackColor();
+            butonused.add(ColorList.get(s));
+        }
+        else if(player2Color==null)
+        {
+            player2Color=ColorList.get(s).getBackColor();
+            butonused.add(ColorList.get(s));
         }
     }
     @Override
@@ -138,6 +141,10 @@ public class ColorGrid extends Component{
         {
             b.draw(graphics);
         }
+        for (Button b:butonused)
+        {
+            b.draw(graphics);
+        }
         graphics.enableModifiers(SGR.BOLD);
         graphics.setBackgroundColor(BorderColor);
         graphics.drawRectangle(position.toTPos(),size,' ');
@@ -145,5 +152,39 @@ public class ColorGrid extends Component{
     public void start()
     {
         ColorList.get(c).setBorderFadeIntensity(highlight);
+    }
+
+    public TextColor getPlayer1Color() {
+        return player1Color;
+    }
+
+    public TextColor getPlayer2Color() {
+        return player2Color;
+    }
+    public void restart()
+    {
+
+        int redindex = 0;
+        for(Button b:butonused)
+        {
+            ColorList.add(b);
+            if (b.getBackColor()==TextColor.ANSI.RED)
+            {
+                redindex=ColorList.indexOf(b);
+            }
+        }
+        butonused.clear();
+        player1Color=null;
+        if (!Gamemode) {
+            butonused.add(ColorList.get(redindex));
+        }
+        else
+            player2Color = null;
+        for (Button b:ColorList)
+        {
+            if(b.getBackColor()!=TextColor.ANSI.RED)
+                b.setFixBorder(false);
+            b.setBorderFadeIntensity(normalborder);
+        }
     }
 }

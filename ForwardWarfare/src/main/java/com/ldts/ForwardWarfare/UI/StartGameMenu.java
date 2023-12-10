@@ -32,12 +32,13 @@ public class StartGameMenu extends UI {
     private int ms=1;
     private int selected=-1;
     private boolean Gamemode;
-    ColorGrid grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25);
-    List<Component>ButtonsList=new ArrayList<>();
+    private ColorGrid grid;
+    private List<Component>ButtonsList=new ArrayList<>();
 
     public StartGameMenu(boolean gamemode) {
         super(new TerminalSize(74,36),15);
         Gamemode=gamemode;
+        grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25,Gamemode);
     }
 
     @Override
@@ -62,6 +63,11 @@ public class StartGameMenu extends UI {
         {
             butao.draw(graphics);
         }
+        Component Color1=new Button(grid.getPlayer1Color()==null ? new TextColor.RGB(247,193,64):grid.getPlayer1Color(),new TextColor.RGB(255,255,255),new Position(2,9),new TerminalSize(13,3),"P1 Color",0);
+        Component Color2=new Button(grid.getPlayer2Color()==null ? new TextColor.RGB(247,193,64):grid.getPlayer2Color(),new TextColor.RGB(255,255,255),new Position(29,9),new TerminalSize(13,3),Gamemode ? "P2 Color" : "AI Color",0);
+        Color1.draw(graphics);
+        Color2.draw(graphics);
+
         screen.refresh();
     }
 
@@ -69,7 +75,7 @@ public class StartGameMenu extends UI {
     public void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException {
         listComponents.add(grid);
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,1),new TerminalSize(42,5),"START",highlight));
-        ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,8),new TerminalSize(42,5),"COLOR SELECT",normalborder));
+        ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,8),new TerminalSize(42,5),"COLOR SELECT ",normalborder));
         ButtonsList.add(new Button(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,15),new TerminalSize(42,5),"MAP SELECT",normalborder));
         listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(1,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
         listComponents.add(new MapBox(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(19,23),new TerminalSize(17,12),normalborder,new Map("1.fw")));
@@ -98,6 +104,7 @@ public class StartGameMenu extends UI {
                 break;
             case 1:
                 SelectingColor = true;
+                grid.restart();
                 grid.start();
                 break;
             case 2:

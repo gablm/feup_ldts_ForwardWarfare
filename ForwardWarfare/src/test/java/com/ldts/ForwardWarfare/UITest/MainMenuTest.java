@@ -244,7 +244,7 @@ public class MainMenuTest {
 
         Assertions.assertTrue(mainMenu.isEndscreen());
         Assertions.assertEquals(UiStates.StartGameMenu, mainMenu.getStartgame());
-        Assertions.assertEquals(true, mainMenu.getGAMEMODE());
+        Assertions.assertEquals(true, mainMenu.getGameMode());
     }
     @Test
     public void testProcessKey_Enter_PlayerVSAIButton()
@@ -257,6 +257,6 @@ public class MainMenuTest {
 
         Assertions.assertTrue(mainMenu.isEndscreen());
         Assertions.assertEquals(UiStates.StartGameMenu, mainMenu.getStartgame());
-        Assertions.assertEquals(false, mainMenu.getGAMEMODE());
+        Assertions.assertEquals(false, mainMenu.getGameMode());
     }
 }

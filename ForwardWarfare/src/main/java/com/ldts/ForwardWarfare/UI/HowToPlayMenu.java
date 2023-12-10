@@ -87,7 +87,7 @@ public class HowToPlayMenu extends UI{
 
     @Override
     public void processKey(KeyStroke key) {
-        if(key.getKeyType()== KeyType.Escape)
+        if(key.getKeyType()==KeyType.Escape)
         {
            endscreen=true;
            startgame=UiStates.MainMenu;

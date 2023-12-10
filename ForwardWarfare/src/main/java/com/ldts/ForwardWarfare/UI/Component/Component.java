@@ -36,4 +36,12 @@ public abstract class Component {
          this.BorderFadeIntencity=BorderFadeIntencity;
     }
     public abstract void draw(TextGraphics graphics);
+
+    public TextColor getBackColor() {
+        return backColor;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
 }
