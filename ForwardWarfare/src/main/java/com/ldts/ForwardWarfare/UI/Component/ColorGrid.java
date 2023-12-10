@@ -122,6 +122,7 @@ public class ColorGrid extends Component{
             ColorList.get(c).setBorderFadeIntensity(Selected);
             ColorList.get(s).setFixBorder(true);
         }
+        Buttonhighligted(true);
         if(player1Color==null)
         {
             player1Color=ColorList.get(s).getBackColor();
