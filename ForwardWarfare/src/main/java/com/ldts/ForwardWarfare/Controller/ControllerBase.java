@@ -38,7 +38,7 @@ public abstract class ControllerBase implements Controller {
         base = initialFacilities.get(0);
         base.setForegroundColor(controllerColor);
         this.controllerColor = controllerColor;
-        this.coins = 50;
+        this.coins = 25;
         this.name = name;
     }
 
