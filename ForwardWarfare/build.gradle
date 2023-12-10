@@ -27,6 +27,7 @@ test {
 }
 
 pitest {
+    timestampedReports = false
     targetClasses = ['com.ldts.ForwardWarfare.*']
     junit5PluginVersion = '0.12'
 }

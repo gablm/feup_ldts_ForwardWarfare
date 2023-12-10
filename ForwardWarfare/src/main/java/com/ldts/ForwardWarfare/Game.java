@@ -28,7 +28,6 @@ import java.util.Objects;
 public class Game {
     private LanternaTerminal terminal;
     private Screen screen;
-    private int roundCount = 0;
 
     public static void main(String[] args) {
         try {
@@ -45,6 +44,8 @@ public class Game {
         Map map = new Map("1.fw");
         Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.BLUE, "P1");
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.RED, "P2");
+        Drawer drawer = new Drawer(p1, p2, map);
+
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
         p2.buy(PlayableFactory.createAATank(3, 6), 0);
         p2.buy(PlayableFactory.createAATank(3, 7), 0);
@@ -55,14 +56,7 @@ public class Game {
         State state = new StartRoundState(p1, p2, map);
         while (true) {
             screen.clear();
-            TextGraphics graphics = screen.newTextGraphics();
-            map.draw(graphics);
-            p1.draw(graphics, map);
-            p2.draw(graphics, map);
-            state.draw(graphics);
-            p1.drawBorder(graphics);
-            p2.drawBorder(graphics);
-            drawSide(graphics, p1, p2);
+            drawer.draw(screen.newTextGraphics(), state);
             screen.refresh();
 
             if (state.requiresInput()) {
@@ -74,22 +68,13 @@ public class Game {
                 state = state.play(null);
 
             if (state instanceof StartRoundState)
-                roundCount++;
+                drawer.increaseTurnCount();
 
             if (state == null) {
                 screen.close();
                 return;
             }
         }
-    }
-
-    private void ScreenWarning(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
-        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
-        graphics.putString(1, 11, "WARNING:");
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 12, "Use the other ");
-        graphics.putString(1, 13, "window to move!");
     }
 
     private Action keyToAction(KeyStroke keyStroke) {
@@ -107,41 +92,5 @@ public class Game {
             }
             default -> Action.NONE;
         };
-    }
-
-    private void drawSide(TextGraphics graphics, Controller p1, Controller p2) {
-        graphics.setBackgroundColor(TextColor.ANSI.YELLOW);
-        graphics.fillRectangle(new TerminalPosition(15,0), new TerminalSize(10,19), ' ');
-
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(16, 2, "TURN");
-        graphics.putString(16 + 6, 2, roundCount % 3 == 0 ? p1.getName() : p2.getName());
-        graphics.putString(16, 4, "ROUND");
-        String rounds = new StringBuilder().append(roundCount / 3 + 1).toString();
-        graphics.putString(16 + 5 + 1, 4, rounds);
-
-        graphics.putString(16, 8, "P1");
-        String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
-        graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
-        graphics.putString(16 + 8 - coins.length(), 8, coins);
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(16 + 2, 10, "BASE");
-        graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
-
-        int p1Lives = p1.getBaseLives();
-        graphics.setForegroundColor(p1Lives != 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.GREEN_BRIGHT);
-        graphics.putString(16 + 1, 11, String.format("%d " + (p1Lives == 1 ? "Life" : "Lives"), p1Lives));
-
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(16, 13, "P2");
-        coins = new StringBuilder().append(p2.getCoins()).append("!").toString();
-        graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
-        graphics.putString(16 + 8 - coins.length(), 13, coins);
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(16 + 2, 15, "BASE");
-
-        int p2Lives = p2.getBaseLives();
-        graphics.setForegroundColor(p2Lives != 2 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.GREEN_BRIGHT);
-        graphics.putString(16 + 1, 16, String.format("%d " + (p2Lives == 1 ? "Life" : "Lives"), p2Lives));
     }
 }
