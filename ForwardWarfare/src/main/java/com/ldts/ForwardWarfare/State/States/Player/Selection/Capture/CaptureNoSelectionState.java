@@ -7,7 +7,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Facility.Facility;
+import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
@@ -87,6 +87,7 @@ public class CaptureNoSelectionState extends BaseState {
             graphics.putString(1, 11, "Select Facility");
             TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
             graphics.setCharacter(1, 13, character);
+            graphics.putString(3,13,getfacilityname());
             graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
             graphics.putString(1, 15, "LEFT");
             graphics.putString(1, 15, "RIGHT");
@@ -113,7 +114,6 @@ public class CaptureNoSelectionState extends BaseState {
     }
     private boolean withinRadius(Position point2) {
         Position point1 = p1.getSelection1().getPosition();
-        System.out.printf("rad:", point1.getX(), point1.getY(), point2.getX(), point2.getY());
         if (point2.getX() > point1.getX() + 1)
             return false;
         if (point2.getX() < point1.getX() - 1)
@@ -140,5 +140,20 @@ public class CaptureNoSelectionState extends BaseState {
                 elements.add(i);
         }
         return elements;
+    }
+    private String getfacilityname(){
+        Tile tile = (Tile) selectables.get(index);
+        if (tile.getFacility().getClass().equals(Base.class)) {
+            return "Base";
+        } else if (tile.getFacility().getClass().equals(OilPump.class)) {
+            return "Oil Pump";
+        } else if (tile.getFacility().getClass().equals(Factory.class)) {
+            return "Factory";
+        } else if (tile.getFacility().getClass().equals(Airport.class)) {
+            return "Airport";
+        } else if (tile.getFacility().getClass().equals(Port.class)) {
+            return "Port";
+        }
+        return null;
     }
 }
