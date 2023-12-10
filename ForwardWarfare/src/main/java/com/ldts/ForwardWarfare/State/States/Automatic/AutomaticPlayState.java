@@ -58,14 +58,17 @@ public class AutomaticPlayState extends BaseState {
             int random = new Random().nextInt(0, p1.getFacilities().size());
             Element i = p1.getFacilities().get(random);
             Tile tile = (Tile) i;
-            if (tile.getFacility().getUsed())
+            if (tile.getFacility().getUsed()) {
+                troopBuys++;
                 continue;
+            }
             if (tile.getFacility() instanceof Airport)
                 buyHighest(2, i.getPosition());
             if (tile.getFacility() instanceof Port)
                 buyHighest(1, i.getPosition());
             if (tile.getFacility() instanceof Factory)
                 buyHighest(0, i.getPosition());
+            tile.getFacility().execute();
         }
 
         List<Integer> x = Arrays.asList(0, 0, 1, -1);
@@ -221,8 +224,11 @@ public class AutomaticPlayState extends BaseState {
         while (notBought && tries < 5) {
             int random = new Random().nextInt(0, values.get(type).size());
             if (values.get(type).get(random) < p1.getCoins()) {
-                Element res = troops.get(type).get(random);
+                Playable res = (Playable) troops.get(type).get(random);
+                if (!res.canMove((Element) map.at(temp)))
+                    continue;
                 res.setPosition(temp);
+                res.setHasMoved(true);
                 p1.buy(res, values.get(type).get(random));
                 notBought = false;
             }
