@@ -16,12 +16,14 @@ import com.ldts.ForwardWarfare.Element.Playable.Water.FighterSubmarine;
 import com.ldts.ForwardWarfare.Element.Playable.Water.LightBoat;
 import com.ldts.ForwardWarfare.Element.Playable.Water.MortarBoat;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Element.Tile.Fields;
 import com.ldts.ForwardWarfare.Element.Tile.MountainLand;
 import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.States.EndGameState;
 import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
@@ -32,6 +34,7 @@ import java.util.Random;
 
 public class AutomaticPlayState extends BaseState {
 
+    private boolean endgame = false;
     private List<List<Integer>> values = List.of(List.of(2,5,10,7,15,10),
                                                     List.of(7,20,10),
                                                     List.of(10,25,15));
@@ -109,13 +112,7 @@ public class AutomaticPlayState extends BaseState {
                     else
                         p2.getTroops().remove(vitimRes);
                 } else {
-                    Base base = (Base) ((Tile) p1.getBase()).getFacility();
-                    if (!base.getAtackedlastturn()) {
-                        base.takeDamage();
-                        base.setAtackedlastturn(true);
-                        if (!base.getUsed())
-                            base.execute();
-                    }
+                    capture(p2.getBase().getPosition());
                 }
                 troop.setPosition(small.get(0));
             } else if (small.size() > troop.getMaxMoves()) {
@@ -189,6 +186,35 @@ public class AutomaticPlayState extends BaseState {
         }
     }
 
+    private void capture(Position pos){
+        if(map.at(pos).getFacility().getClass()== Base.class)
+        {
+            if (p2.getBase().getPosition().equals(pos) && !((Base) ((Tile) p2.getBase()).getFacility()).getAtackedlastturn()) {
+                System.out.println("Base");
+                Base basep1 = (Base) map.at(pos).getFacility();
+                basep1.takeDamage();
+                basep1.setAtackedlastturn(true);
+                if(!basep1.getUsed())
+                    basep1.execute();
+                map.set(pos, new Fields(pos,basep1));
+                p2.setBase((Element) map.at(pos));
+                System.out.println(basep1.getLives());
+                if (basep1.getLives() <= 0)
+                {
+                    endgame = true;
+                }
+            }
+        }
+        else {
+            if (p2.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)))
+                p2.getFacilities().removeIf(facility -> facility.getPosition().equals(pos));
+            if (p1.getFacilities().stream().noneMatch(facility -> facility.getPosition().equals(pos))) {
+                map.at(pos).getFacility().execute();
+                p1.addFacility((Element) map.at(pos));
+            }
+        }
+    }
+
     public List<Position> canMove(Position pos, Position end, Playable playable) {
 
         Map copy = new Map(map);
@@ -249,6 +275,8 @@ public class AutomaticPlayState extends BaseState {
     @Override
     public State play(Action action) {
         p1.endRound();
+        if (endgame)
+            return new EndGameState(p1, p2, map);
         return new StartRoundState(p1, p2, map);
     }
 
