@@ -9,6 +9,10 @@ import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.AntiAirTank;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyPerson;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
+import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
@@ -39,12 +43,12 @@ public class Game {
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.RED, "P2");
         Drawer drawer = new Drawer(p1, p2, map);
 
-        p1.buy(PlayableFactory.createAATank(2, 6), 0);
-        p2.buy(PlayableFactory.createAATank(3, 6), 0);
-        p2.buy(PlayableFactory.createAATank(3, 7), 0);
-        p2.buy(PlayableFactory.createAATank(3, 8), 0);
-        p2.buy(PlayableFactory.createHeavyPerson(4, 8), 0);
-        p1.buy(PlayableFactory.createFighterPlane(5, 6), 0);
+        p1.buy(new AntiAirTank(new Position(2, 6)), 0);
+        p2.buy(new AntiAirTank(new Position(3, 6)), 0);
+        p2.buy(new AntiAirTank(new Position(3, 7)), 0);
+        p2.buy(new AntiAirTank(new Position(3, 8)), 0);
+        p2.buy(new HeavyPerson(new Position(4, 8)), 0);
+        p1.buy(new HeavyTank(new Position(5, 6)), 0);
 
         State state = new StartRoundState(p1, p2, map);
         while (true) {
