@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Air.BomberPlane;
 import com.ldts.ForwardWarfare.Element.Playable.Air.FighterPlane;
 import com.ldts.ForwardWarfare.Element.Playable.Air.LightHelicopter;
@@ -32,6 +33,8 @@ public class PlayableAirTest {
         Assertions.assertEquals(125, bomberPlane.getHp());
         Assertions.assertEquals(200, bomberPlane.getDamage());
         Assertions.assertEquals("Air", bomberPlane.getType());
+        Element test = Mockito.mock(Element.class);
+        Assertions.assertTrue(bomberPlane.canMove(test));
         Assertions.assertFalse(bomberPlane.hasMoved());
 
         Assertions.assertFalse(bomberPlane.canAttack(new FighterSubmarine(null)));
@@ -78,6 +81,18 @@ public class PlayableAirTest {
         Playable fighterPlane = new FighterPlane(new Position(1,1));
 
         Assertions.assertEquals(1, fighterPlane.getAttackRadius());
+        Assertions.assertEquals(6, fighterPlane.getMaxMoves());
+        Assertions.assertEquals(175, fighterPlane.getHp());
+        Assertions.assertEquals(150, fighterPlane.getDamage());
+        Assertions.assertEquals("Air", fighterPlane.getType());
+        Element test = Mockito.mock(Element.class);
+        Assertions.assertTrue(fighterPlane.canMove(test));
+        Assertions.assertFalse(fighterPlane.hasMoved());
+
+        Assertions.assertFalse(fighterPlane.canAttack(new FighterSubmarine(null)));
+        Assertions.assertTrue(fighterPlane.canAttack(new FighterPlane(null)));
+
+        Assertions.assertEquals(1, fighterPlane.getAttackRadius());
         Assertions.assertEquals(fighterPlane.getPosition(), new Position(1,1));
 
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
@@ -87,6 +102,11 @@ public class PlayableAirTest {
         Mockito.verify(graphics, Mockito.never()).enableModifiers(Mockito.any(SGR.class));
         Mockito.verify(graphics, Mockito.never()).setModifiers(Mockito.any());
         Mockito.verify(graphics, Mockito.times(1)).putString(fighterPlane.getPosition().toTPos(), "%");
+
+        fighterPlane.setHP(20);
+        Assertions.assertEquals(20, fighterPlane.getHp());
+        fighterPlane.setHasMoved(true);
+        Assertions.assertTrue(fighterPlane.hasMoved());
     }
 
     @Test
@@ -114,7 +134,18 @@ public class PlayableAirTest {
         Playable lightHelicopter = new LightHelicopter(new Position(1,1));
 
         Assertions.assertEquals(lightHelicopter.getPosition(), new Position(1,1));
+        Assertions.assertEquals(1, lightHelicopter.getAttackRadius());
+        Assertions.assertEquals(4, lightHelicopter.getMaxMoves());
+        Assertions.assertEquals(100, lightHelicopter.getHp());
+        Assertions.assertEquals(75, lightHelicopter.getDamage());
+        Assertions.assertEquals("Air", lightHelicopter.getType());
+        Element test = Mockito.mock(Element.class);
+        Assertions.assertTrue(lightHelicopter.canMove(test));
+        Assertions.assertFalse(lightHelicopter.hasMoved());
 
+        Assertions.assertFalse(lightHelicopter.canAttack(new FighterSubmarine(null)));
+        Assertions.assertTrue(lightHelicopter.canAttack(new FighterPlane(null)));
+        
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
         lightHelicopter.draw(graphics);
 
@@ -122,6 +153,11 @@ public class PlayableAirTest {
         Mockito.verify(graphics, Mockito.never()).enableModifiers(Mockito.any(SGR.class));
         Mockito.verify(graphics, Mockito.never()).setModifiers(Mockito.any());
         Mockito.verify(graphics, Mockito.times(1)).putString(lightHelicopter.getPosition().toTPos(), "[");
+
+        lightHelicopter.setHP(20);
+        Assertions.assertEquals(20, lightHelicopter.getHp());
+        lightHelicopter.setHasMoved(true);
+        Assertions.assertTrue(lightHelicopter.hasMoved());
     }
 
     @Test
