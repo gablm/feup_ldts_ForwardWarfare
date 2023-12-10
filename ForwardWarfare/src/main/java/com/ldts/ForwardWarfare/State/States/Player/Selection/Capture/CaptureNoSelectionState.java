@@ -78,7 +78,7 @@ public class CaptureNoSelectionState extends BaseState {
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
 
         if (!selectables.isEmpty()) {
-            graphics.putString(1, 11, "Select Facility");
+            graphics.putString(0, 11, "Select Facility");
             TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
             graphics.setCharacter(1, 13, character);
             graphics.putString(3,13, getFacilityName());
@@ -128,8 +128,11 @@ public class CaptureNoSelectionState extends BaseState {
         List<Element> elements = new ArrayList<>();
         for(Element i: map.getElements())
         {
-            if(withinRadius(i.getPosition()))
+            if(i== p2.getBase() && ((Tile)p2.getBase()).getFacility().getUsed())
+                continue;
+            if(withinRadius(i.getPosition() )) {
                 elements.add(i);
+            }
         }
         return elements;
     }

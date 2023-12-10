@@ -6,6 +6,7 @@ import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.Base;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
+import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
@@ -36,10 +37,13 @@ public class CaptureState extends BaseState {
     private void capture(Position pos){
         if(map.at(pos).getFacility().getClass()== Base.class)
         {
-            if (p2.getBase().getPosition().equals(pos)) {
+            if (p2.getBase().getPosition().equals(pos) && !((Base) ((Tile) p2.getBase()).getFacility()).getAtackedlastturn()) {
                 System.out.println("Base");
                 Base basep1 = (Base) map.at(pos).getFacility();
                 basep1.takeDamage();
+                basep1.setAtackedlastturn(true);
+                if(!basep1.getUsed())
+                    basep1.execute();
                 map.set(pos, new Fields(pos,basep1));
                 p2.setBase((Element) map.at(pos));
                 System.out.println(basep1.getLives());
