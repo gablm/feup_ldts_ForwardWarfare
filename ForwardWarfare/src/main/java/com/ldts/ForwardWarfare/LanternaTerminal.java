@@ -15,8 +15,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 public class LanternaTerminal {
     private Terminal terminal;
+    private Font font;
     public LanternaTerminal(TerminalSize size, String fontPath, int fontSize) throws IOException, URISyntaxException, FontFormatException {
-        Font font = loadExternalFonts(fontPath, fontSize);
+        font = loadExternalFonts(fontPath, fontSize);
         terminal = createTerminal(size,font);
     }
     private Terminal createTerminal(TerminalSize size, Font font) throws IOException {
@@ -47,4 +48,13 @@ public class LanternaTerminal {
         screen.doResizeIfNecessary();
         return screen;
     }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public Font getFont() {
+        return font;
+    }
 }
+

@@ -1,6 +1,7 @@
 package com.ldts.ForwardWarfare.Map;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import com.ldts.ForwardWarfare.Element.Position;
@@ -12,7 +13,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
-public class Map {
+public class Map extends Element {
     private List<Element> map = new ArrayList<>();
     private Element player1Base;
     private Element player2Base;
@@ -20,6 +21,14 @@ public class Map {
     private Element player2Factory;
     public Map(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
         readMap(filePath);
+    }
+
+    public Map(Map map) {
+        this.map = new ArrayList<>(map.map);
+        this.player1Base = map.player1Base;
+        this.player2Base = map.player2Base;
+        this.player1Factory = map.player1Factory;
+        this.player2Factory = map.player2Factory;
     }
     public List<Element> getElements() {
         return map;
@@ -34,7 +43,7 @@ public class Map {
             return null;
         return Arrays.asList(player2Base, player2Factory);
     }
-    private void readMap(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
+    public void readMap(String filePath) throws FileNotFoundException, MapParseException, URISyntaxException {
             URL mapURL = getClass().getClassLoader().getResource("maps/" + filePath);
             Scanner scanner = new Scanner(new File(mapURL.toURI()));
             scanner.useDelimiter("\n");
@@ -77,32 +86,28 @@ public class Map {
                             map.add(new Fields(pos, new Factory()));
                             break;
                         case 28:
-                            Element iniField1 = new Fields(pos, new Factory());
                             if (player1Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
-                            player1Factory = iniField1;
-                            map.add(iniField1);
+                            player1Factory = new Fields(pos, new Factory());
+                            map.add(player1Factory);
                             break;
                         case 29:
-                            Element iniField2 = new Fields(pos, new Factory());
                             if (player2Factory != null)
                                 throw new MapParseException("A player cannot start with more than one factory");
-                            player2Factory = iniField2;
-                            map.add(iniField2);
+                            player2Factory = new Fields(pos, new Factory());
+                            map.add(player2Factory);
                             break;
                         case 31:
-                            Element base1 = new Fields(pos, new Base(TextColor.ANSI.CYAN_BRIGHT));
                             if (player1Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
-                            player1Base = base1;
-                            map.add(base1);
+                            player1Base = new Fields(pos, new Base());
+                            map.add(player1Base);
                             break;
                         case 32:
-                            Element base2 = new Fields(pos, new Base(TextColor.ANSI.RED));
                             if (player2Base != null)
                                 throw new MapParseException("A player cannot have more than one base");
-                            player2Base = base2;
-                            map.add(base2);
+                            player2Base = new Fields(pos, new Base());
+                            map.add(player2Base);
                             break;
                         default:
                             throw new MapParseException("There is an invalid number in the map: %d".formatted(id));
@@ -116,5 +121,29 @@ public class Map {
             scanner.close();
             if (map.size() != 150)
                 throw new MapParseException("The map should be 15 x 10.");
+    }
+
+    @Override
+    public void draw(TextGraphics graphics) {
+        for (Element elem : map) {
+            elem.draw(graphics);
+        }
+    }
+
+    public Tile at(Position position) {
+        if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
+            return null;
+        return (Tile) map.get(position.getY() * 15 + position.getX());
+    }
+
+    public void set(Position position, Element element) {
+        if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
+            return;
+        map.set(position.getY() * 15 + position.getX(), element);
+    }
+
+    public boolean inside(Position pos) {
+        return pos.getY() >= 0 && pos.getY() < 10
+                && pos.getX() >= 0 && pos.getX() < 15;
     }
 }

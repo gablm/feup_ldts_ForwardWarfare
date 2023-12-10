@@ -4,19 +4,31 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
+import com.ldts.ForwardWarfare.Element.Playable.Water.FighterSubmarine;
 import com.ldts.ForwardWarfare.Element.Position;
 
 public class LightHelicopter extends Playable {
     public LightHelicopter(Position pos) {
-        super(4);
+        super(4, 100, 75);
+        this.foregroundColor = new TextColor.RGB(80, 80, 80);
         position = pos;
     }
     @Override
-    public void draw(TextGraphics textGraphics, TextColor textColor) {
-        textGraphics.setForegroundColor(textColor != null ? textColor : new TextColor.RGB(80, 80, 80));
+    public void draw(TextGraphics textGraphics) {
+        textGraphics.setForegroundColor(foregroundColor);
         textGraphics.putString(position.toTPos(), "[");
     }
-    protected boolean canMove(Element element) {
-        return false;
+    public boolean canMove(Element element) {
+        return true;
+    }
+
+    @Override
+    public String getType() {
+        return "Air";
+    }
+
+    @Override
+    public boolean canAttack(Playable playable) {
+        return !(playable instanceof FighterSubmarine);
     }
 }

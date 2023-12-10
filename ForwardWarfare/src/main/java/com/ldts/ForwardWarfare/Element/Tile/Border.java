@@ -12,8 +12,9 @@ public class Border extends Element {
     }
 
     @Override
-    public void draw(TextGraphics graphics,TextColor textColor) {
-        graphics.setForegroundColor(textColor);
+    public void draw(TextGraphics graphics) {
+        graphics.setForegroundColor(foregroundColor);
+        graphics.setBackgroundColor(backgroundColor);
         graphics.putString(position.toTPos(),"*");
     }
 }
