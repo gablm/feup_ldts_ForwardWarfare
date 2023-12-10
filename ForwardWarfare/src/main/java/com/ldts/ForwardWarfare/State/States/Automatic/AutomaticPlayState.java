@@ -19,6 +19,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
 import com.ldts.ForwardWarfare.Element.Tile.MountainLand;
 import com.ldts.ForwardWarfare.Element.Tile.Tile;
+import com.ldts.ForwardWarfare.Element.Tile.Water;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
@@ -52,8 +53,13 @@ public class AutomaticPlayState extends BaseState {
     }
 
     private void automatedLogic() {
-        for (Element i : p1.getFacilities()) {
+
+        for (int troopBuys = 0; troopBuys < 4 && !p1.getFacilities().isEmpty(); troopBuys++) {
+            int random = new Random().nextInt(0, p1.getFacilities().size());
+            Element i = p1.getFacilities().get(random);
             Tile tile = (Tile) i;
+            if (tile.getFacility().getUsed())
+                continue;
             if (tile.getFacility() instanceof Airport)
                 buyHighest(2, i.getPosition());
             if (tile.getFacility() instanceof Port)
@@ -67,7 +73,13 @@ public class AutomaticPlayState extends BaseState {
 
         List<Position> small;
         Playable vitimRes = null;
+        Element facilityRes = null;
+
+        int troopMoves = 0;
         for (Element i : p1.getTroops()) {
+            if (troopMoves > 3)
+                break;
+
             Playable troop = (Playable) i;
             small = new ArrayList<>();
             for (Element vitim : p2.getTroops()) {
@@ -90,6 +102,32 @@ public class AutomaticPlayState extends BaseState {
                 }
             }
 
+
+            for (Element element : map.getElements()) {
+                if (((Tile)element).getFacility() == null)
+                    continue;
+                if (p1.getFacilities().stream().anyMatch(nw -> nw.getPosition().equals(element.getPosition())))
+                    continue;
+                if (p1.getBase().getPosition().equals(element.getPosition()))
+                    continue;
+                if (p2.getBase().getPosition().equals(element.getPosition()))
+                    continue;
+                List<Position> res = null;
+                int tries = 0;
+                while (tries < 4 && res == null) {
+                    Position p = element.getPosition();
+                    int a = p.getY() + x.get(tries);
+                    int b = p.getX() + y.get(tries);
+                    res = canMove(i.getPosition(), new Position(b, a), troop);
+                    tries++;
+                }
+                if (res != null && (res.size() < small.size() || small.isEmpty())) {
+                    small = res;
+                    facilityRes = element;
+                    vitimRes = null;
+                }
+            }
+
             List<Position> res = null;
             int tries = 0;
             while (tries < 4 && res == null) {
@@ -101,6 +139,7 @@ public class AutomaticPlayState extends BaseState {
             }
             if (res != null && (res.size() < small.size() || small.isEmpty())) {
                 small = res;
+                facilityRes = null;
                 vitimRes = null;
             }
 
@@ -112,11 +151,16 @@ public class AutomaticPlayState extends BaseState {
                     else
                         p2.getTroops().remove(vitimRes);
                 } else {
-                    capture(p2.getBase().getPosition());
+                    if (facilityRes != null)
+                        capture(facilityRes.getPosition());
+                    else
+                        capture(p2.getBase().getPosition());
                 }
                 troop.setPosition(small.get(0));
+                troopMoves++;
             } else if (small.size() > troop.getMaxMoves()) {
                 troop.setPosition(small.get(small.size() - troop.getMaxMoves() - 1));
+                troopMoves++;
             }
         }
     }

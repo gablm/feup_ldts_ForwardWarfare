@@ -38,7 +38,7 @@ public abstract class ControllerBase implements Controller {
         base = initialFacilities.get(0);
         base.setForegroundColor(controllerColor);
         this.controllerColor = controllerColor;
-        this.coins = 25;
+        this.coins = 15;
         this.name = name;
     }
 
@@ -122,11 +122,11 @@ public abstract class ControllerBase implements Controller {
     @Override
     public void resetRound() {
         canPlay = true;
-        coins += 10;
+        coins += 5;
         for (Element i : facilities) {
             Facility facility = ((Tile)i).getFacility();
             if (facility instanceof OilPump)
-                coins += 10;
+                coins += 5;
             if(facility.getUsed())
                 facility.execute();
         }
