@@ -99,10 +99,10 @@ public class AttackNoSelectionState extends BaseState {
             graphics.putString(3, 13, String.format("HP %d", selectables.get(index).getHp()));
             graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
             graphics.putString(1, 15, "LEFT");
-            graphics.putString(1, 15, "RIGHT");
+            graphics.putString(6, 15, "RIGHT");
         } else {
-            graphics.putString(1, 11, "Nothing to");
-            graphics.putString(1, 12, "attack");
+            graphics.putString(1, 12, "Nothing to");
+            graphics.putString(1, 13, "attack");
         }
         graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         graphics.putString(1, 17, "ENTER");

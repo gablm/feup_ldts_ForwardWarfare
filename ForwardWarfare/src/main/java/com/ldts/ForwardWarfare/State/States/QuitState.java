@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare.State.States;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -41,14 +43,17 @@ public class QuitState extends BaseState {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 11, "Are you sure?");
+        TextColor color = new TextColor.RGB(80, 80, 80);
+        graphics.setBackgroundColor(color);
+        graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
 
-        graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
-        graphics.putString(3, 13, " No ");
-        graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : TextColor.ANSI.BLACK);
-        graphics.putString(7, 13, " Yes ");
+        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        graphics.putString(1, 13, "Are you sure?");
+
+        graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : color);
+        graphics.putString(3, 15, " No ");
+        graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : color);
+        graphics.putString(7, 15, " Yes ");
     }
 
     @Override

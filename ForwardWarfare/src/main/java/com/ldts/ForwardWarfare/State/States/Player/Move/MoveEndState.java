@@ -101,7 +101,7 @@ public class MoveEndState extends BaseState {
         return true;
     }
     private boolean canCapture() {
-        if (element == null)
+        /*if (element == null)
             return false;
         boolean canCapture = false;
         int v = 0;
@@ -122,7 +122,8 @@ public class MoveEndState extends BaseState {
             if (v == 8 && !canCapture)
                 break;
         }
-        return canCapture;
+        return canCapture;*/
+        return element != null;
     }
     private boolean canAttack() {
         return element != null;

@@ -30,7 +30,7 @@ public class CaptureNoSelectionState extends BaseState {
         super(p1, p2, map);
         this.element = element;
         p1.setSelection1(null);
-        for (Element i: getelements())
+        for (Element i: getElements())
         {
             if (isNewFacility(i.getPosition()))
                 selectables.add(i);
@@ -81,13 +81,13 @@ public class CaptureNoSelectionState extends BaseState {
             graphics.putString(1, 11, "Select Facility");
             TextCharacter character = graphics.getCharacter(p1.getSelection1().getPosition().toTPos());
             graphics.setCharacter(1, 13, character);
-            graphics.putString(3,13,getfacilityname());
+            graphics.putString(3,13, getFacilityName());
             graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
             graphics.putString(1, 15, "LEFT");
-            graphics.putString(1, 15, "RIGHT");
+            graphics.putString(6, 15, "RIGHT");
         } else {
-            graphics.putString(1, 11, "Nothing to");
-            graphics.putString(1, 12, "Capture");
+            graphics.putString(1, 12, "Nothing to");
+            graphics.putString(1, 13, "Capture");
         }
         graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         graphics.putString(1, 17, "ENTER");
@@ -120,13 +120,11 @@ public class CaptureNoSelectionState extends BaseState {
     }
     private boolean isNewFacility(Position pos){
         if (p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)) || p1.getBase().getPosition().equals(pos))
-        {
             return false;
-        }
         else
-            return map.at(pos).getFacility()!=null;
+            return map.at(pos).getFacility() != null;
     }
-    private List<Element> getelements(){
+    private List<Element> getElements(){
         List<Element> elements = new ArrayList<>();
         for(Element i: map.getElements())
         {
@@ -135,7 +133,7 @@ public class CaptureNoSelectionState extends BaseState {
         }
         return elements;
     }
-    private String getfacilityname(){
+    private String getFacilityName(){
         Tile tile = (Tile) selectables.get(index);
         if (tile.getFacility().getClass().equals(Base.class)) {
             return "Base";
