@@ -7,69 +7,58 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Position;
 
-import java.nio.file.WatchEvent;
-
 public class Button extends Component{
-    private String Lable;
-    public String getLable() {
-        return Lable;
+    private String label;
+    public String getLabel() {
+        return label;
     }
 
-    public void setLable(String lable) {
-        Lable = lable;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     private TextColor BorderColor;
-    public Button(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, String Lable,int BorderFadeIntencity)
+    public Button(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, String label, int BorderFadeIntencity)
     {
         super(backColor,forgColor,position,size,BorderFadeIntencity);
-        this.Lable=Lable;
+        this.label = label;
     }
-    private void setupbord()
+    private void setupBoard()
     {
         int r,g,b;
-        if(backColor.getRed()-BorderFadeIntencity>0)
-        {
-            r=backColor.getRed()-BorderFadeIntencity;
-        } else{
-            r=backColor.getRed();
-        }
 
-        if(backColor.getGreen()-BorderFadeIntencity>0)
-        {
-            g=backColor.getGreen()-BorderFadeIntencity;
-        } else{
-            g=backColor.getGreen();
-        }
+        r = backColor.getRed() - BorderFadeIntencity;
+        if (r <= 0)
+            r = backColor.getRed();
 
-        if(backColor.getBlue()-BorderFadeIntencity>0)
-        {
-            b=backColor.getBlue()-BorderFadeIntencity;
-        } else{
-            b=backColor.getBlue();
-        }
-        BorderColor=new TextColor.RGB(r,g,b);
+        g = backColor.getGreen() - BorderFadeIntencity;
+        if (g <= 0)
+            g = backColor.getGreen();
+
+        b = backColor.getBlue() - BorderFadeIntencity;
+        if (b <= 0)
+            b = backColor.getBlue();
+        BorderColor = new TextColor.RGB(r,g,b);
     }
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(backColor);
         graphics.setForegroundColor(forgColor);
         graphics.enableModifiers(SGR.BOLD);
-        setupbord();
+        setupBoard();
 
-        for(int x=1;x<size.getColumns()-1;x++)
+        for(int x = 1; x < size.getColumns() - 1; x++)
         {
-            for (int y=1;y<size.getRows()-1;y++)
-            {
-                graphics.putString(new TerminalPosition(x+ position.getX(),y+ position.getY())," ");
-            }
+            for (int y = 1; y < size.getRows() - 1; y++)
+                graphics.putString(new TerminalPosition(x + position.getX(),y + position.getY())," ");
         }
-        if(Lable.length()%2==0) {
-            graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (Lable.length() / 2)+1, position.getY() + (size.getRows() / 2)), Lable);
-        }else
-        {
-            graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (Lable.length() / 2), position.getY() + (size.getRows() / 2)), Lable);
-        }
+
+        if(label.length() % 2 == 0)
+            graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (label.length() / 2)+1,
+                    position.getY() + (size.getRows() / 2)), label);
+        else
+            graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (label.length() / 2),
+                    position.getY() + (size.getRows() / 2)), label);
         graphics.setBackgroundColor(BorderColor);
 
         graphics.drawRectangle(position.toTPos(),size,' ');

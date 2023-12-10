@@ -166,22 +166,22 @@ public class ColorGrid extends Component{
     {
 
         int redindex = 0;
-        for(Button b:butonused)
+        for(Button b : butonused)
         {
             ColorList.add(b);
-            if (b.getBackColor()==TextColor.ANSI.RED)
+            if (b.getBackColor() == TextColor.ANSI.RED)
             {
-                redindex=ColorList.indexOf(b);
+                redindex = ColorList.indexOf(b);
             }
         }
         butonused.clear();
-        player1Color=null;
-        if (!Gamemode) {
+        player1Color = null;
+        if (!Gamemode)
             butonused.add(ColorList.get(redindex));
-        }
         else
             player2Color = null;
-        for (Button b:ColorList)
+
+        for (Button b : ColorList)
         {
             if(b.getBackColor()!=TextColor.ANSI.RED)
                 b.setFixBorder(false);
