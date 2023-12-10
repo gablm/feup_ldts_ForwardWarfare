@@ -45,6 +45,7 @@ public class Game {
         Controller p1 = new Player(map.getPlayer1(), TextColor.ANSI.BLUE, "P1");
         Controller p2 = new Player(map.getPlayer2(), TextColor.ANSI.RED, "P2");
         Drawer drawer = new Drawer(p1, p2, map);
+
         p1.buy(PlayableFactory.createAATank(2, 6), 0);
         p2.buy(PlayableFactory.createAATank(3, 6), 0);
         p2.buy(PlayableFactory.createAATank(3, 7), 0);
@@ -74,15 +75,6 @@ public class Game {
                 return;
             }
         }
-    }
-
-    private void ScreenWarning(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.ANSI.BLACK);
-        graphics.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
-        graphics.putString(1, 11, "WARNING:");
-        graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(1, 12, "Use the other ");
-        graphics.putString(1, 13, "window to move!");
     }
 
     private Action keyToAction(KeyStroke keyStroke) {
