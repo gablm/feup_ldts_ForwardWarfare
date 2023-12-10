@@ -68,7 +68,6 @@ public class AutomaticPlayState extends BaseState {
             Playable troop = (Playable) i;
             small = new ArrayList<>();
             for (Element vitim : p2.getTroops()) {
-                vitimRes = (Playable) vitim;
                 if (!troop.canAttack((Playable) vitim))
                     continue;
                 int tries = 0;
@@ -82,9 +81,12 @@ public class AutomaticPlayState extends BaseState {
                 }
                 if (res == null)
                     continue;
-                if (res.size() < small.size() || small.isEmpty())
+                if (res.size() < small.size() || small.isEmpty()) {
                     small = res;
+                    vitimRes = (Playable) vitim;
+                }
             }
+
             List<Position> res = null;
             int tries = 0;
             while (tries < 4 && res == null) {
@@ -98,6 +100,7 @@ public class AutomaticPlayState extends BaseState {
                 small = res;
                 vitimRes = null;
             }
+
             if (!small.isEmpty() && small.size() < troop.getMaxMoves() + 3) {
                 if (vitimRes != null) {
                     int finalHp = vitimRes.getHp() - troop.getDamage();
