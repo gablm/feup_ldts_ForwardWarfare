@@ -8,7 +8,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Facility.*;
-import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Tile;
@@ -16,9 +15,7 @@ import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.BaseState;
-import com.ldts.ForwardWarfare.State.States.Player.CaptureState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.Attack.AttackState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 
 import java.util.ArrayList;
@@ -28,32 +25,28 @@ import java.util.List;
 public class CaptureNoSelectionState extends BaseState {
     private List<Element> selectables = new ArrayList<>();
     private int index = 0;
-
-    public CaptureNoSelectionState(Controller p1, Controller p2, Map map) {
+    private Element element;
+    public CaptureNoSelectionState(Controller p1, Controller p2, Map map, Element element) {
         super(p1, p2, map);
-        Border border = p1.getSelection1();
-        if (border == null) {
-            p1.setSelection1(new Border(new Position(0, 0)));
-        } else {
-            TextColor color = map.at(border.getPosition()).getColor();
-            border.setBackgroundColor(color);
-        }
-        for(Element i: getelements())
+        this.element = element;
+        p1.setSelection1(null);
+        for (Element i: getelements())
         {
-            if(isnewfacility(i.getPosition()))
-            {
+            if (isNewFacility(i.getPosition()))
                 selectables.add(i);
-            }
         }
-        if (selectables.isEmpty())
+        if (selectables.isEmpty() || element == null)
             return;
+        p1.setSelection1(new Border(new Position(0, 0)));
         moveTo(selectables.get(0).getPosition());
     }
 
     @Override
     public State play(Action action) {
-        if (selectables.isEmpty())
-            return new MoveEndState(p1, p2, map, p1.getSelection1());
+        if (selectables.isEmpty()) {
+            p1.setSelection1(new Border(element.getPosition()));
+            return new MoveEndState(p1, p2, map, element);
+        }
         switch (action) {
             case UP:
                 break;
@@ -68,7 +61,8 @@ public class CaptureNoSelectionState extends BaseState {
             case ENTER:
                 return new CaptureState(p1, p2, map);
             case ESCAPE:
-                return new MoveEndState(p1, p2, map,null);
+                p1.setSelection1(new Border(element.getPosition()));
+                return new MoveEndState(p1, p2, map, element);
             case QUIT:
                 return new QuitState(p1, p2, map, this);
         }
@@ -113,7 +107,7 @@ public class CaptureNoSelectionState extends BaseState {
             p1.getSelection1().setBackgroundColor(color);
     }
     private boolean withinRadius(Position point2) {
-        Position point1 = p1.getSelection1().getPosition();
+        Position point1 = element.getPosition();
         if (point2.getX() > point1.getX() + 1)
             return false;
         if (point2.getX() < point1.getX() - 1)
@@ -124,7 +118,7 @@ public class CaptureNoSelectionState extends BaseState {
             return false;
         return true;
     }
-    private boolean isnewfacility(Position pos){
+    private boolean isNewFacility(Position pos){
         if (p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)) || p1.getBase().getPosition().equals(pos))
         {
             return false;

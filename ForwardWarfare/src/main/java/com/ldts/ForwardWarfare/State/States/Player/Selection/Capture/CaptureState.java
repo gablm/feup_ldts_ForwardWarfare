@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare.State.States.Player;
+package com.ldts.ForwardWarfare.State.States.Player.Selection.Capture;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;

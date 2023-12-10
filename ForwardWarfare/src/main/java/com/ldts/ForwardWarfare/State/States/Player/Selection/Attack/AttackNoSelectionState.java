@@ -24,20 +24,13 @@ import java.util.List;
 public class AttackNoSelectionState extends BaseState {
     private List<Playable> selectables = new ArrayList<>();
     private int index = 0;
-    private Playable element;
+    private Element element;
     public AttackNoSelectionState(Controller p1, Controller p2, Map map, Element element) {
         super(p1, p2, map);
-        Border border = p1.getSelection1();
-        if (border == null) {
-            p1.setSelection1(new Border(new Position(0, 0)));
-        } else {
-            TextColor color = map.at(border.getPosition()).getColor();
-            border.setBackgroundColor(color);
-        }
-        if (element == null)
+        this.element = element;
+        p1.setSelection1(null);
+        if (!(element instanceof Playable playable))
             return;
-        Playable playable = (Playable) element;
-        this.element = (Playable) element;
         for (Element i : p2.getTroops()) {
             Playable elem = (Playable) i;
             if (elem.canAttack(playable) && withinRadius(i.getPosition(), playable.getAttackRadius())) {
@@ -46,12 +39,12 @@ public class AttackNoSelectionState extends BaseState {
         }
         if (selectables.isEmpty())
             return;
+        p1.setSelection1(new Border(new Position(0, 0)));
         moveTo(selectables.get(0).getPosition());
     }
 
     private boolean withinRadius(Position point2, int attackRadius) {
         Position point1 = element.getPosition();
-        System.out.printf("rad: %d \n %d %d | %d %d \n", attackRadius, point1.getX(), point1.getY(), point2.getX(), point2.getY());
         if (point2.getX() > point1.getX() + attackRadius)
             return false;
         if (point2.getX() < point1.getX() - attackRadius)
@@ -65,8 +58,10 @@ public class AttackNoSelectionState extends BaseState {
 
     @Override
     public State play(Action action) {
-        if (selectables.isEmpty())
+        if (selectables.isEmpty()) {
+            p1.setSelection1(new Border(element.getPosition()));
             return new MoveEndState(p1, p2, map, element);
+        }
         switch (action) {
             case UP:
                 break;
@@ -79,8 +74,9 @@ public class AttackNoSelectionState extends BaseState {
                 index = index < selectables.size() - 1 ? index + 1 : selectables.size() - 1;
                 break;
             case ENTER:
-                return new AttackState(p1, p2, map, element, selectables.get(index));
+                return new AttackState(p1, p2, map, (Playable) element, selectables.get(index));
             case ESCAPE:
+                p1.setSelection1(new Border(element.getPosition()));
                 return new MoveEndState(p1, p2, map, element);
             case QUIT:
                 return new QuitState(p1, p2, map, this);
