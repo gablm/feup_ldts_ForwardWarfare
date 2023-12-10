@@ -1,9 +1,7 @@
 package com.ldts.ForwardWarfare;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -11,19 +9,14 @@ import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
-import com.ldts.ForwardWarfare.Element.Facility.Base;
-import com.ldts.ForwardWarfare.Element.Playable.PlayableFactory;
-import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Objects;
 
 public class Game {
     private LanternaTerminal terminal;
