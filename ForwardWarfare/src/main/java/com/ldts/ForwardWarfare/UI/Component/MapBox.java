@@ -6,20 +6,26 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
+import com.ldts.ForwardWarfare.Map.MapParseException;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 
 public class MapBox extends Component {
-    private Map mapa;
+    private Map map;
+    private Map oldMap;
     private TextColor BorderColor;
-    public MapBox(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, int BorderFadeIntencity,Map map) {
+    public MapBox(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, int BorderFadeIntencity, String mapName) throws FileNotFoundException, MapParseException, URISyntaxException {
         super(backColor, forgColor, position, size, BorderFadeIntencity);
-        this.mapa=map;
-        for (Element e:mapa.getElements())
+        this.map = new Map(mapName);
+        this.oldMap = new Map(mapName);
+        for (Element e: this.map.getElements())
         {
             e.setPosition(new Position(e.getPosition().getX()+position.getX()+1,e.getPosition().getY()+ position.getY()+1));
         }
     }
-    private void setupbord() {
+    private void setupBoard() {
         int r, g, b;
         if (backColor.getRed() - BorderFadeIntencity > 0) {
             r = backColor.getRed() - BorderFadeIntencity;
@@ -42,18 +48,19 @@ public class MapBox extends Component {
     }
     @Override
     public void draw(TextGraphics graphics) {
-        setupbord();
+        setupBoard();
         graphics.setBackgroundColor(BorderColor);
         graphics.drawRectangle(position.toTPos(),size,' ');
-        for (Element e:mapa.getElements())
-        {
-            if(e.getPosition().getX()<position.getX()+size.getColumns()-1 && e.getPosition().getY()<position.getY()+size.getRows()-1) {
-                e.draw(graphics, TextColor.ANSI.BLACK);
+
+        for (Element e: map.getElements()) {
+            if(e.getPosition().getX() < position.getX() + size.getColumns() - 1
+                    && e.getPosition().getY() < position.getY() + size.getRows() - 1) {
+                e.draw(graphics);
             }
         }
     }
 
-    public Map getMapa() {
-        return mapa;
+    public Map getMap() {
+        return oldMap;
     }
 }

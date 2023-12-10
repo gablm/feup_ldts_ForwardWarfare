@@ -4,7 +4,7 @@ public enum UiStates {
     MainMenu,
     HowToPlay,
     StartGameMenu,
-    BatleUI,
+    BattleUI,
     Exit
 
 }

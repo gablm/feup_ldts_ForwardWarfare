@@ -283,7 +283,7 @@ public class StartGameMenuTest {
         startGameMenu.setBc(0);
 
         Assertions.assertTrue(startGameMenu.isEndscreen());
-        Assertions.assertEquals(UiStates.BatleUI, startGameMenu.getStartgame());
+        Assertions.assertEquals(UiStates.BattleUI, startGameMenu.getStartgame());
     }
     @Test
     public void testProcessKey_Enter_SelectColorButton()
