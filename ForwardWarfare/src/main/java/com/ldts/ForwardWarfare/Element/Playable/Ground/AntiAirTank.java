@@ -24,7 +24,7 @@ public class AntiAirTank extends Playable {
 
     @Override
     public String getType() {
-        return "Air";
+        return "Ground";
     }
 
     @Override
