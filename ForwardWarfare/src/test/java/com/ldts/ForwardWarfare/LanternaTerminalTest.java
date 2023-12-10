@@ -2,20 +2,16 @@ package com.ldts.ForwardWarfare;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;
-import com.groupcdg.pitest.annotations.CoverageIgnore;
-import com.groupcdg.pitest.annotations.DoNotMutate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-@CoverageIgnore
 public class LanternaTerminalTest {
 
-    @DoNotMutate
+    @Test
     public void TerminalBuildTest() throws IOException, URISyntaxException, FontFormatException {
 
         LanternaTerminal terminal = new LanternaTerminal(
@@ -28,9 +24,13 @@ public class LanternaTerminalTest {
         Assertions.assertNotNull(terminal.getFont());
     }
 
-    @DoNotMutate
+    @Test
     public void TerminalGetScreen() throws IOException, URISyntaxException, FontFormatException {
-        LanternaTerminal terminal = Mockito.mock(LanternaTerminal.class);
+        LanternaTerminal terminal = new LanternaTerminal(
+                new TerminalSize(19, 21),
+                "Tanks2_1.ttf",
+                10
+        );
 
         Screen screen = terminal.createScreen();
 
