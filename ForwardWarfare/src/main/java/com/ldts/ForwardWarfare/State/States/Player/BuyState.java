@@ -285,6 +285,6 @@ public class BuyState extends BaseState {
                 graphics.setBackgroundColor(new TextColor.RGB(153,76,0));
                 break;
         }
-        graphics.putString(0, 17, "Not Enough Coins");
+        graphics.putString(2, 17, "To Expensive");
     }
 }
