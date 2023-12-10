@@ -38,7 +38,7 @@ public class SpawnTroopState extends BaseState {
     public void draw(TextGraphics graphics) {
         graphics.fillRectangle(new TerminalPosition(0,10), new TerminalSize(15,9), ' ');
         int p = 0;
-        Position temp = new Position( facilityPos.getX(), facilityPos.getY());
+        Position temp = new Position(facilityPos.getX(), facilityPos.getY());
         while (!validSpace) {
             switch (p)
             {

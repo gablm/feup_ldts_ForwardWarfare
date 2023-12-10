@@ -34,7 +34,7 @@ public class BuyState extends BaseState {
     private int Facility;
     private Position pos;
     private int Highlighted = 0;
-    private List<List<Integer>> values =List.of(List.of(2,5,10,7,15,10),List.of(7,20,10),List.of(10,25,15));
+    private List<List<Integer>> values = List.of(List.of(2,5,10,7,15,10),List.of(7,20,10),List.of(10,25,15));
     private List<List<Element>> troop = List.of(
             List.of(new LightPerson(new Position(0,0)),new HeavyPerson(new Position(0,0)),new MortarPerson(new Position(0,0)),new LightTank(new Position(0,0)),new HeavyTank(new Position(0,0)),new AntiAirTank(new Position(0,0)))
             ,List.of(new LightBoat(new Position(0,0)),new MortarBoat(new Position(0,0)),new FighterSubmarine(new Position(0,0)))

@@ -82,7 +82,7 @@ public class Game {
         LanternaTerminal terminal = new LanternaTerminal(new TerminalSize(25,19), "tanks2_1.ttf", 40);
         Screen screen = terminal.createScreen();
         Controller p1 = new Player(map.getPlayer1(), color1, "P1");
-        Controller p2 = GameMode ? new Player(map.getPlayer2(), color2, "P2") : new Bot(map.getPlayer1(), color2, "P2");
+        Controller p2 = GameMode ? new Player(map.getPlayer2(), color2, "P2") : new Bot(map.getPlayer2(), TextColor.ANSI.RED, "P2");
         Drawer drawer = new Drawer(p1, p2, map);
 
         State state = new StartRoundState(p1, p2, map);
