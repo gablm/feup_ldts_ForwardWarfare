@@ -31,10 +31,10 @@ public class ControllerTest {
     @Test
     public void ControllerInvalidTest() {
         Exception playerEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Player(null, TextColor.ANSI.MAGENTA_BRIGHT);
+            new Player(null, TextColor.ANSI.MAGENTA_BRIGHT, null);
         });
         Exception botEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Bot(null, TextColor.ANSI.GREEN_BRIGHT);
+            new Bot(null, TextColor.ANSI.GREEN_BRIGHT, null);
         });
 
         assertEquals("Invalid initial Factory and Base", playerEx.getMessage());
@@ -45,10 +45,10 @@ public class ControllerTest {
     public void ControllerWrongSizeTest() {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()));
         Exception playerEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+            new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
         });
         Exception botEx = Assertions.assertThrows(InvalidControllerException.class, () -> {
-            new Bot(elements, TextColor.ANSI.GREEN_BRIGHT);
+            new Bot(elements, TextColor.ANSI.GREEN_BRIGHT, null);
         });
 
         assertEquals("Invalid initial Factory and Base", playerEx.getMessage());
@@ -61,9 +61,9 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(100, player.getCoins());
+        assertEquals(50, player.getCoins());
         Assertions.assertSame(player.getBase(), base);
         assertEquals(1, player.getFacilities().size());
         Assertions.assertSame(factory, player.getFacilities().get(0));
@@ -76,11 +76,11 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(100, player.getCoins());
+        assertEquals(50, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
-        boolean result = player.buy(troop, 100);
+        boolean result = player.buy(troop, 50);
         Assertions.assertTrue(result);
         assertEquals(0, player.getCoins());
         assertEquals(1, player.getTroops().size());
@@ -93,13 +93,13 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(100, player.getCoins());
+        assertEquals(50, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
         boolean result = player.buy(troop, 50);
         Assertions.assertTrue(result);
-        assertEquals(50, player.getCoins());
+        assertEquals(0, player.getCoins());
         assertEquals(1, player.getTroops().size());
         Assertions.assertSame(troop, player.getTroops().get(0));
     }
@@ -110,20 +110,20 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(100, player.getCoins());
+        assertEquals(50, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
         boolean result = player.buy(troop, 120);
         assertFalse(result);
-        assertEquals(100, player.getCoins());
+        assertEquals(50, player.getCoins());
         Assertions.assertTrue(player.getTroops().isEmpty());
     }
 
     @Test
     public void EndRoundTest() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
-        Controller yourInstance = new Bot(elements,TextColor.ANSI.BLUE_BRIGHT);
+        Controller yourInstance = new Bot(elements,TextColor.ANSI.BLUE_BRIGHT, null);
         yourInstance.endRound();
         assertFalse(yourInstance.canPlay());
         assertNull(yourInstance.getSelection1());
@@ -134,7 +134,7 @@ public class ControllerTest {
     public void GetSetSelection1Test() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         Border borderMock = Mockito.mock(Border.class);
-        Controller yourInstance = new Bot(elements, TextColor.ANSI.WHITE_BRIGHT);
+        Controller yourInstance = new Bot(elements, TextColor.ANSI.WHITE_BRIGHT, null);
         yourInstance.setSelection1(borderMock);
         assertEquals(borderMock, yourInstance.getSelection1());
     }
@@ -143,7 +143,7 @@ public class ControllerTest {
     public void GetSetSelection2Test() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         Border borderMock = Mockito.mock(Border.class);
-        Controller yourInstance = new Player(elements, TextColor.ANSI.RED_BRIGHT);
+        Controller yourInstance = new Player(elements, TextColor.ANSI.RED_BRIGHT, null);
         yourInstance.setSelection2(borderMock);
         assertEquals(borderMock, yourInstance.getSelection2());
     }
@@ -152,7 +152,7 @@ public class ControllerTest {
     public void DrawTest() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
-        ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE);
+        ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE, null);
         Map map = Mockito.mock(Map.class);
         Mockito.when(map.at(Mockito.any())).thenReturn(new Fields(new Position(0, 0), null));
         yourInstance.draw(graphicsMock, map);
@@ -167,7 +167,7 @@ public class ControllerTest {
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
         Border selection1Mock = Mockito.mock(Border.class);
         Border selection2Mock = Mockito.mock(Border.class);
-        Controller yourInstance = new Bot(elements, new TextColor.RGB(255, 255, 255));
+        Controller yourInstance = new Bot(elements, new TextColor.RGB(255, 255, 255), null);
         yourInstance.setSelection1(selection1Mock);
         yourInstance.setSelection2(selection2Mock);
         yourInstance.drawBorder(graphicsMock);
@@ -178,7 +178,7 @@ public class ControllerTest {
     @Test
     public void ResetRoundTest() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
-        Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255));
+        Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255), null);
         int initialCoins = yourInstance.getCoins();
         yourInstance.resetRound();
         assertTrue(yourInstance.canPlay());
@@ -189,7 +189,7 @@ public class ControllerTest {
     @Test
     public void CanPlayTest() throws InvalidControllerException {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
-        ControllerBase yourInstance = new Bot(elements, TextColor.ANSI.CYAN);
+        ControllerBase yourInstance = new Bot(elements, TextColor.ANSI.CYAN, null);
         assertTrue(yourInstance.canPlay()); // Assuming initially canPlay is true
     }
 }

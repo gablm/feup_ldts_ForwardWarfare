@@ -39,7 +39,7 @@ public class Drawer {
         return turnCount;
     }
 
-    private void drawSide(TextGraphics graphics, Controller p1, Controller p2) {
+    public void drawSide(TextGraphics graphics, Controller p1, Controller p2) {
         graphics.setBackgroundColor(TextColor.ANSI.YELLOW);
         graphics.fillRectangle(new TerminalPosition(15,0), new TerminalSize(10,19), ' ');
 
@@ -55,7 +55,7 @@ public class Drawer {
         graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
         graphics.putString(24 - coins.length(), 8, coins);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
-        graphics.putString(16 + 2, 10, "BASE");
+        graphics.putString(18, 10, "BASE");
         graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
 
         int p1Lives = p1.getBaseLives();
