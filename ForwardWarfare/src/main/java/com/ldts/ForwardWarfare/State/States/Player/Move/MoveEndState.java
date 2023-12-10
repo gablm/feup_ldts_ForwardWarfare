@@ -13,7 +13,7 @@ import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.BaseState;
 import com.ldts.ForwardWarfare.State.States.Player.Selection.Attack.AttackNoSelectionState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.CaptureNoSelectionState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.Capture.CaptureNoSelectionState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
