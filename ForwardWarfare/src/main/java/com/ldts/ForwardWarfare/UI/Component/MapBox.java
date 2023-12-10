@@ -26,24 +26,17 @@ public class MapBox extends Component {
         }
     }
     private void setupBoard() {
-        int r, g, b;
-        if (backColor.getRed() - BorderFadeIntencity > 0) {
-            r = backColor.getRed() - BorderFadeIntencity;
-        } else {
+        int r = backColor.getRed() - BorderFadeIntencity;
+        if (r <= 0)
             r = backColor.getRed();
-        }
 
-        if (backColor.getGreen() - BorderFadeIntencity > 0) {
-            g = backColor.getGreen() - BorderFadeIntencity;
-        } else {
+        int g = backColor.getGreen() - BorderFadeIntencity;
+        if (g <= 0)
             g = backColor.getGreen();
-        }
 
-        if (backColor.getBlue() - BorderFadeIntencity > 0) {
-            b = backColor.getBlue() - BorderFadeIntencity;
-        } else {
+        int b = backColor.getBlue() - BorderFadeIntencity;
+        if (b <= 0)
             b = backColor.getBlue();
-        }
         BorderColor = new TextColor.RGB(r, g, b);
     }
     @Override

@@ -8,7 +8,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public abstract class Component {
      protected Position position;
-     private boolean fixBorder=false;
+     private boolean fixBorder = false;
      protected TextColor backColor;
      protected TextColor forgColor;
      protected TerminalSize size;
@@ -29,11 +29,11 @@ public abstract class Component {
 
     public Component(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, int BorderFadeIntencity)
     {
-         this.backColor=backColor;
-         this.forgColor=forgColor;
-         this.position=position;
-         this.size=size;
-         this.BorderFadeIntencity=BorderFadeIntencity;
+         this.backColor = backColor;
+         this.forgColor = forgColor;
+         this.position = position;
+         this.size = size;
+         this.BorderFadeIntencity = BorderFadeIntencity;
     }
     public abstract void draw(TextGraphics graphics);
 
