@@ -2,165 +2,128 @@ package com.ldts.ForwardWarfare;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+
 import com.googlecode.lanterna.screen.Screen;
-
-import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.AntiAirTank;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.LightPerson;
-import com.ldts.ForwardWarfare.Element.Playable.Playable;
+import com.ldts.ForwardWarfare.Controller.Bot;
+import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
+import com.ldts.ForwardWarfare.Controller.Player;
 import com.ldts.ForwardWarfare.Element.Position;
-import com.ldts.ForwardWarfare.Element.Facility.*;
-import com.ldts.ForwardWarfare.Element.Tile.*;
+import com.ldts.ForwardWarfare.UI.*;
 
+import com.ldts.ForwardWarfare.Map.Map;
+import com.ldts.ForwardWarfare.Map.MapParseException;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.AntiAirTank;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyPerson;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
+import com.ldts.ForwardWarfare.State.Action;
+import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.StartRoundState;
 
+import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URISyntaxException;
 
 public class Game {
-    private Screen screen;
-    private LanternaTerminal terminal;
+    private boolean running = true;
+    private UiStates state = UiStates.MainMenu;
+    private boolean GameMode;
+
+    private Map map;
+    private TextColor color1;
+    private TextColor color2;
 
     public static void main(String[] args) {
         try {
-            new Game(new LanternaTerminal(new TerminalSize(15,15), "tanks2_0.ttf", 50)).run();
+            new Game().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public Game(LanternaTerminal terminal) {
-        this.terminal = terminal;
-    }
-    public void run() throws IOException {
-        screen = terminal.createScreen();
-        screen.clear();
-        DrawTiles(screen.newTextGraphics());
-        screen.refresh();
-    }
+    public Game() {}
 
-    private void DrawTiles(TextGraphics graphics) {
-        List<Element> elementList = new ArrayList<>();
-
-        elementList.add(new AntiAirTank(new Position(5, 5)));
-        elementList.add(new LightPerson(new Position(12, 7)));
-        elementList.add(new HeavyTank(new Position(3, 4)));
-
-        /*boolean change = true;
-        for (int j = 0; j < 160; j += 16) {
-            change = !change;
-            for (int i = 0; i < 256; i += 16) {
-                graphics.setBackgroundColor(change ? TextColor.ANSI.CYAN : TextColor.ANSI.YELLOW);
-                change = !change;
-                graphics.drawRectangle(new TerminalPosition(i, j), new TerminalSize(16, 16), ' ');
+    public void run() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException {
+        while (running) {
+            switch (state) {
+                case MainMenu:
+                    UI mainmenu = new MainMenu();
+                    state = mainmenu.build();
+                    GameMode = mainmenu.getGameMode();
+                    break;
+                case StartGameMenu:
+                    StartGameMenu startgamemenu = new StartGameMenu(GameMode);
+                    state = startgamemenu.build();
+                    map = startgamemenu.getSelectedMap();
+                    color1 = startgamemenu.selectColor1();
+                    color2 = startgamemenu.selectColor2();
+                    break;
+                case HowToPlay:
+                    UI howtoplay = new HowToPlayMenu();
+                    state = howtoplay.build();
+                    break;
+                case Exit:
+                    running = false;
+                    break;
+                case BattleUI:
+                    runGame();
+                    state = UiStates.MainMenu;
+                    break;
             }
-        }*/
-        /*
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-
-        graphics.putString(new TerminalPosition(0,0), "Tanks $#+ ");
-        graphics.putString(new TerminalPosition(0,1), "Person (_@ ");
-        graphics.putString(new TerminalPosition(0,2), "Plane %& ");
-        graphics.putString(new TerminalPosition(0,3), "Helly [ ");
-        graphics.putString(new TerminalPosition(0,4), "Boat <' ");
-        graphics.putString(new TerminalPosition(0,5), "Submarine = ");
-        graphics.putString(new TerminalPosition(0,6), "Tiles~}{]|");
-        graphics.putString(new TerminalPosition(0,7), "Borders ^* ");
-        graphics.putString(new TerminalPosition(0,8), "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-        graphics.putString(new TerminalPosition(0,9), "abcdefghijklmnop");
-        graphics.putString(new TerminalPosition(0,10),"Fac ;>`)/");
-        //graphics.putString(new TerminalPosition(0,10), ".,!?-:");*/
-
-        /*
-        graphics.setBackgroundColor(TextColor.ANSI.BLUE);
-        graphics.putString(new TerminalPosition(0,0), "~~~~~~~~~~~");
-        graphics.putString(new TerminalPosition(0,1), "~");
-        graphics.putString(new TerminalPosition(10,1), "~");
-        graphics.putString(new TerminalPosition(0,2), "~");
-        graphics.putString(new TerminalPosition(7,2), "~~~~");
-        graphics.putString(new TerminalPosition(0,3), "~~~~");
-        graphics.putString(new TerminalPosition(10,3), "~");
-        graphics.putString(new TerminalPosition(0,4), "~");
-        graphics.putString(new TerminalPosition(10,4), "~");
-        graphics.putString(new TerminalPosition(0,5), "~");
-        graphics.putString(new TerminalPosition(10,5), "~");
-        graphics.putString(new TerminalPosition(0,6), "~");
-        graphics.putString(new TerminalPosition(8,6), "~~~");
-        graphics.putString(new TerminalPosition(0,7), "~~~");
-        graphics.putString(new TerminalPosition(10,7), "~");
-        graphics.putString(new TerminalPosition(0,8), "~");
-        graphics.putString(new TerminalPosition(10,8), "~");
-        graphics.putString(new TerminalPosition(0,9), "~");
-        graphics.putString(new TerminalPosition(10,9), "~");
-        graphics.putString(new TerminalPosition(0,10), "~~~~~~~~~~~");
-        graphics.setForegroundColor(TextColor.ANSI.CYAN);
-        graphics.putString(new TerminalPosition(4,3), ";");
-        graphics.setForegroundColor(TextColor.ANSI.WHITE);
-        graphics.setBackgroundColor(new TextColor.RGB(128,128,128));
-        graphics.putString(new TerminalPosition(1,5), "}}}}");
-        graphics.putString(new TerminalPosition(6,5), "}}}}");
-        graphics.setBackgroundColor(TextColor.ANSI.GREEN);
-        graphics.putString(new TerminalPosition(1,1), "|");
-        graphics.putString(new TerminalPosition(4,1), "|||");
-        graphics.putString(new TerminalPosition(8,1), "||");
-        graphics.putString(new TerminalPosition(1,2), "||||||");
-        graphics.putString(new TerminalPosition(5,3), "|||");
-        graphics.putString(new TerminalPosition(9,3), "|");
-        graphics.putString(new TerminalPosition(1,4), "||");
-        graphics.putString(new TerminalPosition(4,4), "||||||");
-        graphics.putString(new TerminalPosition(5,5), "|");
-        graphics.putString(new TerminalPosition(1,6), "|");
-        graphics.putString(new TerminalPosition(3,6), "|||||");
-        graphics.putString(new TerminalPosition(3,7), "|||||||");
-        graphics.putString(new TerminalPosition(1,8), "|||");
-        graphics.putString(new TerminalPosition(5,8), "|||||");
-        graphics.putString(new TerminalPosition(1,9), "|");
-        graphics.putString(new TerminalPosition(3,9), "|||||");
-        graphics.putString(new TerminalPosition(9,9), "|");
-        graphics.setForegroundColor(TextColor.ANSI.BLACK);
-        graphics.putString(new TerminalPosition(3,1), "#");
-        graphics.putString(new TerminalPosition(2,1), ";");
-        graphics.setForegroundColor(TextColor.ANSI.BLUE_BRIGHT);
-        graphics.putString(new TerminalPosition(7,1), ";");
-        graphics.setForegroundColor(TextColor.ANSI.MAGENTA);
-        graphics.putString(new TerminalPosition(8,3), ";");
-        graphics.setForegroundColor(TextColor.ANSI.YELLOW);
-        graphics.putString(new TerminalPosition(3,4), ";");
-        graphics.setForegroundColor(TextColor.ANSI.YELLOW);
-        graphics.putString(new TerminalPosition(2,6), ";");
-        graphics.setForegroundColor(TextColor.ANSI.MAGENTA);
-        graphics.putString(new TerminalPosition(4,8), ";");
-        graphics.setForegroundColor(TextColor.ANSI.BLUE_BRIGHT);
-        graphics.putString(new TerminalPosition(2,9), ";");
-        graphics.setForegroundColor(TextColor.ANSI.BLACK);
-        graphics.putString(new TerminalPosition(8,9), ";");
-        */
-
-
-        elementList.add(new Forest(new Position(0,0)));
-        elementList.add(new MountainLand(new Position(0,1)));
-        elementList.add(new MountainWater(new Position(1,1)));
-        elementList.add(new Water(new Position(1,0),null));
-        elementList.add(new Water(new Position(2,0),null));
-        elementList.add(new Fields(new Position(0,2),null));
-        elementList.add(new Water(new Position(1,2),new Port()));
-        elementList.add(new Water(new Position(1,3),new Oil_Pump()));
-        elementList.add(new Fields(new Position(0,3),new Base(TextColor.ANSI.BLUE)));
-        elementList.add(new Fields(new Position(0,4),new Base(TextColor.ANSI.RED)));
-        elementList.add(new Fields(new Position(0,5),new Factory()));
-        elementList.add(new Fields(new Position(0,6),new Airport()));
-        elementList.add(new Fields(new Position(0,7),new Oil_Pump()));
-
-
-
-
-
-        for (Element element : elementList) {
-            if (element instanceof Playable)
-                ((Playable)element).draw(graphics, TextColor.ANSI.BLUE);
-            else
-                element.draw(graphics,null);
         }
     }
+
+    public void runGame() throws IOException, URISyntaxException, InvalidControllerException, FontFormatException {
+
+        if (map == null || color1 == null || color2 == null)
+            return;
+
+        LanternaTerminal terminal = new LanternaTerminal(new TerminalSize(25,19), "tanks2_1.ttf", 40);
+        Screen screen = terminal.createScreen();
+        Controller p1 = new Player(map.getPlayer1(), color1, "P1");
+        Controller p2 = GameMode ? new Player(map.getPlayer2(), color2, "P2") : new Bot(map.getPlayer2(), TextColor.ANSI.RED, "P2");
+        Drawer drawer = new Drawer(p1, p2, map);
+
+        State state = new StartRoundState(p1, p2, map);
+        while (true) {
+            screen.clear();
+            drawer.draw(screen.newTextGraphics(), state);
+            screen.refresh();
+
+            if (state.requiresInput()) {
+                KeyStroke key = screen.readInput();
+                if (key.getKeyType() == KeyType.EOF)
+                    return;
+                state = state.play(keyToAction(key));
+            } else
+                state = state.play(null);
+
+            if (state instanceof StartRoundState)
+                drawer.increaseTurnCount();
+
+            if (state == null) {
+                screen.close();
+                return;
+            }
+        }
+    }
+
+    private Action keyToAction(KeyStroke keyStroke) {
+        return switch (keyStroke.getKeyType()) {
+            case Enter -> Action.ENTER;
+            case ArrowUp -> Action.UP;
+            case ArrowDown -> Action.DOWN;
+            case ArrowLeft -> Action.LEFT;
+            case ArrowRight -> Action.RIGHT;
+            case Escape -> Action.ESCAPE;
+            case Character -> {
+                if (keyStroke.getCharacter() == 'q')
+                    yield Action.QUIT;
+                yield Action.NONE;
+            }
+            default -> Action.NONE;
+        };
+    }
+
 }

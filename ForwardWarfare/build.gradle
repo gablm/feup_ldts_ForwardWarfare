@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'info.solidsoft.pitest' version '1.6.0'
+    id 'info.solidsoft.pitest' version '1.7.0'
 }
 
 group = 'com.ldts.forwardwarfare'
@@ -20,6 +20,7 @@ dependencies {
             name: 'lanterna', version: '3.1.1'
     testImplementation 'org.mockito:mockito-core:3.7.7'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    implementation 'com.groupcdg:pitest-annotations:1.1.2'
 }
 
 test {
@@ -27,6 +28,12 @@ test {
 }
 
 pitest {
+    timestampedReports = false
     targetClasses = ['com.ldts.ForwardWarfare.*']
+    excludedClasses = ['com.ldts.ForwardWarfare.LanternaTerminal']
+    excludedTestClasses = ['com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest',
+                           'com.ldts.ForwardWarfare.UITest.MainMenuTest',
+                           'com.ldts.ForwardWarfare.UITest.StartGameMenuTest']
+    excludedTestClasses = ['com.ldts.ForwardWarfare.LanternaTerminalTest']
     junit5PluginVersion = '0.12'
 }

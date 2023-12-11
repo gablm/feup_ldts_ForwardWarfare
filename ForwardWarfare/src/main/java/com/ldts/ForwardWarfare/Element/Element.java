@@ -2,11 +2,19 @@ package com.ldts.ForwardWarfare.Element;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.ldts.ForwardWarfare.Element.Facility.Facility;
 
 public abstract class Element {
     protected Position position;
+    protected TextColor backgroundColor;
+    protected TextColor foregroundColor;
     public Element() { }
+    public void setForegroundColor(TextColor foregroundColor) {
+        this.foregroundColor = foregroundColor;
+    }
+
+    public void setBackgroundColor(TextColor backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
 
     public Position getPosition() {
         return position;
@@ -14,9 +22,5 @@ public abstract class Element {
     public void setPosition(Position pos) {
         this.position = pos;
     }
-    abstract public void draw(TextGraphics graphics, TextColor textColor);
-
-    public Facility getFacility() {
-        return null;
-    }
+    abstract public void draw(TextGraphics graphics);
 }

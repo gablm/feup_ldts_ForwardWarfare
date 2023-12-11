@@ -1,5 +1,6 @@
-package com.ldts.ForwardWarfare;
+package com.ldts.ForwardWarfare.Element;
 
+import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyPerson;
 import com.ldts.ForwardWarfare.Element.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,7 @@ public class PositionTest {
     public void BaseEquality() {
         Position position = new Position();
         Assertions.assertEquals(position, new Position());
+        Assertions.assertNotEquals(new Position(2, 2), position);
     }
 
     @Test
@@ -41,5 +43,17 @@ public class PositionTest {
 
         Position position = new Position(x, y);
         Assertions.assertEquals(position, new Position(x, y));
+    }
+
+    @Test
+    public void NotValidEqualities() {
+        Random random = new Random();
+        int x = random.nextInt();
+        int y = random.nextInt();
+
+        Position position = new Position(x, y);
+        Assertions.assertFalse(position.equals(null));
+        Assertions.assertFalse(position.equals(new HeavyPerson(null)));
+        Assertions.assertEquals(position, position);
     }
 }
