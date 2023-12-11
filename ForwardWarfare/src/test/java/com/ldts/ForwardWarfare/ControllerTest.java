@@ -5,17 +5,18 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.*;
 import com.ldts.ForwardWarfare.Element.Element;
-import com.ldts.ForwardWarfare.Element.Facility.Base;
-import com.ldts.ForwardWarfare.Element.Facility.Facility;
-import com.ldts.ForwardWarfare.Element.Facility.Factory;
-import com.ldts.ForwardWarfare.Element.Facility.OilPump;
+import com.ldts.ForwardWarfare.Element.Facility.*;
+import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
 import com.ldts.ForwardWarfare.Element.Playable.Ground.LightTank;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.Fields;
+import com.ldts.ForwardWarfare.Element.Tile.MountainLand;
 import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
+import com.ldts.ForwardWarfare.State.States.Automatic.AutomaticPlayState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,13 +62,15 @@ public class ControllerTest {
         Fields factory = new Fields(new Position(0, 0), new Factory());
         List<Element> elements = Arrays.asList(base, factory);
 
-        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, "P1");
 
         assertEquals(15, player.getCoins());
         Assertions.assertSame(player.getBase(), base);
         assertEquals(1, player.getFacilities().size());
         Assertions.assertSame(factory, player.getFacilities().get(0));
         Assertions.assertTrue(player.getTroops().isEmpty());
+        Assertions.assertEquals("P1", player.getName());
+        Assertions.assertEquals(TextColor.ANSI.GREEN_BRIGHT, player.getControllerColor());
     }
 
     @Test
@@ -154,6 +157,7 @@ public class ControllerTest {
         TextGraphics graphicsMock = Mockito.mock(TextGraphics.class);
         ControllerBase yourInstance = new Player(elements, TextColor.ANSI.BLUE, null);
         Map map = Mockito.mock(Map.class);
+        yourInstance.buy(new HeavyTank(new Position(0,0)), 0);
         Mockito.when(map.at(Mockito.any())).thenReturn(new Fields(new Position(0, 0), null));
         yourInstance.draw(graphicsMock, map);
         Mockito.verify(graphicsMock,
@@ -180,10 +184,27 @@ public class ControllerTest {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255), null);
         int initialCoins = yourInstance.getCoins();
+
+        Facility oilPump1 = new OilPump();
+        yourInstance.addFacility(new Fields(new Position(0,0), oilPump1));
+        Facility oilPump2 = new OilPump();
+        yourInstance.addFacility(new Fields(new Position(0,0), oilPump2));
+        Assertions.assertFalse(oilPump1.getUsed());
+        oilPump2.execute();
+        Assertions.assertTrue(oilPump2.getUsed());
+        HeavyTank tank = new HeavyTank(new Position(0,0));
+        tank.setHasMoved(true);
+        Assertions.assertTrue(tank.hasMoved());
+        yourInstance.buy(tank, 0);
+
         yourInstance.resetRound();
         assertTrue(yourInstance.canPlay());
         long coinsFromOilPump = yourInstance.getFacilities().stream().filter(x -> ((Tile)x).getFacility() instanceof OilPump).count();
         assertEquals(initialCoins + 5 + 5 * coinsFromOilPump, yourInstance.getCoins());
+
+        Assertions.assertFalse(oilPump1.getUsed());
+        Assertions.assertFalse(oilPump2.getUsed());
+        Assertions.assertFalse(tank.hasMoved());
     }
 
     @Test
@@ -191,5 +212,129 @@ public class ControllerTest {
         List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
         ControllerBase yourInstance = new Bot(elements, TextColor.ANSI.CYAN, null);
         assertTrue(yourInstance.canPlay()); // Assuming initially canPlay is true
+    }
+
+    @Test
+    public void PlayerBeginState() throws InvalidControllerException {
+        List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
+        Controller controller = new Player(elements, TextColor.ANSI.CYAN, null);
+        Controller p2 = Mockito.mock(Controller.class);
+        Map map = Mockito.mock(Map.class);
+
+        Assertions.assertEquals(NoSelectionState.class, controller.getInitialState(p2, map).getClass());
+    }
+
+    @Test
+    public void BotBeginState() throws InvalidControllerException {
+        List<Element> elements = List.of(new Fields(new Position(0, 0), new Base()),new Fields(new Position(0, 0), new Factory()));
+        Controller controller = new Bot(elements, TextColor.ANSI.CYAN, null);
+        Controller p2 = Mockito.mock(Controller.class);
+        Map map = Mockito.mock(Map.class);
+        Mockito.when(map.at(Mockito.any())).thenReturn(new MountainLand(new Position(0,0)));
+
+        Assertions.assertEquals(AutomaticPlayState.class, controller.getInitialState(p2, map).getClass());
+    }
+
+    @Test
+    public void BaseGetLifes() throws InvalidControllerException {
+        Base base = new Base();
+        Fields fields = new Fields(new Position(0, 0), base);
+        List<Element> elements = List.of(fields, new Fields(new Position(0, 0), new Factory()));
+        Controller controller = new Bot(elements, TextColor.ANSI.CYAN, null);
+
+        Assertions.assertEquals(base.getLives(), controller.getBaseLives());
+
+        base.setLives(20);
+        Assertions.assertEquals(20, controller.getBaseLives());
+    }
+
+    @Test
+    public void ControllerBuyChangeColorTest() throws InvalidControllerException {
+        Element base = new Fields(new Position(0, 0), new Base());
+        Fields factory = new Fields(new Position(0, 0), new Factory());
+        List<Element> elements = Arrays.asList(base, factory);
+
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
+
+        assertEquals(15, player.getCoins());
+        Playable troop = new LightTank(new Position(1, 1));
+        player.buy(troop, 15);
+
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+        troop.draw(graphics);
+
+        Mockito.verify(graphics).setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+    }
+
+    @Test
+    public void ControllerFacilityChangeColorTest() throws InvalidControllerException {
+        Element base = new Fields(new Position(0, 0), new Base());
+        Fields factory = new Fields(new Position(0, 0), new Factory());
+        List<Element> elements = Arrays.asList(base, factory);
+
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
+
+        Fields port = new Fields(new Position(0, 0), new Port());
+        player.addFacility(port);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+
+        port.draw(graphics);
+        base.draw(graphics);
+        factory.draw(graphics);
+
+        Mockito.verify(graphics, Mockito.times(3)).setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+    }
+
+    @Test
+    public void ControllerSetSelection1() throws InvalidControllerException {
+        Element base = new Fields(new Position(0, 0), new Base());
+        Fields factory = new Fields(new Position(0, 0), new Factory());
+        List<Element> elements = Arrays.asList(base, factory);
+
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
+        player.setSelection1(null);
+        Assertions.assertNull(player.getSelection1());
+
+        Border border = new Border(new Position(1,1));
+        player.setSelection1(border);
+
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+        border.draw(graphics);
+
+        Mockito.verify(graphics).setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+    }
+
+    @Test
+    public void ControllerSetSelection2() throws InvalidControllerException {
+        Element base = new Fields(new Position(0, 0), new Base());
+        Fields factory = new Fields(new Position(0, 0), new Factory());
+        List<Element> elements = Arrays.asList(base, factory);
+
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
+        player.setSelection2(null);
+        Assertions.assertNull(player.getSelection2());
+
+        Border border = new Border(new Position(1,1));
+        player.setSelection2(border);
+
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+        border.draw(graphics);
+
+        Mockito.verify(graphics).setForegroundColor(TextColor.ANSI.CYAN_BRIGHT);
+    }
+
+    @Test
+    public void ControllerSetBase() throws InvalidControllerException {
+        Element base = new Fields(new Position(0, 0), new Base());
+        Fields factory = new Fields(new Position(0, 0), new Factory());
+        List<Element> elements = Arrays.asList(base, factory);
+
+        Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
+
+        Assertions.assertSame(base, player.getBase());
+
+        Element newBase = new Fields(new Position(5, 5), new Base());
+        player.setBase(newBase);
+        Assertions.assertSame(newBase, player.getBase());
     }
 }

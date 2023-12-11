@@ -41,6 +41,9 @@ public class PlayableAirTest {
         Assertions.assertTrue(bomberPlane.canAttack(new FighterPlane(null)));
         Assertions.assertEquals(bomberPlane.getPosition(), new Position(1,1));
 
+        bomberPlane.setPosition(new Position(2,2));
+        Assertions.assertEquals(bomberPlane.getPosition(), new Position(2,2));
+
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
         bomberPlane.draw(graphics);
 
