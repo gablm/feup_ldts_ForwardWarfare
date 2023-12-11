@@ -39,10 +39,6 @@ public class Base implements Facility {
         return atackedlastturn;
     }
 
-    public boolean isAtackedlastturn() {
-        return atackedlastturn;
-    }
-
     public void setLives(int lives) {
         this.lives = lives;
     }
