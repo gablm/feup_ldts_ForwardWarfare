@@ -54,8 +54,8 @@ public class HowtoPlayMenuTest {
         }
         @Test
         public void testConstruct(){
-            Assertions.assertEquals(new TerminalSize(75,50),howToPlayMenu.getTerminalSize());
-            Assertions.assertEquals(15,howToPlayMenu.getFontsize());
+            Assertions.assertEquals(new TerminalSize(67,40), howToPlayMenu.getTerminalSize());
+            Assertions.assertEquals(20, howToPlayMenu.getFontsize());
         }
         @Test
         public void testBuild() throws IOException, MapParseException, URISyntaxException {
@@ -77,8 +77,8 @@ public class HowtoPlayMenuTest {
             howToPlayMenu.draw();
 
             Mockito.verify(screenMock).clear();
-            Mockito.verify(textGraphicsMock).setBackgroundColor(Mockito.any());
-            Mockito.verify(textGraphicsMock).enableModifiers(Mockito.any());
+            Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
+            Mockito.verify(textGraphicsMock, Mockito.times(4)).enableModifiers(Mockito.any());
             Mockito.verify(textGraphicsMock).fillRectangle(Mockito.any(), Mockito.any(), Mockito.anyChar());
             Mockito.verify(componentMock).draw(textGraphicsMock);
             Mockito.verify(screenMock).refresh();

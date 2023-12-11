@@ -63,7 +63,7 @@ public class ControllerTest {
 
         Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(25, player.getCoins());
+        assertEquals(15, player.getCoins());
         Assertions.assertSame(player.getBase(), base);
         assertEquals(1, player.getFacilities().size());
         Assertions.assertSame(factory, player.getFacilities().get(0));
@@ -78,9 +78,9 @@ public class ControllerTest {
 
         Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(25, player.getCoins());
+        assertEquals(15, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
-        boolean result = player.buy(troop, 25);
+        boolean result = player.buy(troop, 15);
         Assertions.assertTrue(result);
         assertEquals(0, player.getCoins());
         assertEquals(1, player.getTroops().size());
@@ -95,9 +95,9 @@ public class ControllerTest {
 
         Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(25, player.getCoins());
+        assertEquals(15, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
-        boolean result = player.buy(troop, 20);
+        boolean result = player.buy(troop, 10);
         Assertions.assertTrue(result);
         assertEquals(5, player.getCoins());
         assertEquals(1, player.getTroops().size());
@@ -112,11 +112,11 @@ public class ControllerTest {
 
         Controller player = new Player(elements, TextColor.ANSI.GREEN_BRIGHT, null);
 
-        assertEquals(25, player.getCoins());
+        assertEquals(15, player.getCoins());
         Playable troop = new LightTank(new Position(1, 1));
         boolean result = player.buy(troop, 120);
         assertFalse(result);
-        assertEquals(25, player.getCoins());
+        assertEquals(15, player.getCoins());
         Assertions.assertTrue(player.getTroops().isEmpty());
     }
 
@@ -183,7 +183,7 @@ public class ControllerTest {
         yourInstance.resetRound();
         assertTrue(yourInstance.canPlay());
         long coinsFromOilPump = yourInstance.getFacilities().stream().filter(x -> ((Tile)x).getFacility() instanceof OilPump).count();
-        assertEquals(initialCoins + 10 + 10 * coinsFromOilPump, yourInstance.getCoins());
+        assertEquals(initialCoins + 5 + 5 * coinsFromOilPump, yourInstance.getCoins());
     }
 
     @Test

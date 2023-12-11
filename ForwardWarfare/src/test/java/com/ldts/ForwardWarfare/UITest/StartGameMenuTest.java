@@ -10,6 +10,7 @@ import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
 import com.ldts.ForwardWarfare.UI.Component.Component;
+import com.ldts.ForwardWarfare.UI.Component.MapBox;
 import com.ldts.ForwardWarfare.UI.StartGameMenu;
 import com.ldts.ForwardWarfare.UI.UiStates;
 import org.junit.jupiter.api.Assertions;
@@ -54,7 +55,7 @@ public class StartGameMenuTest {
     @Test
     public void testConstruct(){
         Assertions.assertEquals(new TerminalSize(74,36),startGameMenu.getTerminalSize());
-        Assertions.assertEquals(15,startGameMenu.getFontsize());
+        Assertions.assertEquals(15, startGameMenu.getFontsize());
     }
     @Test
     public void testBuild() throws IOException, MapParseException, URISyntaxException {
@@ -76,8 +77,8 @@ public class StartGameMenuTest {
         startGameMenu.draw();
 
         Mockito.verify(screenMock).clear();
-        Mockito.verify(textGraphicsMock).setBackgroundColor(Mockito.any());
-        Mockito.verify(textGraphicsMock).enableModifiers(Mockito.any());
+        Mockito.verify(textGraphicsMock, Mockito.times(5)).setBackgroundColor(Mockito.any());
+        Mockito.verify(textGraphicsMock, Mockito.times(3)).enableModifiers(Mockito.any());
         Mockito.verify(textGraphicsMock).fillRectangle(Mockito.any(), Mockito.any(), Mockito.anyChar());
         Mockito.verify(componentMock).draw(textGraphicsMock);
         Mockito.verify(screenMock).refresh();
@@ -282,7 +283,7 @@ public class StartGameMenuTest {
         startGameMenu.processKey(escapeKey);
         startGameMenu.setBc(0);
 
-        Assertions.assertTrue(startGameMenu.isEndscreen());
+        Assertions.assertFalse(startGameMenu.isEndscreen());
         Assertions.assertEquals(UiStates.BattleUI, startGameMenu.getStartgame());
     }
     @Test
@@ -312,7 +313,7 @@ public class StartGameMenuTest {
         KeyStroke escapeKey  = new KeyStroke(KeyType.Enter);
         startGameMenu.setSelectingMap(true);
         startGameMenu.setBc(2);
-        Component MapMock = Mockito.mock(Component.class);
+        Component MapMock = Mockito.mock(MapBox.class);
         startGameMenu.getListComponents().add(MapMock);
 
         startGameMenu.processKey(escapeKey);
@@ -326,8 +327,8 @@ public class StartGameMenuTest {
         KeyStroke escapeKey  = new KeyStroke(KeyType.Enter);
         startGameMenu.setSelectingMap(true);
         startGameMenu.setBc(2);
-        Component MapMock = Mockito.mock(Component.class);
-        Component MapMock2 = Mockito.mock(Component.class);
+        Component MapMock = Mockito.mock(MapBox.class);
+        Component MapMock2 = Mockito.mock(MapBox.class);
         startGameMenu.getListComponents().add(MapMock);
         startGameMenu.getListComponents().add(MapMock2);
 
