@@ -20,9 +20,7 @@ public class Fields extends Element implements Tile {
     public Facility getFacility() {
         return facility;
     }
-    public int getCoins() {
-        return 30;
-    }
+
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(backgroundColor);

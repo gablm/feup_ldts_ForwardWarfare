@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare;
+package com.ldts.ForwardWarfare.Element;
 
 import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyPerson;
 import com.ldts.ForwardWarfare.Element.Position;
