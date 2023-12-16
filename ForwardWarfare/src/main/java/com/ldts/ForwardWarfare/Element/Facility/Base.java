@@ -6,9 +6,9 @@ import com.ldts.ForwardWarfare.Element.Position;
 
 public class Base implements Facility {
     private TextColor textColor;
-    private boolean atackedlastturn=false;
-    private int lives=2;
-    private boolean used=false;
+    private boolean attackedLastTurn = false;
+    private int lives = 2;
+    private boolean used = false;
     public void draw(TextGraphics graphics, Position position) {
             graphics.setForegroundColor(textColor);
             graphics.putString(position.toTPos(), ";");
@@ -21,7 +21,7 @@ public class Base implements Facility {
 
     @Override
     public void execute() {
-        used=!used;
+        used =! used;
     }
 
     @Override
@@ -35,15 +35,15 @@ public class Base implements Facility {
     public int getLives() {
         return lives;
     }
-    public boolean getAtackedlastturn() {
-        return atackedlastturn;
+    public boolean getAttackedLastTurn() {
+        return attackedLastTurn;
     }
 
     public void setLives(int lives) {
         this.lives = lives;
     }
 
-    public void setAtackedlastturn(boolean atackedlastturn) {
-        this.atackedlastturn = atackedlastturn;
+    public void setAttackedLastTurn(boolean attackedLastTurn) {
+        this.attackedLastTurn = attackedLastTurn;
     }
 }

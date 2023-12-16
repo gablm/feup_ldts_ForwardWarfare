@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Facility.*;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -75,10 +74,10 @@ public class FacilityTest {
         base.setLives(20);
         Assertions.assertEquals(20, base.getLives());
 
-        Assertions.assertFalse(base.getAtackedlastturn());
-        base.setAtackedlastturn(true);
-        Assertions.assertTrue(base.getAtackedlastturn());
-        base.setAtackedlastturn(false);
-        Assertions.assertFalse(base.getAtackedlastturn());
+        Assertions.assertFalse(base.getAttackedLastTurn());
+        base.setAttackedLastTurn(true);
+        Assertions.assertTrue(base.getAttackedLastTurn());
+        base.setAttackedLastTurn(false);
+        Assertions.assertFalse(base.getAttackedLastTurn());
     }
 }

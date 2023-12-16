@@ -3,6 +3,7 @@ package com.ldts.ForwardWarfare.State.States;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Facility.Base;
+import com.ldts.ForwardWarfare.Element.Facility.Facility;
 import com.ldts.ForwardWarfare.Element.Tile.Tile;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
@@ -13,18 +14,10 @@ public class StartRoundState extends BaseState {
     public StartRoundState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
 
-        if(((Tile) p1.getBase()).getFacility().getUsed())
-            ((Tile) p1.getBase()).getFacility().getUsed();
-        if(((Tile) p2.getBase()).getFacility().getUsed())
-            ((Tile) p2.getBase()).getFacility().getUsed();
-        if(!((Base)((Tile)p2.getBase()).getFacility()).getAtackedlastturn()) {
-            ((Base) ((Tile) p2.getBase()).getFacility()).setLives(2);
-            ((Base) ((Tile) p2.getBase()).getFacility()).setAtackedlastturn(false);
-        }
-        else if(((Base)((Tile)p2.getBase()).getFacility()).getAtackedlastturn())
-        {
-            ((Base) ((Tile) p2.getBase()).getFacility()).setAtackedlastturn(false);
-        }
+        Base base = ((Base)((Tile)p2.getBase()).getFacility());
+        if(!base.getAttackedLastTurn())
+            base.setLives(2);
+        base.setAttackedLastTurn(false);
     }
 
     @Override
