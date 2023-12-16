@@ -13,16 +13,25 @@ import com.ldts.ForwardWarfare.State.States.EndGameState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class CommonStateTest {
-
+    private Controller p1;
+    private Controller p2;
+    private Map map;
+    private TextGraphics graphics;
+    @BeforeEach
+    public void ResetMocks() {
+        map = Mockito.mock(Map.class);
+        p1 = Mockito.mock(Controller.class);
+        p2 = Mockito.mock(Controller.class);
+        graphics = Mockito.mock(TextGraphics.class);
+    }
+    
     @Test
     public void QuitBasicTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         State last = Mockito.mock(State.class);
 
         QuitState state = new QuitState(p1, p2, map, last);
@@ -35,9 +44,6 @@ public class CommonStateTest {
 
     @Test
     public void QuitDrawTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         State last = Mockito.mock(State.class);
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
@@ -54,9 +60,6 @@ public class CommonStateTest {
 
     @Test
     public void QuitWithQuitStateTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         QuitState last = new QuitState(null, null, null, null);
 
         QuitState state = new QuitState(p1, p2, map, last);
@@ -66,9 +69,6 @@ public class CommonStateTest {
 
     @Test
     public void QuitPlayNoneTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         State last = Mockito.mock(State.class);
 
         QuitState state = new QuitState(p1, p2, map, last);
@@ -78,9 +78,6 @@ public class CommonStateTest {
 
     @Test
     public void QuitPlayQuitTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         State last = Mockito.mock(State.class);
 
         QuitState state = new QuitState(p1, p2, map, last);
@@ -91,9 +88,6 @@ public class CommonStateTest {
 
     @Test
     public void QuitPlayLeftTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         State last = Mockito.mock(State.class);
 
         QuitState state = new QuitState(p1, p2, map, last);
@@ -106,9 +100,6 @@ public class CommonStateTest {
 
     @Test
     public void QuitPlayRightTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         State last = Mockito.mock(State.class);
 
         QuitState state = new QuitState(p1, p2, map, last);
@@ -121,10 +112,6 @@ public class CommonStateTest {
 
     @Test
     public void EndBasicTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-
         State state = new EndGameState(p1, p2, map);
 
         Mockito.verify(p1).setSelection1(null);
@@ -138,14 +125,9 @@ public class CommonStateTest {
 
     @Test
     public void EndDrawTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getBaseLives()).thenReturn(0);
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getName()).thenReturn("P2");
         Mockito.when(p2.getControllerColor()).thenReturn(TextColor.ANSI.MAGENTA);
-
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
         State state = new EndGameState(p1, p2, map);
         state.draw(graphics);
@@ -165,11 +147,7 @@ public class CommonStateTest {
         Fields fields = Mockito.mock(Fields.class);
         Mockito.when(fields.getFacility()).thenReturn(base);
 
-        Map map = Mockito.mock(Map.class);
-
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getBase()).thenReturn(fields);
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getBase()).thenReturn(fields);
 
         State state = new StartRoundState(p1, p2, map);
@@ -184,9 +162,6 @@ public class CommonStateTest {
         Fields fields = Mockito.mock(Fields.class);
         Mockito.when(fields.getFacility()).thenReturn(base);
 
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p1.getBase()).thenReturn(fields);
         Mockito.when(p2.getBase()).thenReturn(fields);
 
@@ -208,9 +183,6 @@ public class CommonStateTest {
         Fields fields = Mockito.mock(Fields.class);
         Mockito.when(fields.getFacility()).thenReturn(base);
 
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p1.getBase()).thenReturn(fields);
         Mockito.when(p2.getBase()).thenReturn(fields);
 
@@ -233,9 +205,6 @@ public class CommonStateTest {
         Fields fields = Mockito.mock(Fields.class);
         Mockito.when(fields.getFacility()).thenReturn(base);
 
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p1.getBase()).thenReturn(fields);
         Mockito.when(p2.getBase()).thenReturn(fields);
 
