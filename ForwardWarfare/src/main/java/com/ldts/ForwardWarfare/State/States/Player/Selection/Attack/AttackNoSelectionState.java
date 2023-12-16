@@ -13,9 +13,8 @@ import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
-import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.BaseState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.Attack.AttackState;
 import com.ldts.ForwardWarfare.State.States.QuitState;
 
 import java.util.ArrayList;

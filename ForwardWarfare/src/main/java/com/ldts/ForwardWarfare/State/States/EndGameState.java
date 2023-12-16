@@ -8,9 +8,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
+import com.ldts.ForwardWarfare.State.BaseState;
 import com.ldts.ForwardWarfare.State.State;
-
-import java.awt.*;
 
 public class EndGameState extends BaseState {
     public EndGameState(Controller p1, Controller p2, Map map) {

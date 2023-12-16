@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare.State.States;
+package com.ldts.ForwardWarfare.State;
 
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Map.Map;

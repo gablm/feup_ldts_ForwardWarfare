@@ -8,8 +8,7 @@ import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
-import com.ldts.ForwardWarfare.State.States.BaseState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
+import com.ldts.ForwardWarfare.State.BaseState;
 
 public class InvalidSelectState extends BaseState {
     private String message;

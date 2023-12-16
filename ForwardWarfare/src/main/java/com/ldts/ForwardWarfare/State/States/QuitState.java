@@ -5,9 +5,9 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
-import com.ldts.ForwardWarfare.Element.Facility.OilPump;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
+import com.ldts.ForwardWarfare.State.BaseState;
 import com.ldts.ForwardWarfare.State.State;
 
 public class QuitState extends BaseState {

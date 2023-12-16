@@ -5,14 +5,12 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
-import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
-import com.ldts.ForwardWarfare.State.States.BaseState;
+import com.ldts.ForwardWarfare.State.BaseState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
-import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 
 public class AttackState extends BaseState {
     private Playable attacker;

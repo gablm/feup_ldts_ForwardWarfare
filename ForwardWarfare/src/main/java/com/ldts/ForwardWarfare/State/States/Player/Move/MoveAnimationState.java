@@ -10,8 +10,7 @@ import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
-import com.ldts.ForwardWarfare.State.States.BaseState;
-import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
+import com.ldts.ForwardWarfare.State.BaseState;
 
 import java.util.List;
 
