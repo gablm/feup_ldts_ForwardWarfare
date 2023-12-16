@@ -15,9 +15,6 @@ public class StartRoundState extends BaseState {
         super(p1, p2, map);
 
         Base base = ((Base)((Tile)p2.getBase()).getFacility());
-        if(!base.getAttackedLastTurn())
-            base.setLives(2);
-        base.setAttackedLastTurn(false);
     }
 
     @Override
