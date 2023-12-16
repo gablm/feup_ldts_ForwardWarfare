@@ -1,4 +1,4 @@
-package com.ldts.ForwardWarfare.State.Player.Move.Attack;
+package com.ldts.ForwardWarfare.State.Player.Selection.Attack;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
@@ -7,7 +7,6 @@ import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyPerson;
 import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
 import com.ldts.ForwardWarfare.Element.Playable.Playable;
 import com.ldts.ForwardWarfare.Map.Map;
-import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
 import com.ldts.ForwardWarfare.State.States.Player.Selection.Attack.AttackState;
@@ -16,7 +15,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -34,7 +34,8 @@ pitest {
     excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest',
                             'com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest',
                             'com.ldts.ForwardWarfare.UITest.MainMenuTest',
-                            'com.ldts.ForwardWarfare.UITest.StartGameMenuTest'
+                            'com.ldts.ForwardWarfare.UITest.StartGameMenuTest',
+                            'com.ldts.ForwardWarfare.State.Player.Move.MoveValidationTest'
                           ]
     junit5PluginVersion = '0.12'
 }
