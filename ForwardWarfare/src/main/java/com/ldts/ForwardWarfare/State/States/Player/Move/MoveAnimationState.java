@@ -33,10 +33,7 @@ public class MoveAnimationState extends BaseState {
         {
             Thread.sleep(150);
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
+        catch(InterruptedException ignored) {}
         return this;
     }
 
