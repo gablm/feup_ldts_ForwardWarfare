@@ -131,13 +131,13 @@ public class Map extends Element {
     }
 
     public Tile at(Position position) {
-        if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
+        if (position.getX() < 0 || position.getY() < 0 || position.getX() >= 15 || position.getY() >= 10)
             return null;
         return (Tile) map.get(position.getY() * 15 + position.getX());
     }
 
     public void set(Position position, Element element) {
-        if (position.getX() < 0 || position.getY() < 0 || position.getX() > 15 || position.getY() > 10)
+        if (position.getX() < 0 || position.getY() < 0 || position.getX() >= 15 || position.getY() >= 10)
             return;
         map.set(position.getY() * 15 + position.getX(), element);
     }

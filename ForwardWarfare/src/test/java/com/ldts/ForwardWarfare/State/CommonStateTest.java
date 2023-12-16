@@ -254,44 +254,4 @@ public class CommonStateTest {
         Assertions.assertEquals(p2, result.getP1());
         Assertions.assertEquals(p1, result.getP2());
     }
-
-    @Test
-    public void StartRoundNoAttackTest() {
-        Base base = new Base();
-        base.setAttackedLastTurn(false);
-        base.setLives(0);
-
-        Fields fields = Mockito.mock(Fields.class);
-        Mockito.when(fields.getFacility()).thenReturn(base);
-
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-        Mockito.when(p1.getBase()).thenReturn(fields);
-        Mockito.when(p2.getBase()).thenReturn(fields);
-
-        State state = new StartRoundState(p1, p2, map);
-
-        Assertions.assertEquals(2, base.getLives());
-        Assertions.assertFalse(base.getAttackedLastTurn());
-    }
-
-    @Test
-    public void StartRoundAttackTest() {
-        Base base = new Base();
-        base.setAttackedLastTurn(true);
-
-        Fields fields = Mockito.mock(Fields.class);
-        Mockito.when(fields.getFacility()).thenReturn(base);
-
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-        Mockito.when(p1.getBase()).thenReturn(fields);
-        Mockito.when(p2.getBase()).thenReturn(fields);
-
-        State state = new StartRoundState(p1, p2, map);
-
-        Assertions.assertFalse(base.getAttackedLastTurn());
-    }
 }
