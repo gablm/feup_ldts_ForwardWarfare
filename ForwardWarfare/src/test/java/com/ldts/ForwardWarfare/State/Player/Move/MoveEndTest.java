@@ -15,16 +15,25 @@ import com.ldts.ForwardWarfare.State.States.Player.Selection.Capture.CaptureNoSe
 import com.ldts.ForwardWarfare.State.States.QuitState;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class MoveEndTest {
+    private Controller p1;
+    private Controller p2;
+    private Map map;
+    private TextGraphics graphics;
+    @BeforeEach
+    public void ResetMocks() {
+        map = Mockito.mock(Map.class);
+        p1 = Mockito.mock(Controller.class);
+        p2 = Mockito.mock(Controller.class);
+        graphics = Mockito.mock(TextGraphics.class);
+    }
+
     @Test
     public void BaseTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-
         State state = new MoveEndState(p1, p2, map, null);
 
         Assertions.assertTrue(state.requiresInput());
@@ -33,11 +42,6 @@ public class MoveEndTest {
 
     @Test
     public void DrawNullTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
-
         State state = new MoveEndState(p1, p2, map, null);
         state.draw(graphics);
 
@@ -49,11 +53,7 @@ public class MoveEndTest {
 
     @Test
     public void DrawNotNullTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = new LightPerson(null);
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
         State state = new MoveEndState(p1, p2, map, element);
         state.draw(graphics);
@@ -68,9 +68,6 @@ public class MoveEndTest {
 
     @Test
     public void Play0Test() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = new LightPerson(null);
 
         State expected = Mockito.mock(AttackNoSelectionState.class);
@@ -90,9 +87,6 @@ public class MoveEndTest {
 
     @Test
     public void PlayMinus1Test() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = new LightPerson(null);
 
         Border border = new Border(null);
@@ -108,9 +102,6 @@ public class MoveEndTest {
 
     @Test
     public void PlayMinus2Test() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = new LightPerson(null);
 
         Border border = new Border(null);
@@ -128,10 +119,6 @@ public class MoveEndTest {
 
     @Test
     public void PlayNullNegativeTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-
         Border border = new Border(null);
         Mockito.when(p1.getSelection1()).thenReturn(border);
         State expected = Mockito.mock(AttackNoSelectionState.class);
@@ -148,9 +135,6 @@ public class MoveEndTest {
 
     @Test
     public void Play1Test() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = new LightPerson(null);
 
         Border border = new Border(null);
@@ -166,9 +150,6 @@ public class MoveEndTest {
 
     @Test
     public void Play2Test() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = new LightPerson(null);
 
         Border border = new Border(null);

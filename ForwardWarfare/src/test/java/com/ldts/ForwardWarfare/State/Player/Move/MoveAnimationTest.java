@@ -11,21 +11,29 @@ import com.ldts.ForwardWarfare.State.States.Player.Move.MoveAnimationState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.*;
 
 public class MoveAnimationTest {
+    private Controller p1;
+    private Controller p2;
+    private Map map;
+    private TextGraphics graphics;
+    @BeforeEach
+    public void ResetMocks() {
+        map = Mockito.mock(Map.class);
+        p1 = Mockito.mock(Controller.class);
+        p2 = Mockito.mock(Controller.class);
+        graphics = Mockito.mock(TextGraphics.class);
+    }
 
     @Test
     public void BaseTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getControllerColor()).thenReturn(TextColor.ANSI.BLACK);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = Mockito.mock(Element.class);
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
 
         List<Position> moves = new ArrayList<>();
 
@@ -37,10 +45,7 @@ public class MoveAnimationTest {
 
     @Test
     public void PlayEmptyTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getControllerColor()).thenReturn(TextColor.ANSI.BLACK);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = Mockito.mock(Element.class);
 
         List<Position> moves = new ArrayList<>();
@@ -53,10 +58,7 @@ public class MoveAnimationTest {
 
     @Test
     public void PlayFillTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getControllerColor()).thenReturn(TextColor.ANSI.BLACK);
-        Controller p2 = Mockito.mock(Controller.class);
         Element element = Mockito.mock(Element.class);
 
         List<Position> moves = new ArrayList<>();

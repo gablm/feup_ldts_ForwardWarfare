@@ -16,6 +16,7 @@ import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveValidationState;
 import com.ldts.ForwardWarfare.State.States.Player.Selection.InvalidSelectState;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -26,13 +27,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MoveValidationTest {
+
+    private Controller p1;
+    private Controller p2;
+    private Map map;
+    private TextGraphics graphics;
+    @BeforeEach
+    public void ResetMocks() {
+        map = Mockito.mock(Map.class);
+        p1 = Mockito.mock(Controller.class);
+        p2 = Mockito.mock(Controller.class);
+        graphics = Mockito.mock(TextGraphics.class);
+    }
+
     @Test
     public void BaseTest() {
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
-        TextGraphics graphics = Mockito.mock(TextGraphics.class);
-
         State state = new MoveValidationState(p1, p2, map);
         state.draw(graphics);
 
@@ -42,12 +51,9 @@ public class MoveValidationTest {
     @Test
     public void InvalidPlayTest() {
         Position pos = new Position(0,0);
-        Map map = Mockito.mock(Map.class);
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getSelection2()).thenReturn(new Border(pos));
-        Controller p2 = Mockito.mock(Controller.class);
-
         Mockito.when(map.at(pos)).thenReturn(new MountainLand(pos));
+
         State state = new MoveValidationState(p1, p2, map);
         State result = state.play(null);
         Assertions.assertEquals(InvalidSelectState.class, result.getClass());
@@ -57,15 +63,10 @@ public class MoveValidationTest {
     @Test
     public void PlayEmptyTest() {
         Position pos = new Position(0,0);
-        Map map = Mockito.mock(Map.class);
-
-        Controller p1 = Mockito.mock(Controller.class);
         Border border = new Border(pos);
         Mockito.when(p1.getSelection2()).thenReturn(border);
-
-        Controller p2 = Mockito.mock(Controller.class);
-
         Mockito.when(map.at(pos)).thenReturn(new Water(pos, null));
+
         State state = new MoveValidationState(p1, p2, map);
         State result = state.play(null);
 
@@ -79,7 +80,6 @@ public class MoveValidationTest {
         Position pos = new Position(2,3);
         Map map = new Map("1.fw");
 
-        Controller p1 = Mockito.mock(Controller.class);
         Border border = new Border(pos);
         Mockito.when(p1.getSelection2()).thenReturn(border);
         Mockito.when(p1.getSelection1()).thenReturn(border);
@@ -88,8 +88,6 @@ public class MoveValidationTest {
         Assertions.assertFalse(tank.hasMoved());
         List<Element> elements = List.of(tank);
         Mockito.when(p1.getTroops()).thenReturn(elements);
-
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getTroops()).thenReturn(new ArrayList<>());
 
         State state = new MoveValidationState(p1, p2, map);
@@ -106,7 +104,6 @@ public class MoveValidationTest {
         Position pos = new Position(2,3);
         Map map = new Map("1.fw");
 
-        Controller p1 = Mockito.mock(Controller.class);
         Border border = new Border(pos);
         Border border2 = new Border(new Position(2,1));
         Mockito.when(p1.getSelection2()).thenReturn(border2);
@@ -116,8 +113,6 @@ public class MoveValidationTest {
         Assertions.assertFalse(tank.hasMoved());
         List<Element> elements = List.of(tank);
         Mockito.when(p1.getTroops()).thenReturn(elements);
-
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getTroops()).thenReturn(new ArrayList<>());
 
         State state = new MoveValidationState(p1, p2, map);
@@ -131,7 +126,6 @@ public class MoveValidationTest {
         Position pos = new Position(2,3);
         Map map = new Map("1.fw");
 
-        Controller p1 = Mockito.mock(Controller.class);
         Border border = new Border(new Position(2, 1));
         Border border2 = new Border(new Position(2,1));
         Mockito.when(p1.getSelection2()).thenReturn(border2);
@@ -140,8 +134,6 @@ public class MoveValidationTest {
         HeavyTank tank = new HeavyTank(pos);
         List<Element> elements = List.of(tank);
         Mockito.when(p1.getTroops()).thenReturn(elements);
-
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getTroops()).thenReturn(new ArrayList<>());
 
         State state = new MoveValidationState(p1, p2, map);
@@ -155,7 +147,6 @@ public class MoveValidationTest {
         Position pos = new Position(2,3);
         Map map = new Map("1.fw");
 
-        Controller p1 = Mockito.mock(Controller.class);
         Border border = new Border(pos);
         Border border2 = new Border(new Position(2,6));
         Mockito.when(p1.getSelection2()).thenReturn(border2);
@@ -165,8 +156,6 @@ public class MoveValidationTest {
         Assertions.assertFalse(tank.hasMoved());
         List<Element> elements = List.of(tank);
         Mockito.when(p1.getTroops()).thenReturn(elements);
-
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getTroops()).thenReturn(new ArrayList<>());
 
         State state = new MoveValidationState(p1, p2, map);
@@ -178,16 +167,14 @@ public class MoveValidationTest {
     @Test
     public void CanMoveLineTest() throws FileNotFoundException, MapParseException, URISyntaxException {
         Map map = new Map("1.fw");
-        Controller p1 = Mockito.mock(Controller.class);
-        Controller p2 = Mockito.mock(Controller.class);
 
         MoveValidationState state = new MoveValidationState(p1, p2, map);
         Position pos1 = new Position(2,3);
         Position pos2 = new Position(2, 6);
         List<Position> elements = state.canMove(pos1, pos2, new HeavyTank(pos1));
+
         List<Position> expected = Arrays.asList(pos2, new Position(2, 5),
                 new Position(2,4), pos1);
-
         Assertions.assertEquals(expected, elements);
     }
 
@@ -195,11 +182,8 @@ public class MoveValidationTest {
     public void CanMove00Test() throws FileNotFoundException, MapParseException, URISyntaxException {
         Map map = new Map("tests/allGrass.fw");
 
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getTroops()).thenReturn(
                 List.of(new HeavyTank(new Position(0, 2))));
-
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getTroops()).thenReturn(
                 List.of(new HeavyTank(new Position(0, 1))));
 
@@ -211,7 +195,6 @@ public class MoveValidationTest {
         List<Position> expected = Arrays.asList(pos2, new Position(1, 3),
                 new Position(1, 2), new Position(1, 1),
                 new Position(1,0), pos1);
-
         Assertions.assertEquals(expected, elements);
     }
 
@@ -219,11 +202,8 @@ public class MoveValidationTest {
     public void CanMove1510Test() throws FileNotFoundException, MapParseException, URISyntaxException {
         Map map = new Map("tests/allGrass.fw");
 
-        Controller p1 = Mockito.mock(Controller.class);
         Mockito.when(p1.getTroops()).thenReturn(
                 List.of(new HeavyTank(new Position(14, 8))));
-
-        Controller p2 = Mockito.mock(Controller.class);
         Mockito.when(p2.getTroops()).thenReturn(
                 List.of(new HeavyTank(new Position(14, 7))));
 
