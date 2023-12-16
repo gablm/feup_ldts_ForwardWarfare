@@ -32,7 +32,7 @@ public class AttackNoSelectionState extends BaseState {
             return;
         for (Element i : p2.getTroops()) {
             Playable elem = (Playable) i;
-            if (elem.canAttack(playable) && withinRadius(i.getPosition(), playable.getAttackRadius())) {
+            if (playable.canAttack(elem) && withinRadius(i.getPosition(), playable.getAttackRadius())) {
                 selectables.add(elem);
             }
         }

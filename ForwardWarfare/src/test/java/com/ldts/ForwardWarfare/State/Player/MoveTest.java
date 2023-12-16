@@ -9,6 +9,7 @@ import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Element.Tile.Border;
 import com.ldts.ForwardWarfare.Element.Tile.MountainLand;
+import com.ldts.ForwardWarfare.Element.Tile.Water;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveAnimationState;
@@ -114,17 +115,22 @@ public class MoveTest {
     }
 
     @Test
-    public void MoveValidationPlayTest() {
+    public void MoveValidationPlayEmptyTest() {
         Position pos = new Position(0,0);
         Map map = Mockito.mock(Map.class);
+
         Controller p1 = Mockito.mock(Controller.class);
-        Mockito.when(p1.getSelection2()).thenReturn(new Border(pos));
+        Border border = new Border(pos);
+        Mockito.when(p1.getSelection2()).thenReturn(border);
+
         Controller p2 = Mockito.mock(Controller.class);
 
-        Mockito.when(map.at(pos)).thenReturn(new MountainLand(pos));
+        Mockito.when(map.at(pos)).thenReturn(new Water(pos, null));
         State state = new MoveValidationState(p1, p2, map);
         State result = state.play(null);
-        Assertions.assertEquals(InvalidSelectState.class, result.getClass());
+
         Mockito.verify(p1).setSelection2(null);
+        Mockito.verify(p1).setSelection1(border);
+        Assertions.assertEquals(MoveEndState.class, result.getClass());
     }
 }
