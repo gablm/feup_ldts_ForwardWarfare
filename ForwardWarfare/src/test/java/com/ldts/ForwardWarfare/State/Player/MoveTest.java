@@ -7,13 +7,18 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Element.Tile.Border;
+import com.ldts.ForwardWarfare.Element.Tile.MountainLand;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveAnimationState;
 import com.ldts.ForwardWarfare.State.States.Player.Move.MoveEndState;
+import com.ldts.ForwardWarfare.State.States.Player.Move.MoveValidationState;
+import com.ldts.ForwardWarfare.State.States.Player.Selection.InvalidSelectState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,5 +83,48 @@ public class MoveTest {
         Assertions.assertSame(state, result);
         Assertions.assertEquals(1, moves.size());
         Mockito.verify(element).setPosition(new Position(0, 0));
+    }
+
+    @Test
+    public void MoveValidationBaseTest() {
+        Map map = Mockito.mock(Map.class);
+        Controller p1 = Mockito.mock(Controller.class);
+        Controller p2 = Mockito.mock(Controller.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+
+        State state = new MoveValidationState(p1, p2, map);
+        state.draw(graphics);
+
+        Assertions.assertFalse(state.requiresInput());
+    }
+
+    @Test
+    public void MoveValidationInvalidPlayTest() {
+        Position pos = new Position(0,0);
+        Map map = Mockito.mock(Map.class);
+        Controller p1 = Mockito.mock(Controller.class);
+        Mockito.when(p1.getSelection2()).thenReturn(new Border(pos));
+        Controller p2 = Mockito.mock(Controller.class);
+
+        Mockito.when(map.at(pos)).thenReturn(new MountainLand(pos));
+        State state = new MoveValidationState(p1, p2, map);
+        State result = state.play(null);
+        Assertions.assertEquals(InvalidSelectState.class, result.getClass());
+        Mockito.verify(p1).setSelection2(null);
+    }
+
+    @Test
+    public void MoveValidationPlayTest() {
+        Position pos = new Position(0,0);
+        Map map = Mockito.mock(Map.class);
+        Controller p1 = Mockito.mock(Controller.class);
+        Mockito.when(p1.getSelection2()).thenReturn(new Border(pos));
+        Controller p2 = Mockito.mock(Controller.class);
+
+        Mockito.when(map.at(pos)).thenReturn(new MountainLand(pos));
+        State state = new MoveValidationState(p1, p2, map);
+        State result = state.play(null);
+        Assertions.assertEquals(InvalidSelectState.class, result.getClass());
+        Mockito.verify(p1).setSelection2(null);
     }
 }
