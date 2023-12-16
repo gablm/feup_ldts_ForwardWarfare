@@ -52,15 +52,11 @@ public class MoveEndState extends BaseState {
                 option--;
                 if (option < -2)
                     option = -2;
-                if (!canAttack() && option == -2)
-                    option = -1;
-                if (!canCapture() && option == -1)
-                    option = -2;
+                if (element == null && option < 0)
+                    option = 0;
                 break;
             case DOWN:
                 option++;
-                if (!canCapture() && option == -1)
-                    option++;
                 if (option > 2)
                     option = 2;
                 break;
@@ -76,17 +72,15 @@ public class MoveEndState extends BaseState {
 
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
 
-        if (canCapture()) {
+        if (element != null) {
             graphics.setBackgroundColor(option == -1 ? TextColor.ANSI.RED_BRIGHT : color);
             graphics.putString(1, 12, " Capture ");
-        }
 
-        if (canAttack()) {
             graphics.setBackgroundColor(option == -2 ? TextColor.ANSI.RED_BRIGHT : color);
-            graphics.putString(1, canCapture() ? 11 : 12, " Attack ");
+            graphics.putString(1, 11, " Attack ");
         }
 
-        int i = canAttack() || canCapture() ? 1 : 0;
+        int i = element != null ? 1 : 0;
         graphics.setBackgroundColor(option == 0 ? TextColor.ANSI.RED_BRIGHT : color);
         graphics.putString(1, 13 + i, " Continue ");
         graphics.setBackgroundColor(option == 1 ? TextColor.ANSI.RED_BRIGHT : color);
@@ -98,33 +92,5 @@ public class MoveEndState extends BaseState {
     @Override
     public boolean requiresInput() {
         return true;
-    }
-    private boolean canCapture() {
-        /*if (element == null)
-            return false;
-        boolean canCapture = false;
-        int v = 0;
-        int x = element.getPosition().getX(), y = element.getPosition().getY();
-        while (!canCapture) {
-            canCapture = switch (v) {
-                case 0 -> map.at(new Position(x + 1, y)).getFacility() != null;
-                case 1 -> map.at(new Position(x + 1, y + 1)).getFacility() != null;
-                case 2 -> map.at(new Position(x, y + 1)).getFacility() != null;
-                case 3 -> map.at(new Position(x - 1, y + 1)).getFacility() != null;
-                case 4 -> map.at(new Position(x - 1, y)).getFacility() != null;
-                case 5 -> map.at(new Position(x - 1, y - 1)).getFacility() != null;
-                case 6 -> map.at(new Position(x, y - 1)).getFacility() != null;
-                case 7 -> map.at(new Position(x + 1, y - 1)).getFacility() != null;
-                default -> false;
-            };
-            v++;
-            if (v == 8 && !canCapture)
-                break;
-        }
-        return canCapture;*/
-        return element != null;
-    }
-    private boolean canAttack() {
-        return element != null;
     }
 }
