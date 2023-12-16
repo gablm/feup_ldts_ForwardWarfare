@@ -13,8 +13,6 @@ import com.ldts.ForwardWarfare.State.State;
 public class StartRoundState extends BaseState {
     public StartRoundState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
-
-        Base base = ((Base)((Tile)p2.getBase()).getFacility());
     }
 
     @Override

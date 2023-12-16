@@ -130,18 +130,15 @@ public abstract class ControllerBase implements Controller {
             if(facility.getUsed())
                 facility.execute();
         }
-        for (Element i : troops) {
+        for (Element i : troops)
             ((Playable) i).setHasMoved(false);
-        }
-        if ((((Tile)base).getFacility()).getUsed())
-        {
-            ((Tile) base).getFacility().execute();
-        }
-        if(!((Base)(((Tile) base).getFacility())).getAttackedLastTurn())
-        {
-            ((Base)(((Tile) base).getFacility())).setLives(2);
-        }
-        ((Base)(((Tile) base).getFacility())).setAttackedLastTurn(false);
+
+        Base baseT = (Base)((Tile) base).getFacility();
+        if (baseT.getUsed())
+            baseT.execute();
+        if(!baseT.getAttackedLastTurn())
+            baseT.setLives(2);
+        baseT.setAttackedLastTurn(false);
     }
 
     @Override
