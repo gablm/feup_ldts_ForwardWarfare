@@ -20,6 +20,7 @@ public class OneSelectionTest {
     private Controller p2;
     private Map map;
     private Border border;
+    private Tile tile;
     private TextGraphics graphics;
     @BeforeEach
     public void ResetMocks() {
@@ -34,14 +35,14 @@ public class OneSelectionTest {
                 .thenReturn(border);
         p2 = Mockito.mock(Controller.class);
         graphics = Mockito.mock(TextGraphics.class);
+
+        tile = Mockito.mock(Tile.class);
+        Mockito.when(map.at(Mockito.any())).thenReturn(tile);
+        Mockito.when(tile.getColor()).thenReturn(TextColor.ANSI.BLUE);
     }
 
     @Test
     public void BaseTest() {
-        Tile tile = Mockito.mock(Tile.class);
-        Mockito.when(map.at(Mockito.any())).thenReturn(tile);
-        Mockito.when(tile.getColor()).thenReturn(TextColor.ANSI.BLUE);
-
         State state = new OneSelectionState(p1, p2, map);
         state.draw(graphics);
 
@@ -62,10 +63,7 @@ public class OneSelectionTest {
     }
 
     private void PlayTestTemplate(Action action, int x, int y) {
-        Tile tile = Mockito.mock(Tile.class);
-        Mockito.when(map.at(Mockito.any())).thenReturn(tile);
         Mockito.when(map.inside(Mockito.any())).thenReturn(true);
-        Mockito.when(tile.getColor()).thenReturn(TextColor.ANSI.BLUE);
 
         State state = new OneSelectionState(p1, p2, map);
 
@@ -97,10 +95,7 @@ public class OneSelectionTest {
 
     @Test
     public void PlayEscapeTest() {
-        Tile tile = Mockito.mock(Tile.class);
-        Mockito.when(map.at(Mockito.any())).thenReturn(tile);
         Mockito.when(map.inside(Mockito.any())).thenReturn(true);
-        Mockito.when(tile.getColor()).thenReturn(TextColor.ANSI.BLUE);
 
         State state = new OneSelectionState(p1, p2, map);
 
@@ -113,10 +108,7 @@ public class OneSelectionTest {
 
     @Test
     public void PlayEnterTest() {
-        Tile tile = Mockito.mock(Tile.class);
-        Mockito.when(map.at(Mockito.any())).thenReturn(tile);
         Mockito.when(map.inside(Mockito.any())).thenReturn(true);
-        Mockito.when(tile.getColor()).thenReturn(TextColor.ANSI.BLUE);
 
         State state = new OneSelectionState(p1, p2, map);
 
@@ -127,10 +119,7 @@ public class OneSelectionTest {
 
     @Test
     public void PlayOutsideMapTest() {
-        Tile tile = Mockito.mock(Tile.class);
-        Mockito.when(map.at(Mockito.any())).thenReturn(tile);
         Mockito.when(map.inside(Mockito.any())).thenReturn(false);
-        Mockito.when(tile.getColor()).thenReturn(TextColor.ANSI.BLUE);
 
         State state = new OneSelectionState(p1, p2, map);
         State result = state.play(Action.UP);
