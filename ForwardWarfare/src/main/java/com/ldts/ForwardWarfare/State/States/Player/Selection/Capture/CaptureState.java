@@ -48,9 +48,8 @@ public class CaptureState extends BaseState {
             }
         }
         else {
-            if (p2.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos)))
-                p2.getFacilities().removeIf(facility -> facility.getPosition().equals(pos));
-            if (!p1.getFacilities().stream().anyMatch(facility -> facility.getPosition().equals(pos))) {
+            p2.getFacilities().removeIf(facility -> facility.getPosition().equals(pos));
+            if (p1.getFacilities().stream().noneMatch(facility -> facility.getPosition().equals(pos))) {
                 map.at(pos).getFacility().execute();
                 p1.addFacility((Element) map.at(pos));
             }
