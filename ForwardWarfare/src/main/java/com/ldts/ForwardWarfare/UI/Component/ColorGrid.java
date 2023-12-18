@@ -184,4 +184,24 @@ public class ColorGrid extends Component {
             b.setBorderFadeIntensity(normalborder);
         }
     }
+
+    public void setPlayer1Color(TextColor player1Color) {
+        this.player1Color = player1Color;
+    }
+
+    public void setPlayer2Color(TextColor player2Color) {
+        this.player2Color = player2Color;
+    }
+
+    public void setColorList(List<Button> colorList) {
+        ColorList = colorList;
+    }
+
+    public boolean isGamemode() {
+        return Gamemode;
+    }
+
+    public void setButonused(List<Button> butonused) {
+        this.butonused = butonused;
+    }
 }

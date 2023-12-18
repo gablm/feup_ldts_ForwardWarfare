@@ -1,10 +1,12 @@
-package com.ldts.ForwardWarfare.UITest;
+package com.ldts.ForwardWarfare.UITest.ComponentsTest;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Position;
+import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.UI.Component.Button;
+import com.ldts.ForwardWarfare.UI.Component.MapBox;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,17 +14,21 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-public class ComponentsTest {
+public class MapBoxTest {
     @Mock
     private TextGraphics textGraphicsMock;
+    @Mock
+    private MapBox mapBox;
+    @Mock
+    private Map map;
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+        mapBox = new MapBox(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(17,12),0, "");
     }
 
     @Test
-    public void ButtonConstructorTest(){
-        Button button = new Button(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(10,10),"Test",0);
+    public void Button_ConstructorTest(){
         Assertions.assertEquals(TextColor.ANSI.CYAN,button.getBackColor());
         Assertions.assertEquals(TextColor.ANSI.BLACK,button.getForgColor());
         Assertions.assertEquals(new Position(0,0),button.getPosition());
@@ -31,8 +37,7 @@ public class ComponentsTest {
     }
 
     @Test
-    public void Buttondrawpairlabletest(){
-        Button button = new Button(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(10,10),"Test",0);
+    public void Button_drawpairlabletest(){
         button.draw(textGraphicsMock);
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setBackgroundColor(TextColor.ANSI.CYAN);
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(TextColor.ANSI.BLACK);
@@ -42,8 +47,15 @@ public class ComponentsTest {
     }
 
     @Test
-    public void Buttondrawoddlabletest(){
-        Button button =  Mockito.spy(new Button(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(10,10),"teste",0));
+    public void Button_drawoddlableTest(){
+        button.draw(textGraphicsMock);
+        Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
+        Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(Mockito.any());
+        Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());
+        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
+    }
+    @Test
+    public void Buttondraw_borderTest(){
         button.draw(textGraphicsMock);
         Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(Mockito.any());
