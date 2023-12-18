@@ -1,11 +1,13 @@
 package com.ldts.ForwardWarfare.UITest;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.LanternaTerminal;
+import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
@@ -277,13 +279,26 @@ public class StartGameMenuTest {
     }
 
     @Test
-    public void testProcessKey_Enter_StartGameButton()
+    public void testProcessKey_Enter_StartGameButton_nullcomp()
     {
         KeyStroke escapeKey  = new KeyStroke(KeyType.Enter);
-        startGameMenu.processKey(escapeKey);
         startGameMenu.setBc(0);
+        startGameMenu.processKey(escapeKey);
 
         Assertions.assertFalse(startGameMenu.isEndscreen());
+        Assertions.assertEquals(UiStates.BattleUI, startGameMenu.getStartgame());
+    }
+    @Test
+    public void testProcessKey_Enter_StartGameButton_notnullcomp()
+    {
+        KeyStroke escapeKey  = new KeyStroke(KeyType.Enter);
+        startGameMenu.setBc(0);
+        startGameMenu.setSelectedMap(Mockito.mock(Map.class));
+        Mockito.when(GridMock.getPlayer1Color()).thenReturn(TextColor.ANSI.BLUE);
+        Mockito.when(GridMock.getPlayer2Color()).thenReturn(TextColor.ANSI.RED);
+        startGameMenu.processKey(escapeKey);
+
+        Assertions.assertTrue(startGameMenu.isEndscreen());
         Assertions.assertEquals(UiStates.BattleUI, startGameMenu.getStartgame());
     }
     @Test
@@ -342,5 +357,22 @@ public class StartGameMenuTest {
         Mockito.verify(MapMock, Mockito.times(2)).setFixBorder(Mockito.anyBoolean());
         Mockito.verify(MapMock2, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
         Mockito.verify(MapMock2, Mockito.times(1)).setFixBorder(Mockito.anyBoolean());
+    }
+
+    @Test
+    public void testPlayerColors()
+    {
+        Mockito.when(GridMock.getPlayer1Color()).thenReturn(TextColor.ANSI.BLUE);
+        Mockito.when(GridMock.getPlayer2Color()).thenReturn(TextColor.ANSI.RED);
+        Assertions.assertEquals(TextColor.ANSI.BLUE,startGameMenu.selectColor1());
+        Assertions.assertEquals(TextColor.ANSI.RED,startGameMenu.selectColor2());
+    }
+
+    @Test
+    public void testSetMap()
+    {
+        Map map = Mockito.mock(Map.class);
+        startGameMenu.setSelectedMap(map);
+        Assertions.assertEquals(map,startGameMenu.getSelectedMap());
     }
 }

@@ -41,6 +41,14 @@ public abstract class Component {
         return backColor;
     }
 
+    public TerminalSize getSize() {
+        return size;
+    }
+
+    public TextColor getForgColor() {
+        return forgColor;
+    }
+
     public Position getPosition() {
         return position;
     }

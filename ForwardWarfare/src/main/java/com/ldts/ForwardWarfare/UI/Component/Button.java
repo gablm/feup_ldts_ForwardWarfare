@@ -58,7 +58,6 @@ public class Button extends Component{
             graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (label.length() / 2),
                     position.getY() + (size.getRows() / 2)), label);
         graphics.setBackgroundColor(BorderColor);
-
         graphics.drawRectangle(position.toTPos(),size,' ');
     }
 }

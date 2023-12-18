@@ -23,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -110,4 +111,9 @@ public class HowtoPlayMenuTest {
             Assertions.assertEquals(UiStates.MainMenu, howToPlayMenu.getStartgame());
         }
 
+        @Test
+        public void testAddcomp() throws FileNotFoundException, MapParseException, URISyntaxException {
+            howToPlayMenu.addcomp();
+            Assertions.assertEquals(2,howToPlayMenu.getListComponents().size());
+        }
 }

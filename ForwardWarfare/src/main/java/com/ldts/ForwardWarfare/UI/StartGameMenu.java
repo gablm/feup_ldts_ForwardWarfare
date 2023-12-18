@@ -101,7 +101,7 @@ public class StartGameMenu extends UI {
         {
             case 0:
                 if(grid.getPlayer1Color()!=null && grid.getPlayer2Color()!=null && selectedMap !=null)
-                endscreen=true;
+                    endscreen=true;
                 startgame=UiStates.BattleUI;
                 break;
             case 1:
@@ -265,4 +265,9 @@ public class StartGameMenu extends UI {
     public TextColor selectColor2() {
         return grid.getPlayer2Color();
     }
+
+    public void setSelectedMap(Map selectedMap) {
+        this.selectedMap = selectedMap;
+    }
+
 }
