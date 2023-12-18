@@ -108,7 +108,7 @@ public class ColorGridTest {
         KeyStroke keyStroke = new KeyStroke(KeyType.Escape);
         boolean result = colorGridPlayer.processKey(keyStroke);
         Assertions.assertTrue(result);
-        Mockito.verifyZeroInteractions(buttonmock);
+        Mockito.verifyNoInteractions(buttonmock);
     }
 
     @Test

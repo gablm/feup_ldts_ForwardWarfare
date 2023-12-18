@@ -337,4 +337,37 @@ public class ControllerTest {
         player.setBase(newBase);
         Assertions.assertSame(newBase, player.getBase());
     }
+
+    @Test
+    public void ResetRoundBaseAttackedTest() throws InvalidControllerException {
+        Base base =  new Base();
+        base.setAttackedLastTurn(true);
+        base.takeDamage();
+        base.execute();
+        List<Element> elements = List.of(new Fields(new Position(0, 0), base),
+                new Fields(new Position(0, 0), new Factory()));
+
+        Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255), null);
+        yourInstance.resetRound();
+
+        Assertions.assertFalse(base.getUsed());
+        Assertions.assertEquals(1, base.getLives());
+        Assertions.assertFalse(base.getAttackedLastTurn());
+    }
+
+    @Test
+    public void ResetRoundBaseNotAttackedTest() throws InvalidControllerException {
+        Base base =  new Base();
+        base.setAttackedLastTurn(false);
+        base.takeDamage();
+        List<Element> elements = List.of(new Fields(new Position(0, 0), base),
+                new Fields(new Position(0, 0), new Factory()));
+
+        Controller yourInstance = new Player(elements, new TextColor.RGB(255, 0, 255), null);
+        yourInstance.resetRound();
+
+        Assertions.assertFalse(base.getUsed());
+        Assertions.assertEquals(2, base.getLives());
+        Assertions.assertFalse(base.getAttackedLastTurn());
+    }
 }

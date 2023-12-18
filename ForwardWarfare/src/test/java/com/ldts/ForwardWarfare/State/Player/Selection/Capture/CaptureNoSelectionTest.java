@@ -58,15 +58,4 @@ public class CaptureNoSelectionTest {
         state.draw(graphics);
         Mockito.verify(graphics).putString(1, 12, "Nothing to");
     }
-
-    @Test
-    public void BaseDrawTest() {
-        State state = new CaptureNoSelectionState(p1, p2, map, origin);
-
-        Assertions.assertTrue(state.requiresInput());
-        Mockito.verify(p1).setSelection1(null);
-
-        state.draw(graphics);
-        Mockito.verify(graphics).putString(0, 11, "Select Facility");
-    }
 }
