@@ -23,7 +23,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -47,7 +46,7 @@ public class HowtoPlayMenuTest {
         private HowToPlayMenu howToPlayMenu;
 
         @BeforeEach
-        public void setUp() throws IOException, URISyntaxException, FontFormatException {
+        public void setUp() {
             MockitoAnnotations.openMocks(this);
             howToPlayMenu = Mockito.spy(new HowToPlayMenu());
             howToPlayMenu.setUITerminal(uiTerminalMock);

@@ -12,14 +12,13 @@ import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class HowToPlayMenu extends UI{
     private UiStates startgame;
-    public HowToPlayMenu() throws IOException, URISyntaxException, FontFormatException {
+    public HowToPlayMenu() {
         super(new TerminalSize(67,40),20);
     }
 

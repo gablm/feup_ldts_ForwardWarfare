@@ -37,7 +37,7 @@ public class StartGameMenu extends UI {
     private ColorGrid grid;
     private List<Component> ButtonsList = new ArrayList<>();
 
-    public StartGameMenu(boolean gamemode) throws IOException, URISyntaxException, FontFormatException {
+    public StartGameMenu(boolean gamemode) {
         super(new TerminalSize(74,36),15);
         Gamemode=gamemode;
         grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25,Gamemode);

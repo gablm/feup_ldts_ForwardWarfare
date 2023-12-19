@@ -12,9 +12,7 @@ import com.ldts.ForwardWarfare.Game;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,8 @@ public class MainMenu extends UI {
     private int highlight=30;
     private int normalborder=10;
     private Button Chosegamemode;
-    public MainMenu() throws IOException, URISyntaxException, FontFormatException {
+    public MainMenu()
+    {
         super(new TerminalSize(41,23),25);
         Chosegamemode=new Button(new TextColor.RGB(237,173,24),new TextColor.RGB(255,255,255),new Position(10,2),new TerminalSize(21,5),"CHOSE GAMEMODE",normalborder);
     }

@@ -24,7 +24,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -49,7 +48,7 @@ public class StartGameMenuTest {
     private StartGameMenu startGameMenu2;
 
     @BeforeEach
-    public void setUp() throws IOException, URISyntaxException, FontFormatException {
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
         startGameMenu = Mockito.spy(new StartGameMenu(true));
         startGameMenu2 = Mockito.spy(new StartGameMenu(false));

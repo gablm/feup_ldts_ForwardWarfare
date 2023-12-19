@@ -7,7 +7,6 @@ import com.ldts.ForwardWarfare.LanternaTerminal;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,10 +22,15 @@ public abstract class UI {
     protected boolean endscreen=false;
     protected boolean gameMode;
 
-    public UI(TerminalSize terminalSize,int fontsize) throws IOException, URISyntaxException, FontFormatException {
+    public UI(TerminalSize terminalSize,int fontsize)
+    {
         this.fontsize=fontsize;
         this.terminalSize=terminalSize;
-        UITerminal = new LanternaTerminal(new TerminalSize(terminalSize.getColumns(),terminalSize.getRows()), "tanks2_0.ttf", fontsize);
+        try {
+            UITerminal = new LanternaTerminal(new TerminalSize(terminalSize.getColumns(),terminalSize.getRows()), "tanks2_0.ttf", fontsize);
+        }
+        catch (Exception ignored) {
+        }
     }
 
     public abstract UiStates build() throws IOException, MapParseException, URISyntaxException;
