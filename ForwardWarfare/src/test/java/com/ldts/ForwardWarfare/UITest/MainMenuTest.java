@@ -7,6 +7,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.LanternaTerminal;
 import com.ldts.ForwardWarfare.Map.MapParseException;
+import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.MainMenu;
 import com.ldts.ForwardWarfare.UI.UiStates;
@@ -45,17 +46,20 @@ public class MainMenuTest {
     }
     @Test
     public void testConstruct(){
+
         Assertions.assertEquals(new TerminalSize(41,23),mainMenu.getTerminalSize());
         Assertions.assertEquals(25,mainMenu.getFontsize());
     }
     @Test
     public void testBuild() throws IOException {
         UiStates expectedUiState = UiStates.HowToPlay;
+        mainMenu.getListComponents().clear();
+        mainMenu.getFs().add(componentMock);
         Mockito.doReturn(expectedUiState).when(mainMenu).run();
         Mockito.doNothing().when(mainMenu).addcomp();
 
         UiStates actualUiState = mainMenu.build();
-
+        Assertions.assertEquals(mainMenu.getListComponents().get(0),componentMock);
         Mockito.verify(mainMenu).addcomp();
         Mockito.verify(mainMenu).run();
         Assertions.assertEquals(expectedUiState, actualUiState);
@@ -90,7 +94,7 @@ public class MainMenuTest {
     }
 
     @Test
-    public void testAddcomp() throws IOException, MapParseException, URISyntaxException {
+    public void testAddcomp()  {
         mainMenu.addcomp();
 
         Assertions.assertEquals(3, mainMenu.getFs().size());
@@ -131,40 +135,54 @@ public class MainMenuTest {
 
         Assertions.assertFalse(mainMenu.isEndscreen());
         Mockito.verify(componentMock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
+
     }
     @Test
     public void testProcessKey_ArrowLeft_first()
     {
         KeyStroke escapeKey  = new KeyStroke(KeyType.ArrowLeft);
-
+        Component componentMock2 = Mockito.mock(Component.class);
+        mainMenu.getListComponents().add(componentMock2);
         mainMenu.processKey(escapeKey);
 
         Assertions.assertFalse(mainMenu.isEndscreen());
-        Mockito.verify(componentMock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
+        Mockito.verify(componentMock, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
+        Mockito.verify(componentMock2, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
     }
     @Test
     public void testProcessKey_ArrowLeft_second()
     {
+        int s=mainMenu.getCb();
+
         KeyStroke escapeKey  = new KeyStroke(KeyType.ArrowLeft);
 
         Component componentMock2 = Mockito.mock(Component.class);
         mainMenu.getListComponents().add(componentMock2);
         mainMenu.processKey(escapeKey);
+        Assertions.assertTrue(s<mainMenu.getCb());
+        s=mainMenu.getCb();
         mainMenu.processKey(escapeKey);
+        Assertions.assertTrue(s>mainMenu.getCb());
 
         Assertions.assertFalse(mainMenu.isEndscreen());
         Mockito.verify(componentMock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
         Mockito.verify(componentMock2, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
+
     }
     @Test
     public void testProcessKey_ArrowRight_first()
     {
+        int s=mainMenu.getCb();
         KeyStroke escapeKey  = new KeyStroke(KeyType.ArrowRight);
-
+        Component componentMock2 = Mockito.mock(Component.class);
+        mainMenu.getListComponents().add(componentMock2);
         mainMenu.processKey(escapeKey);
 
         Assertions.assertFalse(mainMenu.isEndscreen());
-        Mockito.verify(componentMock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
+        Mockito.verify(componentMock, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
+        Mockito.verify(componentMock2, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
+        Assertions.assertTrue(s<mainMenu.getCb());
+
     }
     @Test
     public void testProcessKey_ArrowRight_second()
@@ -189,25 +207,34 @@ public class MainMenuTest {
 
         Assertions.assertFalse(mainMenu.isEndscreen());
         Mockito.verify(componentMock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
+        Assertions.assertEquals(0, mainMenu.getCb());
     }
     @Test
     public void testProcessKey_Escape_2()
     {
         KeyStroke escapeKey  = new KeyStroke(KeyType.Escape);
         mainMenu.setFsb(false);
-
+        mainMenu.getFs().add(componentMock);
+        Component componentMock2 = Mockito.mock(Component.class);
+        mainMenu.getSs().add(componentMock2);
+        mainMenu.setListComponents(mainMenu.getSs());
         mainMenu.processKey(escapeKey);
 
+        Assertions.assertTrue(mainMenu.isFsb());
+        Assertions.assertEquals(componentMock, mainMenu.getListComponents().get(0));
         Assertions.assertFalse(mainMenu.isEndscreen());
         Assertions.assertEquals(0, mainMenu.getCb());
     }
     @Test
     public void testProcessKey_Enter_StartGameButton()
     {
+        Component componentMock2 = Mockito.mock(Component.class);
+        mainMenu.getSs().add(componentMock2);
         KeyStroke escapeKey  = new KeyStroke(KeyType.Enter);
 
         mainMenu.processKey(escapeKey);
-
+        Assertions.assertEquals(mainMenu.isFsb(), false);
+        Assertions.assertEquals(componentMock2, mainMenu.getListComponents().get(0));
         Assertions.assertFalse(mainMenu.isEndscreen());
         Assertions.assertEquals(0,mainMenu.getCb());
     }
@@ -258,5 +285,20 @@ public class MainMenuTest {
         Assertions.assertTrue(mainMenu.isEndscreen());
         Assertions.assertEquals(UiStates.StartGameMenu, mainMenu.getStartgame());
         Assertions.assertEquals(false, mainMenu.getGameMode());
+    }
+    @Test
+    public void testButtonHighlighted()
+    {
+        KeyStroke escapeKey  = new KeyStroke(KeyType.ArrowRight);
+        Component ButtonMock2 = Mockito.mock(Button.class);
+        Component ButtonMock3 = Mockito.mock(Button.class);
+        mainMenu.getListComponents().add(ButtonMock2);
+        mainMenu.getListComponents().add(ButtonMock3);
+        int s=mainMenu.getCb();
+        mainMenu.processKey(escapeKey);
+        Assertions.assertTrue(s<mainMenu.getCb());
+        s=mainMenu.getCb();
+        mainMenu.processKey(escapeKey);
+        Assertions.assertTrue(s<mainMenu.getCb());
     }
 }

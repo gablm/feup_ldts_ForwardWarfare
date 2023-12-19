@@ -70,4 +70,8 @@ public abstract class UI {
     public boolean getGameMode() {
         return gameMode;
     }
+
+    public void setListComponents(List<Component> listComponents) {
+        this.listComponents = listComponents;
+    }
 }

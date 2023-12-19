@@ -270,4 +270,19 @@ public class StartGameMenu extends UI {
         this.selectedMap = selectedMap;
     }
 
+    public int getBc() {
+        return bc;
+    }
+
+    public int getMs() {
+        return ms;
+    }
+
+    public int getSelected() {
+        return selected;
+    }
+
+    public void setSelected(int selected) {
+        this.selected = selected;
+    }
 }

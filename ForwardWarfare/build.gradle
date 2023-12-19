@@ -29,13 +29,15 @@ test {
 
 pitest {
     timestampedReports = false
-    targetClasses = ['com.ldts.ForwardWarfare.State.*']
+    targetClasses = ['com.ldts.ForwardWarfare.*']
     excludedClasses = ['com.ldts.ForwardWarfare.LanternaTerminal']
     excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest',
-                            'com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest',
+                            'com.ldts.ForwardWarfare.UITest.ComponentsTest.MapBoxTest'
+                            /*'com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest',
                             'com.ldts.ForwardWarfare.UITest.MainMenuTest',
                             'com.ldts.ForwardWarfare.UITest.StartGameMenuTest',
-                            'com.ldts.ForwardWarfare.State.Player.Move.MoveValidationTest'
-                          ]
+                            'com.ldts.ForwardWarfare.UITesr.ComponentsTest.*',
+                            'com.ldts.ForwardWarfare.State.Player.Move.MoveValidationTest'*/
+                            ]
     junit5PluginVersion = '0.12'
 }
