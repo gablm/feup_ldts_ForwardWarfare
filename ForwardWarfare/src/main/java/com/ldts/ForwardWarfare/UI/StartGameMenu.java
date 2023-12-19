@@ -141,7 +141,7 @@ public class StartGameMenu extends UI {
     private void SetMap()
     {
         if(ms!=selected ) {
-            if (selected >= 0) {
+            if (selected > 0) {
                 listComponents.get(selected).setFixBorder(false);
                 listComponents.get(selected).setBorderFadeIntensity(normalborder);
             }
