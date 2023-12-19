@@ -15,6 +15,7 @@ import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.Component.MapBox;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -36,7 +37,7 @@ public class StartGameMenu extends UI {
     private ColorGrid grid;
     private List<Component> ButtonsList = new ArrayList<>();
 
-    public StartGameMenu(boolean gamemode) {
+    public StartGameMenu(boolean gamemode) throws IOException, URISyntaxException, FontFormatException {
         super(new TerminalSize(74,36),15);
         Gamemode=gamemode;
         grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25,Gamemode);

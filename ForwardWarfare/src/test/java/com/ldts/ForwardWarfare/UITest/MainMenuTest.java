@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -37,7 +38,7 @@ public class MainMenuTest {
     private MainMenu mainMenu;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException, URISyntaxException, FontFormatException {
         MockitoAnnotations.openMocks(this);
         mainMenu = Mockito.spy(new MainMenu());
         mainMenu.setUITerminal(uiTerminalMock);
