@@ -188,13 +188,7 @@ public class BuyState extends BaseState {
         else
             System.out.println("Invalid facility");
         if (noCash)
-        {
-            try {
-                draw_nocahs(graphics);
-            }catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+            draw_noCash(graphics);
     }
 
     @Override
@@ -272,7 +266,7 @@ public class BuyState extends BaseState {
         graphics.putString(13, 13, "!");
         graphics.setBackgroundColor(TextColor.ANSI.BLACK);
     }
-    private void draw_nocahs(TextGraphics graphics) throws InterruptedException {
+    private void draw_noCash(TextGraphics graphics) {
         graphics.setForegroundColor(new TextColor.RGB(255,223,0));
         switch (Facility) {
             case 0:
@@ -285,6 +279,14 @@ public class BuyState extends BaseState {
                 graphics.setBackgroundColor(new TextColor.RGB(153,76,0));
                 break;
         }
-        graphics.putString(2, 17, "To Expensive");
+        graphics.putString(2, 17, "Too Expensive");
+    }
+
+    public int getHighlighted() {
+        return Highlighted;
+    }
+
+    public void setHighlighted(int value) {
+        Highlighted = value;
     }
 }
