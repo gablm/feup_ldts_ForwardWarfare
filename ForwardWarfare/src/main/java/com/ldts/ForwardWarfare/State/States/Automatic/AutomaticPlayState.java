@@ -171,7 +171,7 @@ public class AutomaticPlayState extends BaseState {
         }
     }
 
-    private void buyHighest(int type, Position pos) {
+    public void buyHighest(int type, Position pos) {
         Position temp = new Position(0,0);
         int round = 0;
         boolean found = false;
@@ -233,11 +233,10 @@ public class AutomaticPlayState extends BaseState {
         }
     }
 
-    private void capture(Position pos){
+    public void capture(Position pos){
         if(map.at(pos).getFacility().getClass()== Base.class)
         {
             if (p2.getBase().getPosition().equals(pos) && !((Base) ((Tile) p2.getBase()).getFacility()).getAttackedLastTurn()) {
-                System.out.println("Base");
                 Base basep1 = (Base) map.at(pos).getFacility();
                 basep1.takeDamage();
                 basep1.setAttackedLastTurn(true);
@@ -247,9 +246,7 @@ public class AutomaticPlayState extends BaseState {
                 p2.setBase((Element) map.at(pos));
                 System.out.println(basep1.getLives());
                 if (basep1.getLives() <= 0)
-                {
                     endgame = true;
-                }
             }
         }
         else {
