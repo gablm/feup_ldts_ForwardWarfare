@@ -138,17 +138,14 @@ public class CaptureNoSelectionState extends BaseState {
     }
     private String getFacilityName(){
         Tile tile = (Tile) selectables.get(index);
-        if (tile.getFacility().getClass().equals(Base.class)) {
+        if (tile.getFacility().getClass().equals(Base.class))
             return "Base";
-        } else if (tile.getFacility().getClass().equals(OilPump.class)) {
+        if (tile.getFacility().getClass().equals(OilPump.class))
             return "Oil Pump";
-        } else if (tile.getFacility().getClass().equals(Factory.class)) {
+        if (tile.getFacility().getClass().equals(Factory.class))
             return "Factory";
-        } else if (tile.getFacility().getClass().equals(Airport.class)) {
+        if (tile.getFacility().getClass().equals(Airport.class))
             return "Airport";
-        } else if (tile.getFacility().getClass().equals(Port.class)) {
-            return "Port";
-        }
-        return null;
+        return "Port";
     }
 }
