@@ -204,4 +204,8 @@ public class MainMenu extends UI {
         this.cb = cb;
     }
 
+    public boolean isFsb() {
+        return fsb;
+    }
+
 }

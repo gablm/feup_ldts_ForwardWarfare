@@ -20,6 +20,7 @@ public class MapBox extends Component {
         super(backColor, forgColor, position, size, BorderFadeIntencity);
         this.map = new Map(mapName);
         this.oldMap = new Map(mapName);
+        BorderColor= backColor;
         for (Element e: this.map.getElements())
         {
             e.setPosition(new Position(e.getPosition().getX()+position.getX()+1,e.getPosition().getY()+ position.getY()+1));
@@ -46,14 +47,23 @@ public class MapBox extends Component {
         graphics.drawRectangle(position.toTPos(),size,' ');
 
         for (Element e: map.getElements()) {
-            if(e.getPosition().getX() < position.getX() + size.getColumns() - 1
-                    && e.getPosition().getY() < position.getY() + size.getRows() - 1) {
                 e.draw(graphics);
-            }
         }
     }
 
     public Map getMap() {
         return oldMap;
+    }
+
+    public void setOldMap(Map oldMap) {
+        this.oldMap = oldMap;
+    }
+
+    public Map getnewMap() {
+        return map;
+    }
+
+    public TextColor getBorderColor() {
+        return BorderColor;
     }
 }

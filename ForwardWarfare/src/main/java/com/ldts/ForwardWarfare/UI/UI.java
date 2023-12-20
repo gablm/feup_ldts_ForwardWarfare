@@ -29,8 +29,7 @@ public abstract class UI {
         try {
             UITerminal = new LanternaTerminal(new TerminalSize(terminalSize.getColumns(),terminalSize.getRows()), "tanks2_0.ttf", fontsize);
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        catch (Exception ignored) {
         }
     }
 
@@ -69,5 +68,9 @@ public abstract class UI {
 
     public boolean getGameMode() {
         return gameMode;
+    }
+
+    public void setListComponents(List<Component> listComponents) {
+        this.listComponents = listComponents;
     }
 }

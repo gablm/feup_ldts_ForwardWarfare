@@ -15,6 +15,7 @@ import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.Component.MapBox;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -140,7 +141,7 @@ public class StartGameMenu extends UI {
     private void SetMap()
     {
         if(ms!=selected ) {
-            if (selected >= 0) {
+            if (selected > 0) {
                 listComponents.get(selected).setFixBorder(false);
                 listComponents.get(selected).setBorderFadeIntensity(normalborder);
             }
@@ -270,4 +271,11 @@ public class StartGameMenu extends UI {
         this.selectedMap = selectedMap;
     }
 
+    public int getBc() {
+        return bc;
+    }
+
+    public int getMs() {
+        return ms;
+    }
 }

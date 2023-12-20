@@ -22,6 +22,7 @@ public class Button extends Component{
     {
         super(backColor,forgColor,position,size,BorderFadeIntencity);
         this.label = label;
+        BorderColor= backColor;
     }
     private void setupBoard()
     {
@@ -45,11 +46,7 @@ public class Button extends Component{
         graphics.enableModifiers(SGR.BOLD);
         setupBoard();
 
-        for(int x = 1; x < size.getColumns() - 1; x++)
-        {
-            for (int y = 1; y < size.getRows() - 1; y++)
-                graphics.putString(new TerminalPosition(x + position.getX(),y + position.getY())," ");
-        }
+        graphics.fillRectangle(position.toTPos(),size,' ');
 
         if(label.length() % 2 == 0)
             graphics.putString(new TerminalPosition(position.getX() + (size.getColumns() / 2) - (label.length() / 2)+1,
@@ -60,4 +57,9 @@ public class Button extends Component{
         graphics.setBackgroundColor(BorderColor);
         graphics.drawRectangle(position.toTPos(),size,' ');
     }
+
+    public TextColor getBorderColor() {
+        return BorderColor;
+    }
+
 }
