@@ -111,8 +111,8 @@ public class ColorGrid extends Component {
         if(c!=s )
         {
             if(s>=0 && !butonused.contains(ColorList.get(s))) {
-                ColorList.get(s).setFixBorder(false);
-                ColorList.get(s).setBorderFadeIntensity(normalborder);
+                   ColorList.get(s).setFixBorder(false);
+                   ColorList.get(s).setBorderFadeIntensity(normalborder);
             }
             s=c;
             ColorList.get(c).setBorderFadeIntensity(Selected);
@@ -215,5 +215,17 @@ public class ColorGrid extends Component {
 
     public TextColor getBorderColor() {
         return BorderColor;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public void setS(int s) {
+        this.s = s;
+    }
+
+    public List<Button> getButonused() {
+        return butonused;
     }
 }

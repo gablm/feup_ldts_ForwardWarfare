@@ -8,6 +8,7 @@ import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.MapBox;
+import com.ldts.ForwardWarfare.UI.MainMenu;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class MapBoxTest {
     @BeforeEach
     public void setUp() throws FileNotFoundException, MapParseException, URISyntaxException {
         MockitoAnnotations.openMocks(this);
-        mapBox = new MapBox(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(17,12),0, "test/MapBoxtest.fw");
+        mapBox = Mockito.spy(new MapBox(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(17,12),0,"tests/MapBoxTest.fw"));
     }
 
     @Test
@@ -36,34 +37,55 @@ public class MapBoxTest {
         Assertions.assertEquals(TextColor.ANSI.CYAN,mapBox.getBackColor());
         Assertions.assertEquals(TextColor.ANSI.BLACK,mapBox.getForgColor());
         Assertions.assertEquals(new Position(0,0),mapBox.getPosition());
-        Assertions.assertEquals(new TerminalSize(10,10),mapBox.getSize());
+        Assertions.assertEquals(new TerminalSize(17,12),mapBox.getSize());
         Assertions.assertEquals(0,mapBox.getBorderFadeIntencity());
     }
 
     @Test
-    public void MapBox_drawpairlabletest(){
+    public void MapBox_draw(){
+        TextColor first= mapBox.getBorderColor();
         mapBox.draw(textGraphicsMock);
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).setBackgroundColor(TextColor.ANSI.CYAN);
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(TextColor.ANSI.BLACK);
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
-
-
+        Mockito.verify(textGraphicsMock, Mockito.times(151)).setBackgroundColor(Mockito.any());
+        Mockito.verify(textGraphicsMock, Mockito.times(1)).drawRectangle(Mockito.any(),Mockito.any(),Mockito.anyChar());
+        Mockito.verify(textGraphicsMock, Mockito.times(150)).putString(Mockito.any(),Mockito.anyString());
+        Assertions.assertTrue(first.getBlue()>=mapBox.getBorderColor().getBlue());
+        Assertions.assertTrue(first.getGreen()>=mapBox.getBorderColor().getGreen());
+        Assertions.assertTrue(first.getRed()>=mapBox.getBorderColor().getRed());
+    }
+    @Test
+    public void MapBox_draw_mapoes_test() throws FileNotFoundException, MapParseException, URISyntaxException {
+        MapBox temp = new MapBox(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(12,50),new TerminalSize(17,12),0,"tests/MapBoxTest.fw");
+        Map tempmap = temp.getMap();
+        Map nm = temp.getnewMap();
+        for (int i = 0; i < tempmap.getElements().size(); i++) {
+            Assertions.assertNotEquals(tempmap.getElements().get(i).getPosition(),nm.getElements().get(i).getPosition());
+            Assertions.assertTrue(tempmap.getElements().get(i).getPosition().getX()<temp.getPosition().getX() || tempmap.getElements().get(i).getPosition().getY()<temp.getPosition().getY());
+            Assertions.assertTrue(new Position(tempmap.getElements().get(i).getPosition().getX() + 13, tempmap.getElements().get(i).getPosition().getY() + 51).equals(nm.getElements().get(i).getPosition()));
+        }
     }
 
     @Test
-    public void MapBox_drawoddlableTest(){
-        mapBox.draw(textGraphicsMock);
-        Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
+    public void Mapbox_setboard_test() throws FileNotFoundException, MapParseException, URISyntaxException {
+        MapBox temp = new MapBox(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(17,12),300,"tests/MapBoxTest.fw");
+        TextColor first= temp.getBorderColor();
+        temp.draw(textGraphicsMock);
+        Assertions.assertTrue(first.getBlue()>=temp.getBorderColor().getBlue());
+        Assertions.assertTrue(first.getGreen()>=temp.getBorderColor().getGreen());
+        Assertions.assertTrue(first.getRed()>=temp.getBorderColor().getRed());
     }
     @Test
-    public void MapBoxdraw_borderTest(){
-        mapBox.draw(textGraphicsMock);
-        Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
+    public void Mapbox_setboardexistence_test() throws FileNotFoundException, MapParseException, URISyntaxException {
+        MapBox temp = new MapBox(new TextColor.RGB(20,20,20),new TextColor.RGB(20,20,20),new Position(0,0),new TerminalSize(17,12),10,"tests/MapBoxTest.fw");
+        TextColor first= temp.getBorderColor();
+        temp.draw(textGraphicsMock);
+        Assertions.assertTrue(first.getBlue()>temp.getBorderColor().getBlue());
+        Assertions.assertTrue(first.getGreen()>temp.getBorderColor().getGreen());
+        Assertions.assertTrue(first.getRed()>temp.getBorderColor().getRed());
+    }
+    @Test
+    public void MapBox_getMap_test(){
+        Map temp = Mockito.mock(Map.class);
+        mapBox.setOldMap(temp);
+        Assertions.assertEquals(temp,mapBox.getMap());
     }
 }

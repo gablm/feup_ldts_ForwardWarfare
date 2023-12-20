@@ -1,4 +1,5 @@
 package com.ldts.ForwardWarfare.UITest.ComponentsTest;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.TextColor;
@@ -91,6 +92,7 @@ public class ColorGridTest {
         boolean result = colorGridPlayer.processKey(keyStroke);
         Assertions.assertTrue(result);
         Mockito.verify(buttonmock, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
+
     }
     @Test
     public void testProcessKeyArrowLeftrepeted() {
@@ -101,6 +103,8 @@ public class ColorGridTest {
         Assertions.assertTrue(result);
         boolean result2 = colorGridPlayer.processKey(keyStroke);
         Assertions.assertTrue(result2);
+        Mockito.verify(buttonmock, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
+        Mockito.verify(buttonmock2, Mockito.times(3)).setBorderFadeIntensity(Mockito.anyInt());
     }
 
     @Test
@@ -153,27 +157,23 @@ public class ColorGridTest {
         Mockito.verify(buttonmock, Mockito.times(1)).getBackColor();
         Mockito.verify(buttonmock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
     }
+
     @Test
-    public void testSetColor2() {
-        Button buttonmock3 = Mockito.mock(Button.class);
-        Button buttonmock4 = Mockito.mock(Button.class);
-        buttonList.add(buttonmock3);
-        buttonList.add(buttonmock4);
-        colorGridPlayer.setColorList(buttonList);
+    public void testSetColor_alredyselected()
+    {
         KeyStroke keyStroke = new KeyStroke(KeyType.Enter);
+        Button buttonmock3 = Mockito.mock(Button.class);
+        colorGridPlayer.setS(1);
+        colorGridPlayer.setC(0);
+        buttonList.add(buttonmock3);
         colorGridPlayer.processKey(keyStroke);
         colorGridPlayer.processKey(keyStroke);
-        colorGridPlayer.processKey(keyStroke);
-        Mockito.verify(buttonmock, Mockito.times(1)).setFixBorder(Mockito.anyBoolean());
-        Mockito.verify(buttonmock, Mockito.times(1)).getBackColor();
-        Mockito.verify(buttonmock, Mockito.times(2)).setBorderFadeIntensity(Mockito.anyInt());
-        Mockito.verify(buttonmock2, Mockito.times(1)).setFixBorder(Mockito.anyBoolean());
+        Mockito.verify(buttonmock2, Mockito.times(2)).setFixBorder(Mockito.anyBoolean());
         Mockito.verify(buttonmock2, Mockito.times(1)).getBackColor();
-        Mockito.verify(buttonmock2, Mockito.times(3)).setBorderFadeIntensity(Mockito.anyInt());
-        Mockito.verify(buttonmock3, Mockito.times(1)).setFixBorder(Mockito.anyBoolean());
-        Mockito.verify(buttonmock3, Mockito.times(1)).getBackColor();
-        Mockito.verify(buttonmock3, Mockito.times(3)).setBorderFadeIntensity(Mockito.anyInt());
+        Mockito.verify(buttonmock2, Mockito.times(4)).setBorderFadeIntensity(Mockito.anyInt());
+
     }
+
     @Test
     public void testStart() {
         colorGridPlayer.start();
@@ -197,9 +197,18 @@ public class ColorGridTest {
         ColorGrid temp = new ColorGrid(TextColor.ANSI.CYAN, TextColor.ANSI.BLACK, new Position(0, 0), 50, true);
         TextColor first= temp.getBorderColor();
         temp.draw(textGraphicsMock);
-        Assertions.assertTrue(first.getBlue()>=colorGridPlayer.getBorderColor().getBlue());
-        Assertions.assertTrue(first.getGreen()>=colorGridPlayer.getBorderColor().getGreen());
-        Assertions.assertTrue(first.getRed()>=colorGridPlayer.getBorderColor().getRed());
+        Assertions.assertTrue(first.getBlue()>=temp.getBorderColor().getBlue());
+        Assertions.assertTrue(first.getGreen()>=temp.getBorderColor().getGreen());
+        Assertions.assertTrue(first.getRed()>=temp.getBorderColor().getRed());
+    }
+    @Test void  testsetupcolorusage()
+    {
+        ColorGrid temp = new ColorGrid(new TextColor.RGB(20,20,20),new TextColor.RGB(20,20,20), new Position(0, 0), 1, true);
+        TextColor first= temp.getBorderColor();
+        temp.draw(textGraphicsMock);
+        Assertions.assertTrue(first.getBlue()>temp.getBorderColor().getBlue());
+        Assertions.assertTrue(first.getGreen()>temp.getBorderColor().getGreen());
+        Assertions.assertTrue(first.getRed()>temp.getBorderColor().getRed());
     }
 
     @Test
@@ -207,13 +216,18 @@ public class ColorGridTest {
         colorGridPlayer.restart();
         Mockito.verify(buttonmock, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
         Mockito.verify(buttonmock, Mockito.times(1)).setFixBorder(Mockito.anyBoolean());
+        Assertions.assertTrue(colorGridPlayer.getButonused().isEmpty());
     }
 
     @Test
     public void testRestart_AI() {
+        Button temp = new Button(TextColor.ANSI.RED, TextColor.ANSI.RED, new Position(0, 0), new TerminalSize(6, 6), " ", 50);
+        colorGridAI.getColorList().add(temp);
+        colorGridAI.getButonused().add(temp);
         colorGridAI.restart();
         Mockito.verify(buttonmock, Mockito.times(1)).setBorderFadeIntensity(Mockito.anyInt());
         Mockito.verify(buttonmock, Mockito.times(1)).setFixBorder(Mockito.anyBoolean());
+        Assertions.assertEquals(colorGridAI.getButonused().get(0), temp);
     }
 
     @Test
