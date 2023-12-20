@@ -90,7 +90,7 @@ public class StartGameMenuTest {
         Mockito.verify(screenMock).clear();
         Mockito.verify(textGraphicsMock, Mockito.times(5)).setBackgroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock, Mockito.times(3)).enableModifiers(Mockito.any());
-        Mockito.verify(textGraphicsMock).fillRectangle(Mockito.any(), Mockito.any(), Mockito.anyChar());
+        Mockito.verify(textGraphicsMock,Mockito.times(3)).fillRectangle(Mockito.any(), Mockito.any(), Mockito.anyChar());
         Mockito.verify(componentMock).draw(textGraphicsMock);
         Mockito.verify(ButtonMock).draw(textGraphicsMock);
         Mockito.verify(screenMock).refresh();

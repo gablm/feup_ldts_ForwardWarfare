@@ -278,12 +278,4 @@ public class StartGameMenu extends UI {
     public int getMs() {
         return ms;
     }
-
-    public int getSelected() {
-        return selected;
-    }
-
-    public void setSelected(int selected) {
-        this.selected = selected;
-    }
 }

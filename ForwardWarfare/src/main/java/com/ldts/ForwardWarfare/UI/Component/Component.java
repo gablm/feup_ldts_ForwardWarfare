@@ -52,4 +52,8 @@ public abstract class Component {
     public Position getPosition() {
         return position;
     }
+
+    public boolean isFixBorder() {
+        return fixBorder;
+    }
 }

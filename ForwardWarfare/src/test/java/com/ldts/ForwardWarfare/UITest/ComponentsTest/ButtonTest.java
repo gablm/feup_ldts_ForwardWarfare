@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare.UITest.ComponentsTest;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -20,7 +21,7 @@ public class ButtonTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        button = new Button(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(10,10),"Test",0);
+        button = new Button(TextColor.ANSI.CYAN,TextColor.ANSI.BLACK,new Position(0,0),new TerminalSize(10,10),"Test",50);
     }
 
     @Test
@@ -29,7 +30,8 @@ public class ButtonTest {
         Assertions.assertEquals(TextColor.ANSI.BLACK,button.getForgColor());
         Assertions.assertEquals(new Position(0,0),button.getPosition());
         Assertions.assertEquals(new TerminalSize(10,10),button.getSize());
-        Assertions.assertEquals(0,button.getBorderFadeIntencity());
+        Assertions.assertEquals(50,button.getBorderFadeIntencity());
+        Assertions.assertFalse(button.isFixBorder());
     }
 
     @Test
@@ -37,26 +39,31 @@ public class ButtonTest {
         button.draw(textGraphicsMock);
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setBackgroundColor(TextColor.ANSI.CYAN);
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(TextColor.ANSI.BLACK);
-        Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
-
-
+        Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());
+        Mockito.verify(textGraphicsMock).putString(new TerminalPosition(4,5),"Test");
     }
 
     @Test
     public void Button_drawoddlableTest(){
+        button.setLabel("Teste");
         button.draw(textGraphicsMock);
         Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
+        Mockito.verify(textGraphicsMock).putString(new TerminalPosition(3,5),"Teste");
     }
     @Test
-    public void Buttondraw_borderTest(){
+    public void Buttondraw_defaultTest(){
+        TextColor first= button.getBorderColor();
         button.draw(textGraphicsMock);
         Mockito.verify(textGraphicsMock, Mockito.times(2)).setBackgroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock, Mockito.times(1)).setForegroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock, Mockito.times(1)).enableModifiers(Mockito.any());
-        Mockito.verify(textGraphicsMock, Mockito.times((8*8)+1)).putString(Mockito.any(),Mockito.anyString());
+        Mockito.verify(textGraphicsMock).fillRectangle(new TerminalPosition(0,0),new TerminalSize(10,10),' ');
+        Mockito.verify(textGraphicsMock).drawRectangle(new TerminalPosition(0,0),new TerminalSize(10,10),' ');
+        Assertions.assertTrue(first.getBlue()>=button.getBorderColor().getBlue());
+        Assertions.assertTrue(first.getGreen()>=button.getBorderColor().getGreen());
+        Assertions.assertTrue(first.getRed()>=button.getBorderColor().getRed());
     }
 
     @Test

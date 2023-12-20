@@ -27,7 +27,7 @@ public class ColorGrid extends Component {
     public ColorGrid(TextColor backColor, TextColor forgColor, Position position, int BorderFadeIntencity,boolean Gamemode) {
         super(backColor, forgColor, position, new TerminalSize(29,19), BorderFadeIntencity);
         this.Gamemode = Gamemode;
-
+        BorderColor = backColor;
         ColorList.add(new Button(TextColor.ANSI.RED, new TextColor.RGB(0, 0, 0), new Position(position.getX() + 1, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
         ColorList.add(new Button(TextColor.ANSI.BLUE, new TextColor.RGB(0, 0, 0), new Position(position.getX() + 8, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
         ColorList.add(new Button(new TextColor.RGB(204, 0, 204), new TextColor.RGB(0, 0, 0), new Position(position.getX() + 15, position.getY() + 5), new TerminalSize(6, 6), " ", normalborder));
@@ -203,5 +203,17 @@ public class ColorGrid extends Component {
 
     public void setButonused(List<Button> butonused) {
         this.butonused = butonused;
+    }
+
+    public List<Button> getColorList() {
+        return ColorList;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public TextColor getBorderColor() {
+        return BorderColor;
     }
 }

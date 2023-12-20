@@ -88,7 +88,7 @@ public class MainMenuTest {
         Mockito.verify(screenMock).clear();
         Mockito.verify(textGraphicsMock,Mockito.times(3)).setBackgroundColor(Mockito.any());
         Mockito.verify(textGraphicsMock,Mockito.times(2)).enableModifiers(Mockito.any());
-        Mockito.verify(textGraphicsMock).fillRectangle(Mockito.any(), Mockito.any(), Mockito.anyChar());
+        Mockito.verify(textGraphicsMock, Mockito.times(2)).fillRectangle(Mockito.any(), Mockito.any(), Mockito.anyChar());
         Mockito.verify(componentMock).draw(textGraphicsMock);
         Mockito.verify(screenMock).refresh();
     }
