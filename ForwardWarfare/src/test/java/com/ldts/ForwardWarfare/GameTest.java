@@ -7,6 +7,7 @@ import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
+import com.ldts.ForwardWarfare.State.States.StartRoundState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -73,14 +74,36 @@ public class GameTest {
 
         game.runGame();
         Mockito.verify(state).play(action);
+        Mockito.verify(drawer, Mockito.never()).increaseTurnCount();
     }
 
     @Test
     public void QuitInputTest() throws IOException {
         Mockito.when(state.requiresInput()).thenReturn(true);
-        Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Character));
+        Mockito.when(screen.readInput())
+                .thenReturn(new KeyStroke('q', false, false));
 
         game.runGame();
         Mockito.verify(state).play(Action.QUIT);
+    }
+
+    @Test
+    public void DrawerIncreaseTest() throws IOException {
+        Mockito.when(state.play(Mockito.any())).thenReturn(
+                Mockito.mock(StartRoundState.class));
+
+        game.runGame();
+
+        Mockito.verify(drawer).increaseTurnCount();
+    }
+
+    @Test
+    public void CharInvalidInputTest() throws IOException {
+        Mockito.when(state.requiresInput()).thenReturn(true);
+        Mockito.when(screen.readInput())
+                .thenReturn(new KeyStroke('c', false, false));
+
+        game.runGame();
+        Mockito.verify(state).play(Action.NONE);
     }
 }
