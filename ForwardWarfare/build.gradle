@@ -33,6 +33,7 @@ pitest {
     targetClasses = ['com.ldts.ForwardWarfare.*']
     excludedClasses = ['com.ldts.ForwardWarfare.LanternaTerminal']
     excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest',
+                            'com.ldts.ForwardWarfare.GameNoMutationTest',
                             //'com.ldts.ForwardWarfare.UITest.*',
                             //'com.ldts.ForwardWarfare.Element.*',
                             //'com.ldts.ForwardWarfare.ControllerTest',

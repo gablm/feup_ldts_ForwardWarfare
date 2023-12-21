@@ -19,11 +19,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -124,30 +122,6 @@ public class GameTest {
 
         game.run();
         Assertions.assertFalse(game.isRunning());
-    }
-
-    @DoNotMutate
-    public void MainMenuTest() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException, AWTException, InterruptedException {
-        game.setUiState(UiStates.MainMenu);
-        Assertions.assertEquals(UiStates.MainMenu, game.getUiState());
-
-        System.setProperty("java.awt.headless", "false");
-        Robot robot = new Robot();
-        Thread thread = new Thread(() -> {
-            robot.delay(500);
-            robot.keyPress(KeyEvent.VK_DOWN);
-            robot.keyRelease(KeyEvent.VK_DOWN);
-            robot.keyPress(KeyEvent.VK_DOWN);
-            robot.keyRelease(KeyEvent.VK_DOWN);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-        });
-        thread.start();
-
-        game.run();
-
-        thread.join();
-        Assertions.assertEquals(UiStates.Exit, game.getUiState());
     }
 
     @Test
