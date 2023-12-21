@@ -33,10 +33,10 @@ pitest {
     targetClasses = ['com.ldts.ForwardWarfare.*']
     excludedClasses = ['com.ldts.ForwardWarfare.LanternaTerminal']
     excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest',
-                            'com.ldts.ForwardWarfare.UITest.*',
-                            'com.ldts.ForwardWarfare.Element.*',
-                            'com.ldts.ForwardWarfare.ControllerTest',
-                            'com.ldts.ForwardWarfare.State.*'
+                            //'com.ldts.ForwardWarfare.UITest.*',
+                            //'com.ldts.ForwardWarfare.Element.*',
+                            //'com.ldts.ForwardWarfare.ControllerTest',
+                            //'com.ldts.ForwardWarfare.State.*'
                           ]
     junit5PluginVersion = '0.12'
 }
