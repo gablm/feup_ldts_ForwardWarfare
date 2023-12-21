@@ -6,9 +6,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
-import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.MapBox;
-import com.ldts.ForwardWarfare.UI.MainMenu;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +36,7 @@ public class MapBoxTest {
         Assertions.assertEquals(TextColor.ANSI.BLACK,mapBox.getForgColor());
         Assertions.assertEquals(new Position(0,0),mapBox.getPosition());
         Assertions.assertEquals(new TerminalSize(17,12),mapBox.getSize());
-        Assertions.assertEquals(0,mapBox.getBorderFadeIntencity());
+        Assertions.assertEquals(0,mapBox.getBorderFadeIntensity());
     }
 
     @Test
