@@ -161,4 +161,8 @@ public class Game {
     public boolean isRunning() {
         return running;
     }
+
+    public UiStates getUiState() {
+        return uiState;
+    }
 }

@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.groupcdg.pitest.annotations.DoNotMutate;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
@@ -22,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -118,7 +120,42 @@ public class GameTest {
     @Test
     public void ExitStateTest() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException {
         game.setUiState(UiStates.Exit);
+        Assertions.assertTrue(game.isRunning());
+
         game.run();
         Assertions.assertFalse(game.isRunning());
+    }
+
+    @DoNotMutate
+    public void MainMenuTest() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException, AWTException, InterruptedException {
+        game.setUiState(UiStates.MainMenu);
+        Assertions.assertEquals(UiStates.MainMenu, game.getUiState());
+
+        System.setProperty("java.awt.headless", "false");
+        Robot robot = new Robot();
+        Thread thread = new Thread(() -> {
+            robot.delay(500);
+            robot.keyPress(KeyEvent.VK_DOWN);
+            robot.keyRelease(KeyEvent.VK_DOWN);
+            robot.keyPress(KeyEvent.VK_DOWN);
+            robot.keyRelease(KeyEvent.VK_DOWN);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        });
+        thread.start();
+
+        game.run();
+
+        thread.join();
+        Assertions.assertEquals(UiStates.Exit, game.getUiState());
+    }
+
+    @Test
+    public void GetUiStateTest() {
+        game.setUiState(UiStates.BattleUI);
+        Assertions.assertEquals(UiStates.BattleUI, game.getUiState());
+
+        game.setUiState(UiStates.HowToPlay);
+        Assertions.assertEquals(UiStates.HowToPlay, game.getUiState());
     }
 }
