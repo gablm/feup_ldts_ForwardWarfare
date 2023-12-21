@@ -10,14 +10,10 @@ import com.ldts.ForwardWarfare.Controller.Bot;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
 import com.ldts.ForwardWarfare.Controller.Player;
-import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.UI.*;
 
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.AntiAirTank;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyPerson;
-import com.ldts.ForwardWarfare.Element.Playable.Ground.HeavyTank;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
@@ -28,8 +24,8 @@ import java.net.URISyntaxException;
 
 public class Game {
     private boolean running = true;
-    private UiStates state = UiStates.MainMenu;
-    private boolean GameMode;
+    private UiStates uiState = UiStates.MainMenu;
+    private boolean gameMode;
 
     private Map map;
     private TextColor color1;
@@ -46,46 +42,56 @@ public class Game {
 
     public void run() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException {
         while (running) {
-            switch (state) {
+            switch (uiState) {
                 case MainMenu:
-                    UI mainmenu = new MainMenu();
-                    state = mainmenu.build();
-                    GameMode = mainmenu.getGameMode();
+                    UI mainMenu = new MainMenu();
+                    uiState = mainMenu.build();
+                    gameMode = mainMenu.getGameMode();
                     break;
                 case StartGameMenu:
-                    StartGameMenu startgamemenu = new StartGameMenu(GameMode);
-                    state = startgamemenu.build();
-                    map = startgamemenu.getSelectedMap();
-                    color1 = startgamemenu.selectColor1();
-                    color2 = startgamemenu.selectColor2();
+                    StartGameMenu startGameMenu = new StartGameMenu(gameMode);
+                    uiState = startGameMenu.build();
+                    map = startGameMenu.getSelectedMap();
+                    color1 = startGameMenu.selectColor1();
+                    color2 = startGameMenu.selectColor2();
                     break;
                 case HowToPlay:
-                    UI howtoplay = new HowToPlayMenu();
-                    state = howtoplay.build();
+                    UI howToPlayMenu = new HowToPlayMenu();
+                    uiState = howToPlayMenu.build();
                     break;
                 case Exit:
                     running = false;
                     break;
                 case BattleUI:
+
+                    if (map == null || color1 == null || color2 == null)
+                        return;
+
+                    terminal = new LanternaTerminal(new TerminalSize(25,19), "tanks2_1.ttf", 40);
+                    screen = terminal.createScreen();
+
+                    p1 = new Player(map.getPlayer1(), color1, "P1");
+                    p2 = gameMode ? new Player(map.getPlayer2(), color2, "P2")
+                            : new Bot(map.getPlayer2(), TextColor.ANSI.RED, "P2");
+                    drawer = new Drawer(p1, p2, map);
+                    state = new StartRoundState(p1, p2, map);
+
                     runGame();
-                    state = UiStates.MainMenu;
+                    uiState = UiStates.MainMenu;
                     break;
             }
         }
     }
 
-    public void runGame() throws IOException, URISyntaxException, InvalidControllerException, FontFormatException {
+    private LanternaTerminal terminal;
+    private Screen screen;
+    private Controller p1;
+    private Controller p2;
+    private Drawer drawer;
+    private State state;
 
-        if (map == null || color1 == null || color2 == null)
-            return;
+    public void runGame() throws IOException {
 
-        LanternaTerminal terminal = new LanternaTerminal(new TerminalSize(25,19), "tanks2_1.ttf", 40);
-        Screen screen = terminal.createScreen();
-        Controller p1 = new Player(map.getPlayer1(), color1, "P1");
-        Controller p2 = GameMode ? new Player(map.getPlayer2(), color2, "P2") : new Bot(map.getPlayer2(), TextColor.ANSI.RED, "P2");
-        Drawer drawer = new Drawer(p1, p2, map);
-
-        State state = new StartRoundState(p1, p2, map);
         while (true) {
             screen.clear();
             drawer.draw(screen.newTextGraphics(), state);
@@ -126,4 +132,35 @@ public class Game {
         };
     }
 
+    public void setUiState(UiStates uiState) {
+        this.uiState = uiState;
+    }
+
+    public void setGameMode(boolean gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    public void setP1(Controller p1) {
+        this.p1 = p1;
+    }
+
+    public void setP2(Controller p2) {
+        this.p2 = p2;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void setDrawer(Drawer drawer) {
+        this.drawer = drawer;
+    }
 }
