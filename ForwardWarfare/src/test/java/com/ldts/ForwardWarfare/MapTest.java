@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
@@ -9,8 +11,10 @@ import org.mockito.Mockito;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyMapOf;
 import static org.mockito.ArgumentMatchers.anyString;
 
 public class MapTest {
@@ -92,5 +96,39 @@ public class MapTest {
 
         assertThrows(MapParseException.class, () -> mapReaderMock.readMap("invalid_map.txt"));
         Mockito.verify(mapReaderMock, Mockito.times(1)).readMap("invalid_map.txt");
+    }
+
+    @Test
+    public void DrawTest() throws FileNotFoundException, MapParseException, URISyntaxException {
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
+
+        Map map = new Map("tests/allGrass.fw");
+        map.draw(graphics);
+
+        Mockito.verify(graphics, Mockito.times(150))
+                .setForegroundColor(Mockito.any());
+    }
+
+    @Test
+    public void InsideTest() throws FileNotFoundException, MapParseException, URISyntaxException {
+        Map map = new Map("1.fw");
+
+        Assertions.assertTrue(map.inside(new Position(0, 0)));
+        Assertions.assertTrue(map.inside(new Position(14, 9)));
+        Assertions.assertFalse(map.inside(new Position(15, 10)));
+        Assertions.assertFalse(map.inside(new Position(-1, -1)));
+        Assertions.assertTrue(map.inside(new Position(5, 5)));
+        Assertions.assertFalse(map.inside(new Position(15, 5)));
+        Assertions.assertFalse(map.inside(new Position(4, 10)));
+        Assertions.assertFalse(map.inside(new Position(-1, 0)));
+        Assertions.assertFalse(map.inside(new Position(0, -1)));
+    }
+
+    @Test
+    public void SetTest() throws FileNotFoundException, MapParseException, URISyntaxException {
+        Map map = new Map("1.fw");
+        List<Element> elements = Mockito.spy(map.getElements());
+
+        Element element = Mockito.mock(Element.class);
     }
 }
