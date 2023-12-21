@@ -37,6 +37,7 @@ public class Fields extends Element implements Tile {
             facility.setTextColor(foregroundColor);
     }
 
+    @Override
     public TextColor getColor() {
         return backgroundColor;
     }

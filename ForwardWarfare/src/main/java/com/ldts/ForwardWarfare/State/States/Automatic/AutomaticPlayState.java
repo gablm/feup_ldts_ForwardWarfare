@@ -290,7 +290,7 @@ public class AutomaticPlayState extends BaseState {
                 int b = p.getX() + y.get(i);
                 Tile tile = copy.at(new Position(b, a));
                 if(a >= 0 && b >= 0 && a < 10 && b < 15 && dist[a][b] == -1
-                        && tile.noCollision() && (playable.canMove((Element) tile))){
+                        && tile.noCollision() && playable.canMove((Element) tile)){
                     dist[a][b] = 1 + dist[p.getY()][p.getX()];
                     q.add(new Position(b, a));
                 }

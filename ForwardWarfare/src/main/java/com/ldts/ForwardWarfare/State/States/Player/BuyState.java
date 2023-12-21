@@ -25,6 +25,7 @@ import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.BaseState;
 import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -40,14 +41,14 @@ public class BuyState extends BaseState {
             ,List.of(new LightBoat(new Position(0,0)),new MortarBoat(new Position(0,0)),new FighterSubmarine(new Position(0,0)))
             ,List.of(new FighterPlane(new Position(0,0)),new BomberPlane(new Position(0,0)),new LightHelicopter(new Position(0,0))));
 
-    private Vector<Integer> indexf = new Vector<>(List.of(1,0,0,0,0,0)) ;
-    private Vector<Integer> indexa = new Vector<>(List.of(1,0,0)) ;
-    private Vector<Integer> indexp = new Vector<>(List.of(1,0,0)) ;
+    private List<Integer> indexf = Arrays.asList(1,0,0,0,0,0);
+    private List<Integer> indexa = Arrays.asList(1,0,0);
+    private List<Integer> indexp = Arrays.asList(1,0,0);
     private List<TextColor> colors = List.of(TextColor.ANSI.WHITE, TextColor.ANSI.GREEN);
 
-    public BuyState(Controller p1, Controller p2, Map map, Facility facility,Position pos) {
+    public BuyState(Controller p1, Controller p2, Map map, Facility fac, Position pos) {
         super(p1, p2, map);
-        facilitySelected = facility;
+        facilitySelected = fac;
         this.pos=pos;
         if (facilitySelected.getClass() == Factory.class)
             Facility = 0;

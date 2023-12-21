@@ -15,7 +15,6 @@ import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
 import com.ldts.ForwardWarfare.UI.Component.Component;
 import com.ldts.ForwardWarfare.UI.Component.MapBox;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartGameMenu extends UI {
-    private boolean SelectingColor=false;
-    private boolean SelectingMap=false;
+    private boolean selectingColor =false;
+    private boolean selectingMap =false;
     private UiStates startgame;
     private int highlight=30;
     private int normalborder=10;
@@ -32,15 +31,15 @@ public class StartGameMenu extends UI {
     private int bc=0;
     private int ms=1;
     private int selected=-1;
-    private boolean Gamemode;
+    private boolean gamemode;
     private Map selectedMap;
     private ColorGrid grid;
     private List<Component> ButtonsList = new ArrayList<>();
 
     public StartGameMenu(boolean gamemode) {
         super(new TerminalSize(74,36),15);
-        Gamemode=gamemode;
-        grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25,Gamemode);
+        this.gamemode = gamemode;
+        grid=new ColorGrid(new TextColor.RGB(247,193,64),new TextColor.RGB(255,255,255),new Position(44,1),25, this.gamemode);
     }
 
     @Override
@@ -66,7 +65,7 @@ public class StartGameMenu extends UI {
             butao.draw(graphics);
         }
         Component Color1=new Button(grid.getPlayer1Color()==null ? new TextColor.RGB(247,193,64):grid.getPlayer1Color(),new TextColor.RGB(255,255,255),new Position(2,9),new TerminalSize(13,3),"P1 Color",0);
-        Component Color2=new Button(grid.getPlayer2Color()==null ? new TextColor.RGB(247,193,64):grid.getPlayer2Color(),new TextColor.RGB(255,255,255),new Position(29,9),new TerminalSize(13,3),Gamemode ? "P2 Color" : "AI Color",0);
+        Component Color2=new Button(grid.getPlayer2Color()==null ? new TextColor.RGB(247,193,64):grid.getPlayer2Color(),new TextColor.RGB(255,255,255),new Position(29,9),new TerminalSize(13,3), gamemode ? "P2 Color" : "AI Color",0);
         Color1.draw(graphics);
         Color2.draw(graphics);
 
@@ -106,12 +105,12 @@ public class StartGameMenu extends UI {
                 startgame=UiStates.BattleUI;
                 break;
             case 1:
-                SelectingColor = true;
+                selectingColor = true;
                 grid.restart();
                 grid.start();
                 break;
             case 2:
-                SelectingMap = true;
+                selectingMap = true;
                 if(ms==1) {
                     listComponents.get(1).setBorderFadeIntensity(highlight);
                 }
@@ -174,9 +173,9 @@ public class StartGameMenu extends UI {
     }
     @Override
     public void processKey(KeyStroke key) {
-        if (SelectingColor) {
-            SelectingColor=grid.processKey(key);
-        }else if(SelectingMap) {
+        if (selectingColor) {
+            selectingColor =grid.processKey(key);
+        }else if(selectingMap) {
             if (key.getKeyType() == KeyType.ArrowUp)
             {
                 mapselected(false);
@@ -191,7 +190,7 @@ public class StartGameMenu extends UI {
             }else if(key.getKeyType()== KeyType.Enter)
             {
                 SetMap();
-                SelectingMap=false;
+                selectingMap =false;
             }
         }
         else{
@@ -224,11 +223,11 @@ public class StartGameMenu extends UI {
     }
 
     public void setSelectingColor(boolean selectingColor) {
-        SelectingColor = selectingColor;
+        this.selectingColor = selectingColor;
     }
 
     public void setSelectingMap(boolean selectingMap) {
-        SelectingMap = selectingMap;
+        this.selectingMap = selectingMap;
     }
 
     public void setGrid(ColorGrid grid) {
@@ -236,7 +235,7 @@ public class StartGameMenu extends UI {
     }
 
     public boolean getSelectingColor() {
-        return SelectingColor;
+        return selectingColor;
     }
 
     public ColorGrid getGrid() {
@@ -244,7 +243,7 @@ public class StartGameMenu extends UI {
     }
 
     public boolean getSelectingMap() {
-        return SelectingMap;
+        return selectingMap;
     }
 
     public void setBc(int bc) {

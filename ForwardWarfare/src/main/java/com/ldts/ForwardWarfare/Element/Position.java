@@ -20,6 +20,7 @@ public class Position {
     public int getY() { return y; }
 
     @Override
+    @SuppressWarnings("EqualsHashCode")
     public boolean equals(Object o) {
         if (this == o) return true;
 

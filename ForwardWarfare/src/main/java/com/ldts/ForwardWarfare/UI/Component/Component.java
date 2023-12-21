@@ -12,14 +12,14 @@ public abstract class Component {
      protected TextColor backColor;
      protected TextColor forgColor;
      protected TerminalSize size;
-     protected int BorderFadeIntencity;
-    public int getBorderFadeIntencity() {
-         return BorderFadeIntencity;
+     protected int borderFadeIntensity;
+    public int getBorderFadeIntensity() {
+         return borderFadeIntensity;
        }
 
-    public void setBorderFadeIntensity(int borderFadeIntencity) {
+    public void setBorderFadeIntensity(int borderFadeIntensity) {
         if(!fixBorder) {
-            BorderFadeIntencity = borderFadeIntencity;
+            this.borderFadeIntensity = borderFadeIntensity;
         }
      }
 
@@ -27,13 +27,13 @@ public abstract class Component {
         this.fixBorder = fixBorder;
     }
 
-    public Component(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, int BorderFadeIntencity)
+    public Component(TextColor backColor, TextColor forgColor, Position position, TerminalSize size, int borderFadeIntensity)
     {
          this.backColor = backColor;
          this.forgColor = forgColor;
          this.position = position;
          this.size = size;
-         this.BorderFadeIntencity = BorderFadeIntencity;
+         this.borderFadeIntensity = borderFadeIntensity;
     }
     public abstract void draw(TextGraphics graphics);
 

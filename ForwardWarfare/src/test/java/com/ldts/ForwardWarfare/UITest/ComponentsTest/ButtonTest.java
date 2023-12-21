@@ -30,7 +30,7 @@ public class ButtonTest {
         Assertions.assertEquals(TextColor.ANSI.BLACK,button.getForgColor());
         Assertions.assertEquals(new Position(0,0),button.getPosition());
         Assertions.assertEquals(new TerminalSize(10,10),button.getSize());
-        Assertions.assertEquals(50,button.getBorderFadeIntencity());
+        Assertions.assertEquals(50,button.getBorderFadeIntensity());
         Assertions.assertFalse(button.isFixBorder());
     }
 

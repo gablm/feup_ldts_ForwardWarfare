@@ -16,8 +16,7 @@ import com.ldts.ForwardWarfare.State.States.Player.Selection.NoSelectionState;
 
 
 public class CaptureState extends BaseState {
-    private Position pos;
-    private boolean endgame=false;
+    private boolean endgame = false;
     public CaptureState(Controller p1, Controller p2, Map map) {
         super(p1, p2, map);
         capture(p1.getSelection1().getPosition());

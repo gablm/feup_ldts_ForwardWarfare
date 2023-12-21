@@ -1,5 +1,7 @@
 package com.ldts.ForwardWarfare;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.ldts.ForwardWarfare.Element.Element;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.Map.Map;
 import com.ldts.ForwardWarfare.Map.MapParseException;
@@ -69,11 +71,25 @@ public class MapTest {
         });
         Assertions.assertEquals("A player cannot start with more than one factory", exception.getMessage());
     }
+    @Test
+    public void MapRepeatFactoryEnemyTest() {
+        Exception exception = assertThrows(MapParseException.class, () -> {
+            new Map("tests/repeatFactoryenemy.fw");
+        });
+        Assertions.assertEquals("A player cannot start with more than one factory", exception.getMessage());
+    }
 
     @Test
     public void MapRepeatBaseTest() {
         Exception exception = assertThrows(MapParseException.class, () -> {
             new Map("tests/repeatBase.fw");
+        });
+        Assertions.assertEquals("A player cannot have more than one base", exception.getMessage());
+    }
+    @Test
+    public void MapRepeatBaseEnemyTest() {
+        Exception exception = assertThrows(MapParseException.class, () -> {
+            new Map("tests/repeatBaseEnemy.fw");
         });
         Assertions.assertEquals("A player cannot have more than one base", exception.getMessage());
     }
@@ -93,4 +109,80 @@ public class MapTest {
         assertThrows(MapParseException.class, () -> mapReaderMock.readMap("invalid_map.txt"));
         Mockito.verify(mapReaderMock, Mockito.times(1)).readMap("invalid_map.txt");
     }
+    @Test
+    public void InsideTest() throws FileNotFoundException, MapParseException, URISyntaxException {
+        Map map = new Map("1.fw");
+
+        Assertions.assertTrue(map.inside(new Position(0, 0)));
+        Assertions.assertTrue(map.inside(new Position(14, 9)));
+        Assertions.assertFalse(map.inside(new Position(15, 10)));
+        Assertions.assertFalse(map.inside(new Position(-1, -1)));
+        Assertions.assertTrue(map.inside(new Position(5, 5)));
+        Assertions.assertFalse(map.inside(new Position(15, 5)));
+        Assertions.assertFalse(map.inside(new Position(4, 10)));
+        Assertions.assertFalse(map.inside(new Position(-1, 0)));
+        Assertions.assertFalse(map.inside(new Position(0, -1)));
+    }
+    @Test
+    public void drawTest() throws FileNotFoundException, MapParseException, URISyntaxException {
+        Map map = new Map("tests/allGrass.fw");
+        TextGraphics te = Mockito.mock(TextGraphics.class);
+        map.draw(te);
+        Mockito.verify(te, Mockito.times(150)).putString(Mockito.any(), Mockito.anyString());
+    }
+    @Test
+    public void setTest() throws FileNotFoundException, MapParseException, URISyntaxException {
+        Map map = new Map("tests/allGrass.fw");
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(1, 0), temp);
+            Assertions.assertEquals(temp, map.at(new Position(1, 0)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(15,10), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(15,10)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(0,0), temp);
+            Assertions.assertEquals(temp, map.at(new Position(0,0)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(3,4), temp);
+            Assertions.assertEquals(temp, map.at(new Position(3,4)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(-20, -1), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(-20,-1)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(-20, 1), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(-20,1)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(1, -20), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(1,-20)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(20, 0), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(20,0)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(0, 20), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(0,20)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(20, 20), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(20,20)));
+        }
+    }
+
 }

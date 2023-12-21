@@ -26,15 +26,15 @@ public class Button extends Component{
     }
     private void setupBoard()
     {
-        int r = backColor.getRed() - BorderFadeIntencity;
+        int r = backColor.getRed() - borderFadeIntensity;
         if (r <= 0)
             r = backColor.getRed();
 
-        int g = backColor.getGreen() - BorderFadeIntencity;
+        int g = backColor.getGreen() - borderFadeIntensity;
         if (g <= 0)
             g = backColor.getGreen();
 
-        int b = backColor.getBlue() - BorderFadeIntencity;
+        int b = backColor.getBlue() - borderFadeIntensity;
         if (b <= 0)
             b = backColor.getBlue();
         BorderColor = new TextColor.RGB(r,g,b);

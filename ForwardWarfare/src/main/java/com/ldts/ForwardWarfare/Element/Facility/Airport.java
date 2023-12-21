@@ -7,6 +7,8 @@ import com.ldts.ForwardWarfare.Element.Position;
 public class Airport implements Facility {
     private boolean Used = false;
     private TextColor textColor = new TextColor.RGB(255, 128, 0);
+
+    @Override
     public void draw(TextGraphics graphics, Position position) {
         graphics.setForegroundColor(textColor);
         graphics.putString(position.toTPos(),">");

@@ -21,6 +21,8 @@ public class HeavyPerson extends Playable {
         textGraphics.setForegroundColor(foregroundColor);
         textGraphics.putString(position.toTPos(), "_");
     }
+
+    @Override
     public boolean canMove(Element element) {
         return element instanceof Fields;
     }

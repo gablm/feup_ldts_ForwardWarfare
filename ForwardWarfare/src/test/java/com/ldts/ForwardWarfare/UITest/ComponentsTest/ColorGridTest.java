@@ -7,7 +7,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.ldts.ForwardWarfare.Element.Position;
 import com.ldts.ForwardWarfare.UI.Component.Button;
 import com.ldts.ForwardWarfare.UI.Component.ColorGrid;
-import com.ldts.ForwardWarfare.UI.Component.Component;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,7 +70,7 @@ public class ColorGridTest {
     public void testColorAI() {
         ColorGrid temp= new ColorGrid(TextColor.ANSI.CYAN, TextColor.ANSI.BLACK, new Position(0, 0), 0, false);
         List<Button> cores = temp.getColorList();
-        Assertions.assertEquals(cores.get(0).getBorderFadeIntencity(),50);
+        Assertions.assertEquals(cores.get(0).getBorderFadeIntensity(),50);
         Assertions.assertEquals(cores.get(0).isFixBorder(),true);
     }
     @Test
@@ -246,8 +245,8 @@ public class ColorGridTest {
     public void testGetters() {
         Assertions.assertTrue(colorGridPlayer.isGamemode());
         Assertions.assertFalse(colorGridAI.isGamemode());
-        Assertions.assertEquals(0, colorGridPlayer.getBorderFadeIntencity());
-        Assertions.assertEquals(300, colorGridAI.getBorderFadeIntencity());
+        Assertions.assertEquals(0, colorGridPlayer.getBorderFadeIntensity());
+        Assertions.assertEquals(300, colorGridAI.getBorderFadeIntensity());
     }
     @Test
     public void testButtonHighlighted()
