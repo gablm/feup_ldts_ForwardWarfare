@@ -1,5 +1,6 @@
 package com.ldts.ForwardWarfare;
 
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Controller.Controller;
 import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
@@ -139,5 +140,35 @@ public class GameNoMutationTest {
 
         thread.join();
         Assertions.assertEquals(UiStates.Exit, game.getUiState());
+    }
+
+    @Test
+    public void BattleUITest() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException, AWTException {
+        game.setUiState(UiStates.BattleUI);
+        game.setMap(new Map("1.fw"));
+        game.setColor1(new TextColor.RGB(20, 20, 20));
+        game.setColor2(new TextColor.RGB(70, 70, 70));
+
+        System.setProperty("java.awt.headless", "false");
+        Robot robot = new Robot();
+        Thread thread = new Thread(() -> {
+            robot.delay(500);
+            robot.keyPress(KeyEvent.VK_Q);
+            robot.keyRelease(KeyEvent.VK_Q);
+            robot.keyPress(KeyEvent.VK_RIGHT);
+            robot.keyRelease(KeyEvent.VK_RIGHT);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.delay(500);
+            robot.keyPress(KeyEvent.VK_DOWN);
+            robot.keyRelease(KeyEvent.VK_DOWN);
+            robot.keyPress(KeyEvent.VK_DOWN);
+            robot.keyRelease(KeyEvent.VK_DOWN);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        });
+        thread.start();
+
+        game.run();
     }
 }
