@@ -42,26 +42,32 @@ public abstract class ControllerBase implements Controller {
         this.name = name;
     }
 
+    @Override
     public Element getBase() {
         return base;
     }
 
+    @Override
     public int getBaseLives() {
         return ((Base) ((Tile) base).getFacility()).getLives();
     }
 
+    @Override
     public List<Element> getTroops() {
         return troops;
     }
 
+    @Override
     public List<Element> getFacilities() {
         return facilities;
     }
 
+    @Override
     public int getCoins() {
         return coins;
     }
 
+    @Override
     public boolean buy(Element troop, int price) {
         if (coins < price)
             return false;
@@ -70,30 +76,43 @@ public abstract class ControllerBase implements Controller {
         coins -= price;
         return true;
     }
+
+    @Override
     public void setBase(Element newbase) {
         base = newbase;
     }
+
+    @Override
     public void addFacility(Element facility) {
         facilities.add(facility);
         facility.setForegroundColor(controllerColor);
     }
+
+    @Override
     public void endRound() {
         canPlay = false;
         selection1 = null;
         selection2 = null;
     }
 
+    @Override
     public Border getSelection1() {
         return selection1;
     }
+
+    @Override
     public Border getSelection2() {
         return selection2;
     }
+
+    @Override
     public void setSelection1(Border selection1) {
         this.selection1 = selection1;
         if (selection1 != null)
             this.selection1.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
     }
+
+    @Override
     public void setSelection2(Border selection2) {
         this.selection2 = selection2;
         if (selection2 != null)
@@ -146,10 +165,12 @@ public abstract class ControllerBase implements Controller {
         return canPlay;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public TextColor getControllerColor() {
         return controllerColor;
     }

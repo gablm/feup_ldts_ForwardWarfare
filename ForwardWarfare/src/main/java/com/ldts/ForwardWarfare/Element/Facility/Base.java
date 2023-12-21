@@ -9,6 +9,8 @@ public class Base implements Facility {
     private boolean attackedLastTurn = false;
     private int lives = 2;
     private boolean used = false;
+
+    @Override
     public void draw(TextGraphics graphics, Position position) {
             graphics.setForegroundColor(textColor);
             graphics.putString(position.toTPos(), ";");

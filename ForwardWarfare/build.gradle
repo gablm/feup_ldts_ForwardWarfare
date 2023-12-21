@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'info.solidsoft.pitest' version '1.7.0'
+    id 'org.kordamp.gradle.errorprone' version '0.53.0'
 }
 
 group = 'com.ldts.forwardwarfare'
@@ -32,10 +33,10 @@ pitest {
     targetClasses = ['com.ldts.ForwardWarfare.*']
     excludedClasses = ['com.ldts.ForwardWarfare.LanternaTerminal']
     excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest',
-                            //'com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest',
-                            //'com.ldts.ForwardWarfare.UITest.MainMenuTest',
-                            //'com.ldts.ForwardWarfare.UITest.StartGameMenuTest',
-                            //'com.ldts.ForwardWarfare.State.Player.*'
+                            'com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest',
+                            'com.ldts.ForwardWarfare.UITest.MainMenuTest',
+                            'com.ldts.ForwardWarfare.UITest.StartGameMenuTest',
+                            'com.ldts.ForwardWarfare.State.*'
                           ]
     junit5PluginVersion = '0.12'
 }

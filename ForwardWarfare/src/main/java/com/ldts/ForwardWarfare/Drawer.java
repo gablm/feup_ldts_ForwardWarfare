@@ -47,11 +47,11 @@ public class Drawer {
         graphics.putString(16, 2, "TURN");
         graphics.putString(22, 2, turnCount % 3 == 0 ? p1.getName() : p2.getName());
         graphics.putString(16, 4, "ROUND");
-        String rounds = new StringBuilder().append(turnCount / 3 + 1).toString();
+        String rounds = String.valueOf(turnCount / 3 + 1);
         graphics.putString(22, 4, rounds);
 
         graphics.putString(16, 8, "P1");
-        String coins = new StringBuilder().append(p1.getCoins()).append("!").toString();
+        String coins = p1.getCoins() + "!";
         graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
         graphics.putString(24 - coins.length(), 8, coins);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
@@ -64,7 +64,7 @@ public class Drawer {
 
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         graphics.putString(16, 13, "P2");
-        coins = new StringBuilder().append(p2.getCoins()).append("!").toString();
+        coins = p2.getCoins() + "!";
         graphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
         graphics.putString(24 - coins.length(), 13, coins);
         graphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);

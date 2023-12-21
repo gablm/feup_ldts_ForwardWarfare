@@ -18,6 +18,8 @@ public class FighterSubmarine extends Playable {
         textGraphics.setForegroundColor(foregroundColor);
         textGraphics.putString(position.toTPos(), "=");
     }
+
+    @Override
     public boolean canMove(Element element) {
         return element instanceof Water;
     }

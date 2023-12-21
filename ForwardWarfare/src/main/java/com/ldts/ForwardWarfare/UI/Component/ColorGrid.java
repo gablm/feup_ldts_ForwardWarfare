@@ -21,7 +21,6 @@ public class ColorGrid extends Component {
     private TextColor player2Color;
     private int c = 0;
     private int s = -1;
-    private List<TextColor> gridcolor = new ArrayList<>();
     private List<Button> butonused = new ArrayList<>();
     private boolean Gamemode;
     public ColorGrid(TextColor backColor, TextColor forgColor, Position position, int BorderFadeIntencity,boolean Gamemode) {
