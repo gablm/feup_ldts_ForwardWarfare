@@ -1,13 +1,19 @@
 package com.ldts.ForwardWarfare;
 
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.ldts.ForwardWarfare.Controller.Controller;
+import com.ldts.ForwardWarfare.Controller.InvalidControllerException;
+import com.ldts.ForwardWarfare.Controller.Player;
 import com.ldts.ForwardWarfare.Map.Map;
+import com.ldts.ForwardWarfare.Map.MapParseException;
 import com.ldts.ForwardWarfare.State.Action;
 import com.ldts.ForwardWarfare.State.State;
 import com.ldts.ForwardWarfare.State.States.StartRoundState;
+import com.ldts.ForwardWarfare.UI.UiStates;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +21,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class GameTest {
     private Map map;
@@ -105,5 +113,12 @@ public class GameTest {
 
         game.runGame();
         Mockito.verify(state).play(Action.NONE);
+    }
+
+    @Test
+    public void ExitStateTest() throws IOException, MapParseException, URISyntaxException, FontFormatException, InvalidControllerException {
+        game.setUiState(UiStates.Exit);
+        game.run();
+        Assertions.assertFalse(game.isRunning());
     }
 }

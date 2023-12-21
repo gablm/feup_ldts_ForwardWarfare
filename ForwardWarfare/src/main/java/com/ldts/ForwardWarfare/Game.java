@@ -136,10 +136,6 @@ public class Game {
         this.uiState = uiState;
     }
 
-    public void setGameMode(boolean gameMode) {
-        this.gameMode = gameMode;
-    }
-
     public void setMap(Map map) {
         this.map = map;
     }
@@ -162,5 +158,9 @@ public class Game {
 
     public void setDrawer(Drawer drawer) {
         this.drawer = drawer;
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 }
