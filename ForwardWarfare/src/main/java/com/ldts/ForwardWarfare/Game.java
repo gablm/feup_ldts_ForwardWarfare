@@ -26,7 +26,12 @@ public class Game {
     private boolean running = true;
     private UiStates uiState = UiStates.MainMenu;
     private boolean gameMode;
-
+    private LanternaTerminal terminal;
+    private Screen screen;
+    private Controller p1;
+    private Controller p2;
+    private Drawer drawer;
+    private State state;
     private Map map;
     private TextColor color1;
     private TextColor color2;
@@ -82,13 +87,6 @@ public class Game {
             }
         }
     }
-
-    private LanternaTerminal terminal;
-    private Screen screen;
-    private Controller p1;
-    private Controller p2;
-    private Drawer drawer;
-    private State state;
 
     public void runGame() throws IOException {
 
