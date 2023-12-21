@@ -140,6 +140,21 @@ public class MapTest {
         }
         {
             Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(15,10), temp);
+            Assertions.assertNotEquals(temp, map.at(new Position(15,10)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(0,0), temp);
+            Assertions.assertEquals(temp, map.at(new Position(0,0)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
+            map.set(new Position(3,4), temp);
+            Assertions.assertEquals(temp, map.at(new Position(3,4)));
+        }
+        {
+            Element temp = (Element) map.at(new Position(0, 0));
             map.set(new Position(-20, -1), temp);
             Assertions.assertNotEquals(temp, map.at(new Position(-20,-1)));
         }
