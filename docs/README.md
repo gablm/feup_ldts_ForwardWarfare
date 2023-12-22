@@ -9,6 +9,10 @@ For LDTS 2023/24, this project was developed by:
 - Gabriel Lima up202206693@up.pt
 - Renata Simão up202205124@up.pt
 
+## HOW TO PLAY
+
+### \*MISSING\*
+
 ## IMPLEMENTED FEATURES
 
 - **Map** - Loads a custom map using the format .fw, where a number corresponds to a tile.
@@ -42,26 +46,15 @@ For LDTS 2023/24, this project was developed by:
 
 All the planned features were successfully implemented.
 
-
 ## MOCKUPS
-> They are located at the [Main README]("https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/README.md")!
+
+### \*CHANGE TO SCREENSHOTS\*
 
 ## DESIGN
 
 ### UML DIAGRAM
 
-![UML](scheme.png)
-
-
-### There are a lot of playable troop types
-
- - **Problem in Context:** there is a lot of playable types, so it's difficult to see at a glance the available troops. And a factory facility needs to create new troops with ease.
-
- - **The Pattern:** a Factory pattern is perfect in this situation. It allows us to have a single class that reunites all the available troops and lets other classes get a new troop without having to know about all the available troops.
-
- - **Implementation:** repesented in Blue in the UML by not yet implemented.
-
- - **Consequences:** easier access to the creation of a new troop instead of going through the entire list of constructors for the element absctract class.
+### \*ADD UML && IMPROVE DESIGN CHOICES\*
 
 ### Tiles and Playable troops are similar in base composition
 
@@ -107,3 +100,30 @@ All the planned features were successfully implemented.
 - **Implementation:** represented in Red (State) / Purple (Game Loop) in the UML but no code implementation yet.
 
 - **Consequences:** these pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
+
+## Known-code smells
+
+### \*\*MISSING\*\* - error prone warnings + develop smells
+
+## Testing
+
+### \*\*MISSING PHOTO + MISSING REPORT\*\*
+
+### Screenshot of coverage report
+<p align="center" justify="center">
+  <img src="images/screenshots/codeCoverage"/>
+</p>
+<p align="center">
+  <b><i>Fig X. Code coverage screenshot</i></b>
+</p>
+
+### Link to mutation testing report
+[Mutation tests](https://www.google.com)
+
+## Self-evaluation
+
+### \*\*MISSING\*\*
+
+Felipe Esteves: **X%**
+Gabriel Lima: **X%**
+Renata Simões: **X%**
