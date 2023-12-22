@@ -110,7 +110,20 @@ All the planned features were successfully implemented.
 
 ## Known-code smells
 
-### \*\*MISSING\*\* - error prone warnings + develop smells
+### Error prone
+
+ - EmptyCatch
+ - MissingCasesInEnumSwitch
+ - CatchAndPrintStackTrace
+ - StringSplitter
+
+### Code smells
+
+ - Duplicade Code
+ - Long Method
+ - Temporary Field
+ - Long Parameter list
+ - Data Clumps
 
 ## Testing
 
