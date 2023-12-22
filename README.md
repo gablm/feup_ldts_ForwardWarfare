@@ -11,7 +11,7 @@ FowardWarfare is our recreation of the game called Advance Wars. It’s a series
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/71a90119-007c-4262-bad3-41b53957c028)
+![image](../docs/images/MainMenu_Start.png)
 
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
