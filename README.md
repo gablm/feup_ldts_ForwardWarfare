@@ -28,7 +28,7 @@ The following screenshots shows the general look of our game.
 **Description:** Screen where you select the game settings. You can choose the color for your troops and the map you want to play in. The color of the AI player is already predetermined as red.
 
 ### Game Battle
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/48382a72-522c-4fc5-8eff-52fafbf8376d)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/74731602-7cd1-4f19-b002-5550aeb693e3)
 
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right. 
 
