@@ -118,7 +118,7 @@ All the planned features were successfully implemented.
 </p>
 
 ### Link to mutation testing report
-[Mutation tests](https://www.google.com)
+[Mutation tests](./reports/pitest/index.html)
 
 ## Self-evaluation
 

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>UI.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.ldts.ForwardWarfare.UI;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.googlecode.lanterna.TerminalSize;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.googlecode.lanterna.input.KeyStroke;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.googlecode.lanterna.screen.Screen;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.ldts.ForwardWarfare.LanternaTerminal;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.ldts.ForwardWarfare.Map.MapParseException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.ldts.ForwardWarfare.UI.Component.Component;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.FileNotFoundException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.net.URISyntaxException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public abstract class UI {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    protected List&#60;Component&#62; listComponents = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected LanternaTerminal UITerminal;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Screen screen;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private TerminalSize terminalSize;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private int fontsize;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    protected boolean endscreen=false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected boolean gameMode;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public UI(TerminalSize terminalSize,int fontsize)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.fontsize=fontsize;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.terminalSize=terminalSize;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            UITerminal = new LanternaTerminal(new TerminalSize(terminalSize.getColumns(),terminalSize.getRows()), &#34;tanks2_0.ttf&#34;, fontsize);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        catch (Exception ignored) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract UiStates build() throws IOException, MapParseException, URISyntaxException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract void draw() throws IOException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract void addcomp() throws FileNotFoundException, MapParseException, URISyntaxException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract UiStates run() throws IOException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract  void processKey( KeyStroke key);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public List&#60;Component&#62; getListComponents() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_46'>1</a>
+<span>
+
+1. getListComponents : replaced return value with Collections.emptyList for com/ldts/ForwardWarfare/UI/UI::getListComponents &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return listComponents;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public TerminalSize getTerminalSize() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_50'>1</a>
+<span>
+
+1. getTerminalSize : replaced return value with null for com/ldts/ForwardWarfare/UI/UI::getTerminalSize &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return terminalSize;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getFontsize() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_54'/>
+54
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_54'>1</a>
+<span>
+
+1. getFontsize : replaced int return with 0 for com/ldts/ForwardWarfare/UI/UI::getFontsize &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return fontsize;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setScreen(Screen screen) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.screen = screen;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setUITerminal(LanternaTerminal UITerminal) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.UITerminal = UITerminal;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean isEndscreen() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_66'/>
+66
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_66'>2</a>
+<span>
+
+1. isEndscreen : replaced boolean return with false for com/ldts/ForwardWarfare/UI/UI::isEndscreen &rarr; KILLED<br/>
+
+2. isEndscreen : replaced boolean return with true for com/ldts/ForwardWarfare/UI/UI::isEndscreen &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return endscreen;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean getGameMode() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_70'/>
+70
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_70'>2</a>
+<span>
+
+1. getGameMode : replaced boolean return with false for com/ldts/ForwardWarfare/UI/UI::getGameMode &rarr; KILLED<br/>
+
+2. getGameMode : replaced boolean return with true for com/ldts/ForwardWarfare/UI/UI::getGameMode &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return gameMode;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setListComponents(List&#60;Component&#62; listComponents) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.listComponents = listComponents;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45af5362_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45af5362_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getListComponents<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testAddcomp()]</span></span> replaced return value with Collections.emptyList for com/ldts/ForwardWarfare/UI/UI::getListComponents &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45af5362_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getTerminalSize<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testConstruct()]</span></span> replaced return value with null for com/ldts/ForwardWarfare/UI/UI::getTerminalSize &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45af5362_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_54'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getFontsize<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testConstruct()]</span></span> replaced int return with 0 for com/ldts/ForwardWarfare/UI/UI::getFontsize &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45af5362_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_66'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isEndscreen<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testProcessKey()]</span></span> replaced boolean return with false for com/ldts/ForwardWarfare/UI/UI::isEndscreen &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isEndscreen<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowUp()]</span></span> replaced boolean return with true for com/ldts/ForwardWarfare/UI/UI::isEndscreen &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45af5362_70'>70</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45af5362_70'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getGameMode<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_PlayerVSPlayerButton()]</span></span> replaced boolean return with false for com/ldts/ForwardWarfare/UI/UI::getGameMode &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getGameMode<br/><b>Killed by : </b>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_PlayerVSAIButton()]</span></span> replaced boolean return with true for com/ldts/ForwardWarfare/UI/UI::getGameMode &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowLeft()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowRight_selectingMap_second()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowLeft_second()] (8 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowDown()] (13 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testButtonHighlighted_map()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testDraw_secondmenu()] (8 ms)</li><li>com.ldts.ForwardWarfare.ControllerTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.ControllerTest]/[method:BaseGetLifes()] (16 ms)</li><li>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testRun()] (8 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testBuild()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_HowToPlayGameButton()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowLeft_second()] (13 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testConstruct()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_Enter_SelectMapButton()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_Enter_SetMap_unselected()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testConstruct()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testDraw_firstmenu()] (14 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_StartGameButton()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testProcessKey()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_Enter_SetMap_selected()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_PlayerVSPlayerButton()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testDrawAI()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testDraw()] (8 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowRight_selectingMap()] (10 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_PlayerVSAIButton()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testButtonHighlighted()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testRun()] (13 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowUp()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testConstruct()] (8 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowRight_second()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testSetMap_selected()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowDown_selectingMap()] (9 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowUp_selectingMap()] (10 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testAddcomp()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowLeft_first()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testPlayerColors()] (10 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_Enter_StartGameButton_nullcomp()] (10 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Escape_2()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_SelectColor()] (10 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowRight_first()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_ArrowDown()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testButtonHighlighted()] (8 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowUp()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Enter_ExitButton()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testBuild()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testProcessKey_Escape_1()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowLeft_selectingMap()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testBuild()] (7 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_Enter_StartGameButton_notnullcomp()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_Enter_SelectColorButton()] (13 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowLeft_selectingMap_second()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowRight_second()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testDraw()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testAddcomp()] (19 ms)</li><li>com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.HowtoPlayMenuTest]/[method:testAddcomp()] (6 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testSetMap()] (11 ms)</li><li>com.ldts.ForwardWarfare.UITest.StartGameMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.StartGameMenuTest]/[method:testProcessKey_ArrowRight()] (12 ms)</li><li>com.ldts.ForwardWarfare.UITest.MainMenuTest.[engine:junit-jupiter]/[class:com.ldts.ForwardWarfare.UITest.MainMenuTest]/[method:testRun()] (7 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.7.0
+
+</body>
+</html>
