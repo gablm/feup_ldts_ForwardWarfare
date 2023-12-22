@@ -73,9 +73,9 @@ All the planned features were successfully implemented.
 
   Represented in Yellow in the UML.
 
-  [Base abstract class - Element](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Element.java) |
-  [Decorator abstract class - Playable](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java) |
-  [Class that extends Playable - HeavyTank](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
+  [Base abstract class - Element](../src/main/java/com/ldts/ForwardWarfare/Element/Element.java) |
+  [Decorator abstract class - Playable](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java) |
+  [Class that extends Playable - HeavyTank](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
   
 - **Consequences:** by having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
 
@@ -89,12 +89,12 @@ All the planned features were successfully implemented.
   
   Represented in Green in the UML.
 
-  [Field](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
-  [Water](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Tile/Water.java) |
-  [Facility](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/Facility.java) |
-  [Factory](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/Factory.java) |
-  [OilPump](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility/OilPump.java) |
-  [Other facilities](https://github.com/FEUP-LDTS-2023/project-l04gr05/tree/main/ForwardWarfare/src/main/java/com/ldts/ForwardWarfare/Element/Facility)
+  [Field](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
+  [Water](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Water.java) |
+  [Facility](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/Facility.java) |
+  [Factory](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/Factory.java) |
+  [OilPump](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/OilPump.java) |
+  [Other facilities](../src/main/java/com/ldts/ForwardWarfare/Element/Facility)
 
 - **Consequences:** those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
 
