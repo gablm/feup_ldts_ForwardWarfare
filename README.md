@@ -18,9 +18,9 @@ The following screenshots shows the general look of our game.
 **Description:** Screen resulted by the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
 
 ### Main Menu -> Enemy Selection
-![Main Menu Gamer Selection](docs/MainMenu2.png)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/3ea0089c-3b67-4d66-98e1-08350598dd8e)
 
-In this screen you can choose if you want to play agains the Computer or Another Player.
+**Description:** In this screen you can choose if you want to play against the Computer (AI player) or another player.
 
 ### Start Game Menu
 ![Start Game Menu](docs/StartGameMenu.png)
