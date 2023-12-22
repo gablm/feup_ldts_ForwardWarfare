@@ -29,8 +29,9 @@ The following screenshots shows the general look of our game.
 
 ### Game Battle
 ![Game UI](docs/BattleUI.png)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/48382a72-522c-4fc5-8eff-52fafbf8376d)
 
-An mock of how the game screen will look like. You have the map above and under it a UI where you get information about the Tile/Troop currently selected and the tile/troop that the selector is hovering on the right. 
+**Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right. 
 
 ### In-Game Test of a Selection Border
 ![First Game Play Test](docs/GamePLayTeste_1.gif)
