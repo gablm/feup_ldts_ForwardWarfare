@@ -20,7 +20,7 @@ The following screenshots shows the general look of our game.
 ### Main Menu -> Enemy Selection
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/3ea0089c-3b67-4d66-98e1-08350598dd8e)
 
-**Description:** In this screen you can choose if you want to play against the Computer (AI player) or another player.
+**Description:** In this screen you can choose if you want to play against another player or the Computer (AI player).
 
 ### Start Game Menu
 ![Start Game Menu](docs/StartGameMenu.png)
