@@ -10,7 +10,7 @@ The following screenshots shows the general look of our game.
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/71a90119-007c-4262-bad3-41b53957c028)
 
 
-Start screen where you can choose whether to play the game, learn how to play it or close it.
+Description: Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
 ### Main Menu -> Enemy Selection
 ![Main Menu GAmer Selection](docs/MainMenu2.png)
