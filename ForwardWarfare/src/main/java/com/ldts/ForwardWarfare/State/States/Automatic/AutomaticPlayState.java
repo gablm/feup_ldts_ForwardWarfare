@@ -234,7 +234,7 @@ public class AutomaticPlayState extends BaseState {
     }
 
     public void capture(Position pos){
-        if(map.at(pos).getFacility().getClass()== Base.class)
+        if(map.at(pos).getFacility().getClass().equals(Base.class))
         {
             if (p2.getBase().getPosition().equals(pos) && !((Base) ((Tile) p2.getBase()).getFacility()).getAttackedLastTurn()) {
                 Base basep1 = (Base) map.at(pos).getFacility();
@@ -244,7 +244,6 @@ public class AutomaticPlayState extends BaseState {
                     basep1.execute();
                 map.set(pos, new Fields(pos,basep1));
                 p2.setBase((Element) map.at(pos));
-                System.out.println(basep1.getLives());
                 if (basep1.getLives() <= 0)
                     endgame = true;
             }
@@ -334,5 +333,9 @@ public class AutomaticPlayState extends BaseState {
     @Override
     public boolean requiresInput() {
         return false;
+    }
+
+    public boolean isEndgame() {
+        return endgame;
     }
 }
