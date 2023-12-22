@@ -107,14 +107,12 @@ All the planned features were successfully implemented.
 
 ## Testing
 
-### \*\*MISSING PHOTO + MISSING REPORT\*\*
-
 ### Screenshot of coverage report
 <p align="center" justify="center">
-  <img src="images/screenshots/codeCoverage"/>
+  <img src="images/codeCoverage.png"/>
 </p>
 <p align="center">
-  <b><i>Fig X. Code coverage screenshot</i></b>
+  <b><i>Fig 2. Code coverage screenshot</i></b>
 </p>
 
 ### Link to mutation testing report
