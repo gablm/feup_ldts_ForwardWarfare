@@ -37,7 +37,7 @@ pitest {
                             //'com.ldts.ForwardWarfare.UITest.*',
                             //'com.ldts.ForwardWarfare.Element.*',
                             //'com.ldts.ForwardWarfare.ControllerTest',
-                            //'com.ldts.ForwardWarfare.State.*'
+                            //'com.ldts.ForwardWarfare.State.Player.*'
                           ]
     junit5PluginVersion = '0.12'
 }

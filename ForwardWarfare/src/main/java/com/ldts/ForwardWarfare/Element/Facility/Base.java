@@ -48,4 +48,9 @@ public class Base implements Facility {
     public void setAttackedLastTurn(boolean attackedLastTurn) {
         this.attackedLastTurn = attackedLastTurn;
     }
+
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
 }
