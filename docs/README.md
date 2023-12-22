@@ -124,6 +124,6 @@ All the planned features were successfully implemented.
 
 ### \*\*MISSING\*\*
 
-Felipe Esteves: **X%**
-Gabriel Lima: **X%**
-Renata Simões: **X%**
+ - Felipe Esteves: **X%**
+ - Gabriel Lima: **X%**
+ - Renata Simões: **X%**
