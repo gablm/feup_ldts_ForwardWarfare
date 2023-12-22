@@ -13,9 +13,9 @@ The following screenshots shows the general look of our game.
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
 ### How to play
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/6da6b9ba-d3ba-4839-b8c0-2464a3f369d3)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/cdcec94d-e0af-45ec-9335-13d90144488b)
 
-**Description:** when you choose the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
+**Description:** Screen resulted by the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
 
 ### Main Menu -> Enemy Selection
 ![Main Menu Gamer Selection](docs/MainMenu2.png)
