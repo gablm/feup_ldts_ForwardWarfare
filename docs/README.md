@@ -11,7 +11,7 @@ For LDTS 2023/24, this project was developed by:
 
 ## HOW TO PLAY
 
-### \*MISSING\*
+### \*\*MISSING\*\*
 
 ## IMPLEMENTED FEATURES
 
@@ -48,13 +48,13 @@ All the planned features were successfully implemented.
 
 ## MOCKUPS
 
-### \*CHANGE TO SCREENSHOTS\*
+### \*\*CHANGE TO SCREENSHOTS\*\*
 
 ## DESIGN
 
 ### UML DIAGRAM
 
-### \*ADD UML && IMPROVE DESIGN CHOICES\*
+### \*\*ADD UML && IMPROVE DESIGN CHOICES\*\*
 
 ### Tiles and Playable troops are similar in base composition
 
