@@ -54,7 +54,14 @@ All the planned features were successfully implemented.
 
 ### UML DIAGRAM
 
-### \*\*ADD UML && IMPROVE DESIGN CHOICES\*\*
+<p align="center" justify="center">
+  <img src="uml/uml.png"/>
+</p>
+<p align="center">
+  <b><i>Fig 1. Class UML</i></b>
+</p>
+
+### \*\*IMPROVE DESIGN CHOICES\*\*
 
 ### Tiles and Playable troops are similar in base composition
 
