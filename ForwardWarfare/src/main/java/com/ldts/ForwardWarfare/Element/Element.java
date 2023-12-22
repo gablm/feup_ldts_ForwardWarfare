@@ -11,7 +11,6 @@ public abstract class Element {
     public void setForegroundColor(TextColor foregroundColor) {
         this.foregroundColor = foregroundColor;
     }
-
     public void setBackgroundColor(TextColor backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
