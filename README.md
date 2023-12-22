@@ -3,6 +3,10 @@
 ## Game Description
 FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo. The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units. 
 
+## How to Play
+
+### \*\*MISSING\*\*
+
 ## Screenshots
 The following screenshots shows the general look of our game.
 
@@ -32,5 +36,4 @@ The following screenshots shows the general look of our game.
 
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right. 
 
-### In-Game Test of a Selection Border
-![First Game Play Test](docs/GamePLayTeste_1.gif)
+### \*\*MISSING GAMEPLAY GIFS\*\*
