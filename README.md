@@ -23,7 +23,7 @@ The following screenshots shows the general look of our game.
 **Description:** In this screen you can choose if you want to play against another player or the Computer (AI player).
 
 ### Start Game Menu
-![Start Game Menu](docs/StartGameMenu.png)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/3a03b47d-5fb8-41ca-bf68-92c1c1d53e86)
 
 This is where you select the game settings. You can choose the color for your troops and the map. 
 
