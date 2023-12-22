@@ -7,7 +7,6 @@ FowardWarfare is our recreation of the game called Advance Wars. It’s a series
 Schematics of the future UI of the Game.
 
 ### Main Menu -> Start
-![Main Menu](docs/MainMenu.png)
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/71a90119-007c-4262-bad3-41b53957c028)
 
 
