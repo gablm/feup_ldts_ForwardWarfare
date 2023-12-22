@@ -329,10 +329,9 @@ public class AutomaticPlayTest {
         Assertions.assertEquals(1, base.getLives());
     }
     @Test
-    public void CaptureBaseNoMoreLivesTest()
-    {
+    public void CaptureBaseNoMoreLivesTest() {
         Base base = new Base();
-        Position pos = new Position(0,0);
+        Position pos = new Position(0, 0);
         Element tile = new Fields(pos, base);
         base.setLives(1);
         base.setUsed(false);
@@ -352,7 +351,7 @@ public class AutomaticPlayTest {
         Assertions.assertTrue(base.getUsed());
         Assertions.assertEquals(0, base.getLives());
         Assertions.assertTrue(state.isEndgame());
-
+    }
     @Test
     public void BuyHighestNoCoinsTest() throws FileNotFoundException, MapParseException, URISyntaxException {
         map = new Map("tests/allGrass.fw");
