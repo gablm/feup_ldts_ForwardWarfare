@@ -12,6 +12,10 @@ The following screenshots shows the general look of our game.
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
+### How to play -> Description
+
+
+
 ### Main Menu -> Enemy Selection
 ![Main Menu GAmer Selection](docs/MainMenu2.png)
 
