@@ -13,9 +13,7 @@ For LDTS 2023/24, this project was developed by:
 
 - **Map** - Loads a custom map using the format .fw, where a number corresponds to a tile.
   (currently only working by editing the file 1.fw)
-
-## PLANNED FEATURES
-
+  
 - **Color** - you can choose the color of your player.
 
 - **Map select** - Select the map you want to use.
@@ -29,6 +27,21 @@ For LDTS 2023/24, this project was developed by:
   - **Use coins to get more troops**.
 
 - **Defeat the base** - defeat your opponent's base to win the game.
+
+- **Capture facilities:**
+    - **Not owned**
+    - **Owned by other player**
+
+- **Kill other player troops**
+
+- **Recovery** - Base recovers lifes if not attacked in two consecutive rounds
+
+- **Movement** - move troops in the map, in order to reach other troops/facilities/base.
+
+## PLANNED FEATURES
+
+All the planned features were successfully implemented.
+
 
 ## MOCKUPS
 > They are located at the [Main README]("https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/README.md")!
