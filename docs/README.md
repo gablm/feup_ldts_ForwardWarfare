@@ -119,11 +119,30 @@ All the planned features were successfully implemented.
 
 ### Code smells
 
+The main code smells that we have found in our project are:
+
  - Duplicade Code
+ 
+Some code or method is duplicated within some classes. This happens because, even though that particular piece of code is the same, the rest of the class is different enough that there is a need for it to be separated.
+
+One example of this is the withinRadius method present in the classes:
+[AttackNoSelectionState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Selection/Attack/AttackNoSelectionState.java)
+[CaptureNoSelectionState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Selection/Attack/AttackNoSelectionState.java)
+
+The process that both classes follow to obtain the object that the player can capture/attack is quite similar, but as the Facilities and Troops are stored in a different way, this duplication of code is warranted.
+
  - Long Method
- - Temporary Field
+
+Long methods should be avoided to keep code clearity and simplicity. But this is not always viable nor easy to do. 
+
+The biggest infringers of this rethoric is the [AutomatedLogic](../src/main/java/com/ldts/ForwardWarfare/State/States/Automatic/AutomaticPlayState.java#53) method in [AutomaticPlayState](../src/main/java/com/ldts/ForwardWarfare/State/States/Automatic/AutomaticPlayState.java). Given that it tries to simulate a player, it is essential to have the entire logic for the randomness and what moves are gonna be executed in the same place.
+
  - Long Parameter list
- - Data Clumps
+
+ Having a long parameter list in a method can also reduce code clarity. It is rare for a method in our code to have more than 2/3 parameters, but in some cases it can reach 6 parameters.
+
+ One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/SpawnTroopState.java#25). This could be solved by wrapping some of the parameters in its own class, but given the scarcity of a method like this we opted for keeping it in this form.
+
 
 ## Testing
 
