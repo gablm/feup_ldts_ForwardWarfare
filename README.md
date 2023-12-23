@@ -47,3 +47,6 @@ The following screenshots shows the general look of our game.
 
 ### End Game Gif
 ![gif](./docs/gifs/EndGame.gif)
+
+### Gameplay Gif
+![gif](./docs/gifs/Gameplay.gif)
