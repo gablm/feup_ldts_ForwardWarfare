@@ -47,7 +47,7 @@ For LDTS 2023/24, this project was developed by:
 
 All the planned features were successfully implemented.
 
-## Screenshots
+## SCREENSHOTS / GIFS
 
 The following screenshots shows the general look of our game.
 
@@ -186,7 +186,7 @@ The following screenshots shows the general look of our game.
 
 - **Consequences:** A game loop runs continuously during the gameplay. Each turn of the loop processes user input, waiting for it or not depending on the state the game is in, updates the game state, and renders the game.
 
-## Error prone
+## ERROR PRONE
 
 ### MissingCasesInEnumSwitch
 
@@ -208,7 +208,7 @@ Even though String.split() might have weird behaviour when spliting things like 
 
 In [InvalidSelectState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Selection/InvalidSelectState.java#31), the split method spaces enables us to "push" the text down by only adding "\n" to the message. This way, with two "\n" or more in a row, it is possible to center test or to do paragraphs.
 
-## Code smells
+## CODE SMELLS
 
 The main code smells that we have found in our project are:
 
@@ -234,7 +234,7 @@ Having a long parameter list in a method can also reduce code clarity. It is rar
 
 One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/SpawnTroopState.java#25). This could be solved by wrapping some of the parameters in its own class, but given the scarcity of a method like this we opted for keeping it in this form.
 
-## Testing
+## TESTING
 
 ### Screenshot of coverage report
 
@@ -249,7 +249,7 @@ One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts
 
 [Mutation tests](./reports/pitest/index.html)
 
-## Self-evaluation
+## SELF-EVALUATION
 
 - Felipe Esteves: **40%**
 - Gabriel Lima: **45%**
