@@ -111,6 +111,8 @@ The following screenshots shows the general look of our game.
 ### Move Troop Gif
 ![gif](./gifs/MoveTroop.gif)
 
+**Description:** This gif, as the title suggests, shows you how you can move your troops.
+
 ## DESIGN
 
 ### UML DIAGRAM
