@@ -96,6 +96,9 @@ The following screenshots shows the general look of our game.
 ### Gameplay Gif
 ![gif](./gifs/Gameplay.gif)
 
+### Move Troop Gif
+![gif](./gifs/MoveTroop.gif)
+
 ## DESIGN
 
 ### UML DIAGRAM
