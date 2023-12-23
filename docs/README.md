@@ -51,7 +51,7 @@ All the planned features were successfully implemented.
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
-![image](./docs/images/MainMenu_Start.png)
+![image](./images/MainMenu_Start.png)
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
