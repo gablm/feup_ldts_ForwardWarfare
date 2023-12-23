@@ -91,6 +91,8 @@ The following screenshots shows the general look of our game.
 ### Buy Troop Gif
 ![gif](./gifs/BuyTroop.gif)
 
+**Description:** This gid«f shows you how to buy troops during your play.
+
 ### Capture Facility Gif
 ![gif](./gifs/CaptureFacility.gif)
 
