@@ -1,9 +1,9 @@
 ### LDTS_l04gr05 - ForwardWarfare
 
-## Game Description
+## GAME DESCRIPTION
 FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo. The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units. 
 
-## How to Play
+## HOW TO PLAY
 
 The objective of our game is to defeat the enemy army, capture bases and control facilities to obtain coins and additional units. After moving a unit depending of your surroundings you can either capture nearby facilities or attack nearby enemy units.
 The different types of facilities that exists are the bases, where to capture the enemy base to win the game takes two turns and those turns must be consecutive; factories, where you can buy one ground unit per round; airports, where you can buy one air unit per round; ports, where you can buy one sea unit per round as well and, finally, oilpumps, which gives you plus 10 income per round. 
