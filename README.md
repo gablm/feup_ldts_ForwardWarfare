@@ -44,3 +44,6 @@ The following screenshots shows the general look of our game.
 
 ### Capture Facility Gif
 ![gif](./docs/gifs/CaptureFacility.gif)
+
+### End Game Gif
+![gif](./docs/gifs/EndGame.gif)
