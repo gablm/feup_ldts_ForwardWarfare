@@ -94,71 +94,75 @@ The following screenshots shows the general look of our game.
 
 ### Tiles and Playable troops are similar in base composition
 
-- **Problem in Context:** tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
-- **The Pattern:** the decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
+- **Problem in Context:** Tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
 
-- **Implementation:**
+- **The Pattern:** The decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
 
-  Represented in Yellow in the UML.
+- **Implementation:** Represented in Yellow in the UML.
 
-  [Base abstract class - Element](../src/main/java/com/ldts/ForwardWarfare/Element/Element.java) |
-  [Decorator abstract class - Playable](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java) |
+  [Base abstract class - Element](../src/main/java/com/ldts/ForwardWarfare/Element/Element.java)
+
+  [Decorator abstract class - Playable](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java)
+
   [Class that extends Playable - HeavyTank](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
 
-- **Consequences:** by having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
+- **Consequences:** By having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
 
 ### A water or field tile might contain a facility
 
-- **Problem in Context:** a tile in our game, if of water or field type, might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
+- **Problem in Context:** A tile in our game, if of water or field type, might contain a facility. As there is various types of facilities, there need to be a way for the tile to store what facility is currently inside it.
 
-- **The Pattern:** for this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
+- **The Pattern:** For this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
 
-- **Implementation:**
+- **Implementation:** Represented in Green in the UML.
 
-  Represented in Green in the UML.
+  Tiles -> [Field](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
+  [Water](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Water.java)
 
-  [Field](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
-  [Water](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Water.java) |
-  [Facility](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/Facility.java) |
+  [Facility](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/Facility.java) ->
   [Factory](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/Factory.java) |
   [OilPump](../src/main/java/com/ldts/ForwardWarfare/Element/Facility/OilPump.java) |
   [Other facilities](../src/main/java/com/ldts/ForwardWarfare/Element/Facility)
 
-- **Consequences:** those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
+- **Consequences:** Those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
 
 ### The game has a lot of phases
 
-- **Problem in Context:** a game like ours need to be able to have all the information of each player and the map in the same place, in order to be able to handle a player action.
+- **Problem in Context:** A game like ours need to be able to have all the information of each player and the map in the same place, in order to be able to handle a player action.
 
-- **The Pattern:** we decided to use the state pattern and the game loop pattern. This is due to the game having a set number of possible states and the necessity of determining the next state the game is gonna be in after each user input.
+- **The Pattern:** For this, we decided to use the state pattern. This is due to the game having a set number of possible states and the necessity of determining the next state the game is gonna be in after each user input.
 
-- **Implementation:** represented in Red (State) / Purple (Game Loop) in the UML.
+- **Implementation:** Represented in Red in the UML.
 
-- **Consequences:** these pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
+	[States](../src/main/java/com/ldts/ForwardWarfare/State/States/)
 
-### We wanted to treat all Components as equal
+- **Consequences:** These pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
 
-- **Problem in Context:** our Game UI's are constituted by Components that are either complex or simple.
+### A combination of Components can also be a Component!
 
-- **The Pattern:** we decided to use the Composite pattern so that all elements defined by the Composite pattern share a common interface Components.
+- **Problem in Context:** The UIs outside our game are composed of Components. A Color Grid is an abstraction of a set of Buttons, so it makes sense to represent this group also as an Component of the UI.
 
-- **Implementation:** represented in Blue in the UML.
+- **The Pattern:** We decided to use the Composite pattern so that all elements defined by the Composite pattern share a common interface Components.
 
-  [Components](../src/main/java/com/ldts/ForwardWarfare/UI/Component/Component.java) | [ColorGrid](../src/main/java/com/ldts/ForwardWarfare/UI/Component/ColorGrid.java)
+- **Implementation:** Represented in Blue in the UML.
+
+  [Components](../src/main/java/com/ldts/ForwardWarfare/UI/Component/Component.java)
+  
+  [ColorGrid](../src/main/java/com/ldts/ForwardWarfare/UI/Component/ColorGrid.java)
 
 - **Consequences:** Using this pattern, the client code doesn’t have to worry about the concrete class of the objects it is working with since they all depend on the interface Components.
 
-### Turn-based games need to have a stable turn structure
+### A game need to be able to handle user input
 
-- **Problem in Context:** To improve the eficiency of the game runing and to help define a turn in the game we used the Game Loop Patern.
+- **Problem in Context:** In order to play a game, the screen needs to update according to user input. To achieve this, there is a need for a pattern that handles an infinite loop and waits for user input.
 
-- **The Pattern:** It is usual for every game to have a Game Loop Patern implementation.
+- **The Pattern:** To achieve this, we used a Game Loop pattern, which loops infinitely asking the state how to procceed and if user input is needed.
 
-- **Implementation:** represented in Purple in the UML.
+- **Implementation:** Represented in Purple in the UML.
 
-  [Game -> RunGame()](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/src/main/java/com/ldts/ForwardWarfare/Game.java#L91C4-L91C4)
+  [Game -> RunGame()](../src/main/java/com/ldts/ForwardWarfare/Game.java#91)
 
-- **Consequences:** A game loop runs continuously during the gameplay. Each turn of the loop processes user input without blocking, updates the game state, and renders the game.
+- **Consequences:** A game loop runs continuously during the gameplay. Each turn of the loop processes user input, waiting for it or not depending on the state the game is in, updates the game state, and renders the game.
 
 ## Error prone
 
