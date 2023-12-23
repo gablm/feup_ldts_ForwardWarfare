@@ -5,8 +5,7 @@ FowardWarfare is our recreation of the game called Advance Wars. It’s a series
 
 ## How to Play
 
-Forward Warfare is a turn-based strategy game. 
-The objective is to defeat the enemy army, capture bases and control facilities to obtain coins and additional units. After moving a unit depending of your surroundings you can either capture nearby facilities or attack nearby enemy units.
+The objective of our game is to defeat the enemy army, capture bases and control facilities to obtain coins and additional units. After moving a unit depending of your surroundings you can either capture nearby facilities or attack nearby enemy units.
 The different types of facilities that exists are the bases, where to capture the enemy base to win the game takes two turns and those turns must be consecutive; factories, where you can buy one ground unit per round; airports, where you can buy one air unit per round; ports, where you can buy one sea unit per round as well and, finally, oilpumps, which gives you plus 10 income per round. 
 Furthermore, there are some shortcut keys to help you during the game, they are, the "ESC" key (opens the menu or goes back to the default section), the "ENTER" key (confirms the action you want to make) and the arrows keys, which are the right, left, up and down, as the name suggest it moves you to the right, left, up, and down, respectively.
 
