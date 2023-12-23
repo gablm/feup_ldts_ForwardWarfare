@@ -50,3 +50,6 @@ The following screenshots shows the general look of our game.
 
 ### Gameplay Gif
 ![gif](./docs/gifs/Gameplay.gif)
+
+### Move Troop Gif
+![gif](./docs/gifs/MoveTroop.gif)
