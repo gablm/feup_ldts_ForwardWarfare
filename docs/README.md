@@ -96,6 +96,8 @@ The following screenshots shows the general look of our game.
 ### Capture Facility Gif
 ![gif](./gifs/CaptureFacility.gif)
 
+**Description:** Gif who shows you the process of capturing facilities during your move.
+
 ### End Game Gif
 ![gif](./gifs/EndGame.gif)
 
