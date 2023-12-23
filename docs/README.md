@@ -56,7 +56,7 @@ The following screenshots shows the general look of our game.
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
 ### How to play
-![image](./docs/images/HowToPlay.png)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/105c5fe6-efa7-45c0-8893-cfe7b7bb7f53)
 
 **Description:** Screen resulted by the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
 
