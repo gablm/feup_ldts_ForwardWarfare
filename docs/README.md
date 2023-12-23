@@ -52,32 +52,28 @@ All the planned features were successfully implemented.
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
+![image](./images/MainMenu_Start.png)
 
-![image](./docs/images/MainMenu_Start.png)
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
 ### How to play
-
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/105c5fe6-efa7-45c0-8893-cfe7b7bb7f53)
+![image](./images/HowToPlay.png)
 
 **Description:** Screen resulted by the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
 
 ### Main Menu -> Enemy Selection
-
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/e001e50f-17ed-4574-abdb-9c877b97546a)
+![image](./images/MainMenu_EnemySelection.png)
 
 **Description:** In this screen you can choose if you want to play against another player or the Computer (AI player).
 
 ### Start Game Menu
-
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/9aa94f4c-f60c-429f-8823-8e6f03debf0b)
+![image](./images/StartGame.png)
 
 **Description:** Screen where you select the game settings. You can choose the color for your troops and the map you want to play in. The color of the AI player is already predetermined as red.
 
 ### Game Battle
-
-![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/ee0f7c0f-65bf-4342-8a1c-70f093a4ad41)
+![image](./images/GameBattle.png)
 
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right.
 
