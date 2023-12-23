@@ -247,8 +247,6 @@ One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts
 
 ## Self-evaluation
 
-### \*\*MISSING\*\*
-
 - Felipe Esteves: **40%**
 - Gabriel Lima: **45%**
 - Renata Simões: **15%**
