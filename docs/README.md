@@ -275,6 +275,6 @@ One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts
 
 ## SELF-EVALUATION
 
-- Felipe Esteves: **40%**
-- Gabriel Lima: **45%**
-- Renata Simão: **15%**
+- Felipe Esteves: **37%**
+- Gabriel Lima: **43%**
+- Renata Simão: **20%**
