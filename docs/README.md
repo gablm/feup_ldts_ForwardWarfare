@@ -106,6 +106,8 @@ The following screenshots shows the general look of our game.
 ### Gameplay Gif
 ![gif](./gifs/Gameplay.gif)
 
+**Description:** Example of a move during one turn, you can do a bunch of things like the ones we show you in this gif.
+
 ### Move Troop Gif
 ![gif](./gifs/MoveTroop.gif)
 
