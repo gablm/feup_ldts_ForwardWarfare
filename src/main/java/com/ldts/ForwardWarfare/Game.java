@@ -166,11 +166,11 @@ public class Game {
         return uiState;
     }
 
-    public void setColor1(TextColor color1) {
+    /*public void setColor1(TextColor color1) {
         this.color1 = color1;
     }
 
     public void setColor2(TextColor color2) {
         this.color2 = color2;
-    }
+    }*/
 }

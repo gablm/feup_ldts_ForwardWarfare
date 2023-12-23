@@ -32,8 +32,6 @@ pitest {
     timestampedReports = false
     targetClasses = ['com.ldts.ForwardWarfare.*']
     excludedClasses = ['com.ldts.ForwardWarfare.LanternaTerminal']
-    excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest',
-                            'com.ldts.ForwardWarfare.GameNoMutationTest'
-                          ]
+    excludedTestClasses = [ 'com.ldts.ForwardWarfare.LanternaTerminalTest']
     junit5PluginVersion = '0.12'
 }
