@@ -38,3 +38,7 @@ The following screenshots shows the general look of our game.
 
 ### Atack Gif
 ![gif](./docs/gifs/Atack.gif)
+
+### Buy Troop Gif
+![gif](./docs/gifs/BuyTroop.gif)
+
