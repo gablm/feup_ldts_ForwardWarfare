@@ -52,27 +52,31 @@ All the planned features were successfully implemented.
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
-![image](./images/MainMenu_Start.png)
 
+![image](./images/MainMenu_Start.png)
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
 ### How to play
+
 ![image](./images/HowToPlay.png)
 
 **Description:** Screen resulted by the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
 
 ### Main Menu -> Enemy Selection
+
 ![image](./images/MainMenu_EnemySelection.png)
 
 **Description:** In this screen you can choose if you want to play against another player or the Computer (AI player).
 
 ### Start Game Menu
+
 ![image](./images/StartGame.png)
 
 **Description:** Screen where you select the game settings. You can choose the color for your troops and the map you want to play in. The color of the AI player is already predetermined as red.
 
 ### Game Battle
+
 ![image](./images/GameBattle.png)
 
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right.
@@ -134,7 +138,7 @@ The following screenshots shows the general look of our game.
 
 - **Implementation:** Represented in Red in the UML.
 
-	[States](../src/main/java/com/ldts/ForwardWarfare/State/States/)
+  [States](../src/main/java/com/ldts/ForwardWarfare/State/States/)
 
 - **Consequences:** These pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
 
@@ -147,10 +151,24 @@ The following screenshots shows the general look of our game.
 - **Implementation:** Represented in Blue in the UML.
 
   [Components](../src/main/java/com/ldts/ForwardWarfare/UI/Component/Component.java)
-  
+
   [ColorGrid](../src/main/java/com/ldts/ForwardWarfare/UI/Component/ColorGrid.java)
 
 - **Consequences:** Using this pattern, the client code doesn’t have to worry about the concrete class of the objects it is working with since they all depend on the interface Components.
+
+### A combination of Elements can also be a Element!
+
+- **Problem in Context:** All the Elements of our Game are derivatives from the Element Class. A Map is an abstraction of a set of Elements, so it makes sense to represent this group also as an Element.
+
+- **The Pattern:** We decided to use the Composite pattern so that all elements defined by the Composite pattern share a common parent class Elements.
+
+- **Implementation:** Represented in Blue in the UML.
+
+  [Elements](../src/main/java/com/ldts/ForwardWarfare/Element/Element.java)
+
+  [Map](../src/main/java/com/ldts/ForwardWarfare/Map/Map.java)
+
+- **Consequences:** Using this pattern, the client code doesn’t have to worry about the concrete class of the objects it is working with since they all depend on the class Elements.
 
 ### A game need to be able to handle user input
 
