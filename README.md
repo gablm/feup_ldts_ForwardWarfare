@@ -7,7 +7,7 @@ FowardWarfare is our recreation of the game called Advance Wars. It’s a series
 
 ### \*\*MISSING\*\*
 
-## Screenshots
+## SCREENSHOTS / GIFS
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
