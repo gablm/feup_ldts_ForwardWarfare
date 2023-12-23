@@ -74,7 +74,7 @@ The following screenshots shows the general look of our game.
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/ee0f7c0f-65bf-4342-8a1c-70f093a4ad41)
 
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right. 
-
+### \*\*MISSING\*\* **GAMEPLAY GIFS **
 
 ## DESIGN
 
