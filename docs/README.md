@@ -108,20 +108,33 @@ All the planned features were successfully implemented.
 
 - **Consequences:** these pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
 
-## Known-code smells
+## Error prone
 
-### Error prone
+### MissingCasesInEnumSwitch
 
- - EmptyCatch
- - MissingCasesInEnumSwitch
- - CatchAndPrintStackTrace
- - StringSplitter
+In most states, we use a switch statement to define what behaviour happen given user's input. As some inputs are not always valid in some states, there are no cases for those. Having a default case, with just a break statement could solve this warning, but after all, there behaviour would always be the same. 
 
-### Code smells
+### CatchAndPrintStackTrace
+
+ In a project meant for release to the public, having a robust logging system would be the obvious choice to make. But given the scope of the project, printStackTrace is suficient to provide information about the exception that happen during execution.
+
+### EmptyCatch
+
+ There are some try statements used to avoid Exceptions to objects that don't have much impact to the rest of the code. In this case, the having the stack trace of this exception is not that valuable and as such, we discard the exception.
+
+ A good example is the sleep in [MoveAnimationState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Move/MoveAnimationState.java#32). This statement enables us to make a small move animation by delaying the execution of the program. Despite this, such sleep failing by any reason does not result in an important problem and so the related exception can be ignored.
+
+### StringSplitter
+
+ Even though String.split() might have weird behaviour when spliting things like "" or ":" (being : the separator), this behaviour has no impact on the place it is being used.
+
+ In [InvalidSelectState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Selection/InvalidSelectState.java#31), the split method spaces enables us to "push" the text down by only adding "\n" to the message. This way, with two "\n" or more in a row, it is possible to center test or to do paragraphs.
+
+## Code smells
 
 The main code smells that we have found in our project are:
 
- - Duplicade Code
+### Duplicade Code
  
 Some code or method is duplicated within some classes. This happens because, even though that particular piece of code is the same, the rest of the class is different enough that there is a need for it to be separated.
 
@@ -131,13 +144,13 @@ One example of this is the withinRadius method present in the classes:
 
 The process that both classes follow to obtain the object that the player can capture/attack is quite similar, but as the Facilities and Troops are stored in a different way, this duplication of code is warranted.
 
- - Long Method
+### Long Method
 
 Long methods should be avoided to keep code clearity and simplicity. But this is not always viable nor easy to do. 
 
 The biggest infringers of this rethoric is the [AutomatedLogic](../src/main/java/com/ldts/ForwardWarfare/State/States/Automatic/AutomaticPlayState.java#53) method in [AutomaticPlayState](../src/main/java/com/ldts/ForwardWarfare/State/States/Automatic/AutomaticPlayState.java). Given that it tries to simulate a player, it is essential to have the entire logic for the randomness and what moves are gonna be executed in the same place.
 
- - Long Parameter list
+### Long Parameter list
 
  Having a long parameter list in a method can also reduce code clarity. It is rare for a method in our code to have more than 2/3 parameters, but in some cases it can reach 6 parameters.
 
