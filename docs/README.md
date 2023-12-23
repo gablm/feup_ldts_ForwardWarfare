@@ -263,4 +263,4 @@ One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts
 
 - Felipe Esteves: **40%**
 - Gabriel Lima: **45%**
-- Renata Simões: **15%**
+- Renata Simão: **15%**
