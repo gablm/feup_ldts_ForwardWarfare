@@ -93,6 +93,9 @@ The following screenshots shows the general look of our game.
 ### End Game Gif
 ![gif](./gifs/EndGame.gif)
 
+### Gameplay Gif
+![gif](./gifs/Gameplay.gif)
+
 ## DESIGN
 
 ### UML DIAGRAM
