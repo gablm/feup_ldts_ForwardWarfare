@@ -91,15 +91,17 @@ The following screenshots shows the general look of our game.
 ### Buy Troop Gif
 ![gif](./gifs/BuyTroop.gif)
 
-**Description:** This gid«f shows you how to buy troops during your play.
+**Description:** This gif shows you how to buy troops during your play.
 
 ### Capture Facility Gif
 ![gif](./gifs/CaptureFacility.gif)
 
-**Description:** Gif who shows you the process of capturing facilities during your move.
+**Description:** Gif who shows you the process of how you can capture facilities during your move.
 
 ### End Game Gif
 ![gif](./gifs/EndGame.gif)
+
+**Description:** This one shows you an example for when you loose the game.
 
 ### Gameplay Gif
 ![gif](./gifs/Gameplay.gif)
