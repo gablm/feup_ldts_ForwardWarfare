@@ -51,7 +51,7 @@ All the planned features were successfully implemented.
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
-![image](./docs/images/MainMenu_Start.png)
+![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/ed2468ce-0b47-4a76-8e07-7aadd2d88dc3)
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
