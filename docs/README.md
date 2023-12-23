@@ -2,9 +2,10 @@
 
 ## GAME DESCRIPTION
 
-FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo. The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units. 
+FowardWarfare is our recreation of the game called Advance Wars. It’s a series of turn-based strategy games developed by Intelligent Systems and published by Nintendo. The game was first released for the Game Boy Advance and features tactical battles between armies on a grid-based map. It offers challenging gameplay where players command various military units such as infantry, tanks, aircraft, and ships, each with unique abilities and characteristics. The objective is to defeat the enemy army, capture bases, and control facilities to obtain resources and additional units.
 
 For LDTS 2023/24, this project was developed by:
+
 - Filipe Esteves up202206515@up.pt
 - Gabriel Lima up202206693@up.pt
 - Renata Simão up202205124@up.pt
@@ -17,12 +18,11 @@ For LDTS 2023/24, this project was developed by:
 
 - **Map** - Loads a custom map using the format .fw, where a number corresponds to a tile.
   (currently only working by editing the file 1.fw)
-  
 - **Color** - you can choose the color of your player.
 
 - **Map select** - Select the map you want to use.
 
-- **Play**  - you can play against AI or other person (like a friend for instance).
+- **Play** - you can play against AI or other person (like a friend for instance).
 
 - **Interact with facilities to collect resources:**
 
@@ -33,8 +33,9 @@ For LDTS 2023/24, this project was developed by:
 - **Defeat the base** - defeat your opponent's base to win the game.
 
 - **Capture facilities:**
-    - **Not owned**
-    - **Owned by other player**
+
+  - **Not owned**
+  - **Owned by other player**
 
 - **Kill other player troops**
 
@@ -46,34 +47,39 @@ For LDTS 2023/24, this project was developed by:
 
 All the planned features were successfully implemented.
 
-
 ## Screenshots
+
 The following screenshots shows the general look of our game.
 
 ### Main Menu -> Start
+
 ![image](./docs/images/MainMenu_Start.png)
 
 **Description:** Initial screen where you can choose whether to play the game, learn how to play it or close it.
 
 ### How to play
+
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/105c5fe6-efa7-45c0-8893-cfe7b7bb7f53)
 
 **Description:** Screen resulted by the "How to play" option in the Main Menu -> Start, it explains you the game and you can learn how to play it.
 
 ### Main Menu -> Enemy Selection
+
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/e001e50f-17ed-4574-abdb-9c877b97546a)
 
 **Description:** In this screen you can choose if you want to play against another player or the Computer (AI player).
 
 ### Start Game Menu
+
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/9aa94f4c-f60c-429f-8823-8e6f03debf0b)
 
 **Description:** Screen where you select the game settings. You can choose the color for your troops and the map you want to play in. The color of the AI player is already predetermined as red.
 
 ### Game Battle
+
 ![image](https://github.com/FEUP-LDTS-2023/project-l04gr05/assets/145997633/ee0f7c0f-65bf-4342-8a1c-70f093a4ad41)
 
-**Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right. 
+**Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right.
 
 ### \*\*MISSING GAMEPLAY GIFS\*\*
 
@@ -93,7 +99,6 @@ The following screenshots shows the general look of our game.
 ### Tiles and Playable troops are similar in base composition
 
 - **Problem in Context:** tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
-  
 - **The Pattern:** the decorator pattern is extremely useful in this case. By creating an abstract class, we can "decorate" the class with the required functions to make a troop playable.
 
 - **Implementation:**
@@ -103,7 +108,7 @@ The following screenshots shows the general look of our game.
   [Base abstract class - Element](../src/main/java/com/ldts/ForwardWarfare/Element/Element.java) |
   [Decorator abstract class - Playable](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Playable.java) |
   [Class that extends Playable - HeavyTank](../src/main/java/com/ldts/ForwardWarfare/Element/Playable/Ground/HeavyTank.java)
-  
+
 - **Consequences:** by having this implementation, every element in the map can be reduced to the Element type and it the functionality of each troop will remain if they are accessed thru a type cast.
 
 ### A water or field tile might contain a facility
@@ -113,7 +118,7 @@ The following screenshots shows the general look of our game.
 - **The Pattern:** for this we choose the strategy pattern. By using it, we can define the facilities as "strategies" of how a tile behaves when interacted with by a player.
 
 - **Implementation:**
-  
+
   Represented in Green in the UML.
 
   [Field](../src/main/java/com/ldts/ForwardWarfare/Element/Tile/Fields.java) |
@@ -125,44 +130,68 @@ The following screenshots shows the general look of our game.
 
 - **Consequences:** those classes become responsible for the management of the facility, instead of having to store which facility is related to which tile.
 
- ### The game has a lot of phases
+### The game has a lot of phases
 
 - **Problem in Context:** a game like ours need to be able to have all the information of each player and the map in the same place, in order to be able to handle a player action.
 
 - **The Pattern:** we decided to use the state pattern and the game loop pattern. This is due to the game having a set number of possible states and the necessity of determining the next state the game is gonna be in after each user input.
 
-- **Implementation:** represented in Red (State) / Purple (Game Loop) in the UML but no code implementation yet.
+- **Implementation:** represented in Red (State) / Purple (Game Loop) in the UML.
 
 - **Consequences:** these pattern are useful as they allows us to have all the necessary map, player, troop and facility information in the same place. Furthermore, the state class becomes the brain of the game, managing everything that happens and allowing us to have a central loop (game loop pattern) that controls the game and read the user input.
+
+### We wanted to treat all Components as equal
+
+- **Problem in Context:** our Game UI's are constituted by Components that are either complex or simple.
+
+- **The Pattern:** we decided to use the Composite pattern so that all elements defined by the Composite pattern share a common interface Components.
+
+- **Implementation:** represented in Blue in the UML.
+
+  [Components](../src/main/java/com/ldts/ForwardWarfare/UI/Component/Component.java) | [ColorGrid](../src/main/java/com/ldts/ForwardWarfare/UI/Component/ColorGrid.java)
+
+- **Consequences:** Using this pattern, the client code doesn’t have to worry about the concrete class of the objects it is working with since they all depend on the interface Components.
+
+### Turn-based games need to have a stable turn structure
+
+- **Problem in Context:** To improve the eficiency of the game runing and to help define a turn in the game we used the Game Loop Patern.
+
+- **The Pattern:** It is usual for every game to have a Game Loop Patern implementation.
+
+- **Implementation:** represented in Purple in the UML.
+
+  [Game -> RunGame()](https://github.com/FEUP-LDTS-2023/project-l04gr05/blob/main/src/main/java/com/ldts/ForwardWarfare/Game.java#L91C4-L91C4)
+
+- **Consequences:** A game loop runs continuously during the gameplay. Each turn of the loop processes user input without blocking, updates the game state, and renders the game.
 
 ## Error prone
 
 ### MissingCasesInEnumSwitch
 
-In most states, we use a switch statement to define what behaviour happen given user's input. As some inputs are not always valid in some states, there are no cases for those. Having a default case, with just a break statement could solve this warning, but after all, there behaviour would always be the same. 
+In most states, we use a switch statement to define what behaviour happen given user's input. As some inputs are not always valid in some states, there are no cases for those. Having a default case, with just a break statement could solve this warning, but after all, there behaviour would always be the same.
 
 ### CatchAndPrintStackTrace
 
- In a project meant for release to the public, having a robust logging system would be the obvious choice to make. But given the scope of the project, printStackTrace is suficient to provide information about the exception that happen during execution.
+In a project meant for release to the public, having a robust logging system would be the obvious choice to make. But given the scope of the project, printStackTrace is suficient to provide information about the exception that happen during execution.
 
 ### EmptyCatch
 
- There are some try statements used to avoid Exceptions to objects that don't have much impact to the rest of the code. In this case, the having the stack trace of this exception is not that valuable and as such, we discard the exception.
+There are some try statements used to avoid Exceptions to objects that don't have much impact to the rest of the code. In this case, the having the stack trace of this exception is not that valuable and as such, we discard the exception.
 
- A good example is the sleep in [MoveAnimationState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Move/MoveAnimationState.java#32). This statement enables us to make a small move animation by delaying the execution of the program. Despite this, such sleep failing by any reason does not result in an important problem and so the related exception can be ignored.
+A good example is the sleep in [MoveAnimationState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Move/MoveAnimationState.java#32). This statement enables us to make a small move animation by delaying the execution of the program. Despite this, such sleep failing by any reason does not result in an important problem and so the related exception can be ignored.
 
 ### StringSplitter
 
- Even though String.split() might have weird behaviour when spliting things like "" or ":" (being : the separator), this behaviour has no impact on the place it is being used.
+Even though String.split() might have weird behaviour when spliting things like "" or ":" (being : the separator), this behaviour has no impact on the place it is being used.
 
- In [InvalidSelectState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Selection/InvalidSelectState.java#31), the split method spaces enables us to "push" the text down by only adding "\n" to the message. This way, with two "\n" or more in a row, it is possible to center test or to do paragraphs.
+In [InvalidSelectState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/Selection/InvalidSelectState.java#31), the split method spaces enables us to "push" the text down by only adding "\n" to the message. This way, with two "\n" or more in a row, it is possible to center test or to do paragraphs.
 
 ## Code smells
 
 The main code smells that we have found in our project are:
 
 ### Duplicade Code
- 
+
 Some code or method is duplicated within some classes. This happens because, even though that particular piece of code is the same, the rest of the class is different enough that there is a need for it to be separated.
 
 One example of this is the withinRadius method present in the classes:
@@ -173,20 +202,20 @@ The process that both classes follow to obtain the object that the player can ca
 
 ### Long Method
 
-Long methods should be avoided to keep code clearity and simplicity. But this is not always viable nor easy to do. 
+Long methods should be avoided to keep code clearity and simplicity. But this is not always viable nor easy to do.
 
 The biggest infringers of this rethoric is the [AutomatedLogic](../src/main/java/com/ldts/ForwardWarfare/State/States/Automatic/AutomaticPlayState.java#53) method in [AutomaticPlayState](../src/main/java/com/ldts/ForwardWarfare/State/States/Automatic/AutomaticPlayState.java). Given that it tries to simulate a player, it is essential to have the entire logic for the randomness and what moves are gonna be executed in the same place.
 
 ### Long Parameter list
 
- Having a long parameter list in a method can also reduce code clarity. It is rare for a method in our code to have more than 2/3 parameters, but in some cases it can reach 6 parameters.
+Having a long parameter list in a method can also reduce code clarity. It is rare for a method in our code to have more than 2/3 parameters, but in some cases it can reach 6 parameters.
 
- One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/SpawnTroopState.java#25). This could be solved by wrapping some of the parameters in its own class, but given the scarcity of a method like this we opted for keeping it in this form.
-
+One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts/ForwardWarfare/State/States/Player/SpawnTroopState.java#25). This could be solved by wrapping some of the parameters in its own class, but given the scarcity of a method like this we opted for keeping it in this form.
 
 ## Testing
 
 ### Screenshot of coverage report
+
 <p align="center" justify="center">
   <img src="images/codeCoverage.png"/>
 </p>
@@ -195,12 +224,13 @@ The biggest infringers of this rethoric is the [AutomatedLogic](../src/main/java
 </p>
 
 ### Link to mutation testing report
+
 [Mutation tests](./reports/pitest/index.html)
 
 ## Self-evaluation
 
 ### \*\*MISSING\*\*
 
- - Felipe Esteves: **X%**
- - Gabriel Lima: **X%**
- - Renata Simões: **X%**
+- Felipe Esteves: **X%**
+- Gabriel Lima: **X%**
+- Renata Simões: **X%**
