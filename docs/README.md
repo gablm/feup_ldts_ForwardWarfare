@@ -86,6 +86,8 @@ The following screenshots shows the general look of our game.
 ### Atack Gif
 ![gif](./gifs/Atack.gif)
 
+**Description:** This gif serves as an example of how you can atack your opponent.
+
 ### Buy Troop Gif
 ![gif](./gifs/BuyTroop.gif)
 
