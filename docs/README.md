@@ -94,8 +94,6 @@ The following screenshots shows the general look of our game.
   <b><i>Fig 1. Class UML</i></b>
 </p>
 
-### \*\*IMPROVE DESIGN CHOICES\*\*
-
 ### Tiles and Playable troops are similar in base composition
 
 - **Problem in Context:** Tiles and Playable troops are quite similar in their base composition but differ only in some aspects, that being that troops can move and have life points, and that each tile does not have such funcionality.
