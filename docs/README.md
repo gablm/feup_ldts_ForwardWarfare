@@ -85,6 +85,10 @@ The following screenshots shows the general look of our game.
 
 ![gif](./gifs/Atack.gif)
 
+### Buy Troop Gif
+
+![gif](./gifs/BuyTroop.gif)
+
 ## DESIGN
 
 ### UML DIAGRAM
