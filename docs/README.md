@@ -90,6 +90,9 @@ The following screenshots shows the general look of our game.
 ### Capture Facility Gif
 ![gif](./gifs/CaptureFacility.gif)
 
+### End Game Gif
+![gif](./gifs/EndGame.gif)
+
 ## DESIGN
 
 ### UML DIAGRAM
