@@ -42,17 +42,29 @@ The following screenshots shows the general look of our game.
 ### Atack Gif
 ![gif](./docs/gifs/Atack.gif)
 
+**Description:** This gif serves as an example of how you can atack your opponent.
+
 ### Buy Troop Gif
 ![gif](./docs/gifs/BuyTroop.gif)
+
+**Description:** This gif shows you how to buy troops during your play.
 
 ### Capture Facility Gif
 ![gif](./docs/gifs/CaptureFacility.gif)
 
+**Description:** Gif who shows you the process of how you can capture facilities during your move.
+
 ### End Game Gif
 ![gif](./docs/gifs/EndGame.gif)
+
+**Description:** This one shows you an example for when you loose the game.
 
 ### Gameplay Gif
 ![gif](./docs/gifs/Gameplay.gif)
 
+**Description:** Example of a move during one turn, you can do a bunch of things like the ones we show you in this gif.
+
 ### Move Troop Gif
 ![gif](./docs/gifs/MoveTroop.gif)
+
+**Description:** This gif, as the title suggests, shows you how you can move your troops.
