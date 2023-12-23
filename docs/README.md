@@ -249,6 +249,6 @@ One such case is the constructor for [SpawnTroopState](../src/main/java/com/ldts
 
 ### \*\*MISSING\*\*
 
-- Felipe Esteves: **X%**
-- Gabriel Lima: **X%**
-- Renata Simões: **X%**
+- Felipe Esteves: **40%**
+- Gabriel Lima: **45%**
+- Renata Simões: **15%**
