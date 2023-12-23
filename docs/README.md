@@ -82,12 +82,13 @@ The following screenshots shows the general look of our game.
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right.
 
 ### Atack Gif
-
 ![gif](./gifs/Atack.gif)
 
 ### Buy Troop Gif
-
 ![gif](./gifs/BuyTroop.gif)
+
+### Capture Facility Gif
+![gif](./gifs/CaptureFacility.gif)
 
 ## DESIGN
 
