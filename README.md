@@ -42,3 +42,5 @@ The following screenshots shows the general look of our game.
 ### Buy Troop Gif
 ![gif](./docs/gifs/BuyTroop.gif)
 
+### Capture Facility Gif
+![gif](./docs/gifs/CaptureFacility.gif)
