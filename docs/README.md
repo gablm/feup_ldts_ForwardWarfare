@@ -82,6 +82,7 @@ The following screenshots shows the general look of our game.
 **Description**: Screen with the game battle. You have the map above and under it, a UI where you get information about the tile/troop currently selected and the tile/troop that the selector is hovering on the right.
 
 ### \*\*MISSING GAMEPLAY GIFS\*\*
+![gifs](./docs/gifs/Atack.gif)
 
 ## DESIGN
 
